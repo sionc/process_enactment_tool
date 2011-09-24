@@ -1,5 +1,5 @@
 == Welcome to Rails
-     <a href='http://cruise.sv.cmu.edu:3000/projects/Fall-2011-FSE-Sneakers'><img src='http://cruise.sv.cmu.edu:3000/projects/Fall-2011-FSE-Sneakers.png' alt='Build Status'></a> 
+     <a href='http://cruise.sv.cmu.edu:3333/projects/Sneakers'><img src='http://cruise.sv.cmu.edu:3333/projects/Sneakers.png' alt='Build Status'></a>
  
 
 Rails is a web-application framework that includes everything needed to create

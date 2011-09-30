@@ -9,4 +9,3 @@ tmp/*
 *DS_Store
 .rspec
 .bundle
-config/*.yml

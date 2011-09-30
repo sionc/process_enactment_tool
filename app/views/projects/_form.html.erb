@@ -17,7 +17,7 @@
   </div>
 	<div class="field">
 		<%= f.label :Lifecycle_type %>
-		<%= select :project, :lifecycle_id, @lifecycles.collect {|l| [ l.name, l.id ] } %>
+		<%= select :project, :lifecycle_id, @lifecycles.collect {|l| [ l.name, l.id ] } unless @lifecycles.nil? %>
 	</div>
   <div class="field">
     <%= f.label :description %><br />

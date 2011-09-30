@@ -6,13 +6,16 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-# ActiveRecord::Base.connection.execute("DELETE FROM lifecycles IF EXISTS") 
+ActiveRecord::Base.connection.execute("TRUNCATE table lifecycles") 
 # ActiveRecord::Base.connection.execute("TRUNCATE table lifecycle_phases") 
 
-sql = "INSERT INTO lifecycles ('name', 'description') 
-       VALUES ('Simplified Waterfall', 'This is a simplified version of the waterfall method'),
-              ('Rational Unified Process', 'This is a rational unified process method');"
+# sql = "INSERT INTO lifecycles ('name', 'description') 
+#        VALUES ('Simplified Waterfall', 'This is a simplified version of the waterfall method'),
+#               ('Rational Unified Process', 'This is a rational unified process method');"
+
+Lifecycle.create(:name => "Simplified Waterfall", :description => "This is a simplified version of the waterfall method")
+Lifecycle.create(:name => "Rational Unified Process", :description => "This is a rational unified process method")
        
-ActiveRecord::Base.connection.execute(sql)
+# ActiveRecord::Base.connection.execute(sql)
 
        

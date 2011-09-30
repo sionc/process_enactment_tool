@@ -23,13 +23,14 @@ describe ProjectsController do
   # This should return the minimal set of attributes required to create a valid
   # Project. As you add validations to Project, be sure to
   # update the return value of this method accordingly.
-  def valid_attributes
-    {}
+  before(:each) do
+    lifecycle = Factory.create(:lifecycle)
+    @attr = { :name => "test1", :lifecycle_id => lifecycle.id }
   end
 
   describe "GET index" do
     it "assigns all projects as @projects" do
-      project = Project.create! valid_attributes
+      project = Project.create!(@attr)
       get :index
       assigns(:projects).should eq([project])
     end
@@ -41,7 +42,7 @@ describe ProjectsController do
 
   describe "GET show" do
     it "assigns the requested project as @project" do
-      project = Project.create! valid_attributes
+      project = Project.create!(@attr)
       get :show, :id => project.id.to_s
       assigns(:project).should eq(project)
     end
@@ -66,18 +67,18 @@ describe ProjectsController do
     describe "with valid params" do
       it "creates a new Project" do
         expect {
-          post :create, :project => valid_attributes
+          post :create, :project => @attr
         }.to change(Project, :count).by(1)
       end
 
       it "assigns a newly created project as @project" do
-        post :create, :project => valid_attributes
+        post :create, :project => @attr
         assigns(:project).should be_a(Project)
         assigns(:project).should be_persisted
       end
 
       it "redirects to the created project" do
-        post :create, :project => valid_attributes
+        post :create, :project => @attr
         response.should redirect_to(Project.last)
       end
     end
@@ -101,14 +102,14 @@ describe ProjectsController do
 
   describe "PUT update" do
     it "should not be accessible" do
-      project = Project.create! valid_attributes
-      {:put => :update, :id => project.id, :project => valid_attributes}.should_not be_routable
+      project = Project.create! @attr
+      {:put => :update, :id => project.id, :project => @attr}.should_not be_routable
     end
   end
 
   describe "DELETE destroy" do
     it "should not be accessible" do
-      project = Project.create! valid_attributes
+      project = Project.create! @attr
       {:delete => :destroy, :id => project.id.to_s}.should_not be_routable
     end
   end

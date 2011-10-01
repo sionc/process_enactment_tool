@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
 	<div class="field">
@@ -20,10 +20,12 @@
 		<%= select :project, :lifecycle_id, @lifecycles.collect {|l| [ l.name, l.id ] } unless @lifecycles.nil? %>
 	</div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Create" %>
+	<%= button_to 'Cancel', projects_path %>
+
   </div>
 <% end %>

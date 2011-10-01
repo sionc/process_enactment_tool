@@ -1,23 +1,13 @@
-<h1>Listing projects</h1>
+<h2>All projects</h2>
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @projects.each do |project| %>
   <tr>
-    <td><%= project.name %></td>
+    <td><%=  link_to project.name, project %></td>
     <td><%= project.description %></td>
-    <td><%= link_to 'Show', project %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Project', new_project_path %>
+<%= button_to "Cancel", :controller => "projects", :action => "home" %>

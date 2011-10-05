@@ -1,25 +1,13 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
-#   Mayor.create(:name => 'Daley', :city => cities.first)
-
+puts "Deleting tables..."
 Lifecycle.delete_all
 LifecyclePhase.delete_all
 DeliverableType.delete_all
 
-# ActiveRecord::Base.connection.execute("TRUNCATE table lifecycles") 
-# ActiveRecord::Base.connection.execute("TRUNCATE table lifecycle_phases") 
-
-# sql = "INSERT INTO lifecycles ('name', 'description') 
-#        VALUES ('Simplified Waterfall', 'This is a simplified version of the waterfall method'),
-#               ('Rational Unified Process', 'This is a rational unified process method');"
-
+puts "Creating lifecycles..."
 lifecycle_1 = Lifecycle.create(:name => "Simplified Waterfall", :description => "This is a simplified version of the waterfall method")
 lifecycle_2 = Lifecycle.create(:name => "Rational Unified Process", :description => "This is a rational unified process method")
 
+puts "Creating lifecycle phases..."
 requirements   = LifecyclePhase.create(:name => "Requirements",   :description => "", :lifecycle_id => lifecycle_1.id, :sequence_number => 1)
 design         = LifecyclePhase.create(:name => "Design",         :description => "", :lifecycle_id => lifecycle_1.id, :sequence_number => 2)
 implementation = LifecyclePhase.create(:name => "Implementation", :description => "", :lifecycle_id => lifecycle_1.id, :sequence_number => 3)
@@ -32,22 +20,53 @@ elaboration    = LifecyclePhase.create(:name => "Elaboration",   :description =>
 construction   = LifecyclePhase.create(:name => "Construction",  :description => "", :lifecycle_id => lifecycle_2.id, :sequence_number => 3)
 transition     = LifecyclePhase.create(:name => "Transition",    :description => "", :lifecycle_id => lifecycle_2.id, :sequence_number => 4)
 
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
-# DeliverableType.create(:name => "", :lifecycle_phase_id => requirements.id)
+puts "Creating deliverable types..."
+DeliverableType.create(:name => "Functional Requirements Document", :lifecycle_phase_id => requirements.id)
+DeliverableType.create(:name => "Test and Evaluation Master Plan", :lifecycle_phase_id => requirements.id)
+DeliverableType.create(:name => "Interface Control Document", :lifecycle_phase_id => requirements.id)
+
+DeliverableType.create(:name => "Security Risk Assessment", :lifecycle_phase_id => design.id)
+DeliverableType.create(:name => "Conversion Plan", :lifecycle_phase_id => design.id)
+DeliverableType.create(:name => "System Design Document", :lifecycle_phase_id => design.id)
+DeliverableType.create(:name => "Implementation Plan", :lifecycle_phase_id => design.id)
+DeliverableType.create(:name => "Operations Manual", :lifecycle_phase_id => design.id)
+DeliverableType.create(:name => "User Manual", :lifecycle_phase_id => design.id)
+
+DeliverableType.create(:name => "Change Implementation Notice", :lifecycle_phase_id => implementation.id)
+DeliverableType.create(:name => "Version Description Document", :lifecycle_phase_id => implementation.id)
+DeliverableType.create(:name => "Post Implementation Review", :lifecycle_phase_id => implementation.id)
+
+DeliverableType.create(:name => "Test Analysis Report", :lifecycle_phase_id => integration.id)
+DeliverableType.create(:name => "Test Problem Report", :lifecycle_phase_id => integration.id)
+
+DeliverableType.create(:name => "Verification and Validation Plan", :lifecycle_phase_id => verification.id)
+
+DeliverableType.create(:name => "In-Process Review Report", :lifecycle_phase_id => maintenance.id)
+DeliverableType.create(:name => "User Satisfaction Report", :lifecycle_phase_id => maintenance.id)
+
+DeliverableType.create(:name => "Business Case", :lifecycle_phase_id => inception.id)
+DeliverableType.create(:name => "Project Scope", :lifecycle_phase_id => inception.id)
+DeliverableType.create(:name => "Business Use-Case Model", :lifecycle_phase_id => inception.id)
+DeliverableType.create(:name => "Candidate Architecture", :lifecycle_phase_id => inception.id)
+DeliverableType.create(:name => "Risk Management Plan", :lifecycle_phase_id => inception.id)
+DeliverableType.create(:name => "Project Schedule", :lifecycle_phase_id => inception.id)
+DeliverableType.create(:name => "Cost Estimate", :lifecycle_phase_id => inception.id)
+
+DeliverableType.create(:name => "Use Case Diagrams", :lifecycle_phase_id => elaboration.id)
+DeliverableType.create(:name => "Conceptual Diagrams", :lifecycle_phase_id => elaboration.id)
+DeliverableType.create(:name => "Architectural Diagrams", :lifecycle_phase_id => elaboration.id)
+DeliverableType.create(:name => "Executable architecture", :lifecycle_phase_id => elaboration.id)
+DeliverableType.create(:name => "Construction Plan", :lifecycle_phase_id => elaboration.id)
+
+DeliverableType.create(:name => "Use Cases", :lifecycle_phase_id => construction.id)
+DeliverableType.create(:name => "Activity Diagram", :lifecycle_phase_id => construction.id)
+DeliverableType.create(:name => "Sequence Diagram", :lifecycle_phase_id => construction.id)
+DeliverableType.create(:name => "Collaboration Diagram", :lifecycle_phase_id => construction.id)
+DeliverableType.create(:name => "State Diagram", :lifecycle_phase_id => construction.id)
+DeliverableType.create(:name => "Interaction Overview Diagram", :lifecycle_phase_id => construction.id)
+
+DeliverableType.create(:name => "Deployment Plan", :lifecycle_phase_id => transition.id)
+DeliverableType.create(:name => "Customer Feedback", :lifecycle_phase_id => transition.id)
+DeliverableType.create(:name => "User Manual", :lifecycle_phase_id => transition.id)
+
+puts "Seed complete!"

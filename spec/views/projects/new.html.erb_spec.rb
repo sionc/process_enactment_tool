@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "projects/new.html.erb" do
   before(:each) do
+    @lifecycles = (1..2).collect { Factory(:lifecycle) } 
     assign(:project, stub_model(Project,
       :name => "MyString",
       :description => "MyText"

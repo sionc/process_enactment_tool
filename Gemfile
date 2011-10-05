@@ -31,6 +31,9 @@ gem 'pg'
 #   gem 'webrat'
 # end
 
+# Required on Windows
+gem "rake", "0.8.7"
+
 #suggested gems by Todd
 gem 'jquery-rails', '>= 1.0.3'
 gem 'factory_girl_rails' 
@@ -38,4 +41,4 @@ gem 'rspec-rails'
 gem 'devise' 
 gem 'ruby-debug19' 
 gem 'ruby-debug-base19x' 
-gem 'ruby-debug-ide' #'0.4.6' 
+gem 'ruby-debug-ide' #'0.4.6'

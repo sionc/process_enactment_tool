@@ -10,11 +10,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110928035204) do
+ActiveRecord::Schema.define(:version => 20111005023155) do
+
+  create_table "lifecycle_phases", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "sequence_number"
+    t.integer  "lifecycle_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "lifecycles", :force => true do |t|
     t.string   "name"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "project_phases", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "lifecycle_phase_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

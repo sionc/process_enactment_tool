@@ -66,7 +66,7 @@ div.field, div.actions {
   -moz-box-shadow: 0 0 5px 5px #888;
   -webkit-box-shadow: 0 0 5px 5px#888;
   box-shadow: 0 0 5px 5px #888;
-
+  z-index: 1;
 }
 #sidebar {
 	width: 170px;
@@ -78,7 +78,7 @@ div.field, div.actions {
 	list-sytle: none;
 	margin-left: 0;	
 	padding-left: 0;
-	text-align: right;	
+	text-align: right;
 }
 #sidebar ul li {
 	display: inline-block;
@@ -89,12 +89,21 @@ div.field, div.actions {
 	text-decoration: none;
 	border: 1px solid black;
 	border-right: 3px solid #888;
-	margin: 3px;
-	margin-left: 0;
+	margin: -5px;
 	padding: 5px;
 	background-color: #888888;
 	color: black;
-	width: 170px;
+	width: 158px;
+	display: block;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 0 12px 2px #888;
+    -webkit-box-shadow: 0 0 12px 2px#888;
+    box-shadow: 0 0 12px 2px #888;
+	z-index: 1;
+	position: relative;
+  
 }
 .field label {
 	width: 200px;
@@ -105,7 +114,61 @@ div.field, div.actions {
 .field input, .field textarea, .field select {
 /*	width: 20%;*/
 	margin-left: 6px;
+	padding: 5px;  
+    font-size: 15px;  
+/*    text-shadow: 0px 1px 0px #fff;  */
+    outline: none;  
+    background: -webkit-gradient(linear, left top, left bottombottom, from(#bcbcbe), to(#ffffff));  
+    background: -moz-linear-gradient(top,  #bcbcbe,  #ffffff);  
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;  
+    border-radius: 3px;  
+    border: 1px solid #717171;  
+    -webkit-box-shadow: 1px 1px 0px #efefef;  
+    -moz-box-shadow: 1px 1px 0px #efefef;  
+    box-shadow:  1px 1px 0px #efefef;
 }
 .actions {
 	display: inline;
+}
+.stylized {
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
+	font-size: 14px;
+	color: #050505;
+	padding: 5px 18px;
+	background: -moz-linear-gradient(
+		top,
+		#ffffff 0%,
+		#ebebeb 50%,
+		#dbdbdb 50%,
+		#b5b5b5);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#ffffff),
+		color-stop(0.50, #ebebeb),
+		color-stop(0.50, #dbdbdb),
+		to(#b5b5b5));
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border: 1px solid #949494;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,1);
+}
+.stylized:visited {
+	color: #050505;
+}
+.stylized:hover {
+	color: #888888;
+}
+.custom_link {
+	padding:6.8px 19px;
 }

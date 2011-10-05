@@ -24,8 +24,8 @@
     <%= f.text_area :description %>
   </div>
   <div class="actions">
-    <%= f.submit "Create" %>
-	<%= button_to 'Cancel', projects_path %>
+    <%= f.submit "Create", :class => "stylized" %>
+	<%= link_to 'Cancel', projects_path, :class => "stylized custom_link" %>
 
   </div>
 <% end %>

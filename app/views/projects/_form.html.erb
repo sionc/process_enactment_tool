@@ -17,15 +17,15 @@
   </div>
 	<div class="field">
 		<%= f.label :Lifecycle_type %>
-		<%= select :project, :lifecycle_id, @lifecycles.collect {|l| [ l.name, l.id ] } unless @lifecycles.nil? %>
+		<%= collection_select :project, :lifecycle_id, @lifecycles, :id, :name %>
 	</div>
   <div class="field">
     <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
   <div class="actions">
-    <%= f.submit "Create" %>
-	<%= button_to 'Cancel', projects_path %>
+    <%= f.submit "Create", :class => "stylized" %>
+	<%= link_to 'Cancel', projects_path, :class => "stylized custom_link" %>
 
   </div>
 <% end %>

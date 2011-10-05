@@ -9,6 +9,9 @@ class ProjectsController < ApplicationController
       format.xml  { render :xml => @projects }
     end
   end
+  
+  def home
+  end
 
   # GET /projects/1
   # GET /projects/1.xml
@@ -37,6 +40,7 @@ class ProjectsController < ApplicationController
   # POST /projects.xml
   def create
     @project = Project.new(params[:project])
+    @lifecycles = Lifecycle.all
 
     respond_to do |format|
       if @project.save

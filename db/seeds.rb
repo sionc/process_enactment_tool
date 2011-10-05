@@ -6,7 +6,8 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-ActiveRecord::Base.connection.execute("TRUNCATE table lifecycles") 
+Lifecycle.delete_all
+# ActiveRecord::Base.connection.execute("TRUNCATE table lifecycles") 
 # ActiveRecord::Base.connection.execute("TRUNCATE table lifecycle_phases") 
 
 # sql = "INSERT INTO lifecycles ('name', 'description') 

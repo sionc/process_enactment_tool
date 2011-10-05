@@ -1,5 +1,8 @@
 PET::Application.routes.draw do
+  match 'projects/home' => 'projects#home'
+  
   resources :projects, :except => [:edit, :destroy, :update]
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -50,7 +53,7 @@ PET::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "projects#home"
+  # root :to => "projects#home"
 
   # See how all your routes lay out with "rake routes"
 

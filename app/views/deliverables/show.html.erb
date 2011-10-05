@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @deliverable.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @deliverable.description %>
+</p>
+
+<p>
+  <b>Estimated size:</b>
+  <%= @deliverable.estimated_size %>
+</p>
+
+<p>
+  <b>Estimated production rate:</b>
+  <%= @deliverable.estimated_production_rate %>
+</p>
+
+<p>
+  <b>Estimated effort:</b>
+  <%= @deliverable.estimated_effort %>
+</p>
+
+
+<%= link_to 'Edit', edit_deliverable_path(@deliverable) %> |
+<%= link_to 'Back', deliverables_path %>

@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111005023155) do
+ActiveRecord::Schema.define(:version => 20111005043644) do
+
+  create_table "deliverables", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.float    "estimated_size"
+    t.float    "estimated_production_rate"
+    t.float    "estimated_effort"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "lifecycle_phases", :force => true do |t|
     t.string   "name"

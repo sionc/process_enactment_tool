@@ -1,4 +1,6 @@
 PET::Application.routes.draw do
+  resources :deliverables
+
   match 'projects/home' => 'projects#home'
   
   resources :projects, :except => [:edit, :destroy, :update]

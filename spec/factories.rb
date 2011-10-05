@@ -14,5 +14,4 @@ Factory.define :lifecycle_phase do |phase|
   phase.description     "This is the description"
   phase.sequence_number 1
   phase.association     :lifecycle
-  
 end

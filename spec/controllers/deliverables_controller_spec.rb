@@ -23,13 +23,16 @@ describe DeliverablesController do
   # This should return the minimal set of attributes required to create a valid
   # Deliverable. As you add validations to Deliverable, be sure to
   # update the return value of this method accordingly.
-  def valid_attributes
-    { :name => "test deliverable"}
+
+  before(:each) do
+    stock_deliverable_type = Factory.create(:stock_deliverable_type)
+    @attr = { :name => "test deliverable",
+      :project_deliverable_type_id => stock_deliverable_type.id }
   end
 
   describe "GET index" do
     it "assigns all deliverables as @deliverables" do
-      deliverable = Deliverable.create! valid_attributes
+      deliverable = Deliverable.create! @attr
       get :index
       assigns(:deliverables).should eq([deliverable])
     end
@@ -37,7 +40,7 @@ describe DeliverablesController do
 
   describe "GET show" do
     it "assigns the requested deliverable as @deliverable" do
-      deliverable = Deliverable.create! valid_attributes
+      deliverable = Deliverable.create! @attr
       get :show, :id => deliverable.id.to_s
       assigns(:deliverable).should eq(deliverable)
     end
@@ -52,7 +55,7 @@ describe DeliverablesController do
 
   describe "GET edit" do
     it "assigns the requested deliverable as @deliverable" do
-      deliverable = Deliverable.create! valid_attributes
+      deliverable = Deliverable.create! @attr
       get :edit, :id => deliverable.id.to_s
       assigns(:deliverable).should eq(deliverable)
     end
@@ -62,18 +65,18 @@ describe DeliverablesController do
     describe "with valid params" do
       it "creates a new Deliverable" do
         expect {
-          post :create, :deliverable => valid_attributes
+          post :create, :deliverable => @attr
         }.to change(Deliverable, :count).by(1)
       end
 
       it "assigns a newly created deliverable as @deliverable" do
-        post :create, :deliverable => valid_attributes
+        post :create, :deliverable => @attr
         assigns(:deliverable).should be_a(Deliverable)
         assigns(:deliverable).should be_persisted
       end
 
       it "redirects to the created deliverable" do
-        post :create, :deliverable => valid_attributes
+        post :create, :deliverable => @attr
         response.should redirect_to(Deliverable.last)
       end
     end
@@ -98,7 +101,7 @@ describe DeliverablesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested deliverable" do
-        deliverable = Deliverable.create! valid_attributes
+        deliverable = Deliverable.create! @attr
         # Assuming there are no other deliverables in the database, this
         # specifies that the Deliverable created on the previous line
         # receives the :update_attributes message with whatever params are
@@ -108,21 +111,21 @@ describe DeliverablesController do
       end
 
       it "assigns the requested deliverable as @deliverable" do
-        deliverable = Deliverable.create! valid_attributes
-        put :update, :id => deliverable.id, :deliverable => valid_attributes
+        deliverable = Deliverable.create! @attr
+        put :update, :id => deliverable.id, :deliverable => @attr
         assigns(:deliverable).should eq(deliverable)
       end
 
       it "redirects to the deliverable" do
-        deliverable = Deliverable.create! valid_attributes
-        put :update, :id => deliverable.id, :deliverable => valid_attributes
+        deliverable = Deliverable.create! @attr
+        put :update, :id => deliverable.id, :deliverable => @attr
         response.should redirect_to(deliverable)
       end
     end
 
     describe "with invalid params" do
       it "assigns the deliverable as @deliverable" do
-        deliverable = Deliverable.create! valid_attributes
+        deliverable = Deliverable.create! @attr
         # Trigger the behavior that occurs when invalid params are submitted
         Deliverable.any_instance.stub(:save).and_return(false)
         put :update, :id => deliverable.id.to_s, :deliverable => {}
@@ -130,7 +133,7 @@ describe DeliverablesController do
       end
 
       it "re-renders the 'edit' template" do
-        deliverable = Deliverable.create! valid_attributes
+        deliverable = Deliverable.create! @attr
         # Trigger the behavior that occurs when invalid params are submitted
         Deliverable.any_instance.stub(:save).and_return(false)
         put :update, :id => deliverable.id.to_s, :deliverable => {}
@@ -141,14 +144,14 @@ describe DeliverablesController do
 
   describe "DELETE destroy" do
     it "destroys the requested deliverable" do
-      deliverable = Deliverable.create! valid_attributes
+      deliverable = Deliverable.create! @attr
       expect {
         delete :destroy, :id => deliverable.id.to_s
       }.to change(Deliverable, :count).by(-1)
     end
 
     it "redirects to the deliverables list" do
-      deliverable = Deliverable.create! valid_attributes
+      deliverable = Deliverable.create! @attr
       delete :destroy, :id => deliverable.id.to_s
       response.should redirect_to(deliverables_url)
     end

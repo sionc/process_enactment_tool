@@ -2,6 +2,12 @@ class DeliverablesController < ApplicationController
   # GET /deliverables
   # GET /deliverables.xml
   def index
+
+    # Copied from railscasts.com (#154-polymorphic-assocation)
+
+ #   @project_deliverable_type = find_project_deliverable_type
+ #   @deliverables = @project_deliverable_type.deliverables
+
     @deliverables = Deliverable.all
 
     respond_to do |format|
@@ -40,7 +46,9 @@ class DeliverablesController < ApplicationController
   # POST /deliverables
   # POST /deliverables.xml
   def create
-    @deliverable = Deliverable.new(params[:deliverable])
+
+    @project_deliverable_type = find_project_deliverable_type
+    @deliverable = @project_deliverable_type.deliverables.build(params[:deliverable])
 
     respond_to do |format|
       if @deliverable.save
@@ -80,4 +88,18 @@ class DeliverablesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+end
+
+
+# Copied from railscasts.com (#154-polymorphic-assocation)
+
+private
+
+def find_project_deliverable_type
+  params.each do |name, value|
+    if name =~ /(.+)_id$/
+      return $1.classify.constantize.find(value)
+    end
+  end
+  nil
 end

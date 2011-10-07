@@ -25,6 +25,7 @@ describe ProjectsController do
   # update the return value of this method accordingly.
   before(:each) do
     lifecycle = Factory.create(:lifecycle)
+    @lifecycle_phase = Factory.create(:lifecycle_phase)
     @attr = { :name => "test1", :lifecycle_id => lifecycle.id }
   end
 
@@ -86,7 +87,7 @@ describe ProjectsController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved project as @project" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Project.any_instance.stub(:save).and_return(false)
+        #Project.any_instance.stub(:save).and_return(false)
         post :create, :project => {}
         assigns(:project).should be_a_new(Project)
       end

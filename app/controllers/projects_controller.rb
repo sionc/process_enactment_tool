@@ -42,6 +42,8 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
     @lifecycles = Lifecycle.all
 
+    @project.lifecycle_phases = Lifecycle.find_by_id(@project.lifecycle_id).lifecycle_phases
+
     respond_to do |format|
       if @project.save
         format.html { redirect_to(@project, :notice => 'Project was successfully created.') }

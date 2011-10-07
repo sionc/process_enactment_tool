@@ -8,7 +8,8 @@ describe Deliverable do
               :estimated_size => 1.5 ,
               :estimated_production_rate => 2.5 ,
               :estimated_effort => 3.5 ,
-              :project_deliverable_type_id => stock_deliverable_type.id
+              :project_deliverable_type_id => stock_deliverable_type.id,
+              :project_deliverable_type_type => "StockDeliverableType"
     }
   end
 
@@ -26,4 +27,8 @@ describe Deliverable do
     invalid_deliverable.should_not be_valid
   end
 
+  it "should require a project_deliverable_type_type" do
+    invalid_deliverable = Deliverable.new(@attr.merge(:project_deliverable_type_type => nil))
+    invalid_deliverable.should_not be_valid
+  end
 end

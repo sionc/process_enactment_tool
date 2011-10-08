@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "deliverables/edit.html.erb" do
   before(:each) do
+    @stock_deliverable_type = Factory.create(:stock_deliverable_type)
     @deliverable = assign(:deliverable, stub_model(Deliverable,
       :name => "MyString",
       :description => "MyText",

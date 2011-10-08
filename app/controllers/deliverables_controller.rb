@@ -25,6 +25,9 @@ class DeliverablesController < ApplicationController
   # GET /deliverables/new.xml
   def new
     @deliverable = Deliverable.new
+    @project_phase_id = params[:project_phase_id]
+    project_phase = ProjectPhase.find(@project_phase_id)
+    @stock_deliverable_types = project_phase.stock_deliverable_types unless project_phase.nil?
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,13 +44,23 @@ class DeliverablesController < ApplicationController
   # POST /deliverables.xml
   def create
     @assignable = find_assignable
-    @deliverable = @assignable.deliverables.build(params[:deliverable])
+    @deliverable = @assignable.deliverables.build(:name => params[:deliverable][:name], 
+                                                  :description => params[:deliverable][:description],
+                                                  :estimated_effort => params[:deliverable][:estimated_effort],
+                                                  :estimated_size => params[:deliverable][:estimated_size],
+                                                  :estimated_production_rate => params[:deliverable][:estimated_production_rate])                                                   
+                                                   
 
     respond_to do |format|
       if @deliverable.save
         format.html { redirect_to(@deliverable, :notice => 'Deliverable was successfully created.') }
         format.xml  { render :xml => @deliverable, :status => :created, :location => @deliverable }
-      else
+      else        
+        @assignable = nil
+        @project_phase_id = params[:deliverable][:project_phase_id]
+        project_phase = ProjectPhase.find(@project_phase_id)
+        @stock_deliverable_types = project_phase.stock_deliverable_types unless project_phase.nil?
+        
         format.html { render :action => "new" }
         format.xml  { render :xml => @deliverable.errors, :status => :unprocessable_entity }
       end
@@ -87,7 +100,7 @@ class DeliverablesController < ApplicationController
   private
 
   def find_assignable
-    params.each do |name, value|
+    params[:deliverable].each do |name, value|
       # (.+) extracts the substring before _deliverable_type_id
       # $1 could be "custom" or "stock"
       if name =~ /(.+)_deliverable_type_id$/

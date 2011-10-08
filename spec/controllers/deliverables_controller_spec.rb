@@ -46,8 +46,8 @@ describe DeliverablesController do
   end
 
   describe "GET new" do
-    it "assigns a new deliverable as @deliverable" do
-      get :new
+    it "assigns a new stock deliverable type deliverable as @deliverable" do
+      get :new, :project_phase_id => @stock_deliverable_type.project_phase.id
       assigns(:deliverable).should be_a_new(Deliverable)
     end
   end
@@ -64,18 +64,24 @@ describe DeliverablesController do
     describe "with valid params" do
       it "creates a new stock_deliverable_type Deliverable" do
         expect {
-          post :create, :stock_deliverable_type_id => @stock_deliverable_type.id, :deliverable => @attr
+          post :create, 
+            :project_phase_id => @stock_deliverable_type.project_phase.id, 
+            :deliverable => @attr.merge(:stock_deliverable_type_id => @stock_deliverable_type.id)
         }.to change(Deliverable, :count).by(1)
       end
 
       it "assigns a newly created stock_deliverable_type deliverable as @deliverable" do
-        post :create, :stock_deliverable_type_id => @stock_deliverable_type.id, :deliverable => @attr
+        post :create, 
+             :stock_deliverable_type_id => @stock_deliverable_type.id, 
+             :deliverable => @attr.merge(:stock_deliverable_type_id => @stock_deliverable_type.id)
         assigns(:deliverable).should be_a(Deliverable)
         assigns(:deliverable).should be_persisted
       end
 
       it "redirects to the created stock_deliverable_type deliverable" do
-        post :create, :stock_deliverable_type_id => @stock_deliverable_type.id, :deliverable => @attr
+        post :create, 
+             :stock_deliverable_type_id => @stock_deliverable_type.id, 
+             :deliverable => @attr.merge(:stock_deliverable_type_id => @stock_deliverable_type.id)
         response.should redirect_to(Deliverable.last)
       end
     end
@@ -84,14 +90,16 @@ describe DeliverablesController do
       it "assigns a newly created but unsaved stock_deliverable_type deliverable as @deliverable" do
         # Trigger the behavior that occurs when invalid params are submitted
         Deliverable.any_instance.stub(:save).and_return(false)
-        post :create, :stock_deliverable_type_id => @stock_deliverable_type.id, :deliverable => {}
+        post :create, :deliverable => {:stock_deliverable_type_id => @stock_deliverable_type.id, 
+                                       :project_phase_id => @stock_deliverable_type.project_phase.id}
         assigns(:deliverable).should be_a_new(Deliverable)
       end
 
       it "re-renders the 'new' stock_deliverable_type deliverable template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Deliverable.any_instance.stub(:save).and_return(false)
-        post :create, :stock_deliverable_type_id => @stock_deliverable_type.id, :deliverable => {}
+        post :create, :deliverable => {:stock_deliverable_type_id => @stock_deliverable_type.id, 
+                                       :project_phase_id => @stock_deliverable_type.project_phase.id}
         response.should render_template("new")
       end
     end

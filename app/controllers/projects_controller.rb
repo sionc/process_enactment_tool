@@ -47,6 +47,11 @@ class ProjectsController < ApplicationController
 
         # If project is saved, then associate lifecycle_phases.
         @project.lifecycle_phases = Lifecycle.find_by_id(@project.lifecycle_id).lifecycle_phases
+        
+        # If project is saved, then associate deliverable types.
+        @project.project_phases.each do |proj_phase|
+          proj_phase.deliverable_types = LifecyclePhase.find(proj_phase.lifecycle_phase_id).deliverable_types
+        end
 
         format.html { redirect_to(@project, :notice => 'Project was successfully created.') }
         format.xml  { render :xml => @project, :status => :created, :location => @project }

@@ -10,8 +10,16 @@
   <%= @project.description %>
 </p>
 
+<table border="0">
+	<tr><th>Sequence #</th><th>Name</th><th>Description</th><th>Estimated Effort</th><th></th></tr>
+	<% @project.lifecycle_phases.ordered_list.each do |phase| %>
+		<tr><td><%= phase.sequence_number %></td><td><%= phase.name %></td><td><%= phase.description %></td><td>9999999</td><td></td></tr>
+	<% end %>	
+</table>
+
+
 <div>
-  <%= link_to 'New Deliverable', new_deliverable_path, :class => "stylized" %>
+  <%= link_to 'New Deliverable', new_deliverable_path(:project_phase_id => 19), :class => "stylized" %>
 </div>
 <br />
 <br />

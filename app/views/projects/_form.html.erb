@@ -15,10 +15,10 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
-	<div class="field">
-		<%= f.label :Lifecycle_type %>
-		<%= collection_select :project, :lifecycle_id, @lifecycles, :id, :name %>
-	</div>
+  <div class="field">
+	<%= f.label :Lifecycle_type %>
+	<%= collection_select :project, :lifecycle_id, @lifecycles, :id, :name %>
+  </div>
   <div class="field">
     <%= f.label :description %>
     <%= f.text_area :description %>

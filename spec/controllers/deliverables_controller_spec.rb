@@ -26,10 +26,7 @@ describe DeliverablesController do
 
   before(:each) do
     @stock_deliverable_type = Factory.create(:stock_deliverable_type)
-    @attr = { :name => "test deliverable" #,
-     # :project_deliverable_type_id => stock_deliverable_type.id,
-     # :project_deliverable_type_type => "StockDeliverableType"
-    }
+    @attr = { :name => "test deliverable" }
   end
 
   describe "GET index" do

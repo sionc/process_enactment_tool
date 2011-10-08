@@ -2,12 +2,6 @@ class DeliverablesController < ApplicationController
   # GET /deliverables
   # GET /deliverables.xml
   def index
-
-    # Copied from railscasts.com (#154-polymorphic-assocation)
-
- #   @project_deliverable_type = find_project_deliverable_type
- #   @deliverables = @project_deliverable_type.deliverables
-
     @deliverables = Deliverable.all
 
     respond_to do |format|
@@ -46,9 +40,8 @@ class DeliverablesController < ApplicationController
   # POST /deliverables
   # POST /deliverables.xml
   def create
-
-    @project_deliverable_type = find_project_deliverable_type
-    @deliverable = @project_deliverable_type.deliverables.build(params[:deliverable])
+    @assignable = find_assignable
+    @deliverable = @assignable.deliverables.build(params[:deliverable])
 
     respond_to do |format|
       if @deliverable.save
@@ -88,18 +81,22 @@ class DeliverablesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-end
 
+  # Copied from railscasts.com (#154-polymorphic-assocation)
 
-# Copied from railscasts.com (#154-polymorphic-assocation)
+  private
 
-private
-
-def find_project_deliverable_type
-  params.each do |name, value|
-    if name =~ /(.+)_id$/
-      return $1.classify.constantize.find(value)
+  def find_assignable
+    params.each do |name, value|
+      # (.+) extracts the substring before _deliverable_type_id
+      # $1 could be "custom" or "stock"
+      if name =~ /(.+)_deliverable_type_id$/
+        return ($1+"_deliverable_type").classify.constantize.find(value)
+      end
     end
+    nil
   end
-  nil
+
 end
+
+

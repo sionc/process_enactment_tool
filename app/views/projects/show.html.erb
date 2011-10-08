@@ -10,5 +10,9 @@
   <%= @project.description %>
 </p>
 
-
-<%= link_to 'Back', projects_path %>
+<div>
+  <%= link_to 'New Deliverable', new_deliverable_path, :class => "stylized" %>
+</div>
+<br />
+<br />
+<%= link_to 'Cancel', projects_path, :class => "stylized" %>

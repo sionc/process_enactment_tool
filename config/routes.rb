@@ -1,5 +1,7 @@
 PET::Application.routes.draw do
+
   resources :deliverables
+  resources :stock_deliverable_types, :has_many => :deliverables
 
   match 'projects/home' => 'projects#home'
   

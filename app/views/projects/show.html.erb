@@ -1,3 +1,7 @@
+<% content_for(:head) do %>
+    <%= javascript_include_tag "custom.js" %>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -10,17 +14,32 @@
   <%= @project.description %>
 </p>
 
-<table border="0">
-	<tr><th>Sequence #</th><th>Name</th><th>Description</th><th>Estimated Effort</th><th></th></tr>
-	<% @project.lifecycle_phases.ordered_list.each do |phase| %>
-		<tr><td><%= phase.sequence_number %></td><td><%= phase.name %></td><td><%= phase.description %></td><td>9999999</td><td></td></tr>
-	<% end %>	
+<table border="0" id="project_phases">
+  <thead>
+  <tr>
+    <th>Sequence #</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Estimated Effort</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @project.lifecycle_phases.ordered_list.each do |phase| %>
+      <tr>
+        <td><%= phase.sequence_number %></td>
+        <td><%= phase.name %></td>
+        <td><%= phase.description %></td>
+        <td>9999999</td>
+      </tr>
+  <% end %>
+  </tbody>
 </table>
 
+<br/>
 
 <div>
   <%= link_to 'New Deliverable', new_deliverable_path(:project_phase_id => 19), :class => "stylized" %>
 </div>
-<br />
-<br />
+<br/>
+<br/>
 <%= link_to 'Cancel', projects_path, :class => "stylized" %>

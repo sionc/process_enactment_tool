@@ -172,3 +172,35 @@ div.field, div.actions {
 .custom_link {
 	padding:6.8px 19px;
 }
+
+
+table
+{
+    font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #a9c6c9;
+	border-collapse: collapse;
+}
+
+td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+
+
+th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+    background-color:#BCC7FF;
+}
+
+tr
+{
+    background-color:#E9ECFF;
+}

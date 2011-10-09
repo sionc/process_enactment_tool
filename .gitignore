@@ -8,4 +8,5 @@ doc/coverage/*
 tmp/*
 *DS_Store
 .rspec
-.bundle
+.autotest
+*.dia~

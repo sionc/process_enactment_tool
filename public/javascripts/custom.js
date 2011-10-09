@@ -6,24 +6,33 @@
  * To change this template use File | Settings | File Templates.
  */
 $(document).ready(function() {
+    $.ajaxSetup({ cache: false });
 
-    $("#project_phases").dataTable({
-        "bPaginate": false,
-        "bLengthChange": false,
-        "bFilter": false,
-        "bSort": false,
-        "bInfo": false,
-        "bAutoWidth": false
+    $('#project_phase_details_container').hide();
+
+    $('#project_phases tbody tr').click(function() {
+        $.ajax({
+            type:    'GET',
+            url:     '/projects/1',
+            dataType: 'json',
+            success: function (data) {
+                $('#project_phase_description').text(data.project.name);
+                $('#project_phase_details_container').show();
+            },
+            error: function() {
+                alert("Ajax failed");
+            }
+        })
     });
-});
 
-$('#project_phases tbody tr').live('mouseover', function() {
-    $(this).css({
-        'background-color': '#D2D9FF',
-        'cursor': 'pointer'
+    $('#project_phases tbody tr').mouseover(function() {
+        $(this).css({
+            'background-color': '#D2D9FF',
+            'cursor': 'pointer'
+        });
     });
-});
 
-$('#project_phases tbody tr').live('mouseout', function() {
-    $(this).css('background-color', '');
+    $('#project_phases tbody tr').mouseout(function() {
+        $(this).css('background-color', '');
+    });
 });

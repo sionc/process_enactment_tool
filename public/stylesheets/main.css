@@ -173,6 +173,9 @@ div.field, div.actions {
 	padding:6.8px 19px;
 }
 
+#project_phase_details_container {
+  /*visibility: hidden;*/
+}
 
 table
 {

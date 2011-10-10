@@ -10,3 +10,4 @@ tmp/*
 .rspec
 .autotest
 *.dia~
+rake/*

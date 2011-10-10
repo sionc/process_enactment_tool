@@ -22,6 +22,7 @@
     <th>Name</th>
     <th>Description</th>
     <th>Estimated Effort</th>
+    <th>Project Phase Id</th>
   </tr>
   </thead>
   <tbody>
@@ -31,6 +32,7 @@
         <td><%= phase.name %></td>
         <td><%= phase.description %></td>
         <td>9999999</td>
+        <td class="project_phase_id_cell"><%= phase.id %></td>
       </tr>
   <% end %>
   </tbody>
@@ -39,10 +41,10 @@
 <br/>
 
 <div id="project_phase_details_container">
-  <h1>Project Phase Details</h1>
+  <h1 id="project_phase_name"></h1>
   <table border="0" id="project_phase_details">
     <tbody>
-    <tr>
+    <tr id=" ">
       <td>Description</td>
       <td id="project_phase_description">Replace Me</td>
     </tr>

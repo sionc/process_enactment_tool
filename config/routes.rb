@@ -1,9 +1,13 @@
 PET::Application.routes.draw do
 
+  resources "project_phases"
+
   resources :deliverables
   resources :stock_deliverable_types, :has_many => :deliverables
 
   match 'projects/home' => 'projects#home'
+
+  match 'phase_deliverables' => 'deliverables#show_phase_deliverables'
   
   resources :projects, :except => [:edit, :destroy, :update]
   

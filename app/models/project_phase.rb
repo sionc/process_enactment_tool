@@ -5,6 +5,7 @@ class ProjectPhase < ActiveRecord::Base
   has_many :stock_deliverable_types
   has_many :deliverable_types, :through => :stock_deliverable_types
 
+
   validates :lifecycle_phase_id,  :presence => true
   validates :project_id,          :presence => true
 end

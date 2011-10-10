@@ -21,6 +21,14 @@ class DeliverablesController < ApplicationController
     end
   end
 
+  def show_phase_deliverables
+    @deliverable = Deliverable.all
+
+      respond_to do |format|
+        format.json  { render :json => @deliverable }
+      end
+    end
+
   # GET /deliverables/new
   # GET /deliverables/new.xml
   def new
@@ -94,6 +102,7 @@ class DeliverablesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 
   # Copied from railscasts.com (#154-polymorphic-assocation)
 

@@ -207,3 +207,8 @@ tr
 {
     background-color:#E9ECFF;
 }
+
+.hidden
+{
+    display: none;
+}

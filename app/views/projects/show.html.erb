@@ -22,7 +22,7 @@
     <th>Name</th>
     <th>Description</th>
     <th>Estimated Effort</th>
-    <th>Project Phase Id</th>
+    <th class="hidden">Project Phase Id</th>
   </tr>
   </thead>
   <tbody>
@@ -32,7 +32,7 @@
         <td><%= phase.name %></td>
         <td><%= phase.description %></td>
         <td>9999999</td>
-        <td class="project_phase_id_cell"><%= phase.id %></td>
+        <td class="project_phase_id_cell hidden"><%= phase.id %></td>
       </tr>
   <% end %>
   </tbody>
@@ -62,13 +62,15 @@
     </tr>
     </tbody>
   </table>
+
+  <br/>
+
+  <div >
+    <%= link_to 'New Deliverable', "#", :class => "stylized", :id => "new_deliverable_button" %>
+  </div>
 </div>
 
-<br/>
 
-<div>
-  <%= link_to 'New Deliverable', new_deliverable_path(:project_phase_id => 19), :class => "stylized" %>
-</div>
 <br/>
 <br/>
 <%= link_to 'Cancel', projects_path, :class => "stylized" %>

@@ -5,11 +5,8 @@ class ProjectPhasesController < ApplicationController
     @lifecycle_phase = LifecyclePhase.find_by_id(@project_phase.lifecycle_phase_id)
 
     respond_to do |format|
-
       format.json { render :json => @lifecycle_phase }
-
     end
-
   end
 
 end

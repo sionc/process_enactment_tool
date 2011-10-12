@@ -26,12 +26,13 @@
   </tr>
   </thead>
   <tbody>
-  <% @project.lifecycle_phases.ordered_list.each do |phase| %>
+
+  <% @project.project_phases.each do |phase| %>
       <tr>
-        <td><%= phase.sequence_number %></td>
-        <td><%= phase.name %></td>
-        <td><%= phase.description %></td>
-        <td>9999999</td>
+        <td><%= phase.lifecycle_phase.sequence_number %></td>
+        <td><%= phase.lifecycle_phase.name %></td>
+        <td><%= phase.lifecycle_phase.description %></td>
+        <td><%= phase.estimated_effort %></td>
         <td class="project_phase_id_cell hidden"><%= phase.id %></td>
       </tr>
   <% end %>

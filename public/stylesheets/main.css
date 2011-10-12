@@ -175,6 +175,8 @@ div.field, div.actions {
 
 #project_phase_details_container {
   /*visibility: hidden;*/
+  border:  1px solid black;
+  padding:  10px 10px 20px 10px;
 }
 
 table
@@ -211,4 +213,7 @@ tr
 .hidden
 {
     display: none;
+}
+#project_phases tbody tr.active {
+    background-color: darkgray;
 }

@@ -25,6 +25,7 @@
   <%= @deliverable.estimated_effort %>
 </p>
 
+<br />
 
-<%= link_to 'Edit', edit_deliverable_path(@deliverable) %> |
-<%= link_to 'Back', deliverables_path %>
+<%= link_to 'Edit', edit_deliverable_path(@deliverable), :class => 'stylized' %> &nbsp;
+<%= link_to 'Cancel', request.referrer, :class => 'stylized' %>

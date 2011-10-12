@@ -14,7 +14,6 @@ class ProjectPhasesController < ApplicationController
       format.json { render :json => { :phase => @lifecycle_phase,
                                       :stock_deliverables => @project_phase_deliverables} }
     end
-
   end
 
 end

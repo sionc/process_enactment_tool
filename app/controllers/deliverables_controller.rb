@@ -52,6 +52,7 @@ class DeliverablesController < ApplicationController
   # POST /deliverables.xml
   def create
     @assignable = find_assignable
+
     @deliverable = @assignable.deliverables.build(:name => params[:deliverable][:name], 
                                                   :description => params[:deliverable][:description],
                                                   :estimated_effort => params[:deliverable][:estimated_effort],

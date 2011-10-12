@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111008030436) do
+ActiveRecord::Schema.define(:version => 20111012040806) do
+
+  create_table "custom_deliverable_types", :force => true do |t|
+    t.integer  "project_phase_id"
+    t.string   "name"
+    t.integer  "unit_of_measure_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "deliverable_types", :force => true do |t|
     t.string   "name"

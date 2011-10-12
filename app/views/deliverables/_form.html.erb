@@ -1,3 +1,7 @@
+<% content_for(:head) do %>
+    <%= javascript_include_tag "deliverable" %>
+<% end %>
+
 <%= form_for [@assignable, Deliverable.new] do |f| %>
   <% if @deliverable.errors.any? %>
     <div id="error_explanation">
@@ -22,12 +26,11 @@
   <div class="field">
 	<%= f.label :deliverable_type 
 	%>
-	<% #= select :deliverable, :stock_deliverable_type_id, @stock_deliverable_types.map {|s| [s.deliverable_type.name, s.id]} 
+	<%= f.select :assignable_id, @stock_deliverable_types.map {|s| [s.deliverable_type.name, s.id]}
 	%>
-	<% #= collection_select :deliverable, :stock_deliverable_type_id, @stock_deliverable_types, :id, :id 
-	%>
-	<%= f.hidden_field :stock_deliverable_type_id, :value => 1 
-	%>
+    <div id="deliverable_type_id">
+    </div>
+
   </div>
   <div class="field">
     <%= f.label :estimated_size %>

@@ -27,8 +27,9 @@ class ProjectPhase < ActiveRecord::Base
     end
 
     total_estimated_effort = 0
+
     @project_phase_deliverables.each do |deliverable|
-      total_estimated_effort += deliverable.estimated_effort unless deliverable.nil?
+      total_estimated_effort += deliverable.estimated_effort.to_f unless deliverable.nil?
     end
 
     return total_estimated_effort

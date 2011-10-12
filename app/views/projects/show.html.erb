@@ -5,13 +5,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @project.name %>
+  <h1><%= @project.name %></h1>
 </p>
 
 <p>
-  <b>Description:</b>
-  <%= @project.description %>
+  <b><%= @project.description %></b>
 </p>
 
 <p>
@@ -24,7 +22,8 @@
   <%= @project.lifecycle.name %>
 </p>
 
-<h1>Project Phases</h1>
+<h3>Project Phases</h3>
+
 <table border="0" id="project_phases">
   <thead>
   <tr>
@@ -52,35 +51,8 @@
 <br/>
 
 <div id="project_phase_details_container">
-  <h1 id="project_phase_name"></h1>
-  <table border="0" id="project_phase_details">
-    <tbody>
-    <tr id=" ">
-      <td>Description</td>
-      <td id="project_phase_description">Replace Me</td>
-    </tr>
-    <tr>
-      <td>Sequence Number</td>
-      <td id="project_phase_sequence_number">Replace Me</td>
-    </tr>
-    <tr>
-      <td>Estimated Effort</td>
-      <td id="project_phase_estimated_effort">Replace Me</td>
-    </tr>
-    <tr>
-      <td>Deliverables</td>
-      <td id="project_phase_deliverables">Replace Me</td>
-    </tr>
-    </tbody>
-  </table>
-
-  <br/>
-
-  <div >
-    <%= link_to 'New Deliverable', "#", :class => "stylized", :id => "new_deliverable_button" %>
-  </div>
+  <%= render "phase_details" %>
 </div>
-
 
 <br/>
 <br/>

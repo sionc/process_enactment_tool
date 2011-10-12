@@ -31,4 +31,35 @@ describe Deliverable do
     invalid_deliverable = Deliverable.new(@attr.merge(:assignable_type => nil))
     invalid_deliverable.should_not be_valid
   end
+
+   it "should require an estimated_effort" do
+     invalid_deliverable = Deliverable.new(@attr.merge(:estimated_effort => nil))
+     invalid_deliverable.should_not be_valid
+   end
+
+   it "should require an estimated_effort greater than 0" do
+      invalid_deliverable = Deliverable.new(@attr.merge(:estimated_effort => 0))
+      invalid_deliverable.should_not be_valid
+   end
+
+   it "should require an estimated_size" do
+     invalid_deliverable = Deliverable.new(@attr.merge(:estimated_size => nil))
+     invalid_deliverable.should_not be_valid
+   end
+
+   it "should require an estimated_size greater than 0" do
+      invalid_deliverable = Deliverable.new(@attr.merge(:estimated_size => 0))
+      invalid_deliverable.should_not be_valid
+   end
+
+   it "should require an estimated_production_rate" do
+     invalid_deliverable = Deliverable.new(@attr.merge(:estimated_production_rate => nil))
+     invalid_deliverable.should_not be_valid
+   end
+
+   it "should require an estimated_production_rate greater than 0" do
+      invalid_deliverable = Deliverable.new(@attr.merge(:estimated_production_rate => 0))
+      invalid_deliverable.should_not be_valid
+   end
+
 end

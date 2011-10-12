@@ -26,7 +26,11 @@ describe DeliverablesController do
 
   before(:each) do
     @stock_deliverable_type = Factory.create(:stock_deliverable_type)
-    @attr = { :name => "test deliverable" }
+    @attr = { :name => "test deliverable",
+              :estimated_effort => 1.5,
+              :estimated_size => 2.5,
+              :estimated_production_rate => 3.5
+            }
   end
 
   describe "GET index" do

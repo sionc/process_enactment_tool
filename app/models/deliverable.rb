@@ -5,6 +5,19 @@ class Deliverable < ActiveRecord::Base
   validates :name, :presence => true
   validates :assignable_id, :presence => true
   validates :assignable_type, :presence => true
-  
-  # attr_accessor :stock_deliverable_type_id
+
+  validates :estimated_effort, :presence => true, :numericality => {:greater_than =>  0}
+  validates :estimated_size, :presence => true, :numericality => {:greater_than =>  0}
+  validates :estimated_production_rate, :presence => true, :numericality => {:greater_than =>  0}
+
+
+  #
+  #validates :estimated_size, :on => :create, :presence => true,
+  #          :numericality =>  {:greater_than => 0
+  #                             }
+  #
+  #validates :estimated_production_rate, :on => :create,
+  #          :numericality =>  {:greater_than => 0,
+  #                             :message => "should be greater than 0."}
+
 end

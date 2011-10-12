@@ -2,9 +2,11 @@ require 'spec_helper'
 
 describe "projects/show.html.erb" do
   before(:each) do
+    @lifecycle = Factory.create(:lifecycle)
     @project = assign(:project, stub_model(Project,
       :name => "Name",
-      :description => "MyText"
+      :description => "MyText",
+      :lifecycle_id => @lifecycle.id
     ))
   end
 

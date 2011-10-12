@@ -36,10 +36,9 @@ namespace :db do
     # Find all phases
     waterfall_phases  = waterfall.lifecycle_phases
     rup_phases        = rup.lifecycle_phases
-    
-        
+           
     # Iterate through phases, deliverable types, and stock deliverable types to generate deliverables
-    waterfall_phases.each do |phase|
+    (waterfall_phases | rup_phases).each do |phase|
       phase.deliverable_types.each do |dType|      
         dType.stock_deliverable_types.each do |sdt|
           

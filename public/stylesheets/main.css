@@ -55,11 +55,18 @@ div.field, div.actions {
   list-style: square;
 }
 
+#top_level_wrapper
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #content_wrapper {
   margin: 3em;
   margin-left: 175px;
   background-color: whitesmoke;
   padding: 1.5em;
+  width: 710px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;

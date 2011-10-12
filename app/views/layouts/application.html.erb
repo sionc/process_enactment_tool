@@ -8,9 +8,11 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<%= render "layouts/sidebar" %>	
-<div id="content_wrapper">
-<%= yield %>
+<div id="top_level_wrapper">
+  <%= render "layouts/sidebar" %>
+  <div id="content_wrapper">
+    <%= yield %>
+  </div>
 </div>
 
 </body>

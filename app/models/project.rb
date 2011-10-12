@@ -9,4 +9,13 @@ class Project < ActiveRecord::Base
   
   validates :name, :presence => true, :uniqueness => true
   validates :lifecycle_id, :presence => true
+
+  def estimated_effort
+    total_estimated_effort = 0
+    project_phases.each do |phase|
+      total_estimated_effort += phase.estimated_effort unless phase.nil?
+    end
+
+    return total_estimated_effort
+  end
 end

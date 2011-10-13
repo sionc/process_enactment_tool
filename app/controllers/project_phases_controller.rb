@@ -11,8 +11,9 @@ class ProjectPhasesController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render :json => { :phase => @lifecycle_phase,
-                                      :stock_deliverables => @project_phase_deliverables} }
+      format.json { render :json => { :lifecycle_phase_container => @lifecycle_phase,
+                                      :stock_deliverables_container => @project_phase_deliverables,
+                                      :project_phase_estimated_effort => @project_phase.estimated_effort} }
     end
   end
 

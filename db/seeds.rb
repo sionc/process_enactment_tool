@@ -8,17 +8,47 @@ lifecycle_1 = Lifecycle.create(:name => "Simplified Waterfall", :description => 
 lifecycle_2 = Lifecycle.create(:name => "Rational Unified Process", :description => "This is a rational unified process method")
 
 puts "Creating lifecycle phases..."
-requirements   = LifecyclePhase.create(:name => "Requirements",   :description => "", :lifecycle_id => lifecycle_1.id, :sequence_number => 1)
-design         = LifecyclePhase.create(:name => "Design",         :description => "", :lifecycle_id => lifecycle_1.id, :sequence_number => 2)
-implementation = LifecyclePhase.create(:name => "Implementation", :description => "", :lifecycle_id => lifecycle_1.id, :sequence_number => 3)
-integration    = LifecyclePhase.create(:name => "Integration",    :description => "", :lifecycle_id => lifecycle_1.id, :sequence_number => 4)
-verification   = LifecyclePhase.create(:name => "Verification",   :description => "", :lifecycle_id => lifecycle_1.id, :sequence_number => 5)
-maintenance    = LifecyclePhase.create(:name => "Maintenance",    :description => "", :lifecycle_id => lifecycle_1.id, :sequence_number => 6)
+requirements   = LifecyclePhase.create(:name => "Requirements",   
+                                       :description => "What do we want to do? Does it make sense for the Organization to do it?", 
+                                       :lifecycle_id => lifecycle_1.id, 
+                                       :sequence_number => 1)
+design         = LifecyclePhase.create(:name => "Design",         
+                                       :description => "How are we going to do it? Who is going to do what? How long will it take? What will it cost?", 
+                                       :lifecycle_id => lifecycle_1.id, 
+                                       :sequence_number => 2)
+implementation = LifecyclePhase.create(:name => "Implementation", 
+                                       :description => "Are we doing what we agreed to do, and are we doing it right?", 
+                                       :lifecycle_id => lifecycle_1.id, 
+                                       :sequence_number => 3)
+integration    = LifecyclePhase.create(:name => "Integration",    
+                                       :description => "Can we put all the building blocks together?", 
+                                       :lifecycle_id => lifecycle_1.id, 
+                                       :sequence_number => 4)
+verification   = LifecyclePhase.create(:name => "Verification",   
+                                       :description => "Does it do what we expect it to do?", 
+                                       :lifecycle_id => lifecycle_1.id, 
+                                       :sequence_number => 5)
+maintenance    = LifecyclePhase.create(:name => "Maintenance",    
+                                       :description => "Are we able to support what we have done?", 
+                                       :lifecycle_id => lifecycle_1.id, 
+                                       :sequence_number => 6)
          
-inception      = LifecyclePhase.create(:name => "Inception",     :description => "", :lifecycle_id => lifecycle_2.id, :sequence_number => 1)
-elaboration    = LifecyclePhase.create(:name => "Elaboration",   :description => "", :lifecycle_id => lifecycle_2.id, :sequence_number => 2)
-construction   = LifecyclePhase.create(:name => "Construction",  :description => "", :lifecycle_id => lifecycle_2.id, :sequence_number => 3)
-transition     = LifecyclePhase.create(:name => "Transition",    :description => "", :lifecycle_id => lifecycle_2.id, :sequence_number => 4)
+inception      = LifecyclePhase.create(:name => "Inception",     
+                                       :description => "What are the project's objectives? How much will it cost? How long will it take?", 
+                                       :lifecycle_id => lifecycle_2.id, 
+                                       :sequence_number => 1)
+elaboration    = LifecyclePhase.create(:name => "Elaboration",   
+                                       :description => "How are we going to make this project successful? What are the roadblocks?", 
+                                       :lifecycle_id => lifecycle_2.id, 
+                                       :sequence_number => 2)
+construction   = LifecyclePhase.create(:name => "Construction",  
+                                       :description => "Are we doing what we agreed to do, and are we doing it right?", 
+                                       :lifecycle_id => lifecycle_2.id, 
+                                       :sequence_number => 3)
+transition     = LifecyclePhase.create(:name => "Transition",    
+                                       :description => "What do we need to do to deliver this project to our customers?", 
+                                       :lifecycle_id => lifecycle_2.id, 
+                                       :sequence_number => 4)
 
 puts "Creating deliverable types..."
 DeliverableType.create(:name => "Functional Requirements Document", :lifecycle_phase_id => requirements.id)

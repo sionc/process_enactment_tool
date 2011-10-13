@@ -1,0 +1,13 @@
+<h2>All lifecycles</h2>
+
+<table>
+<% @lifecycles.each do |lifecycle| %>
+  <tr>
+    <td><%= link_to lifecycle.name, lifecycle %></td>
+    <td><%= lifecycle.description %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= button_to "Cancel", {:controller => "lifecycles", :action => "home"}, :class => "stylized" %>

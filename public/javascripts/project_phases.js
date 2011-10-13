@@ -23,16 +23,15 @@ $(document).ready(function() {
             dataType: 'json',
             success: function (data) {
 
-//                $('#project_phase_name').text(data.project_phase.lifecycle_phase.name);
-                $('#project_phase_name').text(data.phase.lifecycle_phase.name);
-                $('#project_phase_description').text(data.phase.lifecycle_phase.description);
-                $('#project_phase_sequence_number').text(data.phase.lifecycle_phase.sequence_number);
-                $('#project_phase_estimated_effort').text("Replace Me");
+                $('#project_phase_name').text(data.lifecycle_phase_container.lifecycle_phase.name);
+                $('#project_phase_description').text(data.lifecycle_phase_container.lifecycle_phase.description);
+                $('#project_phase_sequence_number').text(data.lifecycle_phase_container.lifecycle_phase.sequence_number);
+                $('#project_phase_estimated_effort').text(data.project_phase_estimated_effort);
 
                 // Loop through and display deliverables.
                 var deliverableNames = "";
-                for (var i = 0; i < data.stock_deliverables.length; i++) {
-                  deliverableNames += "<a href='/deliverables/"+data.stock_deliverables[i].deliverable.id+"'> "+data.stock_deliverables[i].deliverable.name + "</a><br/>";
+                for (var i = 0; i < data.stock_deliverables_container.length; i++) {
+                  deliverableNames += "<a href='/deliverables/"+data.stock_deliverables_container[i].deliverable.id+"'> "+data.stock_deliverables_container[i].deliverable.name + "</a><br/>";
                 }
                 $('#project_phase_deliverables').html(deliverableNames);
 

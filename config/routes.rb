@@ -1,16 +1,18 @@
 PET::Application.routes.draw do
 
+  match 'lifecycles/home' => 'lifecycles#home'
+  resources :lifecycles, :except => [:new, :create, :edit, :destroy, :update]
+
   resources "project_phases"
 
   resources :deliverables
   resources :stock_deliverable_types, :has_many => :deliverables
 
   match 'projects/home' => 'projects#home'
-
   match 'phase_deliverables' => 'deliverables#show_phase_deliverables'
   
   resources :projects, :except => [:edit, :destroy, :update]
-  
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

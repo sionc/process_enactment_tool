@@ -99,4 +99,17 @@ DeliverableType.create(:name => "Deployment Plan", :lifecycle_phase_id => transi
 DeliverableType.create(:name => "Customer Feedback", :lifecycle_phase_id => transition.id)
 DeliverableType.create(:name => "User Manual", :lifecycle_phase_id => transition.id)
 
+puts "Creating units of measure..."
+UnitOfMeasure.create(:unit => "pages")
+UnitOfMeasure.create(:unit => "mockups")
+UnitOfMeasure.create(:unit => "use cases")
+UnitOfMeasure.create(:unit => "diagrams")
+UnitOfMeasure.create(:unit => "tests")
+UnitOfMeasure.create(:unit => "lines of code")
+
+puts "Creating complexity"
+Complexity.create(:level => "low")
+Complexity.create(:level => "medium")
+Complexity.create(:level => "high")
+
 puts "Seed complete!"

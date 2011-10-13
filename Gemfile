@@ -34,6 +34,10 @@ gem 'pg'
 # Required on Windows
 gem "rake", "0.8.7"
 
+group :development do
+	gem 'heroku'
+end
+
 group :development, :test do 
     gem 'ruby-debug19' 
 	gem 'ruby-debug-base19x' 

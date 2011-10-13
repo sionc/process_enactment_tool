@@ -10,7 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111012040806) do
+ActiveRecord::Schema.define(:version => 20111013033449) do
+
+  create_table "complexities", :force => true do |t|
+    t.string   "level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "custom_deliverable_types", :force => true do |t|
     t.integer  "project_phase_id"
@@ -74,6 +80,12 @@ ActiveRecord::Schema.define(:version => 20111012040806) do
   create_table "stock_deliverable_types", :force => true do |t|
     t.integer  "project_phase_id"
     t.integer  "deliverable_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "unit_of_measures", :force => true do |t|
+    t.string   "unit"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

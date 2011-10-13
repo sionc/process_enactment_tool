@@ -10,6 +10,9 @@ class LifecyclesController < ApplicationController
     end
   end
 
+  def home
+  end
+
   # GET /lifecycles/1
   # GET /lifecycles/1.xml
   def show

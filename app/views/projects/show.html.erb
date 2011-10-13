@@ -4,26 +4,22 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <h1><%= @project.name %></h1>
-</p>
+<h1><%= @project.name %></h1>
 
 <p>
-  <b><%= @project.description %></b>
+  <%= @project.description %>
 </p>
 
 <p>
   <b>Estimated Effort:</b>
   <%= @project.estimated_effort %>
 </p>
-
 <p>
   <b>Lifecycle:</b>
   <%= @project.lifecycle.name %>
 </p>
 
 <h3>Project Phases</h3>
-
 <table border="0" id="project_phases">
   <thead>
   <tr>

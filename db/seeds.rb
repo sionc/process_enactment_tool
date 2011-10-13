@@ -50,62 +50,140 @@ transition     = LifecyclePhase.create(:name => "Transition",
                                        :lifecycle_id => lifecycle_2.id, 
                                        :sequence_number => 4)
 
-puts "Creating deliverable types..."
-DeliverableType.create(:name => "Functional Requirements Document", :lifecycle_phase_id => requirements.id)
-DeliverableType.create(:name => "Test and Evaluation Master Plan", :lifecycle_phase_id => requirements.id)
-DeliverableType.create(:name => "Interface Control Document", :lifecycle_phase_id => requirements.id)
-
-DeliverableType.create(:name => "Security Risk Assessment", :lifecycle_phase_id => design.id)
-DeliverableType.create(:name => "Conversion Plan", :lifecycle_phase_id => design.id)
-DeliverableType.create(:name => "System Design Document", :lifecycle_phase_id => design.id)
-DeliverableType.create(:name => "Implementation Plan", :lifecycle_phase_id => design.id)
-DeliverableType.create(:name => "Operations Manual", :lifecycle_phase_id => design.id)
-DeliverableType.create(:name => "User Manual", :lifecycle_phase_id => design.id)
-
-DeliverableType.create(:name => "Change Implementation Notice", :lifecycle_phase_id => implementation.id)
-DeliverableType.create(:name => "Version Description Document", :lifecycle_phase_id => implementation.id)
-DeliverableType.create(:name => "Post Implementation Review", :lifecycle_phase_id => implementation.id)
-
-DeliverableType.create(:name => "Test Analysis Report", :lifecycle_phase_id => integration.id)
-DeliverableType.create(:name => "Test Problem Report", :lifecycle_phase_id => integration.id)
-
-DeliverableType.create(:name => "Verification and Validation Plan", :lifecycle_phase_id => verification.id)
-
-DeliverableType.create(:name => "In-Process Review Report", :lifecycle_phase_id => maintenance.id)
-DeliverableType.create(:name => "User Satisfaction Report", :lifecycle_phase_id => maintenance.id)
-
-DeliverableType.create(:name => "Business Case", :lifecycle_phase_id => inception.id)
-DeliverableType.create(:name => "Project Scope", :lifecycle_phase_id => inception.id)
-DeliverableType.create(:name => "Business Use-Case Model", :lifecycle_phase_id => inception.id)
-DeliverableType.create(:name => "Candidate Architecture", :lifecycle_phase_id => inception.id)
-DeliverableType.create(:name => "Risk Management Plan", :lifecycle_phase_id => inception.id)
-DeliverableType.create(:name => "Project Schedule", :lifecycle_phase_id => inception.id)
-DeliverableType.create(:name => "Cost Estimate", :lifecycle_phase_id => inception.id)
-
-DeliverableType.create(:name => "Use Case Diagrams", :lifecycle_phase_id => elaboration.id)
-DeliverableType.create(:name => "Conceptual Diagrams", :lifecycle_phase_id => elaboration.id)
-DeliverableType.create(:name => "Architectural Diagrams", :lifecycle_phase_id => elaboration.id)
-DeliverableType.create(:name => "Executable architecture", :lifecycle_phase_id => elaboration.id)
-DeliverableType.create(:name => "Construction Plan", :lifecycle_phase_id => elaboration.id)
-
-DeliverableType.create(:name => "Use Cases", :lifecycle_phase_id => construction.id)
-DeliverableType.create(:name => "Activity Diagram", :lifecycle_phase_id => construction.id)
-DeliverableType.create(:name => "Sequence Diagram", :lifecycle_phase_id => construction.id)
-DeliverableType.create(:name => "Collaboration Diagram", :lifecycle_phase_id => construction.id)
-DeliverableType.create(:name => "State Diagram", :lifecycle_phase_id => construction.id)
-DeliverableType.create(:name => "Interaction Overview Diagram", :lifecycle_phase_id => construction.id)
-
-DeliverableType.create(:name => "Deployment Plan", :lifecycle_phase_id => transition.id)
-DeliverableType.create(:name => "Customer Feedback", :lifecycle_phase_id => transition.id)
-DeliverableType.create(:name => "User Manual", :lifecycle_phase_id => transition.id)
-
 puts "Creating units of measure..."
-UnitOfMeasure.create(:unit => "pages")
-UnitOfMeasure.create(:unit => "mockups")
-UnitOfMeasure.create(:unit => "use cases")
-UnitOfMeasure.create(:unit => "diagrams")
-UnitOfMeasure.create(:unit => "tests")
-UnitOfMeasure.create(:unit => "lines of code")
+pages          = UnitOfMeasure.create(:unit => "pages")
+mockups        = UnitOfMeasure.create(:unit => "mockups")
+use_cases      = UnitOfMeasure.create(:unit => "use cases")
+diagrams       = UnitOfMeasure.create(:unit => "diagrams")
+tests          = UnitOfMeasure.create(:unit => "tests")
+lines_of_code  = UnitOfMeasure.create(:unit => "lines of code")
+
+
+puts "Creating deliverable types..."
+DeliverableType.create(:name => "Functional Requirements Document",
+                       :lifecycle_phase_id => requirements.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Test and Evaluation Master Plan",
+                       :lifecycle_phase_id => requirements.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Interface Control Document",
+                       :lifecycle_phase_id => requirements.id,
+                       :unit_of_measure_id => pages.id)
+
+DeliverableType.create(:name => "Security Risk Assessment",
+                       :lifecycle_phase_id => design.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Conversion Plan",
+                       :lifecycle_phase_id => design.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "System Design Document",
+                       :lifecycle_phase_id => design.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Implementation Plan",
+                       :lifecycle_phase_id => design.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Operations Manual",
+                       :lifecycle_phase_id => design.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "User Manual",
+                       :lifecycle_phase_id => design.id,
+                       :unit_of_measure_id => pages.id)
+
+DeliverableType.create(:name => "Change Implementation Notice",
+                       :lifecycle_phase_id => implementation.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Version Description Document",
+                       :lifecycle_phase_id => implementation.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Post Implementation Review",
+                       :lifecycle_phase_id => implementation.id,
+                       :unit_of_measure_id => pages.id)
+
+DeliverableType.create(:name => "Test Analysis Report",
+                       :lifecycle_phase_id => integration.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Test Problem Report",
+                       :lifecycle_phase_id => integration.id,
+                       :unit_of_measure_id => pages.id)
+
+DeliverableType.create(:name => "Verification and Validation Plan",
+                       :lifecycle_phase_id => verification.id,
+                       :unit_of_measure_id => pages.id)
+
+DeliverableType.create(:name => "In-Process Review Report",
+                       :lifecycle_phase_id => maintenance.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "User Satisfaction Report",
+                       :lifecycle_phase_id => maintenance.id,
+                       :unit_of_measure_id => pages.id)
+
+DeliverableType.create(:name => "Business Case",
+                       :lifecycle_phase_id => inception.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Project Scope",
+                       :lifecycle_phase_id => inception.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Business Use-Case Model",
+                       :lifecycle_phase_id => inception.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Candidate Architecture",
+                       :lifecycle_phase_id => inception.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Risk Management Plan",
+                       :lifecycle_phase_id => inception.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Project Schedule",
+                       :lifecycle_phase_id => inception.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Cost Estimate",
+                       :lifecycle_phase_id => inception.id,
+                       :unit_of_measure_id => pages.id)
+
+DeliverableType.create(:name => "Use Case Diagrams",
+                       :lifecycle_phase_id => elaboration.id,
+                       :unit_of_measure_id => diagrams.id)
+DeliverableType.create(:name => "Conceptual Diagrams",
+                       :lifecycle_phase_id => elaboration.id,
+                       :unit_of_measure_id => diagrams.id)
+DeliverableType.create(:name => "Architectural Diagrams",
+                       :lifecycle_phase_id => elaboration.id,
+                       :unit_of_measure_id => diagrams.id)
+DeliverableType.create(:name => "Executable architecture",
+                       :lifecycle_phase_id => elaboration.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Construction Plan",
+                       :lifecycle_phase_id => elaboration.id,
+                       :unit_of_measure_id => pages.id)
+
+DeliverableType.create(:name => "Use Cases",
+                       :lifecycle_phase_id => construction.id,
+                       :unit_of_measure_id => use_cases.id)
+DeliverableType.create(:name => "Activity Diagram",
+                       :lifecycle_phase_id => construction.id,
+                       :unit_of_measure_id => diagrams.id)
+DeliverableType.create(:name => "Sequence Diagram",
+                       :lifecycle_phase_id => construction.id,
+                       :unit_of_measure_id => diagrams.id)
+DeliverableType.create(:name => "Collaboration Diagram",
+                       :lifecycle_phase_id => construction.id,
+                       :unit_of_measure_id => diagrams.id)
+DeliverableType.create(:name => "State Diagram",
+                       :lifecycle_phase_id => construction.id,
+                       :unit_of_measure_id => diagrams.id)
+DeliverableType.create(:name => "Interaction Overview Diagram",
+                       :lifecycle_phase_id => construction.id,
+                       :unit_of_measure_id => diagrams.id)
+
+DeliverableType.create(:name => "Deployment Plan",
+                       :lifecycle_phase_id => transition.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "Customer Feedback",
+                       :lifecycle_phase_id => transition.id,
+                       :unit_of_measure_id => pages.id)
+DeliverableType.create(:name => "User Manual",
+                       :lifecycle_phase_id => transition.id,
+                       :unit_of_measure_id => pages.id)
+
 
 puts "Creating complexity"
 Complexity.create(:level => "low")

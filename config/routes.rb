@@ -1,5 +1,7 @@
 PET::Application.routes.draw do
 
+  resources :lifecycles
+
   resources "project_phases"
 
   resources :deliverables

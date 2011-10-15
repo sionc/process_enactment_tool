@@ -1,7 +1,8 @@
 body { background-color: #FFF; color: #333; }
 
 body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+/*  font-family: verdana, arial, helvetica, sans-serif;*/
+  font-family: 'Artifika', serif;
   font-size:   13px;
   line-height: 18px;
 }
@@ -98,7 +99,7 @@ div.field, div.actions {
 	border-right: 3px solid #888;
 	margin: -5px;
 	padding: 5px;
-	background-color: #888888;
+	background-color: whitesmoke;
 	color: black;
 	width: 158px;
 	display: block;
@@ -111,6 +112,25 @@ div.field, div.actions {
 	z-index: 1;
 	position: relative;
   
+}
+#sidebar ul li a:hover {
+	background-color: silver;
+}
+#sidebar .active_tab {
+	background-color: #888888;
+}
+a[id ~= 'create_project']{
+    padding-left:25px;
+    background: transparent url(/images/create.png) no-repeat scroll left top;	
+	background-size: 20px 20px;
+}
+a[id ~= 'view_project'], a[id ~= 'view_lifecycles']{
+	padding-left:25px;
+    background: transparent url(/images/view.png) no-repeat scroll left top;	
+	background-size: 20px 20px;
+}
+.home a:hover {
+	color: black;
 }
 .field label {
 	width: 200px;
@@ -223,4 +243,36 @@ tr
 }
 #project_phases tbody tr.active {
     background-color: darkgray;
+}
+#home_header {
+	text-align: center;
+/*	font-size: 2em;*/
+}
+#home_buttons {
+	text-align: center;
+	margin-bottom: 5em;
+}
+.splash_button {
+	display: inline-block;
+	width: 95px;
+	height: 100px;
+	text-decoration: none;
+	border: 1px solid black;
+	padding: 6px;
+	margin: 10px;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 0 5px 5px #888;
+    -webkit-box-shadow: 0 0 5px 5px#888;
+    box-shadow: 0 0 5px 5px #888;
+	text-align: center;
+}
+.splash_button:hover {
+	color: black;
+	background-color: silver;
+}
+.splash_button img {
+	width: 90px;
+	height: 50px;
 }

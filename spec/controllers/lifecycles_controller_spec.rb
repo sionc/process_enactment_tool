@@ -43,115 +43,115 @@ describe LifecyclesController do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new lifecycle as @lifecycle" do
-      get :new
-      assigns(:lifecycle).should be_a_new(Lifecycle)
-    end
-  end
+  #describe "GET new" do
+  #  it "assigns a new lifecycle as @lifecycle" do
+  #    get :new
+  #    assigns(:lifecycle).should be_a_new(Lifecycle)
+  #  end
+  #end
+  #
+  #describe "GET edit" do
+  #  it "assigns the requested lifecycle as @lifecycle" do
+  #    lifecycle = Lifecycle.create! valid_attributes
+  #    get :edit, :id => lifecycle.id.to_s
+  #    assigns(:lifecycle).should eq(lifecycle)
+  #  end
+  #end
+  #
+  #describe "POST create" do
+  #  describe "with valid params" do
+  #    it "creates a new Lifecycle" do
+  #      expect {
+  #        post :create, :lifecycle => valid_attributes
+  #      }.to change(Lifecycle, :count).by(1)
+  #    end
+  #
+  #    it "assigns a newly created lifecycle as @lifecycle" do
+  #      post :create, :lifecycle => valid_attributes
+  #      assigns(:lifecycle).should be_a(Lifecycle)
+  #      assigns(:lifecycle).should be_persisted
+  #    end
+  #
+  #    it "redirects to the created lifecycle" do
+  #      post :create, :lifecycle => valid_attributes
+  #      response.should redirect_to(Lifecycle.last)
+  #    end
+  #  end
+  #
+  #  describe "with invalid params" do
+  #    it "assigns a newly created but unsaved lifecycle as @lifecycle" do
+  #      # Trigger the behavior that occurs when invalid params are submitted
+  #      Lifecycle.any_instance.stub(:save).and_return(false)
+  #      post :create, :lifecycle => {}
+  #      assigns(:lifecycle).should be_a_new(Lifecycle)
+  #    end
+  #
+  #    it "re-renders the 'new' template" do
+  #      # Trigger the behavior that occurs when invalid params are submitted
+  #      Lifecycle.any_instance.stub(:save).and_return(false)
+  #      post :create, :lifecycle => {}
+  #      response.should render_template("new")
+  #    end
+  #  end
+  #end
 
-  describe "GET edit" do
-    it "assigns the requested lifecycle as @lifecycle" do
-      lifecycle = Lifecycle.create! valid_attributes
-      get :edit, :id => lifecycle.id.to_s
-      assigns(:lifecycle).should eq(lifecycle)
-    end
-  end
+  #describe "PUT update" do
+  #  describe "with valid params" do
+  #    it "updates the requested lifecycle" do
+  #      lifecycle = Lifecycle.create! valid_attributes
+  #      # Assuming there are no other lifecycles in the database, this
+  #      # specifies that the Lifecycle created on the previous line
+  #      # receives the :update_attributes message with whatever params are
+  #      # submitted in the request.
+  #      Lifecycle.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+  #      put :update, :id => lifecycle.id, :lifecycle => {'these' => 'params'}
+  #    end
+  #
+  #    it "assigns the requested lifecycle as @lifecycle" do
+  #      lifecycle = Lifecycle.create! valid_attributes
+  #      put :update, :id => lifecycle.id, :lifecycle => valid_attributes
+  #      assigns(:lifecycle).should eq(lifecycle)
+  #    end
+  #
+  #    it "redirects to the lifecycle" do
+  #      lifecycle = Lifecycle.create! valid_attributes
+  #      put :update, :id => lifecycle.id, :lifecycle => valid_attributes
+  #      response.should redirect_to(lifecycle)
+  #    end
+  #  end
+  #
+  #  describe "with invalid params" do
+  #    it "assigns the lifecycle as @lifecycle" do
+  #      lifecycle = Lifecycle.create! valid_attributes
+  #      # Trigger the behavior that occurs when invalid params are submitted
+  #      Lifecycle.any_instance.stub(:save).and_return(false)
+  #      put :update, :id => lifecycle.id.to_s, :lifecycle => {}
+  #      assigns(:lifecycle).should eq(lifecycle)
+  #    end
+  #
+  #    it "re-renders the 'edit' template" do
+  #      lifecycle = Lifecycle.create! valid_attributes
+  #      # Trigger the behavior that occurs when invalid params are submitted
+  #      Lifecycle.any_instance.stub(:save).and_return(false)
+  #      put :update, :id => lifecycle.id.to_s, :lifecycle => {}
+  #      response.should render_template("edit")
+  #    end
+  #  end
+  #end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Lifecycle" do
-        expect {
-          post :create, :lifecycle => valid_attributes
-        }.to change(Lifecycle, :count).by(1)
-      end
-
-      it "assigns a newly created lifecycle as @lifecycle" do
-        post :create, :lifecycle => valid_attributes
-        assigns(:lifecycle).should be_a(Lifecycle)
-        assigns(:lifecycle).should be_persisted
-      end
-
-      it "redirects to the created lifecycle" do
-        post :create, :lifecycle => valid_attributes
-        response.should redirect_to(Lifecycle.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved lifecycle as @lifecycle" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Lifecycle.any_instance.stub(:save).and_return(false)
-        post :create, :lifecycle => {}
-        assigns(:lifecycle).should be_a_new(Lifecycle)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Lifecycle.any_instance.stub(:save).and_return(false)
-        post :create, :lifecycle => {}
-        response.should render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested lifecycle" do
-        lifecycle = Lifecycle.create! valid_attributes
-        # Assuming there are no other lifecycles in the database, this
-        # specifies that the Lifecycle created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Lifecycle.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => lifecycle.id, :lifecycle => {'these' => 'params'}
-      end
-
-      it "assigns the requested lifecycle as @lifecycle" do
-        lifecycle = Lifecycle.create! valid_attributes
-        put :update, :id => lifecycle.id, :lifecycle => valid_attributes
-        assigns(:lifecycle).should eq(lifecycle)
-      end
-
-      it "redirects to the lifecycle" do
-        lifecycle = Lifecycle.create! valid_attributes
-        put :update, :id => lifecycle.id, :lifecycle => valid_attributes
-        response.should redirect_to(lifecycle)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the lifecycle as @lifecycle" do
-        lifecycle = Lifecycle.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Lifecycle.any_instance.stub(:save).and_return(false)
-        put :update, :id => lifecycle.id.to_s, :lifecycle => {}
-        assigns(:lifecycle).should eq(lifecycle)
-      end
-
-      it "re-renders the 'edit' template" do
-        lifecycle = Lifecycle.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Lifecycle.any_instance.stub(:save).and_return(false)
-        put :update, :id => lifecycle.id.to_s, :lifecycle => {}
-        response.should render_template("edit")
-      end
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested lifecycle" do
-      lifecycle = Lifecycle.create! valid_attributes
-      expect {
-        delete :destroy, :id => lifecycle.id.to_s
-      }.to change(Lifecycle, :count).by(-1)
-    end
-
-    it "redirects to the lifecycles list" do
-      lifecycle = Lifecycle.create! valid_attributes
-      delete :destroy, :id => lifecycle.id.to_s
-      response.should redirect_to(lifecycles_url)
-    end
-  end
+  #describe "DELETE destroy" do
+  #  it "destroys the requested lifecycle" do
+  #    lifecycle = Lifecycle.create! valid_attributes
+  #    expect {
+  #      delete :destroy, :id => lifecycle.id.to_s
+  #    }.to change(Lifecycle, :count).by(-1)
+  #  end
+  #
+  #  it "redirects to the lifecycles list" do
+  #    lifecycle = Lifecycle.create! valid_attributes
+  #    delete :destroy, :id => lifecycle.id.to_s
+  #    response.should redirect_to(lifecycles_url)
+  #  end
+  #end
 
 end

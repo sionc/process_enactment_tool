@@ -1,0 +1,38 @@
+== Tools and Techniques
+
+=== JQuery
+
+jQuery is a fast and concise JavaScript Library that simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development. (http://www.jquery.com) We are employing JQuery in the Process Enactment Tool to provide interactive functionality on the client side, spanning from basic look and feel to asynchronous interaction with the server.
+
+As an example of our usage of JQuery for basic look and feel, consider the sidebar on the main application layout. When the user selects one of the items on the sidebar, it changes color to indicate that it is now selected. To achieve that, we change the class associated with the appropriate HTML DOM element; as a result, a different CSS style is applied to the element, which causes its appearance to be updated.
+
+A more complex example of JQuery appears on the project details page (eg. /projects/1). Here, we use JQuery to display the project phase details when the user clicks on a project phase, without requiring a refresh of the page. To achieve this, we employ a typical AJAX workflow: the client sends a request to the server, and when the server fulfills the request, a function is called on the client to update the page with the new information.
+
+Specifically, we load a template for the project phase details box along with the rest of the html page; then, we use JQuery to hide this box when the document is rendered. Next, we listen for click events in the project phase table, and send an AJAX request to the server if the user clicks on a table row. The server returns a JSON string that represents the project phase corresponding to the row that was clicked. When the client receives this data from the server, it uses the data to populate the project phase details table and then shows the table.
+
+=== Polymorphic Associations
+
+In Ruby on Rails polymorphic associations refer to the method of tying one model to many others through one association.   Setting a polymorphic => true on the belongs_to statement does this.  The benefit of using a polymorphic association is that you can then use that class as an interface for other models.  
+
+There are a number of steps to create a polymorphic association, which in our application means the following:
+
+app/models/deliverable.rb
+belongs_to :assignable, :polymorphic => true
+
+app/models/stock_deliverable_type.rb
+	has_many :deliverables, :as => :assignable
+
+app/models/custom_deliverable_type.rb
+	has_many :deliverables, :as => :assignable
+
+To finish up the connections, create a new migration to add two columns to the model that is being set as polymorphic, one that is the id, and one that is the type.  In our case we added these two:
+•	assignable_id
+•	assignable_type 
+This can be accomplished by placing a t.references in your migration such as:
+	t.references : assignable, :polymorphic => true
+By doing this, we then have stored with each record, the name of the deliverable type, and the id that points to it, when it is created.
+
+For further reading see:
+http://guides.rubyonrails.org/association_basics.html#polymorphic-associations
+
+

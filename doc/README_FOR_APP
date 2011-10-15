@@ -1,0 +1,57 @@
+== Welcome to PET 1.3
+http://cruise.sv.cmu.edu:3333/projects/Sneakers.png
+ 
+The Process Enactment Tool 1.3 is a product of Sneakers. It commits to help
+software developers and project managers to plan and track projects. The first
+iterative version is a limited function version. {(Demo Site)}[http://gentle-flower-5712.heroku.com/]
+
+Please see the Design link at left for more information.
+
+== Finished Story Cards
+
+1. View Lifecycle:
+	Users could see a list of lifecycles and lifecycle details through the
+	story card covered features.
+	
+2. Create Project:
+	Users could create a project belongs to a specific lifecycle through the 
+	story card covered features.
+
+3. View Project:
+       Users could see a list of projects and project details through the story 
+       card covered features. Project details include a list of project phases.
+       Users are able to expand the deliverable details of a project phase. 
+
+4. Create Stock Deliverable:
+       Users could create a deliverable under a specific project phase with a
+       predefined deliverable type through the features covered by this story 
+       card.
+
+
+== How to setup PET 1.3 locally
+
+Clone the source code from github through command (may require user credentials):
+	git clone git@github.com:cmusv/Fall-2011-FSE-Sneakers.git
+
+Run bundler:
+	bundle install
+
+Migrate database and load seed data:
+	rake sneakers:run_local
+
+== How to deploy PET 1.3 to heroku
+
+Clone the source code from github through command (may require user credentials):
+	git clone git@github.com:cmusv/Fall-2011-FSE-Sneakers.git
+
+Install heroku gem:
+	gem install heroku
+
+Push source to heroku:
+	git push heroku
+	
+Migrate database and load seed data:
+	heroku rake sneakers:run_heroku
+
+== Contact us
+	sneakers <fall-2011-sneakers@west.cmu.edu>

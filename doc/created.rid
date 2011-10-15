@@ -1,7 +1,7 @@
-Sat, 15 Oct 2011 11:30:58 -0700
+Sat, 15 Oct 2011 12:31:44 -0700
 ./app/controllers/application_controller.rb	Wed, 28 Sep 2011 16:02:15 -0700
 ./app/controllers/deliverables_controller.rb	Wed, 12 Oct 2011 00:42:42 -0700
-./app/controllers/lifecycles_controller.rb	Wed, 12 Oct 2011 18:15:48 -0700
+./app/controllers/lifecycles_controller.rb	Sat, 15 Oct 2011 11:35:29 -0700
 ./app/controllers/projects_controller.rb	Tue, 11 Oct 2011 18:48:09 -0700
 ./app/controllers/project_phases_controller.rb	Wed, 12 Oct 2011 17:51:07 -0700
 ./app/helpers/application_helper.rb	Wed, 28 Sep 2011 16:02:15 -0700
@@ -9,6 +9,7 @@ Sat, 15 Oct 2011 11:30:58 -0700
 ./app/helpers/lifecycles_helper.rb	Wed, 12 Oct 2011 18:15:48 -0700
 ./app/helpers/projects_helper.rb	Wed, 28 Sep 2011 16:02:15 -0700
 ./app/helpers/project_phases_helper.rb	Mon, 10 Oct 2011 20:42:43 -0700
+./app/models/complexity.rb	Sat, 15 Oct 2011 11:35:29 -0700
 ./app/models/custom_deliverable_type.rb	Wed, 12 Oct 2011 00:42:42 -0700
 ./app/models/deliverable.rb	Wed, 12 Oct 2011 00:42:42 -0700
 ./app/models/deliverable_type.rb	Mon, 10 Oct 2011 20:42:43 -0700
@@ -17,6 +18,7 @@ Sat, 15 Oct 2011 11:30:58 -0700
 ./app/models/project.rb	Wed, 12 Oct 2011 00:42:42 -0700
 ./app/models/project_phase.rb	Wed, 12 Oct 2011 00:42:42 -0700
 ./app/models/stock_deliverable_type.rb	Mon, 10 Oct 2011 20:42:43 -0700
+./app/models/unit_of_measure.rb	Sat, 15 Oct 2011 11:35:29 -0700
 ./config/application.rb	Mon, 10 Oct 2011 20:42:43 -0700
 ./config/boot.rb	Wed, 28 Sep 2011 16:02:15 -0700
 ./config/environment.rb	Wed, 28 Sep 2011 16:02:15 -0700
@@ -28,7 +30,7 @@ Sat, 15 Oct 2011 11:30:58 -0700
 ./config/initializers/mime_types.rb	Wed, 28 Sep 2011 16:02:15 -0700
 ./config/initializers/secret_token.rb	Wed, 28 Sep 2011 16:02:15 -0700
 ./config/initializers/session_store.rb	Wed, 28 Sep 2011 16:02:15 -0700
-./config/routes.rb	Wed, 12 Oct 2011 18:15:48 -0700
+./config/routes.rb	Sat, 15 Oct 2011 11:35:29 -0700
 ./db/migrate/20110928025520_create_projects.rb	Wed, 28 Sep 2011 16:02:15 -0700
 ./db/migrate/20110928035204_add_lifecycle_id_to_project.rb	Wed, 28 Sep 2011 16:02:15 -0700
 ./db/migrate/20111005023003_create_project_phases.rb	Tue, 04 Oct 2011 20:32:00 -0700
@@ -41,22 +43,27 @@ Sat, 15 Oct 2011 11:30:58 -0700
 ./db/migrate/20111008030436_change_polymorphic_details_in_deliverables.rb	Mon, 10 Oct 2011 20:42:43 -0700
 ./db/migrate/20111012040806_create_custom_deliverable_types.rb	Wed, 12 Oct 2011 00:42:42 -0700
 ./db/migrate/20111013010625_create_lifecycles.rb	Wed, 12 Oct 2011 18:16:02 -0700
-./db/schema.rb	Wed, 12 Oct 2011 18:17:05 -0700
-./db/seeds.rb	Wed, 12 Oct 2011 16:38:29 -0700
-./deliverables/README_FOR_APP	Wed, 28 Sep 2011 16:02:15 -0700
+./db/migrate/20111013033318_create_unit_of_measures.rb	Sat, 15 Oct 2011 11:35:29 -0700
+./db/migrate/20111013033449_create_complexities.rb	Sat, 15 Oct 2011 11:35:29 -0700
+./db/schema.rb	Sat, 15 Oct 2011 11:35:29 -0700
+./db/seeds.rb	Sat, 15 Oct 2011 11:35:29 -0700
+./Design/ClassDiagram.txt	Sat, 15 Oct 2011 12:22:47 -0700
+./Design/ModelAssociations.txt	Sat, 15 Oct 2011 12:31:08 -0700
+./Design/ToolsAndTechniques.txt	Sat, 15 Oct 2011 12:25:57 -0700
+./doc/README_FOR_APP	Sat, 15 Oct 2011 12:19:41 -0700
 ./Gemfile	Wed, 12 Oct 2011 18:16:02 -0700
-./public/robots.txt	Wed, 28 Sep 2011 16:02:15 -0700
 ./Rakefile	Wed, 28 Sep 2011 16:02:15 -0700
 ./script/rails	Wed, 28 Sep 2011 16:02:15 -0700
 ./spec/controllers/deliverables_controller_spec.rb	Wed, 12 Oct 2011 00:42:42 -0700
-./spec/controllers/lifecycles_controller_spec.rb	Wed, 12 Oct 2011 18:15:48 -0700
+./spec/controllers/lifecycles_controller_spec.rb	Sat, 15 Oct 2011 11:35:29 -0700
 ./spec/controllers/projects_controller_spec.rb	Mon, 10 Oct 2011 20:42:43 -0700
-./spec/controllers/project_phases_controller_spec.rb	Mon, 10 Oct 2011 20:42:43 -0700
+./spec/controllers/project_phases_controller_spec.rb	Sat, 15 Oct 2011 11:35:29 -0700
 ./spec/factories.rb	Wed, 05 Oct 2011 19:07:27 -0700
 ./spec/helpers/deliverables_helper_spec.rb	Tue, 04 Oct 2011 22:51:39 -0700
 ./spec/helpers/lifecycles_helper_spec.rb	Wed, 12 Oct 2011 18:15:48 -0700
 ./spec/helpers/projects_helper_spec.rb	Wed, 28 Sep 2011 16:02:15 -0700
 ./spec/helpers/project_phases_helper_spec.rb	Mon, 10 Oct 2011 20:42:43 -0700
+./spec/models/complexity_spec.rb	Sat, 15 Oct 2011 11:35:29 -0700
 ./spec/models/custom_deliverable_type_spec.rb	Wed, 12 Oct 2011 00:42:42 -0700
 ./spec/models/deliverable_spec.rb	Wed, 12 Oct 2011 00:42:42 -0700
 ./spec/models/deliverable_type_spec.rb	Wed, 05 Oct 2011 19:07:27 -0700
@@ -65,11 +72,12 @@ Sat, 15 Oct 2011 11:30:58 -0700
 ./spec/models/project_phase_spec.rb	Tue, 04 Oct 2011 20:32:00 -0700
 ./spec/models/project_spec.rb	Tue, 04 Oct 2011 19:30:26 -0700
 ./spec/models/stock_deliverable_type_spec.rb	Wed, 05 Oct 2011 15:57:10 -0700
+./spec/models/unit_of_measure_spec.rb	Sat, 15 Oct 2011 11:35:29 -0700
 ./spec/requests/deliverables_spec.rb	Mon, 10 Oct 2011 20:42:43 -0700
 ./spec/requests/lifecycles_spec.rb	Wed, 12 Oct 2011 18:15:48 -0700
 ./spec/requests/projects_spec.rb	Wed, 28 Sep 2011 16:02:15 -0700
 ./spec/routing/deliverables_routing_spec.rb	Tue, 04 Oct 2011 22:51:39 -0700
-./spec/routing/lifecycles_routing_spec.rb	Wed, 12 Oct 2011 18:15:48 -0700
+./spec/routing/lifecycles_routing_spec.rb	Sat, 15 Oct 2011 11:35:29 -0700
 ./spec/routing/projects_routing_spec.rb	Wed, 28 Sep 2011 16:02:15 -0700
 ./spec/spec_helper.rb	Wed, 28 Sep 2011 16:02:15 -0700
 ./spec/views/deliverables/edit.html.erb_spec.rb	Mon, 10 Oct 2011 20:42:43 -0700

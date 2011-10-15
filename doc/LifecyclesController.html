@@ -76,6 +76,8 @@
     
     <li><a href="#method-i-edit">#edit</a>
     
+    <li><a href="#method-i-home">#home</a>
+    
     <li><a href="#method-i-index">#index</a>
     
     <li><a href="#method-i-new">#new</a>
@@ -95,13 +97,17 @@
 
   <ul>
   
+    <li class="file"><a href="./Design/ClassDiagram_txt.html">ClassDiagram</a>
+  
+    <li class="file"><a href="./Design/ModelAssociations_txt.html">ModelAssociations</a>
+  
+    <li class="file"><a href="./Design/ToolsAndTechniques_txt.html">ToolsAndTechniques</a>
+  
     <li class="file"><a href="./Gemfile.html">Gemfile</a>
   
     <li class="file"><a href="./Rakefile.html">Rakefile</a>
   
-    <li class="file"><a href="./deliverables/README_FOR_APP.html">README_FOR_APP</a>
-  
-    <li class="file"><a href="./public/robots_txt.html">robots</a>
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
   
   </ul>
 </nav>
@@ -127,6 +133,10 @@
   
     <li><a href="./ChangePolymorphicDetailsInDeliverables.html">ChangePolymorphicDetailsInDeliverables</a>
   
+    <li><a href="./Complexity.html">Complexity</a>
+  
+    <li><a href="./CreateComplexities.html">CreateComplexities</a>
+  
     <li><a href="./CreateCustomDeliverableTypes.html">CreateCustomDeliverableTypes</a>
   
     <li><a href="./CreateDeliverableTypes.html">CreateDeliverableTypes</a>
@@ -142,6 +152,8 @@
     <li><a href="./CreateProjects.html">CreateProjects</a>
   
     <li><a href="./CreateStockDeliverableTypes.html">CreateStockDeliverableTypes</a>
+  
+    <li><a href="./CreateUnitOfMeasures.html">CreateUnitOfMeasures</a>
   
     <li><a href="./CustomDeliverableType.html">CustomDeliverableType</a>
   
@@ -176,6 +188,8 @@
     <li><a href="./ProjectsHelper.html">ProjectsHelper</a>
   
     <li><a href="./StockDeliverableType.html">StockDeliverableType</a>
+  
+    <li><a href="./UnitOfMeasure.html">UnitOfMeasure</a>
   
   </ul>
 </nav>
@@ -224,7 +238,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/lifecycles_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/lifecycles_controller.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@lifecycle</span> = <span class="ruby-constant">Lifecycle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:lifecycle</span>])
 
@@ -264,7 +278,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/lifecycles_controller.rb, line 74</span>
+            <pre><span class="ruby-comment"># File app/controllers/lifecycles_controller.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@lifecycle</span> = <span class="ruby-constant">Lifecycle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@lifecycle</span>.<span class="ruby-identifier">destroy</span>
@@ -300,7 +314,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/lifecycles_controller.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/controllers/lifecycles_controller.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@lifecycle</span> = <span class="ruby-constant">Lifecycle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -312,6 +326,35 @@
 
         
       </div><!-- edit-method -->
+
+    
+      <div id="method-i-home" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">home</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="home-source">
+            <pre><span class="ruby-comment"># File app/controllers/lifecycles_controller.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">home</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- home-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- home-method -->
 
     
       <div id="method-i-index" class="method-detail ">
@@ -365,7 +408,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/lifecycles_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/lifecycles_controller.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@lifecycle</span> = <span class="ruby-constant">Lifecycle</span>.<span class="ruby-identifier">new</span>
 
@@ -400,7 +443,7 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/lifecycles_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/lifecycles_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@lifecycle</span> = <span class="ruby-constant">Lifecycle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
@@ -435,7 +478,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/lifecycles_controller.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/controllers/lifecycles_controller.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@lifecycle</span> = <span class="ruby-constant">Lifecycle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 

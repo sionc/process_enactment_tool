@@ -105,7 +105,83 @@
   </div>
 </nav>
 
-<p>This is the API documentation for Rails Application Documentation.
+<div id="documentation" class="description">
+  
+<h2 id="label-Welcome+to+PET+1.3">Welcome to PET 1.3</h2>
+
+<p><img src="http://cruise.sv.cmu.edu:3333/projects/Sneakers.png" /></p>
+
+<p>The Process Enactment Tool 1.3 is a product of Sneakers. It commits to help
+software developers and project managers to plan and track projects. The
+first iterative version is a limited function version. <a
+href="http://gentle-flower-5712.heroku.com/">(Demo Site)</a></p>
+
+<p><strong>Please see the links at left for more information.</strong></p>
+
+<h2 id="label-Finished+Story+Cards">Finished Story Cards</h2>
+<ol><li>
+<p>View Lifecycle:</p>
+
+<pre>Users could see a list of lifecycles and lifecycle details through the
+story card covered features.</pre>
+</li><li>
+<p>Create Project:</p>
+
+<pre>Users could create a project belongs to a specific lifecycle through the 
+story card covered features.</pre>
+</li><li>
+<p>View Project:</p>
+
+<pre>Users could see a list of projects and project details through the story 
+card covered features. Project details include a list of project phases.
+Users are able to expand the deliverable details of a project phase.</pre>
+</li><li>
+<p>Create Stock Deliverable:</p>
+
+<pre>Users could create a deliverable under a specific project phase with a
+predefined deliverable type through the features covered by this story 
+card.</pre>
+</li></ol>
+
+<h2 id="label-How+to+setup+PET+1.3+locally">How to setup PET 1.3 locally</h2>
+
+<p>Clone the source code from github through command (may require user
+credentials):</p>
+
+<pre>git clone git@github.com:cmusv/Fall-2011-FSE-Sneakers.git</pre>
+
+<p>Run bundler:</p>
+
+<pre>bundle install</pre>
+
+<p>Migrate database and load seed data:</p>
+
+<pre>rake sneakers:run_local</pre>
+
+<h2 id="label-How+to+deploy+PET+1.3+to+heroku">How to deploy PET 1.3 to heroku</h2>
+
+<p>Clone the source code from github through command (may require user
+credentials):</p>
+
+<pre>git clone git@github.com:cmusv/Fall-2011-FSE-Sneakers.git</pre>
+
+<p>Install heroku gem:</p>
+
+<pre>gem install heroku</pre>
+
+<p>Push source to heroku:</p>
+
+<pre>git push heroku</pre>
+
+<p>Migrate database and load seed data:</p>
+
+<pre>heroku rake sneakers:run_heroku</pre>
+
+<h2 id="label-Contact+us">Contact us</h2>
+
+<pre>sneakers &lt;fall-2011-sneakers@west.cmu.edu&gt;</pre>
+
+</div>
 
 
 <footer id="validator-badges">

@@ -1,50 +1,50 @@
 == Model Associations
 
-class Lifecycle
+Lifecycle
  has_many :projects
  has_many :lifecycle_phases
-end
 
-class Project
+
+Project
  belongs_to :lifecycle
  has_many :project_phases
  has_many :lifecycle_phases, :through=> :project_phases
-end
 
-class LifecyclePhase
+
+LifecyclePhase
  belongs_to :lifecycle
  has_many :project_phases
  has_many :projects, :through => :project_phases
  has_many :deliverable_types
-end
 
 
-class ProjectPhase
+
+ProjectPhase
  belongs_to :project
  belongs_to :lifecycle_phase
  has_one :custom_deliverable_type
  has_many :stock_deliverable_types
-end
 
-class DeliverableType
+
+DeliverableType
  belongs_to :lifecycle_phase
  belongs_to :unit_of_measure
  has_many :stock_deliverable_types  
-end
 
 
-class StockDeliverableType
+
+StockDeliverableType
  belongs_to :project_phase
  belongs_to :deliverable_type
  has_many :deliverables, :as => :assignable
-end
 
-class CustomDeliverableType
+
+CustomDeliverableType
  belongs_to :project_phase
  has_many :deliverables, :as => : assignable
-end
 
 
-class Deliverable
+
+Deliverable
  belongs_to : assignable, :polymorphic => true
-end
+

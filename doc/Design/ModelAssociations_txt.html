@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta content="text/html; charset=IBM437" http-equiv="Content-Type">
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>ClassDiagram</title>
+<title>Gemfile</title>
 
 <link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
 
@@ -49,15 +49,13 @@
 
   <ul>
   
-    <li class="file"><a href="../Design/ClassDiagram_txt.html">ClassDiagram</a>
-  
-    <li class="file"><a href="../Design/ModelAssociations_txt.html">ModelAssociations</a>
-  
-    <li class="file"><a href="../Design/ToolsAndTechniques_txt.html">ToolsAndTechniques</a>
-  
     <li class="file"><a href="../Gemfile.html">Gemfile</a>
   
     <li class="file"><a href="../Rakefile.html">Rakefile</a>
+  
+    <li class="file"><a href="../design/ClassDiagram_txt.html">ClassDiagram</a>
+  
+    <li class="file"><a href="../design/ModelAssociations_txt.html">ModelAssociations</a>
   
     <li class="file"><a href="../doc/README_FOR_APP.html">README_FOR_APP</a>
   
@@ -153,23 +151,19 @@
   
 <h2 id="label-Model+Associations">Model Associations</h2>
 
-<p>class <a href="../Lifecycle.html">Lifecycle</a></p>
+<p><a href="../Lifecycle.html">Lifecycle</a></p>
 
 <pre>has_many :projects
 has_many :lifecycle_phases</pre>
 
-<p>end</p>
-
-<p>class <a href="../Project.html">Project</a></p>
+<p><a href="../Project.html">Project</a></p>
 
 <pre class="ruby"><span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">lifecycle</span>
 <span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">project_phases</span>
 <span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">lifecycle_phases</span>, :<span class="ruby-identifier">through=</span><span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">project_phases</span>
 </pre>
 
-<p>end</p>
-
-<p>class <a href="../LifecyclePhase.html">LifecyclePhase</a></p>
+<p><a href="../LifecyclePhase.html">LifecyclePhase</a></p>
 
 <pre class="ruby"><span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">lifecycle</span>
 <span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">project_phases</span>
@@ -177,48 +171,36 @@ has_many :lifecycle_phases</pre>
 <span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">deliverable_types</span>
 </pre>
 
-<p>end</p>
-
-<p>class <a href="../ProjectPhase.html">ProjectPhase</a></p>
+<p><a href="../ProjectPhase.html">ProjectPhase</a></p>
 
 <pre>belongs_to :project
 belongs_to :lifecycle_phase
 has_one :custom_deliverable_type
 has_many :stock_deliverable_types</pre>
 
-<p>end</p>
-
-<p>class <a href="../DeliverableType.html">DeliverableType</a></p>
+<p><a href="../DeliverableType.html">DeliverableType</a></p>
 
 <pre>belongs_to :lifecycle_phase
 belongs_to :unit_of_measure
 has_many :stock_deliverable_types</pre>
 
-<p>end</p>
-
-<p>class <a href="../StockDeliverableType.html">StockDeliverableType</a></p>
+<p><a href="../StockDeliverableType.html">StockDeliverableType</a></p>
 
 <pre class="ruby"><span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">project_phase</span>
 <span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">deliverable_type</span>
 <span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">deliverables</span>, :<span class="ruby-identifier">as</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">assignable</span>
 </pre>
 
-<p>end</p>
-
-<p>class <a href="../CustomDeliverableType.html">CustomDeliverableType</a></p>
+<p><a href="../CustomDeliverableType.html">CustomDeliverableType</a></p>
 
 <pre class="ruby"><span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">project_phase</span>
 <span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">deliverables</span>, :<span class="ruby-identifier">as</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">assignable</span>
 </pre>
 
-<p>end</p>
-
-<p>class <a href="../Deliverable.html">Deliverable</a></p>
+<p><a href="../Deliverable.html">Deliverable</a></p>
 
 <pre class="ruby"><span class="ruby-identifier">belongs_to</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">assignable</span>, :<span class="ruby-identifier">polymorphic</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
 </pre>
-
-<p>end</p>
 
 </div>
 

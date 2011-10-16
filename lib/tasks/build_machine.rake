@@ -4,5 +4,5 @@ require 'fileutils'
 require 'bundler' 
 
 desc "Task for the build machine"
-task :continuous_integration  => ['db:migrate:reset', 'spec']
+task :continuous_integration  => ['db:migrate', 'spec']
  

@@ -233,12 +233,13 @@
 
         <div class="method-description">
           
-          <p>POST /deliverables POST /deliverables.xml</p>
+          <p>POST /deliverables POST /deliverables.xml We are using polymorphic
+associations to create this deliverable created through @assignable</p>
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 53</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@assignable</span> = <span class="ruby-identifier">find_assignable</span>
 
@@ -290,7 +291,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 97</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 101</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@deliverable</span>.<span class="ruby-identifier">destroy</span>
@@ -326,7 +327,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 47</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -391,7 +392,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@project_phase_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:project_phase_id</span>]
@@ -459,12 +460,13 @@
 
         <div class="method-description">
           
-          
+          <p>GET /deliverables/show_phase_deliverables Action to respond to ajax call to
+get the deliverables for the selected phase</p>
           
 
           
           <div class="method-source-code" id="show_phase_deliverables-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_phase_deliverables</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">all</span>
 
@@ -498,7 +500,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 81</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 

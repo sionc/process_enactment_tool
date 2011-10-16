@@ -21,6 +21,8 @@ class DeliverablesController < ApplicationController
     end
   end
 
+  # GET /deliverables/show_phase_deliverables
+  # Action to respond to ajax call to get the deliverables for the selected phase
   def show_phase_deliverables
     @deliverable = Deliverable.all
 
@@ -50,6 +52,8 @@ class DeliverablesController < ApplicationController
 
   # POST /deliverables
   # POST /deliverables.xml
+  # We are using polymorphic associations to create this deliverable
+  # created through @assignable
   def create
     @assignable = find_assignable
 
@@ -106,7 +110,7 @@ class DeliverablesController < ApplicationController
 
 
   # Copied from railscasts.com (#154-polymorphic-assocation)
-
+  # modified to fit our needs so we can find the deliverable type
   private
 
   def find_assignable

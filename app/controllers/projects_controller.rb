@@ -39,6 +39,7 @@ class ProjectsController < ApplicationController
 
   # POST /projects
   # POST /projects.xml
+  # On save, we associate phases and deliverable types
   def create
     @project = Project.new(params[:project])
     @lifecycles = Lifecycle.all

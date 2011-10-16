@@ -17,7 +17,7 @@ In Ruby on Rails polymorphic associations refer to the method of tying one model
 There are a number of steps to create a polymorphic association, which in our application means the following:
 
 app/models/deliverable.rb
-belongs_to :assignable, :polymorphic => true
+	belongs_to :assignable, :polymorphic => true
 
 app/models/stock_deliverable_type.rb
 	has_many :deliverables, :as => :assignable
@@ -26,8 +26,8 @@ app/models/custom_deliverable_type.rb
 	has_many :deliverables, :as => :assignable
 
 To finish up the connections, create a new migration to add two columns to the model that is being set as polymorphic, one that is the id, and one that is the type.  In our case we added these two:
-•	assignable_id
-•	assignable_type 
+*assignable_id
+*assignable_type 
 This can be accomplished by placing a t.references in your migration such as:
 	t.references : assignable, :polymorphic => true
 By doing this, we then have stored with each record, the name of the deliverable type, and the id that points to it, when it is created.

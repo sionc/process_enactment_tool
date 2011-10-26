@@ -19,7 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe DeliverablesController do
-
+  
   # This should return the minimal set of attributes required to create a valid
   # Deliverable. As you add validations to Deliverable, be sure to
   # update the return value of this method accordingly.
@@ -54,7 +54,14 @@ describe DeliverablesController do
       get :new, :project_phase_id => @stock_deliverable_type.project_phase.id
       assigns(:deliverable).should be_a_new(Deliverable)
     end
-  end
+    
+    it "assigns a list complexities as @complexities" do
+      get :new, :project_phase_id => @stock_deliverable_type.project_phase.id
+      assigns(:complexities).size.should == 3
+      # assigns(:complexities).should be_kind_of(Complexity)
+      
+    end
+   end
 
   describe "GET edit" do
     it "assigns the requested stock_deliverable_type deliverable as @deliverable" do

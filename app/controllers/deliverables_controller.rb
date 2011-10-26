@@ -38,7 +38,9 @@ class DeliverablesController < ApplicationController
     @project_phase_id = params[:project_phase_id]
     project_phase = ProjectPhase.find(@project_phase_id)
     @stock_deliverable_types = project_phase.stock_deliverable_types unless project_phase.nil?
-
+    @complexities = Complexity.all 
+    # raise @complexities.to_json
+    # @complexities = ["low", "medium", "high"]
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @deliverable }

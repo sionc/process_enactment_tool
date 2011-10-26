@@ -34,7 +34,9 @@
   </div>
   <div class="field">
   	<%= f.label :complexity %>
-	<%= f.select :complexity_id, ["test", "test2"] %>
+	<% #= f.select :complexity_id, @complexities.map {|c| [c.level, c.id]} 
+	%>
+	<%= f.select :complexity_id, ["low", "medium", "high"] %>
   </div>
   <div class="field">
     <%= f.label :estimated_size %>

@@ -61,5 +61,10 @@ describe Deliverable do
       invalid_deliverable = Deliverable.new(@attr.merge(:estimated_production_rate => 0))
       invalid_deliverable.should_not be_valid
    end
+   
+   it "should have an associated complexity" do
+      valid_deliverable = Deliverable.new();
+      valid_deliverable.should respond_to :complexity_id 
+   end
 
 end

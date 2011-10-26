@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111013033449) do
+ActiveRecord::Schema.define(:version => 20111026220121) do
 
   create_table "complexities", :force => true do |t|
     t.string   "level"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20111013033449) do
     t.datetime "updated_at"
     t.integer  "assignable_id"
     t.string   "assignable_type"
+    t.integer  "complexity_id"
   end
 
   create_table "lifecycle_phases", :force => true do |t|

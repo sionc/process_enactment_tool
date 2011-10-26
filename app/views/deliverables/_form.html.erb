@@ -33,6 +33,10 @@
 
   </div>
   <div class="field">
+  	<%= f.label :complexity %>
+	<%= f.select :complexity_id, ["test", "test2"] %>
+  </div>
+  <div class="field">
     <%= f.label :estimated_size %>
     <%= f.text_field :estimated_size %>
   </div>

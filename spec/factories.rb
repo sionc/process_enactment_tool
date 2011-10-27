@@ -30,3 +30,7 @@ Factory.define :stock_deliverable_type do |type|
   type.association          :project_phase
   type.association          :deliverable_type
 end
+
+Factory.define :complexity do |c|
+  c.level                    "low"
+end

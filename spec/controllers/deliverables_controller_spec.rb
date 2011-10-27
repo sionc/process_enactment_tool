@@ -58,8 +58,6 @@ describe DeliverablesController do
     it "assigns a list complexities as @complexities" do
       get :new, :project_phase_id => @stock_deliverable_type.project_phase.id
       assigns(:complexities).size.should == 3
-      # assigns(:complexities).should be_kind_of(Complexity)
-      
     end
    end
 

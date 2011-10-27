@@ -4,6 +4,7 @@ describe "deliverables/new.html.erb" do
 
   before(:each) do
     @stock_deliverable_types = [Factory.create(:stock_deliverable_type)]
+    @complexities = [Factory.create(:complexity)]
     assign(:deliverable, stub_model(Deliverable,
       :name => "MyString",
       :description => "MyText",
@@ -11,7 +12,8 @@ describe "deliverables/new.html.erb" do
       :assignable_type => "StockDeliverableType",
       :estimated_size => 1.5,
       :estimated_production_rate => 1.5,
-      :estimated_effort => 1.5
+      :estimated_effort => 1.5,
+      :complexity_id => @complexities[0].id
     ).as_new_record)
   end
 

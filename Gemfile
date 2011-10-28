@@ -39,9 +39,13 @@ group :development do
 end
 
 group :development, :test do 
-    gem 'ruby-debug19' 
+  gem 'ruby-debug19'
 	gem 'ruby-debug-base19x' 
-	gem 'ruby-debug-ide' #'0.4.6' 
+	gem 'ruby-debug-ide' #'0.4.6'
+  gem 'capybara'
+#  gem 'capybara-webkit', :git => "git://github.com/thoughtbot/capybara-webkit"
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 
 #suggested gems by Todd

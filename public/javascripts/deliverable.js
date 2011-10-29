@@ -11,23 +11,35 @@ var showHiddenInputField =
 var addNewType =
     function() {
         $('#deliverable_assignable_id').append($("<option></option>")
-                                       .attr("value", "new")
-                                       .text('New...'));
+            .attr("value", "new")
+            .text('New...'));
     };
 
-var showCreateDeliverableDialog =
-  function() {
-    $('#dialog').dialog({
-        buttons: {
-            Create: function() {
-                $(this).dialog('close')
+var buildDeliverableDialog =
+    function() {
+        $('#dialog').dialog({
+            autoOpen: false,
+            height: 280,
+            width: 400,
+            modal: true,
+            resizable: false,
+            buttons: {
+                Create: function() {
+                    $(this).dialog('close')
+                }
             }
-        }
-    });
-};
+        });
+
+        $('#deliverable_assignable_id').change(function() {
+              if ($(this).val() == 'new')
+                $('#dialog').dialog('open');
+        })
+    };
+
 
 $(document).ready(function() {
     addNewType();
     showHiddenInputField();
     $('#deliverable_assignable_id').change(showHiddenInputField);
+    buildDeliverableDialog();
 });

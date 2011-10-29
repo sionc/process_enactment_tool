@@ -24,7 +24,7 @@ describe "Deliverables" do
       page.should have_content("Functional Requirements Document 1")
       click_link 'New Deliverable'
       select('New...', :from => 'deliverable_assignable_id')
-      #page.should have_button('Create')
+      page.should have_xpath("//*[text()='Create Deliverable Type']", :visible => true)
       #save_and_open_page
     end
   end

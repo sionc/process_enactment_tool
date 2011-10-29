@@ -23,7 +23,8 @@ describe "Deliverables" do
       page.execute_script("$('#project_phases tbody > tr:first').click()")
       page.should have_content("Functional Requirements Document 1")
       click_link 'New Deliverable'
-      page.execute_script("$('#deliverable_assignable_id').val('new')")
+      select('New...', :from => 'deliverable_assignable_id')
+      #page.should have_button('Create')
       #save_and_open_page
     end
   end

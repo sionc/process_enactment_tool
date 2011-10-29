@@ -15,6 +15,17 @@ var addNewType =
                                        .text('New...'));
     };
 
+var showCreateDeliverableDialog =
+  function() {
+    $('#dialog').dialog({
+        buttons: {
+            Create: function() {
+                $(this).dialog('close')
+            }
+        }
+    });
+};
+
 $(document).ready(function() {
     addNewType();
     showHiddenInputField();

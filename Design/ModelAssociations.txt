@@ -48,7 +48,7 @@ Deliverable
 
 
 UnitOfMeasure
- has_many :deliverable_types
+ has_many :deliverable_types 
  has_many :custom_deliverable_types
 
 

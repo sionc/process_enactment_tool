@@ -18,7 +18,6 @@ LifecyclePhase
  has_many :deliverable_types
 
 
-
 ProjectPhase
  belongs_to :project
  belongs_to :lifecycle_phase
@@ -32,7 +31,6 @@ DeliverableType
  has_many :stock_deliverable_types  
 
 
-
 StockDeliverableType
  belongs_to :project_phase
  belongs_to :deliverable_type
@@ -41,10 +39,19 @@ StockDeliverableType
 
 CustomDeliverableType
  belongs_to :project_phase
+ belongs_to :unit_of_measure
  has_many :deliverables, :as => : assignable
-
 
 
 Deliverable
  belongs_to : assignable, :polymorphic => true
+
+
+UnitOfMeasure
+ has_many :deliverable_types
+ has_many :custom_deliverable_types
+
+
+
+
 

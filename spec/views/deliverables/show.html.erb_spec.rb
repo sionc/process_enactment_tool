@@ -9,7 +9,6 @@ describe "deliverables/show.html.erb" do
   describe "stock deliverable" do
   	before(:each) do
     	@stock_deliverable_types = [Factory.create(:stock_deliverable_type)]
-    	
 	    assign(:deliverable, stub_model(Deliverable,
 	      :name => "MyString",
 	      :description => "MyText",
@@ -34,6 +33,11 @@ describe "deliverables/show.html.erb" do
 	  it "renders the deliverable type for stock deliverables" do
 	    render
 	    rendered.should match(/Requirements Document/)
+    end
+
+    it "renders the unit of measure for stock deliverables" do
+	    render
+	    rendered.should match(/pages/)
 	  end
 	end
 	

@@ -18,5 +18,13 @@ class Deliverable < ActiveRecord::Base
 			CustomDeliverableType.find(assignable_id).name
 		end
 	end
-	
+
+ 	def unit_of_measure
+    if assignable_type == "StockDeliverableType"
+			stock_deliverable_type = StockDeliverableType.find(assignable_id)
+      stock_deliverable_type.deliverable_type.unit_of_measure.unit
+     else
+			CustomDeliverableType.find(assignable_id).unit_of_measure.unit
+		end
+	end
 end

@@ -44,7 +44,7 @@ CustomDeliverableType
 
 
 Deliverable
- belongs_to : assignable, :polymorphic => true
+ belongs_to :assignable, :polymorphic => true
 
 
 UnitOfMeasure

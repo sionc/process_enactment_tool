@@ -5,12 +5,14 @@ PET::Application.routes.draw do
 
   resources "project_phases"
 
+  match 'deliverables/get_unit_of_measure' => 'deliverables#get_unit_of_measure'
+  match 'deliverables/create_custom_deliverable_type' => 'deliverables#create_custom_deliverable_type'
+  
   resources :deliverables
   resources :stock_deliverable_types, :has_many => :deliverables
 
   match 'projects/home' => 'projects#home'
   match 'phase_deliverables' => 'deliverables#show_phase_deliverables'
-  match 'deliverables/create_custom_deliverable_type' => 'deliverables#create_custom_deliverable_type'
   
   resources :projects, :except => [:edit, :destroy, :update]
 

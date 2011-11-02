@@ -20,7 +20,6 @@ describe "deliverables/new.html.erb" do
   it "renders new deliverable form" do
    render
   
-   # Run the generator again with the --webrat flag if you want to use webrat matchers
    assert_select "form", :action => deliverables_path, :method => "post" do
      assert_select "input#deliverable_name", :name => "deliverable[name]"
      assert_select "textarea#deliverable_description", :name => "deliverable[description]"
@@ -29,5 +28,7 @@ describe "deliverables/new.html.erb" do
      assert_select "input#deliverable_estimated_effort", :name => "deliverable[estimated_effort]"
      assert_select "select#deliverable_complexity_id", :name => "deliverable[complexity_id]"
    end
+   
+   rendered.should have_selector("p#deliverable_unit_of_measure", :content => "Unit of measure")
   end
 end

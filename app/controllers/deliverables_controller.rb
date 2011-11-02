@@ -37,7 +37,13 @@ class DeliverablesController < ApplicationController
     @deliverable = Deliverable.new
     @project_phase_id = params[:project_phase_id]
     project_phase = ProjectPhase.find(@project_phase_id)
-    @stock_deliverable_types = project_phase.stock_deliverable_types unless project_phase.nil?
+    
+    # TODO: Add the custom deliverables into this list
+    
+    # Encode the id as stock_<id>
+    sdt = project_phase.stock_deliverable_types unless project_phase.nil?
+    @stock_deliverable_types = sdt.map {|s| [s.deliverable_type.name, "stock_" + s.id.to_s]}
+    
     @complexities = Complexity.all
     @units_of_measure = UnitOfMeasure.all
 
@@ -116,7 +122,6 @@ class DeliverablesController < ApplicationController
     custom_deliverable_type = CustomDeliverableType.new(:name => params[:name],
                                                         :project_phase_id => params[:project_phase_id],
                                                         :unit_of_measure_id => params[:unit_of_measure_id])
-
     # return a json string
     respond_to do |format|
       if custom_deliverable_type.save
@@ -128,22 +133,35 @@ class DeliverablesController < ApplicationController
     end
   end
 
-
-    # Copied from railscasts.com (#154-polymorphic-assocation)
-    # modified to fit our needs so we can find the deliverable type
-    private
-
-    def find_assignable
-      params[:deliverable].each do |name, value|
-        # (.+) extracts the substring before _deliverable_type_id
-        # $1 could be "custom" or "stock"
-        if name =~ /(.+)_deliverable_type_id$/
-          return ($1+"_deliverable_type").classify.constantize.find(value)
-        end
-      end
-      nil
+  def get_unit_of_measure
+    if params[:assignable_type] == "StockDeliverableType"
+			stock_deliverable_type = StockDeliverableType.find(params[:assignable_id])
+      unit_of_measure_name = stock_deliverable_type.deliverable_type.unit_of_measure.unit
+     else
+			unit_of_measure_name = CustomDeliverableType.find(params[assignable_id]).unit_of_measure.unit
+		end
+	
+    # return a json string
+    respond_to do |format|
+      format.json { render :json => {:name => unit_of_measure_name} }
     end
-
   end
+
+  # Copied from railscasts.com (#154-polymorphic-assocation)
+  # modified to fit our needs so we can find the deliverable type
+  private
+
+  def find_assignable
+    params[:deliverable].each do |name, value|
+      # (.+) extracts the substring before _deliverable_type_id
+      # $1 could be "custom" or "stock"
+      if name =~ /(.+)_deliverable_type_id$/
+        return ($1+"_deliverable_type").classify.constantize.find(value)
+      end
+    end
+    nil
+  end
+
+end
 
 

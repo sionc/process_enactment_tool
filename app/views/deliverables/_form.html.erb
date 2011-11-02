@@ -24,18 +24,28 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-	<%= f.label :deliverable_type
-	%>
-	<%= f.select :assignable_id, @stock_deliverable_types.map {|s| [s.deliverable_type.name, s.id]}
-	%>
-    <div id="deliverable_type_id">
-    </div>
-
+		<%= f.label :deliverable_type
+		%>
+		<%= f.select :assignable_id, @stock_deliverable_types
+		%>
+	
+	  <div id="deliverable_type_id">
+	  </div>
   </div>
+
+  <div class="field">
+  	<p id="deliverable_unit_of_measure">
+			<%= f.label :unit_of_measure %>
+			<span id="unit_of_measure_name"></span>
+		</p>
+  </div>
+
+	<br />
+	<br />
+
   <div class="field">
   	<%= f.label :complexity %>
-	<%= f.select :complexity_id, @complexities.map {|c| [c.level, c.id]} %>
-	<%#= f.select :complexity_id, ["low", "medium", "high"] %>
+		<%= f.select :complexity_id, @complexities.map {|c| [c.level, c.id]} %>
   </div>
   <div class="field">
     <%= f.label :estimated_size %>

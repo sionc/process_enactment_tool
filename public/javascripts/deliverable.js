@@ -1,62 +1,84 @@
 var showHiddenInputField =
-    function() {
-        var deliverableTypeId = $('#deliverable_assignable_id').val();
-        var hiddenInputBox = '<input id="deliverable_stock_deliverable_type_id"' +
-            ' name="deliverable[stock_deliverable_type_id]" type="hidden" value="' +
-            deliverableTypeId + '" />';
+function() {
+    var deliverableTypeId = $('#deliverable_assignable_id').val();
+    var hiddenInputBox = '<input id="deliverable_stock_deliverable_type_id"' +
+    ' name="deliverable[stock_deliverable_type_id]" type="hidden" value="' +
+    deliverableTypeId + '" />';
 
-        $('#deliverable_type_id').append(hiddenInputBox);
-    };
+    $('#deliverable_type_id').append(hiddenInputBox);
+};
+
+var loadUnitOfMeasure =
+function() {
+	var query_values = {
+	    "assignable_id": $("#deliverable_assignable_id option:selected").val(),
+	    "assignable_type": $("#deliverable_assignable_id option:selected").text()
+	};
+	
+	$.ajax({
+    type: 'GET',
+    url: '/deliverables/get_unit_of_measure',
+    data: query_values,
+    dataType: 'json',
+    success: function(data) {
+			alert(data.toString());
+    }
+});
+
+};
 
 var addNewType =
-    function() {
-        $('#deliverable_assignable_id').append($("<option></option>")
-            .attr("value", "new")
-            .text('New...'));
-    };
+function() {
+    $('#deliverable_assignable_id').append($("<option></option>")
+    .attr("value", "new")
+    .text('New...'));
+};
 
 var buildDeliverableDialog =
-    function() {
-        $('#dialog').dialog({
-            autoOpen: false,
-            height: 280,
-            width: 400,
-            modal: true,
-            resizable: false,
-            buttons: {
-                Create: function() {
-					var query_values = {"name": $("#name").val(), 
-							  "project_phase_id": $("#deliverable_project_phase_id").val(), 
-							  "unit_of_measure_id": $("#unit_of_measure_id").val()};
-					$.ajax({
-						type:    'POST',
-			            url:     '/deliverables/create_custom_deliverable_type',
-						data:    query_values,
-			            dataType: 'json',
-                        context: $(this),
-			            success: function (data) {
-                            $('#deliverable_assignable_id').append($("<option></option>")
-                                .attr("value", data.id)
-                                .attr("selected", "selected")
-                                .text(data.name));
-                            $(this).dialog('close');
-                        }
-					});
-
-                }
+function() {
+    $('#dialog').dialog({
+        autoOpen: false,
+        height: 280,
+        width: 400,
+        modal: true,
+        resizable: false,
+        buttons: {
+            Create: function() {
+                var query_values = {
+                    "name": $("#name").val(),
+                    "project_phase_id": $("#deliverable_project_phase_id").val(),
+                    "unit_of_measure_id": $("#unit_of_measure_id").val()
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: '/deliverables/create_custom_deliverable_type',
+                    data: query_values,
+                    dataType: 'json',
+                    context: $(this),
+                    success: function(data) {
+                        $('#deliverable_assignable_id').append($("<option></option>")
+                        .attr("value", "custom_" + data.id)
+                        .attr("selected", "selected")
+                        .text(data.name));
+                        $(this).dialog('close');
+                    }
+                });
             }
-        });
+        }
+    });
 
-        $('#deliverable_assignable_id').change(function() {
-              if ($(this).val() == 'new')
-                $('#dialog').dialog('open');
-        })
-    };
-
+    $('#deliverable_assignable_id').change(function() {
+        if ($(this).val() == 'new')
+        $('#dialog').dialog('open');
+    })
+};
 
 $(document).ready(function() {
     addNewType();
     showHiddenInputField();
+    loadUnitOfMeasure();
+
+    $('#deliverable_assignable_id').change(loadUnitOfMeasure);
     $('#deliverable_assignable_id').change(showHiddenInputField);
     buildDeliverableDialog();
 });

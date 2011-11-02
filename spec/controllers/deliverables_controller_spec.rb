@@ -56,10 +56,16 @@ describe DeliverablesController do
       assigns(:deliverable).should be_a_new(Deliverable)
     end
     
-    #it "assigns a list complexities as @complexities" do
-    #  get :new, :project_phase_id => @stock_deliverable_type.project_phase.id
-    #  assigns(:complexities).size.should == 3
-    #end
+    it "assigns a list complexities as @complexities" do
+     get :new, :project_phase_id => @stock_deliverable_type.project_phase.id
+     assigns(:complexities).should_not be_nil
+    end
+    
+    it "assigns a list of units of measure as @units_of_measure" do
+      get :new, :project_phase_id => @stock_deliverable_type.project_phase.id
+      assigns(:units_of_measure).should_not be_nil
+    end
+    
    end
 
   describe "GET edit" do
@@ -173,5 +179,21 @@ describe DeliverablesController do
       response.should redirect_to(deliverables_url)
     end
   end
+
+  describe "POST create_custom_deliverable_type" do
+    describe "with valid params" do
+      it "creates a new custom_deliverable_type with associated unit_of_measure" do
+        @unit_of_measure = Factory.create(:unit_of_measure)
+        expect {
+          post :create_custom_deliverable_type, 
+            :project_phase_id => @stock_deliverable_type.project_phase.id, 
+            :unit_of_measure_id => @unit_of_measure,
+            :name => "test custom deliverable type"
+        }.to change(CustomDeliverableType, :count).by(1)
+      end
+    end
+  end
+
+
 
 end

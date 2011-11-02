@@ -16,7 +16,7 @@ describe "Deliverables" do
       `rake db:load_demo_data`
     end
 
-    it "should pop up modal dialog box when 'NEW' is selected for deliverable type", :js => true do
+    let(:before_filter) {
       visit projects_path
       click_link 'Gentle Flower'
       page.should have_content("Gentle Flower")
@@ -24,8 +24,36 @@ describe "Deliverables" do
       page.should have_content("Functional Requirements Document 1")
       click_link 'New Deliverable'
       select('New...', :from => 'deliverable_assignable_id')
+    }
+    
+    
+    it "should pop up modal dialog box when 'NEW' is selected for deliverable type", :js => true do
+      before_filter
       page.should have_xpath("//*[text()='Create Deliverable Type']", :visible => true)
       #save_and_open_page
     end
+    
+    it "should pop up modal dialog box when 'NEW' is selected for deliverable type and have units of measure", :js => true do
+      before_filter
+      page.should have_xpath("//*[text()='Create Deliverable Type']", :visible => true)
+      page.should have_content("pages")
+      page.should have_content("mockups")
+      page.should have_content("use cases")
+      page.should have_content("diagrams")
+      page.should have_content("tests")
+      page.should have_content("lines of code")
+      #save_and_open_page
+    end
+    
+    it "should be able to enter a custom deliverable type name and unit of measure", :js => true do
+      before_filter
+      fill_in "name", :with => "My new type"
+      select('diagrams', :from => 'unit_of_measure_id')
+      click_button "Create"
+      # page.should have_content("My new type")
+      #save_and_open_page
+    end
+    
+    
   end
 end

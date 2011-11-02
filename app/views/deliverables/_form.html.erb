@@ -57,16 +57,19 @@
 <% end %>
 
 <div id="dialog" title="Create Deliverable Type">
-  <%= form_tag ('controller/action')   do  %>
       <div class="field dialog_field">
       <p>
-     <%= label_tag 'Name'%>
-     <%= text_field_tag 'Name' %>
+     <%= label_tag 'Name' %>
+     <%= text_field_tag 'name' %>
          </p>
         </div>
       <div class="field dialog_field">
       <%= label_tag 'Unit of Measure' %>
-      <%= select_tag 'UoM'%>
+	  <%  unless @units_of_measure.nil?
+		   units_of_measure_array = @units_of_measure.collect {|u| [u.unit, u.id] }
+		 else
+		   units_of_measure_array = []
+		 end %>
+      <%= select_tag 'unit_of_measure_id', options_for_select(units_of_measure_array) %>
       </div>
-  <% end %>
 </div>

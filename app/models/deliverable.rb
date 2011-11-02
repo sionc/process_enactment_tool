@@ -19,6 +19,7 @@ class Deliverable < ActiveRecord::Base
 		end
 	end
 
+  # Return the unit of measure associated with this deliverable
  	def unit_of_measure
     if assignable_type == "StockDeliverableType"
 			stock_deliverable_type = StockDeliverableType.find(assignable_id)

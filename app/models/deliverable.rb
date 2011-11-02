@@ -12,7 +12,11 @@ class Deliverable < ActiveRecord::Base
 
 	# Return the name of the deliverable type associated with this deliverable
 	def deliverable_type
-		StockDeliverableType.find(assignable_id).deliverable_type.name
+		if assignable_type == "StockDeliverableType"
+			StockDeliverableType.find(assignable_id).deliverable_type.name
+		else
+			CustomDeliverableType.find(assignable_id).name
+		end
 	end
 	
 end

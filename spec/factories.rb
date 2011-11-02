@@ -31,6 +31,11 @@ Factory.define :stock_deliverable_type do |type|
   type.association          :deliverable_type
 end
 
+Factory.define :custom_deliverable_type do |type|
+  type.name                 "Custom Document"
+  type.association          :project_phase
+end
+
 Factory.define :complexity do |c|
   c.level                    "low"
 end

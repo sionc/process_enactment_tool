@@ -52,7 +52,8 @@ namespace :db do
                                :estimated_production_rate => estimated_production_rate,
                                :estimated_effort => estimated_size * estimated_production_rate,
                                :assignable_id => sdt.id,
-                               :assignable_type => "StockDeliverableType")
+                               :assignable_type => "StockDeliverableType",
+                               :complexity_id => Complexity.first)
 
           end
         end      

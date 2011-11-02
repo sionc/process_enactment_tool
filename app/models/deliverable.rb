@@ -33,6 +33,6 @@ class Deliverable < ActiveRecord::Base
   # Return the complexity level associated with this deliverable
  	def complexity_level
 		complexity.level
-   end
+  end
 
 end

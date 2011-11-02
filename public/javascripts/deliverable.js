@@ -33,10 +33,16 @@ var buildDeliverableDialog =
 			            url:     '/deliverables/create_custom_deliverable_type',
 						data:    query_values,
 			            dataType: 'json',
-			            success: function (data) {}
-			            
+                        context: $(this),
+			            success: function (data) {
+                            $('#deliverable_assignable_id').append($("<option></option>")
+                                .attr("value", data.id)
+                                .attr("selected", "selected")
+                                .text(data.name));
+                            $(this).dialog('close');
+                        }
 					});
-                    $(this).dialog('close');
+
                 }
             }
         });

@@ -6,7 +6,7 @@ class DeliverablesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @deliverables }
+      format.xml { render :xml => @deliverables }
     end
   end
 
@@ -17,7 +17,7 @@ class DeliverablesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @deliverable }
+      format.xml { render :xml => @deliverable }
     end
   end
 
@@ -26,10 +26,10 @@ class DeliverablesController < ApplicationController
   def show_phase_deliverables
     @deliverable = Deliverable.all
 
-      respond_to do |format|
-        format.json  { render :json => @deliverable }
-      end
+    respond_to do |format|
+      format.json { render :json => @deliverable }
     end
+  end
 
   # GET /deliverables/new
   # GET /deliverables/new.xml
@@ -43,7 +43,7 @@ class DeliverablesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @deliverable }
+      format.xml { render :xml => @deliverable }
     end
   end
 
@@ -59,25 +59,25 @@ class DeliverablesController < ApplicationController
   def create
     @assignable = find_assignable
 
-    @deliverable = @assignable.deliverables.build(:name => params[:deliverable][:name], 
+    @deliverable = @assignable.deliverables.build(:name => params[:deliverable][:name],
                                                   :description => params[:deliverable][:description],
                                                   :estimated_effort => params[:deliverable][:estimated_effort],
                                                   :estimated_size => params[:deliverable][:estimated_size],
-                                                  :estimated_production_rate => params[:deliverable][:estimated_production_rate])                                                   
-                                                   
+                                                  :estimated_production_rate => params[:deliverable][:estimated_production_rate])
+
 
     respond_to do |format|
       if @deliverable.save
         format.html { redirect_to(@deliverable, :notice => 'Deliverable was successfully created.') }
-        format.xml  { render :xml => @deliverable, :status => :created, :location => @deliverable }
-      else        
+        format.xml { render :xml => @deliverable, :status => :created, :location => @deliverable }
+      else
         @assignable = nil
         @project_phase_id = params[:deliverable][:project_phase_id]
         project_phase = ProjectPhase.find(@project_phase_id)
         @stock_deliverable_types = project_phase.stock_deliverable_types unless project_phase.nil?
-        
+
         format.html { render :action => "new" }
-        format.xml  { render :xml => @deliverable.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @deliverable.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -90,10 +90,10 @@ class DeliverablesController < ApplicationController
     respond_to do |format|
       if @deliverable.update_attributes(params[:deliverable])
         format.html { redirect_to(@deliverable, :notice => 'Deliverable was successfully updated.') }
-        format.xml  { head :ok }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @deliverable.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @deliverable.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -106,43 +106,44 @@ class DeliverablesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(deliverables_url) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
 
   def create_custom_deliverable_type
     # we get the posted variables
     # save them to the database
-    CustomDeliverableType.create(:name => params[:name],
-                                 :project_phase_id => params[:project_phase_id],
-                                 :unit_of_measure_id => params[:unit_of_measure_id])
-    
-    respond_to do |format|
-      format.html { redirect_to(new_deliverable_path) }
-      format.xml  { head :ok }
-    end
-    
-    
+    custom_deliverable_type = CustomDeliverableType.new(:name => params[:name],
+                                                        :project_phase_id => params[:project_phase_id],
+                                                        :unit_of_measure_id => params[:unit_of_measure_id])
+
     # return a json string
-    
-  end
-  
-
-  # Copied from railscasts.com (#154-polymorphic-assocation)
-  # modified to fit our needs so we can find the deliverable type
-  private
-
-  def find_assignable
-    params[:deliverable].each do |name, value|
-      # (.+) extracts the substring before _deliverable_type_id
-      # $1 could be "custom" or "stock"
-      if name =~ /(.+)_deliverable_type_id$/
-        return ($1+"_deliverable_type").classify.constantize.find(value)
+    respond_to do |format|
+      if custom_deliverable_type.save
+        format.json { render :json => {:name => custom_deliverable_type.name,
+                                       :id => custom_deliverable_type.id} }
+      else
+        format.json { render :json => {:error => "Some errors"} }
       end
     end
-    nil
   end
 
-end
+
+    # Copied from railscasts.com (#154-polymorphic-assocation)
+    # modified to fit our needs so we can find the deliverable type
+    private
+
+    def find_assignable
+      params[:deliverable].each do |name, value|
+        # (.+) extracts the substring before _deliverable_type_id
+        # $1 could be "custom" or "stock"
+        if name =~ /(.+)_deliverable_type_id$/
+          return ($1+"_deliverable_type").classify.constantize.find(value)
+        end
+      end
+      nil
+    end
+
+  end
 
 

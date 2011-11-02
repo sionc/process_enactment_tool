@@ -38,6 +38,11 @@ describe "deliverables/show.html.erb" do
     it "renders the unit of measure" do
 	    render
 	    rendered.should match(/pages/)
+    end
+
+    it "renders the complexity" do
+	    render
+	    rendered.should match(/low/)
 	  end
 	end
 	

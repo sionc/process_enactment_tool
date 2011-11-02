@@ -1,6 +1,7 @@
 class Deliverable < ActiveRecord::Base
 
   belongs_to :assignable, :polymorphic => true
+  belongs_to :complexity
 
   validates :name, :presence => true
   validates :assignable_id, :presence => true
@@ -27,5 +28,11 @@ class Deliverable < ActiveRecord::Base
      else
 			CustomDeliverableType.find(assignable_id).unit_of_measure.unit
 		end
-	end
+   end
+
+  # Return the complexity level associated with this deliverable
+ 	def complexity_level
+		complexity.level
+   end
+
 end

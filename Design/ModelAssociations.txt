@@ -45,13 +45,15 @@ CustomDeliverableType
 
 Deliverable
  belongs_to :assignable, :polymorphic => true
+ belongs_to :complexity
 
 
 UnitOfMeasure
  has_many :deliverable_types 
  has_many :custom_deliverable_types
 
-
+Complexity
+ has_many :deliverables
 
 
 

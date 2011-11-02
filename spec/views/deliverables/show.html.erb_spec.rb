@@ -23,7 +23,7 @@ describe "deliverables/show.html.erb" do
 		
 	  it "renders attributes in <p>" do
 	    render
-	    rendered.should match(/Name/)
+	    rendered.should match(/MyString/)
 	    rendered.should match(/MyText/)
 	    rendered.should match(/1.5/)
 	    rendered.should match(/2.5/)

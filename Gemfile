@@ -43,7 +43,7 @@ group :development, :test do
 	gem 'ruby-debug-base19x' 
 	gem 'ruby-debug-ide' #'0.4.6'
   gem 'capybara'
-#  gem 'capybara-webkit', :git => "git://github.com/thoughtbot/capybara-webkit"
+  #gem 'capybara-webkit', :git => "git://github.com/thoughtbot/capybara-webkit"
   gem 'selenium-webdriver'
   gem 'database_cleaner'
 end

@@ -1,6 +1,7 @@
 class Deliverable < ActiveRecord::Base
 
   belongs_to :assignable, :polymorphic => true
+  belongs_to :complexity
 
   validates :name, :presence => true
   validates :assignable_id, :presence => true
@@ -18,5 +19,20 @@ class Deliverable < ActiveRecord::Base
 			CustomDeliverableType.find(assignable_id).name
 		end
 	end
-	
+
+  # Return the unit of measure associated with this deliverable
+ 	def unit_of_measure
+    if assignable_type == "StockDeliverableType"
+			stock_deliverable_type = StockDeliverableType.find(assignable_id)
+      stock_deliverable_type.deliverable_type.unit_of_measure.unit
+     else
+			CustomDeliverableType.find(assignable_id).unit_of_measure.unit
+		end
+   end
+
+  # Return the complexity level associated with this deliverable
+ 	def complexity_level
+		complexity.level
+  end
+
 end

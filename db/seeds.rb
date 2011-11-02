@@ -3,6 +3,11 @@ Lifecycle.delete_all
 LifecyclePhase.delete_all
 DeliverableType.delete_all
 
+puts "Creating complexity"
+Complexity.create(:level => "low")
+Complexity.create(:level => "medium")
+Complexity.create(:level => "high")
+
 puts "Creating lifecycles..."
 lifecycle_1 = Lifecycle.create(:name => "Simplified Waterfall", :description => "This is a simplified version of the waterfall method")
 lifecycle_2 = Lifecycle.create(:name => "Rational Unified Process", :description => "This is a rational unified process method")
@@ -183,11 +188,5 @@ DeliverableType.create(:name => "Customer Feedback",
 DeliverableType.create(:name => "User Manual",
                        :lifecycle_phase_id => transition.id,
                        :unit_of_measure_id => pages.id)
-
-
-puts "Creating complexity"
-Complexity.create(:level => "low")
-Complexity.create(:level => "medium")
-Complexity.create(:level => "high")
 
 puts "Seed complete!"

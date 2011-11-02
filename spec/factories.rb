@@ -21,9 +21,14 @@ Factory.define :project_phase do |phase|
   phase.association         :lifecycle_phase
 end
 
+Factory.define :unit_of_measure do |uom|
+  uom.unit                  "pages"
+end
+
 Factory.define :deliverable_type do |type|
   type.name                 "Requirements Document"
   type.association          :lifecycle_phase
+  type.association          :unit_of_measure
  end
 
 Factory.define :stock_deliverable_type do |type|
@@ -34,12 +39,10 @@ end
 Factory.define :custom_deliverable_type do |type|
   type.name                 "Custom Document"
   type.association          :project_phase
+  type.association          :unit_of_measure
 end
 
 Factory.define :complexity do |c|
   c.level                    "low"
 end
 
-Factory.define :unit_of_measure do |u|
-  u.unit                      "pages"
-end

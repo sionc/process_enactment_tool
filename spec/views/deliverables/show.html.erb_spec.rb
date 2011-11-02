@@ -9,7 +9,6 @@ describe "deliverables/show.html.erb" do
   describe "stock deliverable" do
   	before(:each) do
     	@stock_deliverable_types = [Factory.create(:stock_deliverable_type)]
-    	
 	    assign(:deliverable, stub_model(Deliverable,
 	      :name => "MyString",
 	      :description => "MyText",
@@ -31,9 +30,19 @@ describe "deliverables/show.html.erb" do
 	    rendered.should match(/3.5/)
 	  end
 	
-	  it "renders the deliverable type for stock deliverables" do
+	  it "renders the deliverable type" do
 	    render
 	    rendered.should match(/Requirements Document/)
+    end
+
+    it "renders the unit of measure" do
+	    render
+	    rendered.should match(/pages/)
+    end
+
+    it "renders the complexity" do
+	    render
+	    rendered.should match(/low/)
 	  end
 	end
 	
@@ -53,10 +62,15 @@ describe "deliverables/show.html.erb" do
 	    ).as_new_record)
 		end
 		
-		it "renders the deliverable type for custom deliverables" do
+		it "renders the deliverable type" do
     	render
     	rendered.should match(/Custom Document/)
-  	end
+    end
+
+    it "renders the unit of measure" do
+	    render
+	    rendered.should match(/pages/)
+	  end
   end
 	
 end

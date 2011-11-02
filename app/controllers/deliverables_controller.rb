@@ -39,6 +39,7 @@ class DeliverablesController < ApplicationController
     project_phase = ProjectPhase.find(@project_phase_id)
     @stock_deliverable_types = project_phase.stock_deliverable_types unless project_phase.nil?
     @complexities = Complexity.all
+    @units_of_measure = UnitOfMeasure.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -109,6 +110,23 @@ class DeliverablesController < ApplicationController
     end
   end
 
+  def create_custom_deliverable_type
+    # we get the posted variables
+    # save them to the database
+    CustomDeliverableType.create(:name => params[:name],
+                                 :project_phase_id => params[:project_phase_id],
+                                 :unit_of_measure_id => params[:unit_of_measure_id])
+    
+    respond_to do |format|
+      format.html { redirect_to(new_deliverable_path) }
+      format.xml  { head :ok }
+    end
+    
+    
+    # return a json string
+    
+  end
+  
 
   # Copied from railscasts.com (#154-polymorphic-assocation)
   # modified to fit our needs so we can find the deliverable type

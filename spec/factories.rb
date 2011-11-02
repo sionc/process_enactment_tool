@@ -34,3 +34,7 @@ end
 Factory.define :complexity do |c|
   c.level                    "low"
 end
+
+Factory.define :unit_of_measure do |u|
+  u.unit                      "pages"
+end

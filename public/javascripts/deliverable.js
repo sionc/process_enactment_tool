@@ -25,7 +25,18 @@ var buildDeliverableDialog =
             resizable: false,
             buttons: {
                 Create: function() {
-                    $(this).dialog('close')
+					var query_values = {"name": $("#name").val(), 
+							  "project_phase_id": $("#deliverable_project_phase_id").val(), 
+							  "unit_of_measure_id": $("#unit_of_measure_id").val()};
+					$.ajax({
+						type:    'POST',
+			            url:     '/deliverables/create_custom_deliverable_type',
+						data:    query_values,
+			            dataType: 'json',
+			            success: function (data) {}
+			            
+					});
+                    $(this).dialog('close');
                 }
             }
         });

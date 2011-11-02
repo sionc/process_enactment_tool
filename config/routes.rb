@@ -10,6 +10,7 @@ PET::Application.routes.draw do
 
   match 'projects/home' => 'projects#home'
   match 'phase_deliverables' => 'deliverables#show_phase_deliverables'
+  match 'deliverables/create_custom_deliverable_type' => 'deliverables#create_custom_deliverable_type'
   
   resources :projects, :except => [:edit, :destroy, :update]
 

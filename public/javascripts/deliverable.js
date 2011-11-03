@@ -1,10 +1,29 @@
 var showHiddenInputField =
 function() {
     var deliverableTypeId = $('#deliverable_assignable_id').val();
-    var hiddenInputBox = '<input id="deliverable_stock_deliverable_type_id"' +
-    ' name="deliverable[stock_deliverable_type_id]" type="hidden" value="' +
-    deliverableTypeId + '" />';
+    var hiddenInputBox;
+    var assignable_substr = new Array();
 
+    assignable_substr = deliverableTypeId.split('_');
+    var a_type = assignable_substr[0];
+    var a_id =  assignable_substr[1];
+
+
+    if (a_type == "stock") {
+        hiddenInputBox = '<input id="deliverable_stock_deliverable_type_id"' +
+            ' name="deliverable[stock_deliverable_type_id]" type="hidden" value="' +
+            a_id + '" />';
+    }
+    else if (a_type == "custom") {
+        hiddenInputBox = '<input id="deliverable_custom_deliverable_type_id"' +
+            ' name="deliverable[custom_deliverable_type_id]" type="hidden" value="' +
+            a_id + '" />';
+    }
+    else {
+        return;
+    }
+
+    $('#deliverable_type_id input').remove();
     $('#deliverable_type_id').append(hiddenInputBox);
 };
 
@@ -60,7 +79,9 @@ function() {
                         .attr("value", "custom_" + data.id)
                         .attr("selected", "selected")
                         .text(data.name));
+                        showHiddenInputField();
                         $(this).dialog('close');
+
                     }
                 });
             }

@@ -80,7 +80,15 @@ class DeliverablesController < ApplicationController
         @assignable = nil
         @project_phase_id = params[:deliverable][:project_phase_id]
         project_phase = ProjectPhase.find(@project_phase_id)
-        @stock_deliverable_types = project_phase.stock_deliverable_types unless project_phase.nil?
+        #@stock_deliverable_types = project_phase.stock_deliverable_types unless project_phase.nil?
+
+        # Encode the id as stock_<id>
+        sdt = project_phase.stock_deliverable_types unless project_phase.nil?
+        @stock_deliverable_types = sdt.map { |s| [s.deliverable_type.name, "stock_" + s.id.to_s] }
+
+        @complexities = Complexity.all
+        @units_of_measure = UnitOfMeasure.all
+
 
         format.html { render :action => "new" }
         format.xml { render :xml => @deliverable.errors, :status => :unprocessable_entity }

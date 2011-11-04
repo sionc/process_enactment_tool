@@ -1,8 +1,3 @@
-var addValues = 
-function(a, b) {
-	return a + b;
-}
-
 var showHiddenInputField =
 function() {
     var deliverableTypeId = $('#deliverable_assignable_id').val();

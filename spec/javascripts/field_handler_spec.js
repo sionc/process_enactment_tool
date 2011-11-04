@@ -12,5 +12,16 @@ describe("FieldHandler", function() {
         fieldHandler.modifyEstimatedSize();
         expect(fieldHandler.getDisabledField()).toEqual(null);
     });  	
+
+    //it("should return that the estimated size field is disabled when the \
+    //    estimated production rate and total effort have been modified",
+    //function() {
+    //    var fieldHandler = FieldHandler();
+    //    fieldHandler.modifyEstimatedProductionRate();
+    //    fieldHandler.modifyTotalEffort();
+    //    expect(fieldHandler.getDisabledField()).toEqual("deliverable_estimated_size");
+    //});
     
 });
+
+//‘estimated size’, ‘estimated production rate’, ‘total effort’];

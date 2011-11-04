@@ -8,6 +8,14 @@ var FieldHandler = (function() {
 					
 				},
 				
+				modifyEstimatedProductionRate : function() {
+					
+				},
+				
+				modifyTotalEffort : function() {
+					
+				},
+				
         getDisabledField : function() {
             return null;
         }

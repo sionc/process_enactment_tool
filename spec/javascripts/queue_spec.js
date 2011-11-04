@@ -24,4 +24,13 @@ describe("Queue", function() {
         expect(queue.contents()).toEqual(['pear', 'apricot']);
     });
 
+    it("should save the last element that was lost",
+    function() {
+        var queue = Queue();
+        queue.enqueue('apple');
+        queue.enqueue('pear');
+        queue.enqueue('apricot');
+        expect(queue.lost()).toEqual('apple');
+    });
+
 });

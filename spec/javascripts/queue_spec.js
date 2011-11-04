@@ -23,4 +23,13 @@ describe("Queue", function() {
         expect(queue.contents()).toEqual(['apple', 'pear']);
     });
 
+    it("discards the first element when two more are added",
+    function() {
+        var queue = Queue();
+        queue.enqueue('apple');
+        queue.enqueue('pear');
+        queue.enqueue('apricot');
+        expect(queue.contents()).toEqual(['pear', 'apricot']);
+    });
+
 });

@@ -14,7 +14,7 @@ var Queue = (function() {
             }
             else {
                 // Remove the first
-                elements.splice(1, 1);
+                elements.splice(0, 1);
 
                 // Append the second
                 elements[1] = element;

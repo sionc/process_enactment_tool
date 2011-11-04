@@ -36,16 +36,8 @@ class DeliverablesController < ApplicationController
   def new
     @deliverable = Deliverable.new
     @project_phase_id = params[:project_phase_id]
-    project_phase = ProjectPhase.find(@project_phase_id)
-    
-    # TODO: Add the custom deliverables into this list
-    
-    # Encode the id as stock_<id>
-    sdt = project_phase.stock_deliverable_types unless project_phase.nil?
-    @stock_deliverable_types = sdt.map {|s| [s.deliverable_type.name, "stock_" + s.id.to_s]}
-    
-    @complexities = Complexity.all
-    @units_of_measure = UnitOfMeasure.all
+
+    gather_collections
 
     respond_to do |format|
       format.html # new.html.erb
@@ -69,7 +61,8 @@ class DeliverablesController < ApplicationController
                                                   :description => params[:deliverable][:description],
                                                   :estimated_effort => params[:deliverable][:estimated_effort],
                                                   :estimated_size => params[:deliverable][:estimated_size],
-                                                  :estimated_production_rate => params[:deliverable][:estimated_production_rate])
+                                                  :estimated_production_rate => params[:deliverable][:estimated_production_rate],
+                                                  :complexity_id => params[:deliverable][:complexity_id])
 
 
     respond_to do |format|
@@ -79,16 +72,8 @@ class DeliverablesController < ApplicationController
       else
         @assignable = nil
         @project_phase_id = params[:deliverable][:project_phase_id]
-        project_phase = ProjectPhase.find(@project_phase_id)
-        #@stock_deliverable_types = project_phase.stock_deliverable_types unless project_phase.nil?
 
-        # Encode the id as stock_<id>
-        sdt = project_phase.stock_deliverable_types unless project_phase.nil?
-        @stock_deliverable_types = sdt.map { |s| [s.deliverable_type.name, "stock_" + s.id.to_s] }
-
-        @complexities = Complexity.all
-        @units_of_measure = UnitOfMeasure.all
-
+        gather_collections
 
         format.html { render :action => "new" }
         format.xml { render :xml => @deliverable.errors, :status => :unprocessable_entity }
@@ -146,7 +131,7 @@ class DeliverablesController < ApplicationController
 			stock_deliverable_type = StockDeliverableType.find(params[:assignable_id])
       unit_of_measure_name = stock_deliverable_type.deliverable_type.unit_of_measure.unit
      else
-			unit_of_measure_name = CustomDeliverableType.find(params[assignable_id]).unit_of_measure.unit
+			unit_of_measure_name = CustomDeliverableType.find(params[:assignable_id]).unit_of_measure.unit
 		end
 	
     # return a json string
@@ -170,6 +155,18 @@ class DeliverablesController < ApplicationController
     nil
   end
 
+  def gather_collections
+    project_phase = ProjectPhase.find(@project_phase_id)
+
+    # TODO: Add the custom deliverables into this list
+
+    # Encode the id as stock_<id>
+    sdt = project_phase.stock_deliverable_types unless project_phase.nil?
+    @stock_deliverable_types = sdt.map {|s| [s.deliverable_type.name, "stock_" + s.id.to_s]}
+
+    @complexities = Complexity.all
+    @units_of_measure = UnitOfMeasure.all
+  end
 end
 
 

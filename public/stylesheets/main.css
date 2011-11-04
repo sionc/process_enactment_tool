@@ -281,3 +281,11 @@ tr
 {
 	width: 130px;
 }
+
+#unit_of_measure_name{
+    color: black;
+    font-size: 15px;
+    margin: 0.5em;
+    padding: 10px 4px;
+    line-height: 19px;
+}

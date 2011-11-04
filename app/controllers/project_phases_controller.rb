@@ -10,9 +10,15 @@ class ProjectPhasesController < ApplicationController
       end
     end
 
+    @project_phase.custom_deliverable_types.each do |custom|
+      custom.deliverables.each do |d|
+        @project_phase_deliverables << d
+      end
+    end
+
     respond_to do |format|
       format.json { render :json => { :lifecycle_phase_container => @lifecycle_phase,
-                                      :stock_deliverables_container => @project_phase_deliverables,
+                                      :deliverables_container => @project_phase_deliverables,
                                       :project_phase_estimated_effort => @project_phase.estimated_effort} }
     end
   end

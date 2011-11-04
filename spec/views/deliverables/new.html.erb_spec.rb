@@ -5,6 +5,7 @@ describe "deliverables/new.html.erb" do
   before(:each) do
     @stock_deliverable_types = [Factory.create(:stock_deliverable_type)]
     @complexities = [Factory.create(:complexity)]
+    @unit = @stock_deliverable_types[0].deliverable_type.unit_of_measure.unit
     assign(:deliverable, stub_model(Deliverable,
       :name => "MyString",
       :description => "MyText",
@@ -28,7 +29,7 @@ describe "deliverables/new.html.erb" do
      assert_select "input#deliverable_estimated_effort", :name => "deliverable[estimated_effort]"
      assert_select "select#deliverable_complexity_id", :name => "deliverable[complexity_id]"
    end
-   
-   rendered.should have_selector("p#deliverable_unit_of_measure", :content => "Unit of measure")
+
+    rendered.should have_selector("p#deliverable_unit_of_measure", :content => "Unit of measure")
   end
 end

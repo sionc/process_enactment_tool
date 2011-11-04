@@ -7,5 +7,6 @@ class DeliverableType < ActiveRecord::Base
 
   validates :name, :presence => true
   validates :lifecycle_phase_id, :presence => true
+  validates :unit_of_measure_id, :presence => true
   
 end

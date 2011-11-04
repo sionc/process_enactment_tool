@@ -26,12 +26,13 @@ describe DeliverablesController do
 
   before(:each) do
     @stock_deliverable_type = Factory.create(:stock_deliverable_type)
+    @complexity = Factory.create(:complexity)
     @attr = { :name => "test deliverable",
               :estimated_effort => 1.5,
               :estimated_size => 2.5,
-              :estimated_production_rate => 3.5
+              :estimated_production_rate => 3.5,
+              :complexity_id => @complexity.id
             }
-    #@complexity = Factory.create(:complexity)
   end
 
   describe "GET index" do
@@ -187,7 +188,7 @@ describe DeliverablesController do
         expect {
           post :create_custom_deliverable_type, 
             :project_phase_id => @stock_deliverable_type.project_phase.id, 
-            :unit_of_measure_id => @unit_of_measure,
+            :unit_of_measure_id => @unit_of_measure.id,
             :name => "test custom deliverable type"
         }.to change(CustomDeliverableType, :count).by(1)
       end

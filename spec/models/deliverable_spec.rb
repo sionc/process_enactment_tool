@@ -3,13 +3,15 @@ require 'spec_helper'
 describe Deliverable do
   before(:each) do
     stock_deliverable_type = Factory.create(:stock_deliverable_type)
+    complexity = Factory.create(:complexity)
     @attr = { :name => "test deliverable",
               :description => "This is the description of the deliverable",
               :estimated_size => 1.5 ,
               :estimated_production_rate => 2.5 ,
               :estimated_effort => 3.5 ,
               :assignable_id => stock_deliverable_type.id,
-              :assignable_type => "StockDeliverableType"
+              :assignable_type => "StockDeliverableType",
+              :complexity_id => complexity.id
     }
   end
 
@@ -62,9 +64,9 @@ describe Deliverable do
       invalid_deliverable.should_not be_valid
    end
    
-   it "should have an associated complexity" do
-      valid_deliverable = Deliverable.new();
-      valid_deliverable.should respond_to :complexity_id 
+   it "should require a complexity" do
+      valid_deliverable = Deliverable.new(@attr.merge(:complexity_id => nil))
+      valid_deliverable.should_not be_valid
    end
 
 end

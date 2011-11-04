@@ -14,4 +14,13 @@ describe("Queue", function() {
         queue.enqueue('apple');
         expect(queue.contents()).toEqual(['apple']);
     });
+  	
+    it("can store two elements",
+    function() {
+        var queue = Queue();
+        queue.enqueue('apple');
+        queue.enqueue('pear');
+        expect(queue.contents()).toEqual(['apple', 'pear']);
+    });
+
 });

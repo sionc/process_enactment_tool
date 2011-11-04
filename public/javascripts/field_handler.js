@@ -7,12 +7,11 @@ var FieldHandler = (function() {
     return {
 
         modifyEstimatedSize : function() {
-
+            queue.enqueue('deliverable_estimated_size');
         },
 
         modifyEstimatedProductionRate : function() {
             queue.enqueue('deliverable_estimated_production_rate');
-
         },
 
         modifyTotalEffort : function() {
@@ -21,10 +20,13 @@ var FieldHandler = (function() {
 
         getDisabledField : function() {
             var lost = queue.lost();
-            if (lost == null && queue.contents().length == 2)
-            {
-                delete fields[fields.indexOf(queue.contents()[0])];
-                delete fields[fields.indexOf(queue.contents()[1])];
+            if (lost == null && queue.contents().length == 2) {
+
+                var firstField = fields.indexOf(queue.contents()[0]);
+                fields.splice(firstField, 1);
+
+                var secondField = fields.indexOf(queue.contents()[1]);
+                fields.splice(secondField, 1);
 
                 return fields[0];
             }

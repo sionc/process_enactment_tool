@@ -1,8 +1,8 @@
 var Queue = (function() {
     // private
     var elements = [];
-		var lostElement = null;
-		
+    var lostElement = null;
+
     // public
     return {
 
@@ -11,20 +11,23 @@ var Queue = (function() {
                 elements[0] = element;
             }
             else if (elements.length == 1) {
-                elements[1] = element;
+                if (elements[0] != element)
+                    elements[1] = element;
             }
             else {
-                // Remove the first
-                lostElement = elements.splice(0, 1)[0];
+                if (elements[1] != element) {
+                    // Remove the first
+                    lostElement = elements.splice(0, 1)[0];
 
-                // Append the second
-                elements[1] = element;
+                    // Append the second
+                    elements[1] = element;
+                }
             }
         },
 
         contents : function() {
             return elements;
-	      },
+        },
 
         lost : function() {
             return lostElement;

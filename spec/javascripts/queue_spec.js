@@ -33,4 +33,13 @@ describe("Queue", function() {
         expect(queue.lost()).toEqual('apple');
     });
 
+    it("should not enqueue the same element twice in a row",
+    function() {
+        var queue = Queue();
+        queue.enqueue('apple');
+        queue.enqueue('pear');
+        queue.enqueue('pear');
+        expect(queue.contents()).toEqual(['apple', 'pear']);
+    });
+
 });

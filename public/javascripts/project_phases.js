@@ -30,8 +30,8 @@ $(document).ready(function() {
 
                 // Loop through and display deliverables.
                 var deliverableNames = "";
-                for (var i = 0; i < data.stock_deliverables_container.length; i++) {
-                  deliverableNames += "<a href='/deliverables/"+data.stock_deliverables_container[i].deliverable.id+"'> "+data.stock_deliverables_container[i].deliverable.name + "</a><br/>";
+                for (var i = 0; i < data.deliverables_container.length; i++) {
+                  deliverableNames += "<a href='/deliverables/"+data.deliverables_container[i].deliverable.id+"'> "+data.deliverables_container[i].deliverable.name + "</a><br/>";
                 }
                 $('#project_phase_deliverables').html(deliverableNames);
 

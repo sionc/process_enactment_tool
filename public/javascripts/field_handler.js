@@ -4,6 +4,10 @@ var FieldHandler = (function() {
     // public
     return {
 
+				modifyEstimatedSize : function() {
+					
+				},
+				
         getDisabledField : function() {
             return null;
         }

@@ -1,6 +1,88 @@
 <h1>New deliverable</h1>
 
-<%= render 'form' %>
+<% content_for(:head) do %>
+    <%= javascript_include_tag "deliverable" %>
+<% end %>
+
+<%= form_for [@assignable, Deliverable.new] do |f| %>
+  <% if @deliverable.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@deliverable.errors.count, "error") %> prohibited this deliverable from being saved:</h2>
+
+      <ul>
+      <% @deliverable.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+		<%= f.label :deliverable_type
+		%>
+		<%= f.select :assignable_id, @stock_deliverable_types
+		%>
+
+	  <div id="deliverable_type_id">
+	  </div>
+  </div>
+
+  <div class="field">
+  	<p id="deliverable_unit_of_measure">
+			<%= f.label :unit_of_measure %>
+			<span id="unit_of_measure_name"></span>
+		</p>
+  </div>
+
+  <div class="field">
+  	<%= f.label :complexity %>
+		<%= f.select :complexity_id, @complexities.map {|c| [c.level, c.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :estimated_size %>
+    <%= f.text_field :estimated_size %>
+  </div>
+  <div class="field">
+    <%= f.label :estimated_production_rate %>
+    <%= f.text_field :estimated_production_rate %>
+  </div>
+  <div class="field">
+    <%= f.label :estimated_effort %>
+    <%= f.text_field :estimated_effort %>
+  </div>
+
+  <%= f.hidden_field :project_phase_id, :value => @project_phase_id %>
+  <div class="actions">
+    <%= f.submit "Create", :class => "stylized" %>
+    &nbsp;
+    <%= link_to 'Cancel', request.referer, :class => "stylized" %>
+  </div>
+<% end %>
+
+<div id="dialog" title="Create Deliverable Type">
+      <div class="field dialog_field">
+      <p>
+     <%= label_tag 'Name' %>
+     <%= text_field_tag 'name' %>
+         </p>
+        </div>
+      <div class="field dialog_field">
+      <%= label_tag 'Unit of Measure' %>
+	  <%  unless @units_of_measure.nil?
+		   units_of_measure_array = @units_of_measure.collect {|u| [u.unit, u.id] }
+		 else
+		   units_of_measure_array = []
+		 end %>
+      <%= select_tag 'unit_of_measure_id', options_for_select(units_of_measure_array) %>
+      </div>
+</div>
 <br />
 
-<%= link_to 'Cancel', request.referer, :class => "stylized" %>

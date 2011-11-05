@@ -50,7 +50,6 @@ describe "Deliverables" do
       fill_in "name", :with => "My new type"
       select('diagrams', :from => 'unit_of_measure_id')
       click_button "Create"
-      page.should have_content("My new type")
       page.should have_xpath(".//option[@selected = 'selected'][text() = 'My new type']")
 
       #save_and_open_page

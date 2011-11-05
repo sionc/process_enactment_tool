@@ -233,3 +233,13 @@ tr
     padding: 10px 4px;
     line-height: 19px;
 }
+
+.center
+{
+     text-align:center
+}
+
+.small-text
+{
+     font-size:xx-small
+}

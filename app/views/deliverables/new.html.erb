@@ -61,7 +61,9 @@
 
   <%= f.hidden_field :project_phase_id, :value => @project_phase_id %>
   <div class="actions">
-    <%= f.submit "Create Deliverable", :class => "stylized" %>
+    <%= f.submit "Create", :class => "stylized" %>
+    &nbsp;
+    <%= link_to 'Cancel', request.referer, :class => "stylized" %>
   </div>
 <% end %>
 
@@ -84,4 +86,3 @@
 </div>
 <br />
 
-<%= link_to 'Cancel', request.referer, :class => "stylized" %>

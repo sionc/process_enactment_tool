@@ -84,6 +84,9 @@ var buildDeliverableDialog =
 function() {
     $('#dialog').dialog({
         autoOpen: false,
+		open: function(event){
+			$('.ui-dialog-buttonpane').find('button:contains("Create")').addClass("btn");	
+		},
         height: 280,
         width: 400,
         modal: true,
@@ -115,7 +118,8 @@ function() {
             }
         }
     });
-
+	
+	
     $('#deliverable_assignable_id').change(function() {
         if ($(this).val() == 'new')
         $('#dialog').dialog('open');

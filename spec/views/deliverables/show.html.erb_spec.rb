@@ -55,11 +55,6 @@ describe "deliverables/show.html.erb" do
 	    render
 	    rendered.should match(/pages/)
     end
-
-    it "renders the complexity" do
-	    render
-	    rendered.should match(/low/)
-	  end
 	end
 	
   describe "custom deliverable" do

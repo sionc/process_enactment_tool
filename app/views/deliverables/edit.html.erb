@@ -1,5 +1,45 @@
 <h1>Editing deliverable</h1>
 
-<%= render 'edit_form' %>
+<%= form_for(@deliverable) do |f| %>
+  <% if @deliverable.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@deliverable.errors.count, "error") %> prohibited this deliverable from being saved:</h2>
+
+      <ul>
+      <% @deliverable.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :estimated_size %>
+    <%= f.text_field :estimated_size %>
+  </div>
+  <div class="field">
+    <%= f.label :estimated_production_rate %>
+    <%= f.text_field :estimated_production_rate %>
+  </div>
+  <div class="field">
+    <%= f.label :estimated_effort %>
+    <%= f.text_field :estimated_effort %>
+  </div>
+  <br />
+  <div class="actions">
+    <%= f.submit "Update Deliverable", :class => "stylized" %>
+  </div>
+   <br />
+   <br />
+<% end %>
+
 
 <%= link_to 'Cancel', @deliverable, :class => "stylized" %>

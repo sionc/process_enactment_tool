@@ -11,21 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+	<div class="input">
+		<%= f.text_field :name, :class=>"xlarge" %>
+	</div>
   </div>
-  <div class="field">
+  <div class="clearfix">
 	<%= f.label :Lifecycle_type %>
-	<%= collection_select :project, :lifecycle_id, @lifecycles, :id, :name %>
+	<div class="input">
+		<%= collection_select :project, :lifecycle_id, @lifecycles, :id, :name, :class=>"xlarge" %>
+	</div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :description %>
-    <%= f.text_area :description %>
+	<div class="input">
+    	<%= f.text_area :description, :size => "40x10", :class=>"xlarge" %>
+	</div>
   </div>
   <div class="actions">
-    <%= f.submit "Create", :class => "stylized" %>
-	<%= link_to 'Cancel', projects_path, :class => "stylized custom_link" %>
+    <%= f.submit "Create", :class => "btn primary" %>
+	<%= link_to 'Cancel', projects_path, :class => "btn danger" %>
 
   </div>
 <% end %>

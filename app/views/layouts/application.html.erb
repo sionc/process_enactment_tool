@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PET</title>
+  <title>Process Enactment Tool</title>
   <%= stylesheet_link_tag :all %>
   <%= stylesheet_link_tag 'ui-lightness/jquery-ui-1.8.16.custom' %>
 
@@ -12,13 +12,11 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<div id="top_level_wrapper">
-  <%= render "layouts/sidebar" %>
-  <div id="content_wrapper">
-    <%= yield %>
-  </div>
-  <%= render 'layouts/footer' %>
+<%= render "/layouts/main_nav" %>
+<div class="container">
+  <%= yield %>
 </div>
+<%= render 'layouts/footer' %>
 
 </body>
 </html>

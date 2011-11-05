@@ -13,33 +13,40 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+	<div class="input">
+		<%= f.text_field :name, :class=>"xlarge" %>
+	</div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :description %>
-    <%= f.text_area :description %>
+	<div class="input">
+    	<%= f.text_area :description, :size => "40x10", :class=>"xlarge" %>
+	</div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :estimated_size %>
-    <%= f.text_field :estimated_size %>
+	<div class="input">
+    	<%= f.text_field :estimated_size, :class=>"xlarge" %>
+	</div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :estimated_production_rate %>
-    <%= f.text_field :estimated_production_rate %>
+	<div class="input">
+    	<%= f.text_field :estimated_production_rate, :class=>"xlarge" %>
+	</div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :estimated_effort %>
-    <%= f.text_field :estimated_effort %>
+	<div class="input">
+    	<%= f.text_field :estimated_effort, :class=>"xlarge" %>
+	</div>
   </div>
   <br />
   <div class="actions">
-    <%= f.submit "Update deliverable", :class => "stylized" %>
+    <%= f.submit "Update Deliverable", :class => "btn primary" %>
     &nbsp;
-    <%= link_to 'Cancel', @deliverable, :class => "stylized" %>
+    <%= link_to 'Cancel', @deliverable, :class => "btn danger" %>
   </div>
-   <br />
-   <br />
 <% end %>
-

@@ -17,53 +17,64 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+	<div class="input">
+		<%= f.text_field :name, :class=>"xlarge" %>
+	</div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :description %>
-    <%= f.text_area :description %>
+	<div class="input">
+    	<%= f.text_area :description, :size => "40x10", :class=>"xlarge" %>
+	</div>
   </div>
-  <div class="field">
-		<%= f.label :deliverable_type
-		%>
-		<%= f.select :assignable_id, @stock_deliverable_types
-		%>
-
+  <div class="clearfix">
+		<%= f.label :deliverable_type %>
+		<div class="input">
+			<%= f.select :assignable_id, @stock_deliverable_types %>
+		</div>
 	  <div id="deliverable_type_id">
 	  </div>
   </div>
 
-  <div class="field">
+  <div class="clearfix">
   	<p id="deliverable_unit_of_measure">
 			<%= f.label :unit_of_measure %>
 			<span id="unit_of_measure_name"></span>
 		</p>
   </div>
 
-  <div class="field">
+  <div class="clearfix">
   	<%= f.label :complexity %>
+	<div class="input">
 		<%= f.select :complexity_id, @complexities.map {|c| [c.level, c.id]} %>
+	</div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :estimated_size %>
-    <%= f.text_field :estimated_size %>
+	<div class="input">
+    	<%= f.text_field :estimated_size, :class=>"xlarge" %>
+	</div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :estimated_production_rate %>
-    <%= f.text_field :estimated_production_rate %>
+	<div class="input">
+    	<%= f.text_field :estimated_production_rate, :class=>"xlarge" %>
+	</div>
   </div>
-  <div class="field">
+  <div class="clearfix">
     <%= f.label :estimated_effort %>
-    <%= f.text_field :estimated_effort %>
+	<div class="input">
+    	<%= f.text_field :estimated_effort, :class=>"xlarge" %>
+	</div>
   </div>
 
   <%= f.hidden_field :project_phase_id, :value => @project_phase_id %>
   <div class="actions">
-    <%= f.submit "Create Deliverable", :class => "stylized" %>
+    <%= f.submit "Create Deliverable", :class => "btn primary" %>
     &nbsp;
-    <%= link_to 'Cancel', request.referer, :class => "stylized" %>
+    <%= link_to 'Cancel', request.referer, :class => "btn danger" %>
   </div>
 <% end %>
 
@@ -84,5 +95,3 @@
       <%= select_tag 'unit_of_measure_id', options_for_select(units_of_measure_array) %>
       </div>
 </div>
-<br />
-

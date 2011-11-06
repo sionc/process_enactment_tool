@@ -24,7 +24,7 @@
 <p>
   <b>Estimated production rate:</b>
   <%= @deliverable.estimated_production_rate %>
-  hours/<%= @deliverable.unit_of_measure %>
+  hours/<%= @deliverable.unit_of_measure.singularize %>
 </p>
 
 <p>

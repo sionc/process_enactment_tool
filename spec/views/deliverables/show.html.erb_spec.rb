@@ -80,7 +80,7 @@ describe "deliverables/show.html.erb" do
 
     it "renders the unit of measure" do
 	    render
-	    rendered.should match(/pages/)
+	    rendered.should match(/page/)
 	  end
   end
 	

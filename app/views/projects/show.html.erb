@@ -23,7 +23,7 @@
 <table border="0" id="project_phases">
   <thead>
   <tr>
-    <th>Sequence #</th>
+    <th>Sequence<br />Number</th>
     <th>Name</th>
     <th>Description</th>
     <th>Estimated Effort</th>
@@ -37,7 +37,7 @@
         <td><%= phase.lifecycle_phase.sequence_number %></td>
         <td><%= phase.lifecycle_phase.name %></td>
         <td><%= phase.lifecycle_phase.description %></td>
-        <td><%= phase.estimated_effort %></td>
+        <td><%= phase.estimated_effort %> hours </td>
         <td class="project_phase_id_cell hidden"><%= phase.id %></td>
       </tr>
   <% end %>

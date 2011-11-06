@@ -16,28 +16,20 @@
 </p>
 
 <p>
-  <b>Unit of Measure:</b>
-  <%= @deliverable.unit_of_measure %>
-</p>
-
-<p>
-  <b>Complexity Level:</b>
-  <%= @deliverable.complexity_level %>
-</p>
-
-<p>
   <b>Estimated size:</b>
   <%= @deliverable.estimated_size %>
+  <%= @deliverable.unit_of_measure %>
 </p>
 
 <p>
   <b>Estimated production rate:</b>
   <%= @deliverable.estimated_production_rate %>
+  hours/<%= @deliverable.unit_of_measure %>
 </p>
 
 <p>
   <b>Estimated effort:</b>
-  <%= @deliverable.estimated_effort %>
+  <%= @deliverable.estimated_effort %> hours
 </p>
 
 <br />

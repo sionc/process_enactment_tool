@@ -146,9 +146,25 @@ a[id ~= 'view_project'], a[id ~= 'view_lifecycles']{
 */
 #project_phase_details_container {
   /*visibility: hidden;*/
-  border:  1px solid black;
+  border:  1px solid lightgray;
   padding:  10px 10px 20px 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+   border-radius: 5px;
 }
+
+#content_title_container {
+  /*visibility: hidden;*/
+  border:  1px solid lightgray;
+  /*padding:  10px 10px 20px 10px;*/
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+   border-radius: 5px;
+   margin-bottom: 5px;
+   padding-left: 10px;
+   text-align: left;
+}
+
 
 table
 {

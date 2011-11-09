@@ -58,12 +58,21 @@ describe("FieldHandler", function() {
         expect(fieldHandler.getCalculatedField()).toEqual("deliverable_estimated_production_rate");
     });
     
-    it("should not enqueue estimated effort  if empty",
+    it("should not enqueue estimated effort if empty",
     function() {
         var fieldHandler = FieldHandler();
         fieldHandler.modifyEstimatedSize(7);
         fieldHandler.modifyEstimatedProductionRate(8);
         fieldHandler.modifyEstimatedEffort('');
+        expect(fieldHandler.getCalculatedField()).toEqual("deliverable_estimated_effort");
+    });
+
+	it("should handle a sequence of computations",
+    function() {
+        var fieldHandler = FieldHandler();
+        fieldHandler.modifyEstimatedSize(7);
+        fieldHandler.modifyEstimatedProductionRate(8);
+        fieldHandler.modifyEstimatedSize(14);
         expect(fieldHandler.getCalculatedField()).toEqual("deliverable_estimated_effort");
     });
 });

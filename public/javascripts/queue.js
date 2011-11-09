@@ -1,7 +1,6 @@
 var Queue = (function() {
     // private
     var elements = [];
-    var lostElement = null;
 
     // public
     return {
@@ -17,7 +16,7 @@ var Queue = (function() {
             else {
                 if (elements[0] != element) {
                     // Remove the second
-                    lostElement = elements.splice(1, 1)[0];
+                    elements.splice(1, 1)[0];
 
                     // Prepend the new element
                     elements.unshift(element);
@@ -27,10 +26,6 @@ var Queue = (function() {
 
         contents : function() {
             return elements;
-        },
-
-        lost : function() {
-            return lostElement;
         }
     }
 });

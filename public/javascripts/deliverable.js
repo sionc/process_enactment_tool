@@ -126,6 +126,51 @@ function() {
     })
 };
 
+var processEstimatedSize =
+function(fieldHandler) {
+	  // Extract the estimated size
+    var estimatedSize = parseFloat($('#deliverable_estimated_size').val());
+    
+    // Notify the field handler that the size has been updated
+    fieldHandler.modifyEstimatedSize(estimatedSize);
+
+    // Determine which field should be calculated and disabled
+    var calculatedField = fieldHandler.getCalculatedField();
+    
+    // Calculate and populate the calculated field
+    processCalculatedField(calculatedField);
+}
+
+var processEstimatedProductionRate = 
+function(fieldHandler) {
+	  // Extract the estimated production rate
+    var estimatedProductionRate = parseFloat($('#deliverable_estimated_production_rate').val());
+    
+    // Notify the field handler that the production rate has been updated
+    fieldHandler.modifyEstimatedProductionRate(estimatedProductionRate);
+
+    // Determine which field should be calculated and disabled
+    var calculatedField = fieldHandler.getCalculatedField();
+    
+    // Calculate and populate the calculated field
+    processCalculatedField(calculatedField);
+}
+
+var processEstimatedEffort = 
+function(fieldHandler) {
+	  // Extract the estimated effort
+    var estimatedEffort = parseFloat($('#deliverable_estimated_effort').val());
+    
+    // Notify the field handler that the estimated effort has been updated
+    fieldHandler.modifyEstimatedEffort(estimatedEffort);
+
+    // Determine which field should be calculated and disabled
+    var calculatedField = fieldHandler.getCalculatedField();
+    
+    // Calculate and populate the calculated field
+    processCalculatedField(calculatedField);
+}
+
 var processCalculatedField =
 function(calculatedField)  {
 	
@@ -160,7 +205,7 @@ function(calculatedField)  {
 $(document).ready(function() {
 
 		// Create a new field handler to manage the estimated size, estimated
-		// production rate, and estimated effort  input fields
+		// production rate, and estimated effort input fields
     var fieldHandler = FieldHandler();
 
     addNewType();
@@ -171,51 +216,10 @@ $(document).ready(function() {
     $('#deliverable_assignable_id').change(loadUnitOfMeasure);
     $('#deliverable_assignable_id').change(showHiddenInputField);
 		
-		// Estimated size, estimated production rate, and estimated effort  event handlers
-		$('#deliverable_estimated_size').change(function() {
-    	  
-			  // Extract the estimated size
-		    var estimatedSize = parseFloat($('#deliverable_estimated_size').val());
-		    
-		    // Notify the field handler that the size has been updated
-		    fieldHandler.modifyEstimatedSize(estimatedSize);
-		
-		    // Determine which field should be calculated and disabled
-		    var calculatedField = fieldHandler.getCalculatedField();
-		    
-		    // Calculate and populate the calculated field
-		    processCalculatedField(calculatedField);
-		});
-
-		$('#deliverable_estimated_production_rate').change(function() {
-    	  
-			  // Extract the estimated production rate
-		    var estimatedProductionRate = parseFloat($('#deliverable_estimated_production_rate').val());
-		    
-		    // Notify the field handler that the production rate has been updated
-		    fieldHandler.modifyEstimatedProductionRate(estimatedProductionRate);
-		
-		    // Determine which field should be calculated and disabled
-		    var calculatedField = fieldHandler.getCalculatedField();
-		    
-		    // Calculate and populate the calculated field
-		    processCalculatedField(calculatedField);
-		});
-
-		$('#deliverable_estimated_effort').change(function() {
-    	  
-			  // Extract the estimated effort
-		    var estimatedEffort = parseFloat($('#deliverable_estimated_effort').val());
-		    
-		    // Notify the field handler that the estimated effort has been updated
-		    fieldHandler.modifyEstimatedEffort(estimatedEffort);
-		
-		    // Determine which field should be calculated and disabled
-		    var calculatedField = fieldHandler.getCalculatedField();
-		    
-		    // Calculate and populate the calculated field
-		    processCalculatedField(calculatedField);
-		});
+	// Estimated size, estimated production rate, and estimated effort  event handlers
+	$('#deliverable_estimated_size').keyup(function() {processEstimatedSize(fieldHandler) });
+	$('#deliverable_estimated_production_rate').keyup(function() {processEstimatedProductionRate(fieldHandler) });
+	$('#deliverable_estimated_effort').keyup(function() {processEstimatedEffort(fieldHandler) });
 
 		
     buildDeliverableDialog();

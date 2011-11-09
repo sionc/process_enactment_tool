@@ -94,6 +94,25 @@ describe "Deliverables" do
 	      
 	      find_field('Estimated production rate').value.should == '17'
       end
+      
+      it "should handle a sequence of computations", :js => true do
+	      before_filter
+	      
+	      fill_in "Estimated size", :with => '23'
+	      page.execute_script("$('#deliverable_estimated_size').trigger('change');")
+	      
+	      fill_in "Estimated production rate", :with => '17'
+	      page.execute_script("$('#deliverable_estimated_production_rate').trigger('change');")
+	      
+	      find_field('Estimated effort').value.should == '391'
+	      
+	      fill_in "Estimated size", :with => '46'
+	      page.execute_script("$('#deliverable_estimated_size').trigger('change');")
+	      
+	      find_field('Estimated effort').value.should == '782'
+	      find_field('Estimated size').value.should == '46' 
+      end
+      
     end
   end
 end

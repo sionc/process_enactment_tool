@@ -24,15 +24,6 @@ describe("Queue", function() {
         expect(queue.contents()).toEqual(['apricot', 'pear']);
     });
 
-    it("should save the last element that was lost",
-    function() {
-        var queue = Queue();
-        queue.enqueue('apple');
-        queue.enqueue('pear');
-        queue.enqueue('apricot');
-        expect(queue.lost()).toEqual('apple');
-    });
-
     it("should not enqueue the same element twice in a row",
     function() {
         var queue = Queue();

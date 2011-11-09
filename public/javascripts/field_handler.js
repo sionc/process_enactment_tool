@@ -1,7 +1,6 @@
 var FieldHandler = (function() {
     // private
     var queue = Queue();
-    var fields = ['deliverable_estimated_size', 'deliverable_estimated_production_rate', 'deliverable_estimated_effort'];
 
     // public
     return {
@@ -25,8 +24,8 @@ var FieldHandler = (function() {
         },
 
         getCalculatedField : function() {
-            var lost = queue.lost();
-            if (lost == null && queue.contents().length == 2) {
+            if (queue.contents().length == 2) {
+				var fields = ['deliverable_estimated_size', 'deliverable_estimated_production_rate', 'deliverable_estimated_effort'];
 
                 var firstField = fields.indexOf(queue.contents()[0]);
                 fields.splice(firstField, 1);
@@ -34,9 +33,11 @@ var FieldHandler = (function() {
                 var secondField = fields.indexOf(queue.contents()[1]);
                 fields.splice(secondField, 1);
 
+				// Return the field that doesn't exist in the queue
                 return fields[0];
-            }
-            return lost;
+            } else {
+	            return null;
+			}
         }
     }
 });

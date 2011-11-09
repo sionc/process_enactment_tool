@@ -13,6 +13,7 @@
 <p>
   <b>Estimated Effort:</b>
   <%= @project.estimated_effort %>
+  <%= get_hours %>
 </p>
 <p>
   <b>Lifecycle:</b>
@@ -52,6 +53,5 @@
 </div>
 </div>
 
-<br/>
 <br/>
 <%= link_to 'Back', projects_path, :class => "btn" %>

@@ -18,8 +18,8 @@ var FieldHandler = (function() {
           }
         },
 
-        modifyTotalEffort : function(totalEffort) {
-        	if (totalEffort != '') {
+        modifyEstimatedEffort : function(estimatedEffort) {
+        	if (estimatedEffort != '') {
             queue.enqueue('deliverable_estimated_effort');
           }
         },

@@ -24,7 +24,7 @@ var FieldHandler = (function() {
           }
         },
 
-        getDisabledField : function() {
+        getCalculatedField : function() {
             var lost = queue.lost();
             if (lost == null && queue.contents().length == 2) {
 

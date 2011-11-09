@@ -127,59 +127,32 @@ function() {
 };
 
 var processCalculatedField =
-function(disabledField)  {
+function(calculatedField)  {
 	
 	// Extract the estimated size, estimated production rate, and estimated effort 
 	var estimatedSize = parseFloat($('#deliverable_estimated_size').val());
 	var estimatedProductionRate = parseFloat($('#deliverable_estimated_production_rate').val());
 	var estimatedEffort = parseFloat($('#deliverable_estimated_effort').val());
 	
-	if (disabledField == 'deliverable_estimated_effort') {
+	if (calculatedField == 'deliverable_estimated_effort') {
 
-	    // Compute the estimated effort 
-	    estimatedEffort = estimatedSize * estimatedProductionRate;
-	    
+	    // Compute the estimated effort 	    
 	    // Populate the field with the calculated value
-	    $('#deliverable_estimated_effort').val(estimatedEffort);
-	
-	    // Enable all fields
-	    $('#deliverable_estimated_size').removeAttr('disabled');
-	    $('#deliverable_estimated_production_rate').removeAttr('disabled');
-	
-	    // Disable the field
-	    $('#' + disabledField).attr('disabled', 'disabled');
+	    $('#deliverable_estimated_effort').val(estimatedSize * estimatedProductionRate);
 	}
 	
-	else if (disabledField == 'deliverable_estimated_production_rate') {
+	else if (calculatedField == 'deliverable_estimated_production_rate') {
 
 	    // Compute the estimated production rate
-	    estimatedProductionRate = estimatedEffort / estimatedSize;
-	    
 	    // Populate the field with the calculated value
-	    $('#deliverable_estimated_production_rate').val(estimatedProductionRate);
-	
-	    // Enable all fields
-	    $('#deliverable_estimated_size').removeAttr('disabled');
-	    $('#deliverable_estimated_effort').removeAttr('disabled');
-	
-	    // Disable the field
-	    $('#' + disabledField).attr('disabled', 'disabled');
+	    $('#deliverable_estimated_production_rate').val(estimatedEffort / estimatedSize);	
 	}	
 	
-	else if (disabledField == 'deliverable_estimated_size') {
+	else if (calculatedField == 'deliverable_estimated_size') {
 
-	    // Compute the estimated size rate
-	    estimatedSize = estimatedEffort / estimatedProductionRate;
-	    
+	    // Compute the estimated size
 	    // Populate the field with the calculated value
-	    $('#deliverable_estimated_size').val(estimatedSize);
-	
-	    // Enable all fields
-	    $('#deliverable_estimated_production_rate').removeAttr('disabled');
-	    $('#deliverable_estimated_effort').removeAttr('disabled');
-	
-	    // Disable the field
-	    $('#' + disabledField).attr('disabled', 'disabled');
+	    $('#deliverable_estimated_size').val(estimatedEffort / estimatedProductionRate);	
 	}	
 
 };
@@ -208,10 +181,10 @@ $(document).ready(function() {
 		    fieldHandler.modifyEstimatedSize(estimatedSize);
 		
 		    // Determine which field should be calculated and disabled
-		    var disabledField = fieldHandler.getDisabledField();
+		    var calculatedField = fieldHandler.getCalculatedField();
 		    
-		    // Calculate and populate the disabled field
-		    processCalculatedField(disabledField);
+		    // Calculate and populate the calculated field
+		    processCalculatedField(calculatedField);
 		});
 
 		$('#deliverable_estimated_production_rate').change(function() {
@@ -223,10 +196,10 @@ $(document).ready(function() {
 		    fieldHandler.modifyEstimatedProductionRate(estimatedProductionRate);
 		
 		    // Determine which field should be calculated and disabled
-		    var disabledField = fieldHandler.getDisabledField();
+		    var calculatedField = fieldHandler.getCalculatedField();
 		    
-		    // Calculate and populate the disabled field
-		    processCalculatedField(disabledField);
+		    // Calculate and populate the calculated field
+		    processCalculatedField(calculatedField);
 		});
 
 		$('#deliverable_estimated_effort').change(function() {
@@ -238,10 +211,10 @@ $(document).ready(function() {
 		    fieldHandler.modifyEstimatedEffort(estimatedEffort);
 		
 		    // Determine which field should be calculated and disabled
-		    var disabledField = fieldHandler.getDisabledField();
+		    var calculatedField = fieldHandler.getCalculatedField();
 		    
-		    // Calculate and populate the disabled field
-		    processCalculatedField(disabledField);
+		    // Calculate and populate the calculated field
+		    processCalculatedField(calculatedField);
 		});
 
 		

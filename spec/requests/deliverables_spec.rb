@@ -59,7 +59,7 @@ describe "Deliverables" do
 		end
 
 		describe "(calculations)" do
-	    it "should compute the estimated effort  when the size and production rate are entered", :js => true do
+	    it "should compute the estimated effort when the size and production rate are entered", :js => true do
 	      before_filter
 	      
 	      fill_in "Estimated size", :with => '23'
@@ -71,7 +71,7 @@ describe "Deliverables" do
 	      find_field('Estimated effort').value.should == '391'
       end
       
-      it "should compute the estimated size when the estimated effort  and production rate are entered", :js => true do
+      it "should compute the estimated size when the estimated effort and production rate are entered", :js => true do
 	      before_filter
 	      
 	      fill_in "Estimated effort", :with => '391'
@@ -81,6 +81,18 @@ describe "Deliverables" do
 	      page.execute_script("$('#deliverable_estimated_production_rate').trigger('change');")
 	      
 	      find_field('Estimated size').value.should == '23'
+      end
+      
+      it "should compute the estimated production rate when the estimated effort and size are entered", :js => true do
+	      before_filter
+	      
+	      fill_in "Estimated effort", :with => '391'
+	      page.execute_script("$('#deliverable_estimated_effort').trigger('change');")
+	      
+	      fill_in "Estimated size", :with => '23'
+	      page.execute_script("$('#deliverable_estimated_size').trigger('change');")
+	      
+	      find_field('Estimated production rate').value.should == '17'
       end
     end
   end

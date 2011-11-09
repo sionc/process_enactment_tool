@@ -1,52 +1,61 @@
 <h1>Editing deliverable</h1>
 
 <%= form_for(@deliverable) do |f| %>
-  <% if @deliverable.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@deliverable.errors.count, "error") %> prohibited this deliverable from being saved:</h2>
+    <% if @deliverable.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@deliverable.errors.count, "error") %> prohibited this deliverable from being saved:</h2>
 
-      <ul>
-      <% @deliverable.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @deliverable.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="clearfix">
+      <%= f.label :name %>
+      <div class="input">
+        <%= f.text_field :name, :class=>"xlarge" %>
+      </div>
     </div>
-  <% end %>
+    <div class="clearfix">
+      <%= f.label :description %>
+      <div class="input">
+        <%= f.text_area :description, :size => "40x10", :class=>"xlarge" %>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%= label_tag "Deliverable Type" %>
+      <div class="input">
+        <%= @deliverable.deliverable_type %>
+      </div>
 
-  <div class="clearfix">
-    <%= f.label :name %>
-	<div class="input">
-		<%= f.text_field :name, :class=>"xlarge" %>
-	</div>
-  </div>
-  <div class="clearfix">
-    <%= f.label :description %>
-	<div class="input">
-    	<%= f.text_area :description, :size => "40x10", :class=>"xlarge" %>
-	</div>
-  </div>
-  <div class="clearfix">
-    <%= f.label :estimated_size %>
-	<div class="input">
-    	<%= f.text_field :estimated_size, :class=>"xlarge" %>
-	</div>
-  </div>
-  <div class="clearfix">
-    <%= f.label :estimated_production_rate %>
-	<div class="input">
-    	<%= f.text_field :estimated_production_rate, :class=>"xlarge" %>
-	</div>
-  </div>
-  <div class="clearfix">
-    <%= f.label :estimated_effort %>
-	<div class="input">
-    	<%= f.text_field :estimated_effort, :class=>"xlarge" %>
-	</div>
-  </div>
-  <br />
-  <div class="input">
-    <%= f.submit "Update Deliverable", :class => "btn primary" %>
-    &nbsp;
-    <%= link_to 'Cancel', @deliverable, :class => "btn danger" %>
-  </div>
+    </div>
+    <div class="clearfix">
+      <%= f.label :estimated_size %>
+      <div class="input">
+        <%= f.text_field :estimated_size, :class=>"xlarge" %>
+        <%= @deliverable.unit_of_measure %>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%= f.label :estimated_production_rate %>
+      <div class="input">
+        <%= f.text_field :estimated_production_rate, :class=>"xlarge" %>
+        hours/<%= @deliverable.unit_of_measure.singularize %>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%= f.label :estimated_effort %>
+      <div class="input">
+        <%= f.text_field :estimated_effort, :class=>"xlarge" %> hours
+      </div>
+    </div>
+    <br/>
+    <div class="input">
+      <%= f.submit "Update Deliverable", :class => "btn primary" %>
+      &nbsp;
+      <%= link_to 'Cancel', @deliverable, :class => "btn danger" %>
+    </div>
 <% end %>

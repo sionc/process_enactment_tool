@@ -6,16 +6,22 @@ var FieldHandler = (function() {
     // public
     return {
 
-        modifyEstimatedSize : function() {
-            queue.enqueue('deliverable_estimated_size');
+        modifyEstimatedSize : function(estimatedSize) {
+            if (estimatedSize != '') {
+            	queue.enqueue('deliverable_estimated_size');
+          	}
         },
 
-        modifyEstimatedProductionRate : function() {
+        modifyEstimatedProductionRate : function(estimatedProductionRate) {
+        	if (estimatedProductionRate != '') {
             queue.enqueue('deliverable_estimated_production_rate');
+          }
         },
 
-        modifyTotalEffort : function() {
+        modifyTotalEffort : function(totalEffort) {
+        	if (totalEffort != '') {
             queue.enqueue('deliverable_estimated_effort');
+          }
         },
 
         getDisabledField : function() {

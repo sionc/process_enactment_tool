@@ -126,12 +126,91 @@ function() {
     })
 };
 
+var processCalculatedField =
+function(disabledField)  {
+	
+	// Extract the estimated size, estimated production rate, and total effort
+	var estimatedSize = parseFloat($('#deliverable_estimated_size').val());
+	var estimatedProductionRate = parseFloat($('#deliverable_estimated_production_rate').val());
+	var totalEffort = parseFloat($('#deliverable_estimated_effort').val());
+	
+	if (disabledField == 'deliverable_estimated_effort') {
+
+	    // Compute the total effort
+	    totalEffort = estimatedSize * estimatedProductionRate;
+	    
+	    // Populate the field with the calculated value
+	    $('#deliverable_estimated_effort').val(totalEffort);
+	
+	    // Enable all fields
+	    $('#deliverable_estimated_size').removeAttr('disabled');
+	    $('#deliverable_estimated_production_rate').removeAttr('disabled');
+	
+	    // Disable the field
+	    $('#' + disabledField).attr('disabled', 'disabled');
+	}
+	
+	else if (disabledField == 'deliverable_estimated_production_rate') {
+
+	    // Compute the estimated production rate
+	    estimatedProductionRate = totalEffort / estimatedSize;
+	    
+	    // Populate the field with the calculated value
+	    $('#deliverable_estimated_production_rate').val(estimatedProductionRate);
+	
+	    // Enable all fields
+	    $('#deliverable_estimated_size').removeAttr('disabled');
+	    $('#deliverable_estimated_effort').removeAttr('disabled');
+	
+	    // Disable the field
+	    $('#' + disabledField).attr('disabled', 'disabled');
+	}	
+};
+
 $(document).ready(function() {
+
+		// Create a new field handler to manage the estimated size, estimated
+		// production rate, and total effort input fields
+    var fieldHandler = FieldHandler();
+
     addNewType();
     showHiddenInputField();
     loadUnitOfMeasure();
 
+		// Deliverable type event handlers
     $('#deliverable_assignable_id').change(loadUnitOfMeasure);
     $('#deliverable_assignable_id').change(showHiddenInputField);
+		
+		// Estimated size, estimated production rate, and total effort event handlers
+		$('#deliverable_estimated_size').change(function() {
+    	  
+			  // Extract the estimated size
+		    var estimatedSize = parseFloat($('#deliverable_estimated_size').val());
+		    
+		    // Notify the field handler that the size has been updated
+		    fieldHandler.modifyEstimatedSize(estimatedSize);
+		
+		    // Determine which field should be calculated and disabled
+		    var disabledField = fieldHandler.getDisabledField();
+		    
+		    // Calculate and populate the disabled field
+		    processCalculatedField(disabledField);
+		});
+
+		$('#deliverable_estimated_production_rate').change(function() {
+    	  
+			  // Extract the estimated production rate
+		    var estimatedProductionRate = parseFloat($('#deliverable_estimated_production rate').val());
+		    
+		    // Notify the field handler that the production rate has been updated
+		    fieldHandler.modifyEstimatedProductionRate(estimatedProductionRate);
+		
+		    // Determine which field should be calculated and disabled
+		    var disabledField = fieldHandler.getDisabledField();
+		    
+		    // Calculate and populate the disabled field
+		    processCalculatedField(disabledField);
+		});
+		
     buildDeliverableDialog();
 });

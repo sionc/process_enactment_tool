@@ -1,4 +1,7 @@
 <h1>Editing deliverable</h1>
+<% content_for(:head) do %>
+    <%= javascript_include_tag "deliverable_estimations" %>
+<% end %>
 
 <%= form_for(@deliverable) do |f| %>
     <% if @deliverable.errors.any? %>

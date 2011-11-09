@@ -171,6 +171,15 @@ function(fieldHandler) {
     processCalculatedField(calculatedField);
 }
 
+var removeNaN = 
+function(value) {
+	if(isNaN(value)){
+		return "";
+	} else {
+		return value.toFixed(2);
+	}
+}
+
 var processCalculatedField =
 function(calculatedField)  {
 	
@@ -183,21 +192,21 @@ function(calculatedField)  {
 
 	    // Compute the estimated effort 	    
 	    // Populate the field with the calculated value
-	    $('#deliverable_estimated_effort').val(estimatedSize * estimatedProductionRate);
+	    $('#deliverable_estimated_effort').val(removeNaN(estimatedSize * estimatedProductionRate));
 	}
 	
 	else if (calculatedField == 'deliverable_estimated_production_rate') {
 
 	    // Compute the estimated production rate
 	    // Populate the field with the calculated value
-	    $('#deliverable_estimated_production_rate').val(estimatedEffort / estimatedSize);	
+	    $('#deliverable_estimated_production_rate').val(removeNaN(estimatedEffort / estimatedSize));	
 	}	
 	
 	else if (calculatedField == 'deliverable_estimated_size') {
 
 	    // Compute the estimated size
 	    // Populate the field with the calculated value
-	    $('#deliverable_estimated_size').val(estimatedEffort / estimatedProductionRate);	
+	    $('#deliverable_estimated_size').val(removeNaN(estimatedEffort / estimatedProductionRate));	
 	}	
 
 };

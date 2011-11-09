@@ -68,7 +68,7 @@ describe "Deliverables" do
 	      fill_in "Estimated production rate", :with => '17'
 	      page.execute_script("$('#deliverable_estimated_production_rate').trigger('change');")
 	      
-	      find_field('Estimated effort').value.should == '391'
+	      find_field('Estimated effort').value.should == '391.00'
       end
       
       it "should compute the estimated size when the estimated effort and production rate are entered", :js => true do
@@ -80,7 +80,7 @@ describe "Deliverables" do
 	      fill_in "Estimated production rate", :with => '17'
 	      page.execute_script("$('#deliverable_estimated_production_rate').trigger('change');")
 	      
-	      find_field('Estimated size').value.should == '23'
+	      find_field('Estimated size').value.should == '23.00'
       end
       
       it "should compute the estimated production rate when the estimated effort and size are entered", :js => true do
@@ -92,7 +92,7 @@ describe "Deliverables" do
 	      fill_in "Estimated size", :with => '23'
 	      page.execute_script("$('#deliverable_estimated_size').trigger('change');")
 	      
-	      find_field('Estimated production rate').value.should == '17'
+	      find_field('Estimated production rate').value.should == '17.00'
       end
       
       it "should handle a sequence of computations", :js => true do
@@ -104,15 +104,15 @@ describe "Deliverables" do
 	      fill_in "Estimated production rate", :with => '17'
 	      page.execute_script("$('#deliverable_estimated_production_rate').trigger('change');")
 	      
-	      find_field('Estimated effort').value.should == '391'
+	      find_field('Estimated effort').value.should == '391.00'
 	      
 	      fill_in "Estimated size", :with => '46'
 	      page.execute_script("$('#deliverable_estimated_size').trigger('change');")
 	      
-	      find_field('Estimated effort').value.should == '782'
+	      find_field('Estimated effort').value.should == '782.00'
 	      find_field('Estimated size').value.should == '46' 
       end
-      
+            
     end
   end
 end

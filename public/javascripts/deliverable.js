@@ -192,21 +192,24 @@ function(calculatedField)  {
 
 	    // Compute the estimated effort 	    
 	    // Populate the field with the calculated value
-	    $('#deliverable_estimated_effort').val(removeNaN(estimatedSize * estimatedProductionRate));
+	    $('#deliverable_estimated_effort').val(removeNaN(estimatedSize * estimatedProductionRate))
+										  .stop(true, true).effect("highlight", {}, 2000);
 	}
 	
 	else if (calculatedField == 'deliverable_estimated_production_rate') {
 
 	    // Compute the estimated production rate
 	    // Populate the field with the calculated value
-	    $('#deliverable_estimated_production_rate').val(removeNaN(estimatedEffort / estimatedSize));	
+	    $('#deliverable_estimated_production_rate').val(removeNaN(estimatedEffort / estimatedSize))
+												   .stop(true, true).effect("highlight", {}, 2000);
 	}	
 	
 	else if (calculatedField == 'deliverable_estimated_size') {
 
 	    // Compute the estimated size
 	    // Populate the field with the calculated value
-	    $('#deliverable_estimated_size').val(removeNaN(estimatedEffort / estimatedProductionRate));	
+	    $('#deliverable_estimated_size').val(removeNaN(estimatedEffort / estimatedProductionRate))
+										.stop(true, true).effect("highlight", {}, 2000);	
 	}	
 
 };

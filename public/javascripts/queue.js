@@ -12,15 +12,15 @@ var Queue = (function() {
             }
             else if (elements.length == 1) {
                 if (elements[0] != element)
-                    elements[1] = element;
+                    elements.unshift(element);
             }
             else {
-                if (elements[1] != element) {
-                    // Remove the first
-                    lostElement = elements.splice(0, 1)[0];
+                if (elements[0] != element) {
+                    // Remove the second
+                    lostElement = elements.splice(1, 1)[0];
 
-                    // Append the second
-                    elements[1] = element;
+                    // Prepend the new element
+                    elements.unshift(element);
                 }
             }
         },

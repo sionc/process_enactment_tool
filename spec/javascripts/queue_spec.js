@@ -12,7 +12,7 @@ describe("Queue", function() {
         var queue = Queue();
         queue.enqueue('apple');
         queue.enqueue('pear');
-        expect(queue.contents()).toEqual(['apple', 'pear']);
+        expect(queue.contents()).toEqual(['pear','apple']);
     });
 
     it("should discard the first element when two more are added",
@@ -21,7 +21,7 @@ describe("Queue", function() {
         queue.enqueue('apple');
         queue.enqueue('pear');
         queue.enqueue('apricot');
-        expect(queue.contents()).toEqual(['pear', 'apricot']);
+        expect(queue.contents()).toEqual(['apricot', 'pear']);
     });
 
     it("should save the last element that was lost",
@@ -39,7 +39,7 @@ describe("Queue", function() {
         queue.enqueue('apple');
         queue.enqueue('pear');
         queue.enqueue('pear');
-        expect(queue.contents()).toEqual(['apple', 'pear']);
+        expect(queue.contents()).toEqual(['pear', 'apple']);
     });
 
 });

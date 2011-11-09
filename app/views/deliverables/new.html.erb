@@ -1,7 +1,7 @@
 <h1>New deliverable</h1>
 
 <% content_for(:head) do %>
-    <%= javascript_include_tag "new_deliverable deliverable_estimations" %>
+    <%= javascript_include_tag "new_deliverable", "deliverable_estimations" %>
 <% end %>
 
 <%= form_for [@assignable, Deliverable.new] do |f| %>

@@ -86,7 +86,29 @@ function(calculatedField)  {
 
 };
 
+// If the page already has estimated size, production rate, or estimated effort populated
+// when it is loaded, update the field handler accordingly
+var checkForExistingValues =
+function(fieldHandler) {
+	var estimatedSize = $('#deliverable_estimated_size').val();
+	var estimatedProductionRate = $('#deliverable_estimated_production_rate').val();
+	var estimatedEffort = $('#deliverable_estimated_effort').val();
+	
+	if (estimatedEffort != '') {
+    // Notify the field handler that the estimated effort has been updated
+  	fieldHandler.modifyEstimatedEffort(estimatedEffort);
+	}
+	
+	if (estimatedSize != '') {
+    // Notify the field handler that the estimated size has been updated
+    fieldHandler.modifyEstimatedSize(estimatedSize);
+	}
 
+	if (estimatedProductionRate != '') {
+    // Notify the field handler that the estimated production rate has been updated
+    fieldHandler.modifyEstimatedProductionRate(estimatedProductionRate);
+	}
+}
 
 $(document).ready(function() {
 
@@ -95,7 +117,9 @@ $(document).ready(function() {
     var fieldHandler = FieldHandler();
 
 	// Estimated size, estimated production rate, and estimated effort  event handlers
-	$('#deliverable_estimated_size').keyup(function() {processEstimatedSize(fieldHandler) });
-	$('#deliverable_estimated_production_rate').keyup(function() {processEstimatedProductionRate(fieldHandler) });
-	$('#deliverable_estimated_effort').keyup(function() {processEstimatedEffort(fieldHandler) });
+	$('#deliverable_estimated_size').keyup(function() { processEstimatedSize(fieldHandler) });
+	$('#deliverable_estimated_production_rate').keyup(function() { processEstimatedProductionRate(fieldHandler) });
+	$('#deliverable_estimated_effort').keyup(function() { processEstimatedEffort(fieldHandler) });
+	
+	checkForExistingValues(fieldHandler);
 });

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Deliverables" do
-
+=begin
   describe "GET /deliverables" do
     it "works! (now write some real specs)" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
@@ -111,8 +111,36 @@ describe "Deliverables" do
 	      
 	      find_field('Estimated effort').value.should == '782.00'
 	      find_field('Estimated size').value.should == '46' 
-      end
-            
+      end            
     end
+  end
+=end
+  describe "GET edit" do
+    before :each do
+       `rake db:seed`
+       `rake db:load_demo_data`
+    end
+
+     let(:edit_before_filter) {
+       visit projects_path
+       click_link 'Gentle Flower'
+       page.execute_script("$('#project_phases tbody > tr:first').click()")
+       click_link 'Functional Requirements Document 1'
+       click_link 'Modify'
+       page.should have_content("Editing deliverable")
+     }
+
+     it "(calculations)", :js => true do
+       edit_before_filter
+
+       fill_in "Estimated size", :with => '10'
+       page.execute_script("$('#deliverable_estimated_size').trigger('change');")
+
+			 estimated_size = page.evaluate_script("$('#deliverable_estimated_size').val()");
+			 estimated_production_rate = page.evaluate_script("$('#deliverable_estimated_production_rate').val()");
+			 estimated_effort = estimated_size.to_f * estimated_production_rate.to_f;
+			 
+       find_field('Estimated effort').value.should == sprintf("%.2f", estimated_effort)
+     end
   end
 end

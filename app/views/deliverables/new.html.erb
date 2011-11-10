@@ -4,7 +4,7 @@
     <%= javascript_include_tag "new_deliverable", "deliverable_estimations", "jquery.validate.min", "deliverable_validation" %>
 <% end %>
 
-<%= form_for [@assignable, Deliverable.new] do |f| %>
+<%= form_for @deliverable, :html => {:id  =>  "deliverable_form"} do |f| %>
   <% if @deliverable.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@deliverable.errors.count, "error") %> prohibited this deliverable from being saved:</h2>
@@ -53,20 +53,20 @@
   </div>
   <div class="clearfix">
     <%= f.label :estimated_size %>
-	<div class="input">
+	<div id="estimated_size_input_id" class="input">
     	<%= f.text_field :estimated_size, :class=>"xlarge" %>
 	</div>
   </div>
   <div class="clearfix">
     <%= f.label :estimated_production_rate %>
-	<div class="input">
+	<div id="estimated_production_rate_input_id" class="input">
     	<%= f.text_field :estimated_production_rate, :class=>"xlarge" %>
 	</div>
   </div>
   <div class="clearfix">
     <%= f.label :estimated_effort %>
-	<div class="input">
-    	<%= f.text_field :estimated_effort, :class=>"xlarge" %>
+	<div id="estimated_effort_input_id" class="input">
+        <%= f.text_field :estimated_effort, :class=>"xlarge" %>
 	</div>
   </div>
 

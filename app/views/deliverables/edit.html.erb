@@ -1,9 +1,9 @@
 <h1>Editing deliverable</h1>
 <% content_for(:head) do %>
-    <%= javascript_include_tag "deliverable_estimations", "jquery.validate.min" %>
+    <%= javascript_include_tag "deliverable_estimations", "jquery.validate.min", "deliverable_validation" %>
 <% end %>
 
-<%= form_for(@deliverable) do |f| %>
+<%= form_for(@deliverable,:html => {:id  =>  "deliverable_form"}) do |f| %>
     <% if @deliverable.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@deliverable.errors.count, "error") %> prohibited this deliverable from being saved:</h2>
@@ -37,21 +37,21 @@
     </div>
     <div class="clearfix">
       <%= f.label :estimated_size %>
-      <div class="input">
+      <div id="estimated_size_input_id" class="input">
         <%= f.text_field :estimated_size, :class=>"xlarge" %>
         <%= @deliverable.unit_of_measure %>
       </div>
     </div>
     <div class="clearfix">
       <%= f.label :estimated_production_rate %>
-      <div class="input">
+      <div id="estimated_production_rate_input_id" class="input">
         <%= f.text_field :estimated_production_rate, :class=>"xlarge" %>
         hours/<%= @deliverable.unit_of_measure.singularize %>
       </div>
     </div>
     <div class="clearfix">
       <%= f.label :estimated_effort %>
-      <div class="input">
+      <div id="estimated_effort_input_id" class="input">
         <%= f.text_field :estimated_effort, :class=>"xlarge" %> hours
       </div>
     </div>

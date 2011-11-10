@@ -70,7 +70,7 @@ var getAssignable =
 
         // assignable_type => assignable_substr[0]
         // assignable_id => assignable_substr[1]
-        return assignable_substr
+        return assignable_substr;
     }
 
 var addNewType =
@@ -87,6 +87,20 @@ function() {
 		open: function(event){
 			$('.ui-dialog-buttonpane').find('button:contains("Create")').addClass("btn");	
 		},
+        close: function(event) {
+            var a_type;
+            var a_value;
+            var sel_value;
+
+            a_type = $('#deliverable_type_id input').attr("id");
+            a_value = $('#deliverable_type_id input').attr("value");
+
+            var a_type_substr = new Array();
+            a_type_substr = a_type.split('_');
+            sel_value = a_type_substr[1] + "_" + a_value;
+
+            $('#deliverable_assignable_id').val(sel_value);
+        },
         height: 280,
         width: 400,
         modal: true,

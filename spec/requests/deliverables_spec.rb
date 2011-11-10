@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Deliverables" do
-=begin
+
   describe "GET /deliverables" do
     it "works! (now write some real specs)" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
@@ -114,7 +114,7 @@ describe "Deliverables" do
       end            
     end
   end
-=end
+
   describe "GET edit" do
     before :each do
        `rake db:seed`

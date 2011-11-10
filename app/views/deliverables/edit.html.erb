@@ -1,6 +1,6 @@
 <h1>Editing deliverable</h1>
 <% content_for(:head) do %>
-    <%= javascript_include_tag "deliverable_estimations" %>
+    <%= javascript_include_tag "deliverable_estimations", "jquery.validate.min" %>
 <% end %>
 
 <%= form_for(@deliverable) do |f| %>

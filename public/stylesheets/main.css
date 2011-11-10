@@ -284,6 +284,12 @@ tr
 	
 }
 
+label.error {
+	float: none;
+	padding-left: 15px;
+	color: red;
+}
+
 input:focus, textarea:focus {
 	/* TODO - override these */
 	border-color: rgba(28, 70, 99, 0.8);

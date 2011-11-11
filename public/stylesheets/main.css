@@ -1,10 +1,10 @@
 body { 
-	background-color: rgb(28,70,99);
+	background-color: rgba(28,70,99,49);
 	color: #333; 
 	padding-top: 50px;
     background-image: linear-gradient(bottom, rgb(8,38,56) 93%, rgb(28,70,99) 49%);
     background-image: -o-linear-gradient(bottom, rgb(8,38,56) 93%, rgb(28,70,99) 49%);
-    background-image: -moz-linear-gradient(bottom, rgb(8,38,56) 93%, rgb(28,70,99) 49%);
+    background-image: -moz-linear-gradient(top, rgb(8,38,56) 10%, rgb(28,70,99) 49%);
     background-image: -webkit-linear-gradient(bottom, rgb(8,38,56) 93%, rgb(28,70,99) 49%);
     background-image: -ms-linear-gradient(bottom, rgb(8,38,56) 93%, rgb(28,70,99) 49%);
     background-image: -webkit-gradient(linear, 

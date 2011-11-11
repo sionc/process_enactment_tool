@@ -49,7 +49,7 @@ $(document).ready(function() {
 
     $('#project_phases tbody tr').mouseover(function() {
         $(this).css({
-            'background-color': '#D2D9FF',
+            'background-color': '#D9EAED',
             'cursor': 'pointer'
         });
     });

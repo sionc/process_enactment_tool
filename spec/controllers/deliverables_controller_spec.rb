@@ -28,9 +28,9 @@ describe DeliverablesController do
     @stock_deliverable_type = Factory.create(:stock_deliverable_type)
     @complexity = Factory.create(:complexity)
     @attr = { :name => "test deliverable",
-              :estimated_effort => 1.5,
-              :estimated_size => 2.5,
-              :estimated_production_rate => 3.5,
+              :estimated_size => 1.5,
+              :estimated_production_rate => 2.5,
+              :estimated_effort => 3.75,
               :complexity_id => @complexity.id
             }
   end

@@ -11,9 +11,9 @@ describe "deliverables/edit.html.erb" do
 
       @attr = {:name => "My Stock Deliverable",
                :description => "My Description",
-               :estimated_effort => 1,
-               :estimated_size => 2.5,
+               :estimated_size => 1.5,
                :estimated_production_rate => 2.5,
+               :estimated_effort => 3.75,
                :complexity_id => @complexity.id
       }
       @deliverable = @stock_deliverable_type.deliverables.create! @attr
@@ -39,9 +39,9 @@ describe "deliverables/edit.html.erb" do
 
       @attr = {:name => "My Custom Deliverable",
                :description => "My Description",
-               :estimated_effort => 1,
-               :estimated_size => 2.5,
+               :estimated_size => 1.5,
                :estimated_production_rate => 2.5,
+               :estimated_effort => 3.75,
                :complexity_id => @complexity.id
       }
       @deliverable = @custom_deliverable_type.deliverables.create! @attr

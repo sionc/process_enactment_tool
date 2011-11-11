@@ -12,6 +12,8 @@ class Deliverable < ActiveRecord::Base
   validates :estimated_production_rate, :presence => true, :numericality => {:greater_than =>  0}
 
   validates :complexity_id, :presence => true
+  
+  validate :estimations_should_be_valid
 
 	# Return the name of the deliverable type associated with this deliverable
 	def deliverable_type
@@ -36,5 +38,15 @@ class Deliverable < ActiveRecord::Base
  	def complexity_level
 		complexity.level
   end
+
+  # Validates that the estimations are accurate and that size * production rate = effort
+  def estimations_should_be_valid
+    if (estimated_effort != (estimated_size.to_f * estimated_production_rate.to_f))
+      errors.add(:estimated_size, "must be equal to estimated effort / estimated production rate")
+      errors.add(:estimated_production_rate, "must be equal to estimated effort / estimated size")
+      errors.add(:estimated_effort, "must be equal to estimated size * estimated production rate")
+    end
+  end
+
 
 end

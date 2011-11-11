@@ -26,9 +26,9 @@ describe "deliverables/show.html.erb" do
       complexity = Complexity.create(:level => "low")
       @attr = { :name => "MyString",
                 :description => "MyText",
-                :estimated_effort => 1.5,
-                :estimated_size => 2.5,
-                :estimated_production_rate => 3.5,
+                :estimated_size => 1.5,
+                :estimated_production_rate => 2.5,
+                :estimated_effort => 3.75,
                 :complexity_id => complexity.id
               }
        @deliverable = @stock_deliverable_type.deliverables.create! @attr
@@ -43,7 +43,7 @@ describe "deliverables/show.html.erb" do
 	    rendered.should match(/MyText/)
 	    rendered.should match(/1.5/)
 	    rendered.should match(/2.5/)
-	    rendered.should match(/3.5/)
+	    rendered.should match(/3.75/)
 	  end
 	
 	  it "renders the deliverable type" do
@@ -64,9 +64,9 @@ describe "deliverables/show.html.erb" do
 	    complexity = Complexity.create(:level => "low")
       @attr = { :name => "MyString",
                 :description => "MyText",
-                :estimated_effort => 1.5,
-                :estimated_size => 2.5,
-                :estimated_production_rate => 3.5,
+                :estimated_size => 1.5,
+                :estimated_production_rate => 2.5,
+                :estimated_effort => 3.75,
                 :complexity_id => complexity.id
               }
        @deliverable = @custom_deliverable_type.deliverables.create! @attr

@@ -8,14 +8,14 @@ describe "deliverables/index.html.erb" do
         :description => "MyText",
         :estimated_size => 1.5 ,
         :estimated_production_rate => 2.5 ,
-        :estimated_effort => 3.5
+        :estimated_effort => 3.75
       ),
       stub_model(Deliverable,
         :name => "Name" ,
         :description => "MyText",
         :estimated_size => 1.5 ,
         :estimated_production_rate => 2.5 ,
-        :estimated_effort => 3.5
+        :estimated_effort => 3.75
       )
     ])
   end
@@ -31,6 +31,6 @@ describe "deliverables/index.html.erb" do
     ## Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "tr>td", :text => 2.5.to_s, :count => 2
     ## Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "tr>td", :text => 3.5.to_s, :count => 2
+    assert_select "tr>td", :text => 3.75.to_s, :count => 2
   end
 end

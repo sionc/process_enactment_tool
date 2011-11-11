@@ -8,7 +8,7 @@ describe Deliverable do
               :description => "This is the description of the deliverable",
               :estimated_size => 1.5 ,
               :estimated_production_rate => 2.5 ,
-              :estimated_effort => 3.5 ,
+              :estimated_effort => 3.75 ,
               :assignable_id => stock_deliverable_type.id,
               :assignable_type => "StockDeliverableType",
               :complexity_id => complexity.id
@@ -67,6 +67,21 @@ describe Deliverable do
    it "should require a complexity" do
       valid_deliverable = Deliverable.new(@attr.merge(:complexity_id => nil))
       valid_deliverable.should_not be_valid
+   end
+   
+   it "should require that estimated size is equal to estimated effort / estimated production rate" do
+     invalid_deliverable = Deliverable.new(@attr.merge(:estimated_size => 9999999))
+     invalid_deliverable.should_not be_valid
+   end
+      
+   it "should require that estimated prodcution rate is equal to estimated effort / estimated size" do
+     invalid_deliverable = Deliverable.new(@attr.merge(:estimated_production_rate => 9999999))
+     invalid_deliverable.should_not be_valid
+   end
+   
+   it "should require that estimated effort is equal to estimated size * estimated production rate" do
+     invalid_deliverable = Deliverable.new(@attr.merge(:estimated_effort => 9999999))
+     invalid_deliverable.should_not be_valid
    end
 
 end

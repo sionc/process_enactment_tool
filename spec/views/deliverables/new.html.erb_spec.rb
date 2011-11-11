@@ -12,8 +12,8 @@ describe "deliverables/new.html.erb" do
       :assignable_id => @stock_deliverable_types[0].id,
       :assignable_type => "StockDeliverableType",
       :estimated_size => 1.5,
-      :estimated_production_rate => 1.5,
-      :estimated_effort => 1.5,
+      :estimated_production_rate => 2.5,
+      :estimated_effort => 3.75,
       :complexity_id => @complexities[0].id
     ).as_new_record)
   end

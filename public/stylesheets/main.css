@@ -205,6 +205,10 @@ tr
 	height: 50px;
 }
 
+#dialog {
+	margin-bottom: 15px;
+}
+
 .dialog_field label
 {
 	width: 130px;
@@ -275,6 +279,11 @@ tr
 	font-size: 1.2em !important;
 	line-height: 1.3em !important;
 }
+
+h3 {
+	font-size: 1.2em;
+}
+
 .btn.primary {
 	background-color: #547700;
 	background-image: -khtml-gradient(linear, left top, left bottom, from(#679106), to(#537700));
@@ -318,6 +327,10 @@ input:focus, textarea:focus {
 	width: 220px;
 }
 
+.description {
+	margin-left: 15px;
+	padding-bottom: 18px;
+}
 .row {
 	background-color: #F2F2F2;
 	padding-top: 15px;

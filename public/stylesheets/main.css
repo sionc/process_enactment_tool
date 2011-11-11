@@ -132,38 +132,6 @@ a[id ~= 'view_project'], a[id ~= 'view_lifecycles']{
    /*background-color: lightgray;*/
 }
 
-
-table
-{
-/*    font-family: verdana,arial,sans-serif;*/
-/*	font-size:11px;*/
-	color:#333333;
-	border-width: 1px;
-	border-color: #a9c6c9;
-	border-collapse: collapse;
-}
-
-td {
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #a9c6c9;
-}
-
-
-th {
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #a9c6c9;
-    background-color:#BCC7FF;
-}
-
-tr
-{
-    background-color:#E9ECFF;
-}
-
 .hidden
 {
     display: none;
@@ -341,6 +309,10 @@ input:focus, textarea:focus {
     /*-moz-box-shadow: 0 0 5px 5px #888;*/
     /*-webkit-box-shadow: 0 0 5px 5px#888;*/
     /*box-shadow: 0 0 5px 5px #888;*/
+}
+
+.show_all tbody tr:first-child td {
+	border-top: none;
 }
 
 .modal-footer {

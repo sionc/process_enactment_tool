@@ -1,26 +1,30 @@
-<div id="content_title_container">
-    <h3 id="project_phase_name"></h3>
-</div>
-  <table border="0" id="project_phase_details">
-    <tbody>
-    <tr id=" ">
-      <td>Description</td>
-      <td id="project_phase_description"></td>
-    </tr>
-    <tr>
-      <td>Sequence Number</td>
-      <td id="project_phase_sequence_number"></td>
-    </tr>
-    <tr>
-      <td>Estimated Effort</td>
-      <td id="project_phase_estimated_effort"></td>
-    </tr>
-    <tr>
-      <td>Deliverables</td>
-      <td id="project_phase_deliverables"></td>
-    </tr>
-    </tbody>
-  </table>
-  <div >
-    <%= link_to 'New Deliverable', "#", :class => "btn primary", :id => "new_deliverable_button"  %>
+<div class="content-box phase-details">
+  <div class="content-box-title">
+    <div id="project_phase_name"></div>
   </div>
+  <div class="content-box-body">
+    <table class="condensed-table" border="0" id="project_phase_details">
+      <tbody>
+      <tr id=" ">
+        <td>Description</td>
+        <td id="project_phase_description"></td>
+      </tr>
+      <tr>
+        <td>Sequence Number</td>
+        <td id="project_phase_sequence_number"></td>
+      </tr>
+      <tr>
+        <td>Estimated Effort</td>
+        <td id="project_phase_estimated_effort"></td>
+      </tr>
+      <tr>
+        <td>Deliverables</td>
+        <td id="project_phase_deliverables"></td>
+      </tr>
+      </tbody>
+    </table>
+    <div>
+      <%= link_to 'New Deliverable', "#", :class => "btn primary", :id => "new_deliverable_button" %>
+    </div>
+  </div>
+</div>

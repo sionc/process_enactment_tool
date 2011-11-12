@@ -3,8 +3,14 @@ $(document).ready(function() {
 	if(pathname.search(/lifecycles/) >= 0) {
 		$("#pm").removeClass("active_tab");
 		$("#lm").addClass("active_tab");
-	} else {
+        $("#home").removeClass("active_tab");
+	} else if (pathname.search(/projects/) >=0 ) {
 		$("#pm").addClass("active_tab");
-		$("#lm").removeClass("active_tab");	
-	}
+		$("#lm").removeClass("active_tab");
+        $("#home").removeClass("active_tab");
+	} else{
+        $("#pm").removeClass("active_tab");
+		$("#lm").removeClass("active_tab");
+        $("#home").addClass("active_tab");
+    }
 });

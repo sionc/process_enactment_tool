@@ -18,4 +18,5 @@ class Project < ActiveRecord::Base
 
     return total_estimated_effort
   end
+
 end

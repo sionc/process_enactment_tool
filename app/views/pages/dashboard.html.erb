@@ -1,0 +1,44 @@
+<div class="content-box dashboard-box">
+  <div class="content-box-title">
+    PROJECTS
+    <%= link_to "See all", projects_path %>
+  </div>
+  <div class="content-box-body">
+    <table class="condensed-table show_all">
+      <% @projects.each do |project| %>
+          <tr>
+            <td>
+              <%= link_to project.name, project %>
+              <br />
+              <%= project.description %>
+               <br />
+              [<i><%= project.estimated_effort %> hours</i>]
+            </td>
+          </tr>
+      <% end %>
+    </table>
+    <%= link_to "Create Project", new_project_path, :class => "btn primary" %>
+  </div>
+</div>
+
+<div class="content-box dashboard-box">
+  <div class="content-box-title">
+    LIFECYCLES
+    <%= link_to "See all", lifecycles_path %>
+  </div>
+  <div class="content-box-body">
+  <table class="condensed-table show_all">
+    <% @lifecycles.each do |lifecycle| %>
+        <tr>
+          <td>
+            <%= link_to lifecycle.name, lifecycle %>
+            <br />
+            <%= lifecycle.description %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+  </div>
+</div>
+<br/>
+

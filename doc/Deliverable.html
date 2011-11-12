@@ -64,7 +64,23 @@
 </nav>
 
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-i-complexity_level">#complexity_level</a>
+    
+    <li><a href="#method-i-deliverable_type">#deliverable_type</a>
+    
+    <li><a href="#method-i-estimations_should_be_valid">#estimations_should_be_valid</a>
+    
+    <li><a href="#method-i-unit_of_measure">#unit_of_measure</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -93,9 +109,17 @@
 
   <ul class="link-list">
   
+    <li><a href="./Jasmine.html">Jasmine</a>
+  
+    <li><a href="./Jasmine/Config.html">Jasmine::Config</a>
+  
+    <li><a href="./Jasmine/SpecBuilder.html">Jasmine::SpecBuilder</a>
+  
     <li><a href="./PET.html">PET</a>
   
     <li><a href="./PET/Application.html">PET::Application</a>
+  
+    <li><a href="./AddComplexityIdToDeliverable.html">AddComplexityIdToDeliverable</a>
   
     <li><a href="./AddLifecycleIdToProject.html">AddLifecycleIdToProject</a>
   
@@ -194,6 +218,146 @@
 
     <!-- Methods -->
     
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-complexity_level" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">complexity_level</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the complexity level associated with this deliverable</p>
+          
+
+          
+          <div class="method-source-code" id="complexity_level-source">
+            <pre><span class="ruby-comment"># File app/models/deliverable.rb, line 38</span>
+      <span class="ruby-keyword">def</span> <span class="ruby-identifier">complexity_level</span>
+              <span class="ruby-identifier">complexity</span>.<span class="ruby-identifier">level</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- complexity_level-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- complexity_level-method -->
+
+    
+      <div id="method-i-deliverable_type" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">deliverable_type</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the name of the deliverable type associated with this deliverable</p>
+          
+
+          
+          <div class="method-source-code" id="deliverable_type-source">
+            <pre><span class="ruby-comment"># File app/models/deliverable.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">deliverable_type</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">assignable_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;StockDeliverableType&quot;</span>
+                <span class="ruby-constant">StockDeliverableType</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">assignable_id</span>).<span class="ruby-identifier">deliverable_type</span>.<span class="ruby-identifier">name</span>
+        <span class="ruby-keyword">else</span>
+                <span class="ruby-constant">CustomDeliverableType</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">assignable_id</span>).<span class="ruby-identifier">name</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- deliverable_type-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- deliverable_type-method -->
+
+    
+      <div id="method-i-estimations_should_be_valid" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">estimations_should_be_valid</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates that the estimations are accurate and that size * production rate
+= effort</p>
+          
+
+          
+          <div class="method-source-code" id="estimations_should_be_valid-source">
+            <pre><span class="ruby-comment"># File app/models/deliverable.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">estimations_should_be_valid</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">estimated_effort</span> <span class="ruby-operator">!=</span> (<span class="ruby-identifier">estimated_size</span>.<span class="ruby-identifier">to_f</span> * <span class="ruby-identifier">estimated_production_rate</span>.<span class="ruby-identifier">to_f</span>))
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:estimated_size</span>, <span class="ruby-string">&quot;must be equal to estimated effort / estimated production rate&quot;</span>)
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:estimated_production_rate</span>, <span class="ruby-string">&quot;must be equal to estimated effort / estimated size&quot;</span>)
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:estimated_effort</span>, <span class="ruby-string">&quot;must be equal to estimated size * estimated production rate&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- estimations_should_be_valid-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- estimations_should_be_valid-method -->
+
+    
+      <div id="method-i-unit_of_measure" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unit_of_measure</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the unit of measure associated with this deliverable</p>
+          
+
+          
+          <div class="method-source-code" id="unit_of_measure-source">
+            <pre><span class="ruby-comment"># File app/models/deliverable.rb, line 28</span>
+     <span class="ruby-keyword">def</span> <span class="ruby-identifier">unit_of_measure</span>
+ <span class="ruby-keyword">if</span> <span class="ruby-identifier">assignable_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;StockDeliverableType&quot;</span>
+                     <span class="ruby-identifier">stock_deliverable_type</span> = <span class="ruby-constant">StockDeliverableType</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">assignable_id</span>)
+   <span class="ruby-identifier">stock_deliverable_type</span>.<span class="ruby-identifier">deliverable_type</span>.<span class="ruby-identifier">unit_of_measure</span>.<span class="ruby-identifier">unit</span>
+  <span class="ruby-keyword">else</span>
+                     <span class="ruby-constant">CustomDeliverableType</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">assignable_id</span>).<span class="ruby-identifier">unit_of_measure</span>.<span class="ruby-identifier">unit</span>
+             <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- unit_of_measure-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- unit_of_measure-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->
@@ -201,7 +365,7 @@
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.10.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

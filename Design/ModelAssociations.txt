@@ -21,14 +21,16 @@ LifecyclePhase
 ProjectPhase
  belongs_to :project
  belongs_to :lifecycle_phase
- has_one :custom_deliverable_type
  has_many :stock_deliverable_types
+ has_many :custom_deliverable_types
+ has_many :deliverable_types, :through => :stock_deliverable_types
 
 
 DeliverableType
  belongs_to :lifecycle_phase
  belongs_to :unit_of_measure
- has_many :stock_deliverable_types  
+ has_many :stock_deliverable_types
+ has_many :project_phases, :through => :stock_deliverable_types  
 
 
 StockDeliverableType

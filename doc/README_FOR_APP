@@ -9,6 +9,8 @@ iterative version is a limited function version. {(Demo Site)}[http://gentle-flo
 
 == Finished Story Cards
 
+=== Iteration 1
+ 
 1. View Lifecycle:
 	Users could see a list of lifecycles and lifecycle details through the
 	story card covered features.
@@ -27,9 +29,27 @@ iterative version is a limited function version. {(Demo Site)}[http://gentle-flo
        predefined deliverable type through the features covered by this story 
        card.
 
-5. Automatic Unit of Measure:
+=== Iteration 2
+
+1. Automatic Unit of Measure:
 	User should see the unit of measure automatically filled in when s/he 
 	selects a known deliverable type.
+
+2. Create Custom Deliverable:
+	User should see the unit of measure automatically filled in when s/he 
+	selects a known deliverable type.
+
+3. View Deliverable:
+	User should be able to view a deliverable.
+
+4. Modify Stock Deliverable:
+	User should be able to modify the name, description, type, complexity, size 
+	and production rate of an existing stock deliverable.
+
+5. Modify Custom Deliverable:
+	User should be able to modify the name, description, type, complexity, 
+	unit of measure, size and production rate of an existing custom deliverable.
+
 
 == How to setup PET 1.3 locally
 

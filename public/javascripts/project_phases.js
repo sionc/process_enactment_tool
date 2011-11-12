@@ -26,7 +26,7 @@ $(document).ready(function() {
                 $('#project_phase_name').text(data.lifecycle_phase_container.lifecycle_phase.name);
                 $('#project_phase_description').text(data.lifecycle_phase_container.lifecycle_phase.description);
                 $('#project_phase_sequence_number').text(data.lifecycle_phase_container.lifecycle_phase.sequence_number);
-                $('#project_phase_estimated_effort').text(data.project_phase_estimated_effort);
+                $('#project_phase_estimated_effort').text(data.project_phase_estimated_effort + " hours");
 
                 // Loop through and display deliverables.
                 var deliverableNames = "";
@@ -38,7 +38,14 @@ $(document).ready(function() {
                 $('#new_deliverable_button').attr("href", '/deliverables/new?project_phase_id=' + projectPhaseId);
 
                 $('#project_phase_details_container').show();
-            },
+				// var container = $('.container');
+				// var dialog = $('#dialog');
+				// container.scrollTop(dialog.offset().top - container.offset().top);
+				// $("html").scrollTop($('#dialog').offset().top);
+				$('html, body').animate({scrollTop:$('#dialog').offset().top}, 1000)
+				// $(window).scrollTop($('#dialog').offset().top);
+				
+           },
             error: function() {
                 alert("Ajax failed (phase details)");
             }
@@ -49,7 +56,7 @@ $(document).ready(function() {
 
     $('#project_phases tbody tr').mouseover(function() {
         $(this).css({
-            'background-color': '#D9EAED',
+            'background-color': '#F8DAAE',
             'cursor': 'pointer'
         });
     });

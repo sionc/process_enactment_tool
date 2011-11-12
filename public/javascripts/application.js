@@ -4,11 +4,11 @@ $(document).ready(function() {
 		$("#pm").removeClass("active_tab");
 		$("#lm").addClass("active_tab");
         $("#home").removeClass("active_tab");
-	} else if (pathname.search(/projects/) >=0 ) {
+	} else if ((pathname.search(/projects/) >=0 ) || (pathname.search(/deliverables/) >= 0)) {
 		$("#pm").addClass("active_tab");
 		$("#lm").removeClass("active_tab");
         $("#home").removeClass("active_tab");
-	} else{
+	} else {
         $("#pm").removeClass("active_tab");
 		$("#lm").removeClass("active_tab");
         $("#home").addClass("active_tab");

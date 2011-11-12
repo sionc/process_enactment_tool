@@ -1,3 +1,11 @@
+# This model represents the deliverables created by the user. They are
+# associated with a stock deliverable type or a custom deliverable type
+# through the polymorphic association: belongs_to :assignable, :polymorphic => true
+#
+# Deliverables have estimated effort, estimated size, and estimated production
+# rate attributes that must have this relationship:
+# estimated_effort = estimated_size * estimated_production_rate
+
 class Deliverable < ActiveRecord::Base
 
   belongs_to :assignable, :polymorphic => true
@@ -47,6 +55,5 @@ class Deliverable < ActiveRecord::Base
       errors.add(:estimated_effort, "must be equal to estimated size * estimated production rate")
     end
   end
-
 
 end

@@ -169,6 +169,10 @@
   
     <li><a href="./Object.html">Object</a>
   
+    <li><a href="./PagesController.html">PagesController</a>
+  
+    <li><a href="./PagesHelper.html">PagesHelper</a>
+  
     <li><a href="./Project.html">Project</a>
   
     <li><a href="./ProjectPhase.html">ProjectPhase</a>
@@ -196,6 +200,11 @@
 
   <div id="description" class="description">
     
+<p>This model represents the phases associated with a given project. It is a
+join table, that establishes a many-to-many relationship between <a
+href="LifecyclePhase.html">LifecyclePhase</a> and <a
+href="Project.html">Project</a></p>
+
   </div><!-- description -->
 
   
@@ -232,9 +241,8 @@
 
           
           <div class="method-source-code" id="estimated_effort-source">
-            <pre><span class="ruby-comment"># File app/models/project_phase.rb, line 13</span>
+            <pre><span class="ruby-comment"># File app/models/project_phase.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">estimated_effort</span>
-
 
   <span class="ruby-ivar">@project_phase_deliverables</span> = []
   <span class="ruby-identifier">stock_deliverable_types</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">stock</span><span class="ruby-operator">|</span>

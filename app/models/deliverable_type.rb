@@ -1,3 +1,6 @@
+# This model represents the stock deliverable types that can be created by
+# the user.
+
 class DeliverableType < ActiveRecord::Base
   belongs_to :lifecycle_phase
   belongs_to :unit_of_measure

@@ -1,3 +1,5 @@
+# This model represents the deliverable types that are created by the user.
+
 class CustomDeliverableType < ActiveRecord::Base
   belongs_to :project_phase
   belongs_to :unit_of_measure

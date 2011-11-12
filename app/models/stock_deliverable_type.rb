@@ -1,3 +1,7 @@
+# StockDeliverableType represents a join tables that make it possible to
+# establish a many-to-many relationship between DeliverableType and
+# ProjectPhase
+
 class StockDeliverableType < ActiveRecord::Base
 
   belongs_to :project_phase

@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>Class: ChangePolymorphicDetailsInDeliverables</title>
+<title>Class: PagesController</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>db/migrate/20111008030436_change_polymorphic_details_in_deliverables.rb
+    <li>app/controllers/pages_controller.rb
   </ul>
 </nav>
 
@@ -59,7 +59,7 @@
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
-  <p class="link">ActiveRecord::Migration
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
   
 </nav>
 
@@ -70,9 +70,7 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-c-down">::down</a>
-    
-    <li><a href="#method-c-up">::up</a>
+    <li><a href="#method-i-dashboard">#dashboard</a>
     
   </ul>
 </nav>
@@ -198,10 +196,13 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class ChangePolymorphicDetailsInDeliverables</h1>
+  <h1 class="class">class PagesController</h1>
 
   <div id="description" class="description">
     
+<p>This is the controller for pages that are not associated with a resource.
+It sets up instance variables that will be used in the views.</p>
+
   </div><!-- description -->
 
   
@@ -218,14 +219,14 @@
 
     <!-- Methods -->
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-c-down" class="method-detail ">
+      <div id="method-i-dashboard" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">down</span><span
+          <span class="method-name">dashboard</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -237,60 +238,23 @@
           
 
           
-          <div class="method-source-code" id="down-source">
-            <pre><span class="ruby-comment"># File db/migrate/20111008030436_change_polymorphic_details_in_deliverables.rb, line 10</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">down</span>
-  <span class="ruby-identifier">remove_column</span> <span class="ruby-value">:deliverables</span>, <span class="ruby-value">:assignable_id</span>
-  <span class="ruby-identifier">remove_column</span> <span class="ruby-value">:deliverables</span>, <span class="ruby-value">:assignable_type</span>
-
-  <span class="ruby-identifier">add_column</span> <span class="ruby-value">:deliverables</span>, <span class="ruby-value">:project_deliverable_type_id</span>, <span class="ruby-value">:integer</span>
-  <span class="ruby-identifier">add_column</span> <span class="ruby-value">:deliverables</span>, <span class="ruby-value">:project_deliverable_type_type</span>, <span class="ruby-value">:string</span>
+          <div class="method-source-code" id="dashboard-source">
+            <pre><span class="ruby-comment"># File app/controllers/pages_controller.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dashboard</span>
+  <span class="ruby-ivar">@projects</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">limit</span>(<span class="ruby-value">5</span>)
+  <span class="ruby-ivar">@lifecycles</span> = <span class="ruby-constant">Lifecycle</span>.<span class="ruby-identifier">limit</span>(<span class="ruby-value">5</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- down-source -->
+          </div><!-- dashboard-source -->
           
         </div>
 
         
 
         
-      </div><!-- down-method -->
+      </div><!-- dashboard-method -->
 
     
-      <div id="method-c-up" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">up</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="up-source">
-            <pre><span class="ruby-comment"># File db/migrate/20111008030436_change_polymorphic_details_in_deliverables.rb, line 2</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">up</span>
-  <span class="ruby-identifier">remove_column</span> <span class="ruby-value">:deliverables</span>, <span class="ruby-value">:project_deliverable_type_id</span>
-  <span class="ruby-identifier">remove_column</span> <span class="ruby-value">:deliverables</span>, <span class="ruby-value">:project_deliverable_type_type</span>
-
-  <span class="ruby-identifier">add_column</span> <span class="ruby-value">:deliverables</span>, <span class="ruby-value">:assignable_id</span>, <span class="ruby-value">:integer</span>
-  <span class="ruby-identifier">add_column</span> <span class="ruby-value">:deliverables</span>, <span class="ruby-value">:assignable_type</span>, <span class="ruby-value">:string</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- up-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- up-method -->
-
-    
-    </section><!-- public-class-method-details -->
+    </section><!-- public-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

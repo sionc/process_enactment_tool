@@ -1,3 +1,6 @@
+# This model represents user-created projects. Each project is associated with
+# a lifecycle, and has a collection of project phases.
+
 class Project < ActiveRecord::Base
   belongs_to :lifecycle
   has_many :project_phases

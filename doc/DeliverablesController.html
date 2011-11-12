@@ -187,6 +187,10 @@
   
     <li><a href="./Object.html">Object</a>
   
+    <li><a href="./PagesController.html">PagesController</a>
+  
+    <li><a href="./PagesHelper.html">PagesHelper</a>
+  
     <li><a href="./Project.html">Project</a>
   
     <li><a href="./ProjectPhase.html">ProjectPhase</a>
@@ -214,6 +218,12 @@
 
   <div id="description" class="description">
     
+<p>This is the controller for our deliverable resource. It sets up instance
+variables that will be used in the views. This controller provides 
+functionality for creating both stock and custom deliverables. It also
+provides functions used in deliverable-related AJAX calls that return JSON
+strings.</p>
+
   </div><!-- description -->
 
   
@@ -251,7 +261,7 @@ associations to create this deliverable created through @assignable</p>
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 57</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@assignable</span> = <span class="ruby-identifier">find_assignable</span>
 
@@ -304,7 +314,7 @@ associations to create this deliverable created through @assignable</p>
 
           
           <div class="method-source-code" id="create_custom_deliverable_type-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 112</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 118</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_custom_deliverable_type</span>
   <span class="ruby-comment"># we get the posted variables</span>
   <span class="ruby-comment"># save them to the database</span>
@@ -347,7 +357,7 @@ associations to create this deliverable created through @assignable</p>
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 102</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 108</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@deliverable</span>.<span class="ruby-identifier">destroy</span>
@@ -383,7 +393,7 @@ associations to create this deliverable created through @assignable</p>
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 49</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -413,7 +423,7 @@ associations to create this deliverable created through @assignable</p>
 
           
           <div class="method-source-code" id="get_unit_of_measure-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 129</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 135</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_unit_of_measure</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignable_type</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;StockDeliverableType&quot;</span>
                       <span class="ruby-identifier">stock_deliverable_type</span> = <span class="ruby-constant">StockDeliverableType</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignable_id</span>])
@@ -453,7 +463,7 @@ associations to create this deliverable created through @assignable</p>
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@deliverables</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">all</span>
 
@@ -488,7 +498,7 @@ associations to create this deliverable created through @assignable</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@project_phase_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:project_phase_id</span>]
@@ -526,7 +536,7 @@ associations to create this deliverable created through @assignable</p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
@@ -562,7 +572,7 @@ get the deliverables for the selected phase</p>
 
           
           <div class="method-source-code" id="show_phase_deliverables-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_phase_deliverables</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">all</span>
 
@@ -596,7 +606,7 @@ get the deliverables for the selected phase</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 86</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 

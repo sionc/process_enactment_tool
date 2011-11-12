@@ -1,3 +1,7 @@
+# This is the controller for our lifecycle resource. It sets up instance
+# variables that will be used in the views. This controller provides 
+# functionality for the CRUD operations of our Lifecycle model.
+
 class LifecyclesController < ApplicationController
   # GET /lifecycles
   # GET /lifecycles.xml

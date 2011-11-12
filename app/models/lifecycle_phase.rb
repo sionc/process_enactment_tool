@@ -1,3 +1,7 @@
+# This model represents the pre-defined lifecycle phases. Lifecycles have many
+# lifecycle phases; each project phase belongs to a lifecycle phase.
+# Deliverable types are pre-defined for each lifecycle phase.
+
 class LifecyclePhase < ActiveRecord::Base
   belongs_to :lifecycle
   has_many :project_phases

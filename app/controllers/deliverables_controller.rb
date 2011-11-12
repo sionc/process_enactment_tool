@@ -1,3 +1,9 @@
+# This is the controller for our deliverable resource. It sets up instance
+# variables that will be used in the views. This controller provides 
+# functionality for creating both stock and custom deliverables. It also
+# provides functions used in deliverable-related AJAX calls that return
+# JSON strings.
+
 class DeliverablesController < ApplicationController
   # GET /deliverables
   # GET /deliverables.xml

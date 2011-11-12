@@ -1,3 +1,6 @@
+# This is the controller for pages that are not associated with a resource.
+# It sets up instance variables that will be used in the views. 
+
 class PagesController < ApplicationController
 
   def dashboard

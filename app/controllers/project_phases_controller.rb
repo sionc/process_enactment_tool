@@ -1,3 +1,7 @@
+# This is the controller for our project phase resource. 
+# It provides functions (that return JSON strings) in support of AJAX calls
+# on our projects/show page. 
+
 class ProjectPhasesController < ApplicationController
   # Return JSON string for project phase details. Will be used by project show page.
   def show

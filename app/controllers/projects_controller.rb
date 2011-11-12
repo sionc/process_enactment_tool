@@ -1,3 +1,7 @@
+# This is the controller for our project resource. It sets up instance
+# variables that will be used in the views. This controller provides 
+# functionality for creating and reading our Project model.
+
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.xml

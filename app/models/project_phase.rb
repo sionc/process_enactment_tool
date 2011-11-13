@@ -13,6 +13,8 @@ class ProjectPhase < ActiveRecord::Base
   validates :lifecycle_phase_id, :presence => true
   validates :project_id, :presence => true
 
+  # Returns estimated effort for a ProjectPhase by calculating the sum of the
+  # estimated effort for each StockDeliverableType and CustomDeliverableType
   def estimated_effort
 
     @project_phase_deliverables = []

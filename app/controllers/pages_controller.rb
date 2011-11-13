@@ -3,6 +3,8 @@
 
 class PagesController < ApplicationController
 
+  # GET /pages/dashboard
+  # Controller action for displaying a summary of lifecycles and projects
   def dashboard
     @projects = Project.limit(5)
     @lifecycles = Lifecycle.limit(5)

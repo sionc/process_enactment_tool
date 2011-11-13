@@ -89,6 +89,8 @@
   
     <li class="file"><a href="./Design/ModelAssociations_txt.html">ModelAssociations</a>
   
+    <li class="file"><a href="./Design/ScreenFlow_txt.html">ScreenFlow</a>
+  
     <li class="file"><a href="./Design/ToolsAndTechniques_txt.html">ToolsAndTechniques</a>
   
     <li class="file"><a href="./Gemfile.html">Gemfile</a>
@@ -236,12 +238,14 @@ with a lifecycle, and has a collection of project phases.</p>
 
         <div class="method-description">
           
-          
+          <p>Returns the estimated effort for the <a href="Project.html">Project</a> by
+taking the sum of the estimated effort for <a
+href="ProjectPhase.html">ProjectPhase</a></p>
           
 
           
           <div class="method-source-code" id="estimated_effort-source">
-            <pre><span class="ruby-comment"># File app/models/project.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/models/project.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">estimated_effort</span>
   <span class="ruby-identifier">total_estimated_effort</span> = <span class="ruby-value">0</span>
   <span class="ruby-identifier">project_phases</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">phase</span><span class="ruby-operator">|</span>

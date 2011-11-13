@@ -13,7 +13,8 @@ class ProjectsController < ApplicationController
       format.xml  { render :xml => @projects }
     end
   end
-  
+
+  # GET /projects/home
   def home
   end
 

@@ -87,6 +87,8 @@
   
     <li class="file"><a href="./Design/ModelAssociations_txt.html">ModelAssociations</a>
   
+    <li class="file"><a href="./Design/ScreenFlow_txt.html">ScreenFlow</a>
+  
     <li class="file"><a href="./Design/ToolsAndTechniques_txt.html">ToolsAndTechniques</a>
   
     <li class="file"><a href="./Gemfile.html">Gemfile</a>
@@ -234,12 +236,13 @@ It sets up instance variables that will be used in the views.</p>
 
         <div class="method-description">
           
-          
+          <p>GET /pages/dashboard Controller action for displaying a summary of
+lifecycles and projects</p>
           
 
           
           <div class="method-source-code" id="dashboard-source">
-            <pre><span class="ruby-comment"># File app/controllers/pages_controller.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/controllers/pages_controller.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">dashboard</span>
   <span class="ruby-ivar">@projects</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">limit</span>(<span class="ruby-value">5</span>)
   <span class="ruby-ivar">@lifecycles</span> = <span class="ruby-constant">Lifecycle</span>.<span class="ruby-identifier">limit</span>(<span class="ruby-value">5</span>)

@@ -14,6 +14,7 @@ class LifecyclesController < ApplicationController
     end
   end
 
+  # GET /lifecycles/home
   def home
   end
 

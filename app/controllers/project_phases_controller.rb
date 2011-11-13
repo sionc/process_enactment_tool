@@ -3,6 +3,7 @@
 # on our projects/show page. 
 
 class ProjectPhasesController < ApplicationController
+
   # Return JSON string for project phase details. Will be used by project show page.
   def show
     @project_phase = ProjectPhase.find(params[:id])

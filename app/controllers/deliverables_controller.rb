@@ -115,6 +115,8 @@ class DeliverablesController < ApplicationController
     end
   end
 
+  # Creates a CustomDeliverableType
+  # Associates a ProjectPhase and UnitOfMeasure to the CustomDeliverableType
   def create_custom_deliverable_type
     # we get the posted variables
     # save them to the database
@@ -132,6 +134,7 @@ class DeliverablesController < ApplicationController
     end
   end
 
+  # Gets the UnitOfMeasure associated with the DeliverableType
   def get_unit_of_measure
     if params[:assignable_type] == "StockDeliverableType"
 			stock_deliverable_type = StockDeliverableType.find(params[:assignable_id])
@@ -146,10 +149,15 @@ class DeliverablesController < ApplicationController
     end
   end
 
-  # Copied from railscasts.com (#154-polymorphic-assocation)
-  # modified to fit our needs so we can find the deliverable type
+
   private
 
+  # Finds a StockDeliverableType or CustomDeliverableType based on the
+  # assignable_id (See Deliverable).
+  # This method expects a valid stock_deliverable_type_id or a
+  # custom_deliverable_type_id.
+  # Copied from railscasts.com (#154-polymorphic-assocation)
+  # modified to fit our needs so we can find the deliverable type
   def find_assignable
     params[:deliverable].each do |name, value|
       # (.+) extracts the substring before _deliverable_type_id
@@ -161,6 +169,9 @@ class DeliverablesController < ApplicationController
     nil
   end
 
+  # This method is used by the DeliverablesController.new and
+  # DeliverablesController.edit to gather the collections that need
+  # to be displayed on the associated forms.
   def gather_collections
     project_phase = ProjectPhase.find(@project_phase_id)
 

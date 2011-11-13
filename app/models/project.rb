@@ -13,6 +13,8 @@ class Project < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
   validates :lifecycle_id, :presence => true
 
+  # Returns the estimated effort for the Project by taking the sum of
+  # the estimated effort for ProjectPhase
   def estimated_effort
     total_estimated_effort = 0
     project_phases.each do |phase|

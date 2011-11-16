@@ -12,8 +12,6 @@ html {
 	
 }
 body { 
-/*	background-color: rgba(231,223,156,49);*/
-/*	background-color: whitesmoke;*/
 	background:inherit;
 	background: url(/images/squares.png) no-repeat center top;
 	width: 100%;
@@ -22,48 +20,19 @@ body {
 	color: #333; 
 	background-color: transparent;
 	padding-top: 120px;
-	/* 231,223,156 */
-/*    background-image: linear-gradient(bottom, rgb(192,192,192) 93%, rgb(245, 245, 245) 49%);
-    background-image: -o-linear-gradient(bottom, rgb(192,192,192) 93%, rgb(245, 245, 245) 49%);
-    background-image: -moz-linear-gradient(top, rgb(192,192,192) 10%, rgb(245, 245, 245) 49%);
-    background-image: -webkit-linear-gradient(bottom, rgb(192,192,192) 93%, rgb(245, 245, 245) 49%);
-    background-image: -ms-linear-gradient(bottom, rgb(192,192,192) 93%, rgb(245, 245, 245) 49%);
-    background-image: -webkit-gradient(linear, 
-									   left bottom, 
-									   left top, 
-									   color-stop(0.93, rgb(192,192,192)), 
-									   color-stop(0.49, rgb(245, 245, 245)));
-	background-repeat: no-repeat;
-*/	
-	
-	
-	
-	
-	
-/*		font-family: 'Arvo', serif !important;*/
-		font-family: 'Coda', cursive;
-/*		font-family: 'Comfortaa', cursive !important;*/
-/*		font-family: 'Droid Sans', sans-serif !important;*/
-/*		font-family: 'Ovo', serif !important;*/
-
-	
+	font-family: 'Coda', cursive;
 }
 
 h1 {
-	/*color: #E56717;*/
-	/*text-shadow: darkgray 0em 0em 0.2em;*/
-    font-size: 18px;
-    text-align: left;
-    border-style:solid;
-    border-bottom-width:1px;
-    border-bottom-color:#082638;
-/*    padding-left: 10px;*/
+  font-size: 18px;
+  text-align: left;
+  border-style:solid;
+  border-bottom-width:1px;
+  border-bottom-color:#082638;
 	margin-bottom: 3px;
-	
 }
 
 label, input, select, textarea {
-/*	font-family: 'Arvo', serif;*/
 	font-family: 'Coda', cursive;
 }
 
@@ -116,7 +85,6 @@ div.field, div.actions {
     margin-right: auto;
 }
 .active_tab {
-/*	background-color: #5A9B00;*/
 	background: #9ab200; /* Old browsers */
 	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
 	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM5YWIyMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI5OSUiIHN0b3AtY29sb3I9IiM1YTliMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvcmFkaWFsR3JhZGllbnQ+CiAgPHJlY3QgeD0iLTUwIiB5PSItNTAiIHdpZHRoPSIxMDEiIGhlaWdodD0iMTAxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
@@ -239,11 +207,15 @@ a[id ~= 'view_project'], a[id ~= 'view_lifecycles']{
 
 .small-text
 {
-     font-size:x-small;
-     color: white;
+	font-size:x-small;
+	color: white;
 }
 
-
+#view_historical_data
+{
+	float:right;
+	margin-top:-20px;
+}
 
 /* Overrides for bootstrap twitter */
 

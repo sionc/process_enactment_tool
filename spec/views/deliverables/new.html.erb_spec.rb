@@ -41,7 +41,11 @@ describe "deliverables/new.html.erb" do
   	rendered.should have_xpath("//tr/td[text()='Minimum']")
   	rendered.should have_xpath("//tr/td[text()='Average']")
   	rendered.should have_xpath("//tr/td[text()='Maximum']")
-  	
 	end
-	    
+  
+	it "should have a view historical data link" do
+    render
+    rendered.should have_xpath("//*[text()='View historical data']")
+	end
+		    
 end

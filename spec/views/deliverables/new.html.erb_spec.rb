@@ -32,4 +32,16 @@ describe "deliverables/new.html.erb" do
 
     rendered.should have_selector("p#deliverable_unit_of_measure", :content => "Unit of measure")
   end
+  
+  it "should have a historical data table" do
+    render
+  	rendered.should have_xpath("//tr/th[text()='Size']")
+  	rendered.should have_xpath("//tr/th[text()='Production rate']")
+  	rendered.should have_xpath("//tr/th[text()='Effort']")
+  	rendered.should have_xpath("//tr/td[text()='Minimum']")
+  	rendered.should have_xpath("//tr/td[text()='Average']")
+  	rendered.should have_xpath("//tr/td[text()='Maximum']")
+  	
+	end
+	    
 end

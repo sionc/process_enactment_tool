@@ -46,3 +46,16 @@ Factory.define :complexity do |c|
   c.level                    "low"
 end
 
+# This deliverable is not associated with a assignable_type
+# Currently, the assignable_type and assignable_id are hard coded
+Factory.define :deliverable do |stk_del|
+  stk_del.name                            "Stock Deliverable"
+  stk_del.description                     "This is the description of the stock deliverable"
+  stk_del.estimated_size                  1
+  stk_del.estimated_production_rate       2.5
+  stk_del.estimated_effort                2.5
+  stk_del.assignable_id                   1
+  stk_del.assignable_type                 "StockDeliverableType"
+  stk_del.association                     :complexity
+end
+

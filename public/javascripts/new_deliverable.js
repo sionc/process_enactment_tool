@@ -152,4 +152,12 @@ $(document).ready(function() {
     $('#deliverable_assignable_id').change(showHiddenInputField);
 
     buildDeliverableDialog();
+
+	$("#view_historical_data").toggle(function(){
+		$("#historical_data_table").slideDown();
+		$(this).text("Hide historical data");
+	}, function(){
+		$("#historical_data_table").slideUp();
+		$(this).text("Show historical data");
+	});
 });

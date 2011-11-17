@@ -36,7 +36,7 @@ describe "deliverables/new.html.erb" do
   it "should have a historical data table" do
     render
   	rendered.should have_xpath("//tr/th[text()='Size']")
-  	rendered.should have_xpath("//tr/th[text()='Production rate']")
+  	rendered.should have_xpath("//tr/th[text()='Rate']")
   	rendered.should have_xpath("//tr/th[text()='Effort']")
   	rendered.should have_xpath("//tr/td[text()='Minimum']")
   	rendered.should have_xpath("//tr/td[text()='Average']")

@@ -217,6 +217,10 @@ a[id ~= 'view_project'], a[id ~= 'view_lifecycles']{
 	margin-top:-20px;
 }
 
+#historical_data_table {
+	margin-left: 150px;
+}
+
 /* Overrides for bootstrap twitter */
 
 .container {

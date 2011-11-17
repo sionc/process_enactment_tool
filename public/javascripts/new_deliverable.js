@@ -169,17 +169,22 @@ function() {
 // show or hide the table appropriately
 var addViewHistoricalDataEventHandler = function() {
   $("#view_historical_data").click(function(){
-    
-    // If the historical data is shown
-    if ($("#historical_data_table").is(":visible"))
+
+    var assignable = getAssignable();
+
+    if( assignable[0] == "stock")
     {
-      hideHistoricalData();
-    }
-    
-    // Otherwise, if the historical data is shown
-    else
-    {
-      showHistoricalData();
+        // If the historical data is shown
+        if ($("#historical_data_table").is(":visible"))
+        {
+          hideHistoricalData();
+        }
+
+        // Otherwise, if the historical data is shown
+        else
+        {
+          showHistoricalData();
+        }
     }
   });
 }

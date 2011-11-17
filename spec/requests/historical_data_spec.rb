@@ -33,7 +33,9 @@ describe "Deliverable Historical Data" do
       fill_in "name", :with => "My new type"
       select('diagrams', :from => 'unit_of_measure_id')
       click_button "Create"
-      # page.should have_xpath("//*[@disabled='disabled'][text()='View historical data']")
+      page.should have_content("No historical data")
+      click_link "No historical data"
+      page.should have_xpath("//tr/th[text()='Size']", :visible => false)
     end
   end
 end

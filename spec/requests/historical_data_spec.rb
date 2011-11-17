@@ -26,6 +26,16 @@ describe "Deliverable Historical Data" do
       page.should have_xpath("//tr/th[text()='Size']", :visible => true)
       
     end
+    
+    it "should disable the view historical data link when a custom deliverable type is selected", :js => true do
+      before_filter
+      page.should have_xpath("//*[text()='View historical data']")
+      select('New...', :from => 'deliverable_assignable_id')
+      fill_in "name", :with => "My new type"
+      select('diagrams', :from => 'unit_of_measure_id')
+      click_button "Create"
+      # page.should have_xpath("//*[@disabled='disabled'][text()='View historical data']")
+    end
   end
 end
 

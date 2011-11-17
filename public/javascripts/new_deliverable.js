@@ -61,6 +61,18 @@ var loadUnitOfMeasure =
 
     };
 
+var toggleHistoricalDataLink = 
+function() {
+	var a_values = getAssignable();
+	if(a_values[0] == "stock") {
+		$("view_historical_data").attr("disabled", "disabled");
+	} else if(a_values[0] == "custom") {
+		$("view_historical_data").removeAttr("disabled");
+	} else {
+		return;
+	}
+}
+
 var getAssignable =
     function() {
         var deliverableTypeId = $('#deliverable_assignable_id option:selected').val();
@@ -122,9 +134,7 @@ function() {
                         $('#deliverable_assignable_id').append($("<option></option>")
                         .attr("value", "custom_" + data.id)
                         .attr("selected", "selected")
-                        .text(data.name));
-                        showHiddenInputField();
-                        loadUnitOfMeasure();
+                        .text(data.name)).trigger('change');
                         $(this).dialog('close');
 
                     }
@@ -150,6 +160,7 @@ $(document).ready(function() {
 		// Deliverable type event handlers
     $('#deliverable_assignable_id').change(loadUnitOfMeasure);
     $('#deliverable_assignable_id').change(showHiddenInputField);
+	$('#deliverable_assignable_id').change(toggleHistoricalDataLink);
 
     buildDeliverableDialog();
 

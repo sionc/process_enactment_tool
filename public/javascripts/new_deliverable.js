@@ -58,20 +58,35 @@ var loadUnitOfMeasure =
                 $('#unit_of_measure_name').html(data.name);
             }
         });
-
     };
 
-var toggleHistoricalDataLink = 
+var hideHistoricalData =
 function() {
-	var a_values = getAssignable();
+  $("#historical_data_table").slideUp();
+	$("#view_historical_data").text("Show historical data");
+};
+
+var showHistoricalData =
+function() {
+  $("#historical_data_table").slideDown();
+  $("#view_historical_data").text("Hide historical data");
+};
+
+var updateHistoricalDataState = 
+function() {
+  hideHistoricalData();
+  
+  // Enable or disable the link as appropriate
+  var a_values = getAssignable();
 	if(a_values[0] == "stock") {
-		$("view_historical_data").attr("disabled", "disabled");
-	} else if(a_values[0] == "custom") {
-		$("view_historical_data").removeAttr("disabled");
-	} else {
-		return;
+		$("#view_historical_data_container").removeClass("disabled");
 	}
-}
+	
+	else {
+	  $("#view_historical_data_container").addClass("disabled");
+	  $("#view_historical_data").text("No historical data");
+  }
+};
 
 var getAssignable =
     function() {
@@ -150,6 +165,24 @@ function() {
     })
 };
 
+// When you click the view historical data link,
+// show or hide the table appropriately
+var addViewHistoricalDataEventHandler = function() {
+  $("#view_historical_data").click(function(){
+    
+    // If the historical data is shown
+    if ($("#historical_data_table").is(":visible"))
+    {
+      hideHistoricalData();
+    }
+    
+    // Otherwise, if the historical data is shown
+    else
+    {
+      showHistoricalData();
+    }
+  });
+}
 
 $(document).ready(function() {
 
@@ -160,15 +193,8 @@ $(document).ready(function() {
 		// Deliverable type event handlers
     $('#deliverable_assignable_id').change(loadUnitOfMeasure);
     $('#deliverable_assignable_id').change(showHiddenInputField);
-	$('#deliverable_assignable_id').change(toggleHistoricalDataLink);
+	  $('#deliverable_assignable_id').change(updateHistoricalDataState);
 
     buildDeliverableDialog();
-
-	$("#view_historical_data").toggle(function(){
-		$("#historical_data_table").slideDown();
-		$(this).text("Hide historical data");
-	}, function(){
-		$("#historical_data_table").slideUp();
-		$(this).text("Show historical data");
-	});
+    addViewHistoricalDataEventHandler();
 });

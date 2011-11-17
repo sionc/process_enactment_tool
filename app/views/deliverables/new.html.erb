@@ -50,7 +50,9 @@
 		<div class="input">
 			<%= f.select :complexity_id, @complexities.map {|c| [c.level, c.id]} %>
 		</div>
-		<a href="javascript:void(0);" id="view_historical_data">View historical data</a>
+		<div id="view_historical_data_container">
+		  <a href="javascript:void(0);" id="view_historical_data">View historical data</a>
+		</div>
   </div>
   
   <div id="historical_data_table" class="clearfix" style="display:none">

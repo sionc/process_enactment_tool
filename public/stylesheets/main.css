@@ -221,6 +221,12 @@ a[id ~= 'view_project'], a[id ~= 'view_lifecycles']{
 	margin-left: 150px;
 }
 
+.disabled a {
+  color: darkgray;
+  text-decoration: none;
+  cursor: default;
+}
+
 /* Overrides for bootstrap twitter */
 
 .container {

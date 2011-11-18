@@ -51,9 +51,9 @@ describe StockDeliverableType do
    invalid_stock_deliverable_type.should_not be_valid
    end
 
-  #it "should return the StockDeliverableType deliverable with minimum estimated effort for complexity type of low" do
-  #  minimum_deliverable = StockDeliverableType.minimum_estimated_effort("low")
-  #  minimum_deliverable.should eql?(@del1)
-  #end
+  it "should return the StockDeliverableType deliverable with minimum estimated effort for complexity type of low" do
+    minimum_deliverable = StockDeliverableType.minimum_estimated_effort("low")
+    minimum_deliverable.should eql?(@del1)
+  end
 
 end

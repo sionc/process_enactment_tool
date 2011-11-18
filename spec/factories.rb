@@ -56,6 +56,6 @@ Factory.define :deliverable do |stk_del|
   stk_del.estimated_effort                2.5
   stk_del.assignable_id                   1
   stk_del.assignable_type                 "StockDeliverableType"
-  stk_del.association                     :complexity
+  stk_del.complexity_id                   1
 end
 

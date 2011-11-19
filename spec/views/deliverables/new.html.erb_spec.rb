@@ -45,7 +45,7 @@ describe "deliverables/new.html.erb" do
   
 	it "should have a view historical data link" do
     render
-    rendered.should have_xpath("//*[text()='View historical data']")
+    rendered.should have_xpath("//*[text()='Show historical data']")
 	end
 		    
 end

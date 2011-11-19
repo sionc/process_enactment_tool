@@ -42,7 +42,7 @@ namespace :db do
       phase.deliverable_types.each do |dType|      
         dType.stock_deliverable_types.each do |sdt|
           
-          # Loop through each complexity, so we have deliverables for each
+          # Loop through each complexity, so we have deliverabless for each
           Complexity.all.each do |complexity|
             # Loop four times to build four deliverables for each stock deliverable type
             (1..4).each do |num|
@@ -55,7 +55,7 @@ namespace :db do
                                  :estimated_effort => estimated_size * estimated_production_rate,
                                  :assignable_id => sdt.id,
                                  :assignable_type => "StockDeliverableType",
-                                 :complexity_id => Complexity.first.id)
+                                 :complexity_id => complexity.id)
 
             end
           end      

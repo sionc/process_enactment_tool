@@ -259,7 +259,9 @@ $(document).ready(function() {
 		// Deliverable type event handlers
     $('#deliverable_assignable_id').change(loadUnitOfMeasure);
     $('#deliverable_assignable_id').change(showHiddenInputField);
-	$('#deliverable_assignable_id').change(updateHistoricalDataState);
+	  $('#deliverable_assignable_id').change(updateHistoricalDataState);
+    // $('#deliverable_assignable_id').change(loadHistoricalData);
+    // $('#deliverable_complexity_id').change(loadHistoricalData);
 
     buildDeliverableDialog();
     addViewHistoricalDataEventHandler();

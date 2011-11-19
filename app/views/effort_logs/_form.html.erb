@@ -11,31 +11,39 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :start_date_time %><br />
-    <%= f.datetime_select :start_date_time %>
+  <div class="clearfix">
+    <%= f.label :start_date_time %>
+    <div class="input">
+      <%= f.datetime_select :start_date_time %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :stop_date_time %><br />
-    <%= f.datetime_select :stop_date_time %>
+  
+  <div class="clearfix">
+    <%= f.label :stop_date_time %>
+    <div class="input">
+      <%= f.datetime_select :stop_date_time %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :interrupt_time %><br />
-    <%= f.text_field :interrupt_time %>
+  
+  <div class="clearfix">
+    <%= f.label :interrupt_time %>
+    <div class="input">
+      <%= f.text_field :interrupt_time %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :comment %><br />
-    <%= f.text_area :comment %>
+  
+  <div class="clearfix">
+    <%= f.label :comment %>
+    <div class="input">
+      <%= f.text_area :comment %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
+  
+  <%= f.hidden_field :deliverable_id, :value => @deliverable_id %>
+  
+  <div class="input">
+    <%= f.submit "Log", :class => "btn primary" %>
+    <%= link_to 'Cancel', deliverable_path(@deliverable_id), :class => "btn danger" %>
   </div>
-  <div class="field">
-    <%= f.label :deliverable_id %><br />
-    <%= f.text_field :deliverable_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
 <% end %>

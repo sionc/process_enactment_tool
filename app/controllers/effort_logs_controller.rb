@@ -25,7 +25,8 @@ class EffortLogsController < ApplicationController
   # GET /effort_logs/new.xml
   def new
     @effort_log = EffortLog.new
-
+    @deliverable_id = params[:deliverable_id]
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @effort_log }
@@ -41,10 +42,12 @@ class EffortLogsController < ApplicationController
   # POST /effort_logs.xml
   def create
     @effort_log = EffortLog.new(params[:effort_log])
-
+    
     respond_to do |format|
       if @effort_log.save
-        format.html { redirect_to(@effort_log, :notice => 'Effort log was successfully created.') }
+        @deliverable = Deliverable.find(@effort_log.deliverable_id)
+        
+        format.html { redirect_to(@deliverable, :notice => 'Effort log was successfully created.') }
         format.xml  { render :xml => @effort_log, :status => :created, :location => @effort_log }
       else
         format.html { render :action => "new" }

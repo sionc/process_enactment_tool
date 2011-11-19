@@ -1,0 +1,29 @@
+<h1>Listing effort_logs</h1>
+
+<table>
+  <tr>
+    <th>Start date time</th>
+    <th>Stop date time</th>
+    <th>Interrupt time</th>
+    <th>Comment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @effort_logs.each do |effort_log| %>
+  <tr>
+    <td><%= effort_log.start_date_time %></td>
+    <td><%= effort_log.stop_date_time %></td>
+    <td><%= effort_log.interrupt_time %></td>
+    <td><%= effort_log.comment %></td>
+    <td><%= link_to 'Show', effort_log %></td>
+    <td><%= link_to 'Edit', edit_effort_log_path(effort_log) %></td>
+    <td><%= link_to 'Destroy', effort_log, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Effort log', new_effort_log_path %>

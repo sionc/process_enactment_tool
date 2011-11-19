@@ -1,5 +1,7 @@
 PET::Application.routes.draw do
 
+  resources :effort_logs
+
   match 'lifecycles/home' => 'lifecycles#home'
   resources :lifecycles, :except => [:new, :create, :edit, :destroy, :update]
 

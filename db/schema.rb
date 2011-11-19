@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111026220121) do
+ActiveRecord::Schema.define(:version => 20111119173331) do
 
   create_table "complexities", :force => true do |t|
     t.string   "level"
@@ -45,6 +45,17 @@ ActiveRecord::Schema.define(:version => 20111026220121) do
     t.integer  "assignable_id"
     t.string   "assignable_type"
     t.integer  "complexity_id"
+  end
+
+  create_table "effort_logs", :force => true do |t|
+    t.datetime "start_date_time"
+    t.datetime "stop_date_time"
+    t.integer  "interrupt_time"
+    t.text     "comment"
+    t.integer  "user_id"
+    t.integer  "deliverable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "lifecycle_phases", :force => true do |t|

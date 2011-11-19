@@ -14,6 +14,7 @@ describe "Deliverable Historical Data" do
        page.should have_content("Gentle Flower")
        page.execute_script("$('#project_phases tbody > tr:first').click()")
        page.should have_content("Functional Requirements Document 1")
+       sleep(1.5)
        click_link 'New Deliverable'
      }
 
@@ -47,6 +48,7 @@ describe "Deliverable Historical Data" do
       visit projects_path
       click_link 'Test Gentle Flower'
       page.execute_script("$('#project_phases tbody > tr:first').click()")
+      sleep(2)
       click_link 'New Deliverable'  
       
     end

@@ -24,7 +24,7 @@ describe "Deliverable Historical Data" do
       click_link 'View historical data'
       page.should have_xpath("//*[text()='Hide historical data']")
       page.should have_xpath("//tr/th[text()='Size']", :visible => true)
-    end
+    end    
     
     it "should disable the view historical data link when a custom deliverable type is selected", :js => true do
       before_filter
@@ -38,6 +38,53 @@ describe "Deliverable Historical Data" do
       page.should have_xpath("//tr/th[text()='Size']", :visible => false)
     end
   end
+  
+  describe "GET new with set data history" do
+    before(:each) do
+      `rake db:seed`
+      `rake db:seed_test_data`
+      
+      visit projects_path
+      click_link 'Test Gentle Flower'
+      page.execute_script("$('#project_phases tbody > tr:first').click()")
+      click_link 'New Deliverable'  
+      
+    end
+    
+        
+    it "should show the historical data", :js => true do   
+      page.should have_xpath("//*[text()='View historical data']")  
+      page.should have_xpath("//tr/th[text()='Size']", :visible => false)
+      click_link 'View historical data'
+      page.should have_xpath("//*[text()='Hide historical data']")
+      page.should have_xpath("//tr/th[text()='Size']", :visible => true)
+      page.should have_xpath("//tr/th[text()='Rate']", :visible => true)
+      page.should have_xpath("//tr/th[text()='Effort']", :visible => true)
+      
+      page.should have_xpath("//tr/td[text()='Minimum']", :visible => true)
+      page.should have_xpath("//tr/td[text()='Average']", :visible => true)
+      page.should have_xpath("//tr/td[text()='Maximum']", :visible => true)      
+      
+      
+      page.should have_xpath("//tr/td[text()='2']", :visible => true)
+      page.should have_xpath("//tr/td[text()='6']", :visible => true)
+      page.should have_xpath("//tr/td[text()='12']", :visible => true)
+
+      page.should have_xpath("//tr/td[text()='8']", :visible => true)
+      page.should have_xpath("//tr/td[text()='24']", :visible => true)
+      page.should have_xpath("//tr/td[text()='192']", :visible => true)
+      
+      page.should have_xpath("//tr/td[text()='32']", :visible => true)
+      page.should have_xpath("//tr/td[text()='96']", :visible => true)
+      page.should have_xpath("//tr/td[text()='3072']", :visible => true)
+
+      page.should_not have_xpath("//tr/td[text()='18']", :visible => true)
+      page.should_not have_xpath("//tr/td[text()='54']", :visible => true)
+      page.should_not have_xpath("//tr/td[text()='972']", :visible => true)
+    end      
+  end    
+  
+  
 end
 
 

@@ -149,6 +149,30 @@ class DeliverablesController < ApplicationController
     end
   end
 
+  # Gets the Historical data for the given deliverable type and complexity
+  def get_historical_data
+    return_val = []
+    if params[:stock_deliverable_type_id] && params[:complexity_id]
+      del_type_id = params[:stock_deliverable_type_id]
+      complexity_id = params[:complexity_id]
+      
+      stock_deliverable_type = StockDeliverableType.find_by_id(del_type_id)
+      unless stock_deliverable_type.nil?
+        min_record = stock_deliverable_type.get_del_with_min_effort(complexity_id)
+        avg_record = stock_deliverable_type.get_del_with_avg_effort(complexity_id)
+        max_record = stock_deliverable_type.get_del_with_max_effort(complexity_id)
+        
+        return_val[0] = [min_record.estimated_size, min_record.estimated_production_rate, min_record.estimated_effort]
+        return_val[1] = [avg_record.estimated_size, avg_record.estimated_production_rate, avg_record.estimated_effort]
+        return_val[2] = [max_record.estimated_size, max_record.estimated_production_rate, max_record.estimated_effort]
+        
+      end
+    end
+    # return a json string
+    respond_to do |format|
+      format.json { render :json => {:hist => return_val} }
+    end
+  end
 
   private
 

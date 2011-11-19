@@ -60,6 +60,66 @@ var loadUnitOfMeasure =
         });
     };
 
+var loadHistoricalData =
+function() {
+  	
+	var a_values = getAssignable();
+  var a_type = "";
+  var del_type = a_values[0];
+  var a_id = a_values[1];
+
+  if(del_type == "stock") {
+          
+      var query_values = {
+          "stock_deliverable_type_id": a_id,
+          "complexity_id": $("#deliverable_complexity_id option:selected").val()
+      };
+      $.ajax({
+          type: 'POST',
+          url: '/deliverables/get_historical_data',
+          data: query_values,
+          dataType: 'json',
+          success: function(data) {
+            
+            var table_data = "<table class='condensed-table show_all'> \
+              <thead> \
+                <tr> \
+                  <th></th> \
+                  <th>Size</th> \
+                  <th>Rate</th> \
+                  <th>Effort</th> \
+                </tr> \
+              </thead> \
+              <tbody> \
+                <tr> \
+                  <td>Minimum</td> \
+                  <td>"+data.hist[0][0]+"</td> \
+                  <td>"+data.hist[0][1]+"</td> \
+                  <td>"+data.hist[0][2]+"</td> \
+                </tr> \
+                <tr> \
+                  <td>Average</td> \
+                  <td>"+data.hist[1][0]+"</td> \
+                  <td>"+data.hist[1][1]+"</td> \
+                  <td>"+data.hist[1][2]+"</td> \
+                </tr> \
+                <tr> \
+                  <td>Maximum</td> \
+                  <td>"+data.hist[2][0]+"</td> \
+                  <td>"+data.hist[2][1]+"</td> \
+                  <td>"+data.hist[2][2]+"</td> \
+                </tr> \
+              </tbody> \
+            </table> \
+            ";
+            
+            
+            $("#historical_data_table").html(table_data);
+          }
+       });
+  }
+};
+
 var hideHistoricalData =
 function() {
   $("#historical_data_table").slideUp();
@@ -194,11 +254,12 @@ $(document).ready(function() {
     addNewType();
     showHiddenInputField();
     loadUnitOfMeasure();
+	loadHistoricalData();
 
 		// Deliverable type event handlers
     $('#deliverable_assignable_id').change(loadUnitOfMeasure);
     $('#deliverable_assignable_id').change(showHiddenInputField);
-	  $('#deliverable_assignable_id').change(updateHistoricalDataState);
+	$('#deliverable_assignable_id').change(updateHistoricalDataState);
 
     buildDeliverableDialog();
     addViewHistoricalDataEventHandler();

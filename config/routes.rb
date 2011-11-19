@@ -7,6 +7,7 @@ PET::Application.routes.draw do
 
   match 'deliverables/get_unit_of_measure' => 'deliverables#get_unit_of_measure'
   match 'deliverables/create_custom_deliverable_type' => 'deliverables#create_custom_deliverable_type'
+  match 'deliverables/get_historical_data' => 'deliverables#get_historical_data'
   
   resources :deliverables
   resources :stock_deliverable_types, :has_many => :deliverables

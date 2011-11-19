@@ -80,38 +80,43 @@ function() {
           data: query_values,
           dataType: 'json',
           success: function(data) {
-            
-            var table_data = "<table class='condensed-table show_all'> \
-              <thead> \
-                <tr> \
-                  <th></th> \
-                  <th>Size</th> \
-                  <th>Rate</th> \
-                  <th>Effort</th> \
-                </tr> \
-              </thead> \
-              <tbody> \
-                <tr> \
-                  <td>Minimum</td> \
-                  <td>"+data.hist[0][0]+"</td> \
-                  <td>"+data.hist[0][1]+"</td> \
-                  <td>"+data.hist[0][2]+"</td> \
-                </tr> \
-                <tr> \
-                  <td>Average</td> \
-                  <td>"+data.hist[1][0]+"</td> \
-                  <td>"+data.hist[1][1]+"</td> \
-                  <td>"+data.hist[1][2]+"</td> \
-                </tr> \
-                <tr> \
-                  <td>Maximum</td> \
-                  <td>"+data.hist[2][0]+"</td> \
-                  <td>"+data.hist[2][1]+"</td> \
-                  <td>"+data.hist[2][2]+"</td> \
-                </tr> \
-              </tbody> \
-            </table> \
-            ";
+            if(data.hist.length === 0) {
+              hideHistoricalData();
+              $("#view_historical_data_container").addClass("disabled");
+          	  $("#view_historical_data").html("<a href='javascript:void(0);'>No historical data</a>");
+            } else {
+              var table_data = "<table class='condensed-table show_all'> \
+                <thead> \
+                  <tr> \
+                    <th></th> \
+                    <th>Size</th> \
+                    <th>Rate</th> \
+                    <th>Effort</th> \
+                  </tr> \
+                </thead> \
+                <tbody> \
+                  <tr> \
+                    <td>Minimum</td> \
+                    <td>"+data.hist[0][0]+"</td> \
+                    <td>"+data.hist[0][1]+"</td> \
+                    <td>"+data.hist[0][2]+"</td> \
+                  </tr> \
+                  <tr> \
+                    <td>Average</td> \
+                    <td>"+data.hist[1][0]+"</td> \
+                    <td>"+data.hist[1][1]+"</td> \
+                    <td>"+data.hist[1][2]+"</td> \
+                  </tr> \
+                  <tr> \
+                    <td>Maximum</td> \
+                    <td>"+data.hist[2][0]+"</td> \
+                    <td>"+data.hist[2][1]+"</td> \
+                    <td>"+data.hist[2][2]+"</td> \
+                  </tr> \
+                </tbody> \
+              </table> \
+              ";
+            }
             
             
             $("#historical_data_table").html(table_data);
@@ -140,9 +145,7 @@ function() {
   var a_values = getAssignable();
 	if(a_values[0] == "stock") {
 		$("#view_historical_data_container").removeClass("disabled");
-	}
-	
-	else {
+	}	else {
 	  $("#view_historical_data_container").addClass("disabled");
 	  $("#view_historical_data").text("No historical data");
   }
@@ -249,19 +252,25 @@ var addViewHistoricalDataEventHandler = function() {
   });
 }
 
+var complexityEventHandler = 
+function() {
+  hideHistoricalData();
+  loadHistoricalData();
+};
+
 $(document).ready(function() {
 
     addNewType();
     showHiddenInputField();
     loadUnitOfMeasure();
-	loadHistoricalData();
+	  loadHistoricalData();
 
 		// Deliverable type event handlers
     $('#deliverable_assignable_id').change(loadUnitOfMeasure);
     $('#deliverable_assignable_id').change(showHiddenInputField);
 	  $('#deliverable_assignable_id').change(updateHistoricalDataState);
-    // $('#deliverable_assignable_id').change(loadHistoricalData);
-    // $('#deliverable_complexity_id').change(loadHistoricalData);
+    $('#deliverable_assignable_id').change(loadHistoricalData);
+    $('#deliverable_complexity_id').change(complexityEventHandler);
 
     buildDeliverableDialog();
     addViewHistoricalDataEventHandler();

@@ -42,21 +42,24 @@ namespace :db do
       phase.deliverable_types.each do |dType|      
         dType.stock_deliverable_types.each do |sdt|
           
-          # Loop twice to build two deliverables for each stock deliverable type
-          (1..2).each do |num|
-            estimated_size = (1+rand(19)) / 2.0
-            estimated_production_rate = (1+rand(19)) / 2.0
-            Deliverable.create(:name => "#{dType.name} #{num}", 
-                               :description => "#{dType.name} #{num} description - isn't this fun!",
-                               :estimated_size => estimated_size,
-                               :estimated_production_rate => estimated_production_rate,
-                               :estimated_effort => estimated_size * estimated_production_rate,
-                               :assignable_id => sdt.id,
-                               :assignable_type => "StockDeliverableType",
-                               :complexity_id => Complexity.first)
+          # Loop through each complexity, so we have deliverables for each
+          Complexity.all.each do |complexity|
+            # Loop four times to build four deliverables for each stock deliverable type
+            (1..4).each do |num|
+              estimated_size = (1+rand(19)) / 2.0
+              estimated_production_rate = (1+rand(19)) / 2.0
+              Deliverable.create(:name => "#{dType.name} #{num}", 
+                                 :description => "#{dType.name} #{num} description - isn't this fun!",
+                                 :estimated_size => estimated_size,
+                                 :estimated_production_rate => estimated_production_rate,
+                                 :estimated_effort => estimated_size * estimated_production_rate,
+                                 :assignable_id => sdt.id,
+                                 :assignable_type => "StockDeliverableType",
+                                 :complexity_id => Complexity.first.id)
 
-          end
-        end      
+            end
+          end      
+        end
       end      
     end
   end

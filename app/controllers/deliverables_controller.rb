@@ -162,10 +162,11 @@ class DeliverablesController < ApplicationController
         avg_record = stock_deliverable_type.get_del_with_avg_effort(complexity_id)
         max_record = stock_deliverable_type.get_del_with_max_effort(complexity_id)
         
-        return_val[0] = [min_record.estimated_size, min_record.estimated_production_rate, min_record.estimated_effort]
-        return_val[1] = [avg_record.estimated_size, avg_record.estimated_production_rate, avg_record.estimated_effort]
-        return_val[2] = [max_record.estimated_size, max_record.estimated_production_rate, max_record.estimated_effort]
-        
+        unless min_record.nil? && avg_record.nil? && max_record.nil?
+          return_val[0] = [min_record.estimated_size, min_record.estimated_production_rate, min_record.estimated_effort]
+          return_val[1] = [avg_record.estimated_size, avg_record.estimated_production_rate, avg_record.estimated_effort]
+          return_val[2] = [max_record.estimated_size, max_record.estimated_production_rate, max_record.estimated_effort]
+        end
       end
     end
     # return a json string

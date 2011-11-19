@@ -63,14 +63,6 @@ describe EffortLogsController do
     end
   end
 
-  describe "GET edit" do
-    it "assigns the requested effort_log as @effort_log" do
-      effort_log = EffortLog.create! valid_attributes
-      get :edit, :id => effort_log.id
-      assigns(:effort_log).should eq(effort_log)
-    end
-  end
-
   describe "POST create" do
     describe "with valid params" do
       it "creates a new EffortLog" do
@@ -110,50 +102,6 @@ describe EffortLogsController do
         EffortLog.any_instance.stub(:save).and_return(false)
         post :create, :effort_log => {}
         response.should render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested effort_log" do
-        effort_log = EffortLog.create! valid_attributes
-        # Assuming there are no other effort_logs in the database, this
-        # specifies that the EffortLog created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        EffortLog.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => effort_log.id, :effort_log => {'these' => 'params'}
-      end
-
-      it "assigns the requested effort_log as @effort_log" do
-        effort_log = EffortLog.create! valid_attributes
-        put :update, :id => effort_log.id, :effort_log => valid_attributes
-        assigns(:effort_log).should eq(effort_log)
-      end
-
-      it "redirects to the effort_log" do
-        effort_log = EffortLog.create! valid_attributes
-        put :update, :id => effort_log.id, :effort_log => valid_attributes
-        response.should redirect_to(effort_log)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the effort_log as @effort_log" do
-        effort_log = EffortLog.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        EffortLog.any_instance.stub(:save).and_return(false)
-        put :update, :id => effort_log.id, :effort_log => {}
-        assigns(:effort_log).should eq(effort_log)
-      end
-
-      it "re-renders the 'edit' template" do
-        effort_log = EffortLog.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        EffortLog.any_instance.stub(:save).and_return(false)
-        put :update, :id => effort_log.id, :effort_log => {}
-        response.should render_template("edit")
       end
     end
   end

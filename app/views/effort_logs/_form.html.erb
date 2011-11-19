@@ -43,7 +43,7 @@
   
   <div class="input">
     <%= f.submit "Log", :class => "btn primary" %>
-    <%= link_to 'Cancel', deliverable_path(@deliverable_id), :class => "btn danger" %>
+    <%= link_to 'Cancel', request.referer, :class => "btn danger" %>
   </div>
 
 <% end %>

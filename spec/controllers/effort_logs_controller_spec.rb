@@ -23,13 +23,26 @@ describe EffortLogsController do
   # This should return the minimal set of attributes required to create a valid
   # EffortLog. As you add validations to EffortLog, be sure to
   # update the return value of this method accordingly.
+  
+  before(:each) do
+    @stock_deliverable_type = Factory.create(:stock_deliverable_type)
+    @complexity = Factory.create(:complexity)
+    @attr = { :name => "test deliverable",
+              :estimated_size => 1.5,
+              :estimated_production_rate => 2.5,
+              :estimated_effort => 3.75,
+              :complexity_id => @complexity.id
+            }
+  end
+  
   def valid_attributes
     {}
   end
 
   describe "GET index" do
     it "assigns all effort_logs as @effort_logs" do
-      effort_log = EffortLog.create! valid_attributes
+      deliverable = @stock_deliverable_type.deliverables.create! @attr
+      effort_log = EffortLog.create! valid_attributes.merge(:deliverable_id => deliverable.id)
       get :index
       assigns(:effort_logs).should eq([effort_log])
     end
@@ -61,20 +74,26 @@ describe EffortLogsController do
   describe "POST create" do
     describe "with valid params" do
       it "creates a new EffortLog" do
+        deliverable = @stock_deliverable_type.deliverables.create! @attr
+      
         expect {
-          post :create, :effort_log => valid_attributes
+          post :create, :effort_log => valid_attributes.merge(:deliverable_id => deliverable.id)
         }.to change(EffortLog, :count).by(1)
       end
 
       it "assigns a newly created effort_log as @effort_log" do
-        post :create, :effort_log => valid_attributes
+        deliverable = @stock_deliverable_type.deliverables.create! @attr
+        
+        post :create, :effort_log => valid_attributes.merge(:deliverable_id => deliverable.id)
         assigns(:effort_log).should be_a(EffortLog)
         assigns(:effort_log).should be_persisted
       end
 
-      it "redirects to the created effort_log" do
-        post :create, :effort_log => valid_attributes
-        response.should redirect_to(EffortLog.last)
+      it "redirects to the deliverable show page" do
+        deliverable = @stock_deliverable_type.deliverables.create! @attr
+        
+        post :create, :effort_log => valid_attributes.merge(:deliverable_id => deliverable.id)
+        response.should redirect_to(deliverable)
       end
     end
 

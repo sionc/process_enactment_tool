@@ -6,8 +6,6 @@
     <th>Stop date time</th>
     <th>Interrupt time</th>
     <th>Comment</th>
-    <th>User</th>
-    <th>Deliverable</th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,8 +17,6 @@
     <td><%= effort_log.stop_date_time %></td>
     <td><%= effort_log.interrupt_time %></td>
     <td><%= effort_log.comment %></td>
-    <td><%= effort_log.user_id %></td>
-    <td><%= effort_log.deliverable_id %></td>
     <td><%= link_to 'Show', effort_log %></td>
     <td><%= link_to 'Edit', edit_effort_log_path(effort_log) %></td>
     <td><%= link_to 'Destroy', effort_log, :confirm => 'Are you sure?', :method => :delete %></td>

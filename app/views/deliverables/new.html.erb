@@ -1,7 +1,7 @@
 <h1>New deliverable</h1>
 
 <% content_for(:head) do %>
-    <%= javascript_include_tag "new_deliverable", "deliverable_estimations", "jquery.validate.min", "deliverable_validation" %>
+    <%= javascript_include_tag "deliverable_utilities", "historical_data", "new_deliverable", "deliverable_estimations", "jquery.validate.min", "deliverable_validation" %>
 <% end %>
 
 <%= form_for @deliverable, :html => {:id  =>  "deliverable_form"} do |f| %>

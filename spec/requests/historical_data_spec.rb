@@ -90,7 +90,6 @@ describe "Deliverable Historical Data" do
        click_link 'Show historical data'
        select('Test and Evaluation Master Plan', :from => 'deliverable_assignable_id')
        sleep(3)
-       click_link 'Show historical data'
 
        page.should have_xpath("//tr/td[text()='2']", :visible => true)
        page.should have_xpath("//tr/td[text()='6']", :visible => true)
@@ -114,7 +113,6 @@ describe "Deliverable Historical Data" do
       click_link 'Show historical data'
       select('high', :from => 'deliverable_complexity_id')
       sleep(3)
-      click_link 'Show historical data'
       
       page.should have_xpath("//tr/td[text()='2']", :visible => true)
       page.should have_xpath("//tr/td[text()='6']", :visible => true)

@@ -1,3 +1,8 @@
+<% content_for(:head) do %>
+    <%= javascript_include_tag "jquery.ui.datetime.src", "effort_log" %>
+<% end %>
+
+
 <%= form_for(@effort_log) do |f| %>
   <% if @effort_log.errors.any? %>
     <div id="error_explanation">
@@ -11,17 +16,18 @@
     </div>
   <% end %>
 
+
   <div class="clearfix">
     <%= f.label :start_date_time %>
     <div class="input">
-      <%= f.datetime_select :start_date_time %>
+      <%= f.text_field :start_date_time , :id => "start_datetime"%>
     </div>
   </div>
   
   <div class="clearfix">
     <%= f.label :stop_date_time %>
     <div class="input">
-      <%= f.datetime_select :stop_date_time %>
+      <%= f.text_field :stop_date_time, :id => "stop_datetime" %>
     </div>
   </div>
   

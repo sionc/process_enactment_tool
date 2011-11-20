@@ -8,6 +8,8 @@
 
 class Deliverable < ActiveRecord::Base
 
+  has_many :effort_logs
+
   belongs_to :assignable, :polymorphic => true
   belongs_to :complexity
 

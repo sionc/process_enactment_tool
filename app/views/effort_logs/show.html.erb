@@ -1,6 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>Deliverable:</b>
+  <%= @effort_log.deliverable.name %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @effort_log.user_id %>
+</p>
+
+<p>
   <b>Start date time:</b>
   <%= @effort_log.start_date_time %>
 </p>
@@ -20,15 +30,4 @@
   <%= @effort_log.comment %>
 </p>
 
-<p>
-  <b>User:</b>
-  <%= @effort_log.user_id %>
-</p>
-
-<p>
-  <b>Deliverable:</b>
-  <%= @effort_log.deliverable_id %>
-</p>
-
-
-<%= link_to 'Back', effort_logs_path %>
+<%= link_to 'Return to Deliverable', @effort_log.deliverable, :class => 'btn' %>

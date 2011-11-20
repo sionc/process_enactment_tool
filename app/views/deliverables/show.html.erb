@@ -10,7 +10,7 @@
 
 <p>
   <b>Deliverable Type:</b>
-	<%= @deliverable.deliverable_type %>
+  <%= @deliverable.deliverable_type %>
 </p>
 
 <p>
@@ -30,8 +30,34 @@
   <%= @deliverable.estimated_effort %> hours
 </p>
 
-<br />
+<h3>Effort logs</h3>
+<table>
+  <tr>
+    <th>User</th>
+    <th>Started</th>
+    <th>Stopped</th>
+    <th>Interrupt Time</th>
+    <th>Total</th>
+    <th></th>
+    <th></th>
+  </tr>
 
-<%= link_to 'Log Effort', new_effort_log_path(:deliverable_id => @deliverable) , :class => 'btn' %>
+  <% unless @effort_logs.nil? %>
+      <% @effort_logs.each do |effort_log| %>
+          <tr>
+            <td></td>
+            <td><%= effort_log.start_date_time %></td>
+            <td><%= effort_log.stop_date_time %></td>
+            <td><%= effort_log.interrupt_time %></td>
+            <td></td>
+            <td><%= link_to 'Show', effort_log %></td>
+          </tr>
+      <% end %>
+  <% end %>
+</table>
+
+<br/>
+
+<%= link_to 'Log Effort', new_effort_log_path(:deliverable_id => @deliverable), :class => 'btn' %>
 <%= link_to 'Modify', edit_deliverable_path(@deliverable), :class => 'btn primary' %>
 <%= link_to 'Return to Project', project_path(get_project), :class => 'btn' %>

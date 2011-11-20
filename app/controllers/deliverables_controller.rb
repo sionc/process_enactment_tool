@@ -21,6 +21,8 @@ class DeliverablesController < ApplicationController
   def show
     @deliverable = Deliverable.find(params[:id])
 
+    @effort_logs = @deliverable.effort_logs
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml { render :xml => @deliverable }

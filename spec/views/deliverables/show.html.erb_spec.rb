@@ -44,6 +44,15 @@ describe "deliverables/show.html.erb" do
       render
       rendered.should match(/Log Effort/)
     end
+
+    it "should have a effort log table" do
+      render
+      rendered.should have_xpath("//tr/th[text()='User']")
+      rendered.should have_xpath("//tr/th[text()='Started']")
+      rendered.should have_xpath("//tr/th[text()='Stopped']")
+      rendered.should have_xpath("//tr/th[text()='Interrupt Time']")
+      rendered.should have_xpath("//tr/th[text()='Total']")
+    end
   end
 
   describe "custom deliverable" do

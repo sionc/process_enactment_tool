@@ -12,13 +12,13 @@ describe EffortLog do
   #             :assignable_type => "StockDeliverableType",
   #             :complexity_id => complexity.id
   #}
-  @deliverable = Factory.create(:deliverable)
-  @attr = {:start_date_time => DateTime.now,
-           :stop_date_time => DateTime.now,
-           :interrupt_time => 15,
-           :user_id => 1,
-           :deliverable_id => @deliverable.id
-  }
+  # @deliverable = Factory.create(:deliverable)
+  # @attr = {:start_date_time => DateTime.now,
+  #          :stop_date_time => DateTime.now,
+  #          :interrupt_time => 15,
+  #          :user_id => 1,
+  #          :deliverable_id => @deliverable.id
+  # }
 
   #it "should create a new record given valid attributes" do
   #  EffortLog.create!(@attr)

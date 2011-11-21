@@ -50,16 +50,4 @@ class EffortLogsController < ApplicationController
       end
     end
   end
-
-  # DELETE /effort_logs/1
-  # DELETE /effort_logs/1.xml
-  def destroy
-    @effort_log = EffortLog.find(params[:id])
-    @effort_log.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(effort_logs_url) }
-      format.xml  { head :ok }
-    end
-  end
 end

@@ -106,19 +106,4 @@ describe EffortLogsController do
     end
   end
 
-  describe "DELETE destroy" do
-    it "destroys the requested effort_log" do
-      effort_log = EffortLog.create! valid_attributes
-      expect {
-        delete :destroy, :id => effort_log.id
-      }.to change(EffortLog, :count).by(-1)
-    end
-
-    it "redirects to the effort_logs list" do
-      effort_log = EffortLog.create! valid_attributes
-      delete :destroy, :id => effort_log.id
-      response.should redirect_to(effort_logs_url)
-    end
-  end
-
 end

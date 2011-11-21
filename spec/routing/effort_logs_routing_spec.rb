@@ -18,10 +18,5 @@ describe EffortLogsController do
     it "routes to #create" do
       post("/effort_logs").should route_to("effort_logs#create")
     end
-
-    it "routes to #destroy" do
-      delete("/effort_logs/1").should route_to("effort_logs#destroy", :id => "1")
-    end
-
   end
 end

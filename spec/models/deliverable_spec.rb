@@ -83,5 +83,13 @@ describe Deliverable do
      invalid_deliverable = Deliverable.new(@attr.merge(:estimated_effort => 9999999))
      invalid_deliverable.should_not be_valid
    end
+   
+   it "should calculate the total logged effort" do     
+     valid_deliverable = Deliverable.create(@attr)
+     effort_log_1 = Factory.create(:effort_log, :deliverable_id => valid_deliverable.id)
+     effort_log_2 = Factory.create(:effort_log, :deliverable_id => valid_deliverable.id, :interrupt_time => 30)
+     
+     valid_deliverable.logged_effort.should == 3.25
+   end
 
 end

@@ -40,6 +40,11 @@ describe "deliverables/show.html.erb" do
       rendered.should match(/pages/)
     end
 
+    it "renders the total logged effort" do
+      render
+      rendered.should match(/Logged effort/)
+    end
+    
     it "should have a log effort button" do
       render
       rendered.should match(/Log Effort/)
@@ -48,10 +53,7 @@ describe "deliverables/show.html.erb" do
     it "should have a effort log table" do
       render
       rendered.should have_xpath("//tr/th[text()='User']")
-      rendered.should have_xpath("//tr/th[text()='Started']")
-      rendered.should have_xpath("//tr/th[text()='Stopped']")
-      rendered.should have_xpath("//tr/th[text()='Interrupt Time']")
-      rendered.should have_xpath("//tr/th[text()='Total']")
+      rendered.should have_xpath("//tr/th[text()='Logged effort']")
     end
   end
 

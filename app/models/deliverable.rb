@@ -57,5 +57,14 @@ class Deliverable < ActiveRecord::Base
       errors.add(:estimated_effort, "must be equal to estimated size * estimated production rate")
     end
   end
+  
+  # function to get the total logged effort for this deliverable
+  def logged_effort
+    logged_effort = 0
+    self.effort_logs.each do |log|
+      logged_effort = logged_effort + log.logged_effort
+    end
+    logged_effort
+  end
 
 end

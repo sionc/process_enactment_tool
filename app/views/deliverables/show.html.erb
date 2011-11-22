@@ -30,15 +30,16 @@
   <%= @deliverable.estimated_effort %> hours
 </p>
 
+<p>
+  <b>Logged effort:</b>
+  <%= sprintf('%.2f', @deliverable.logged_effort) %> hours
+</p>
+
 <h3>Effort logs</h3>
 <table>
   <tr>
     <th>User</th>
-    <th>Started</th>
-    <th>Stopped</th>
-    <th>Interrupt Time</th>
-    <th>Total</th>
-    <th></th>
+    <th>Logged effort (hours)</th>
     <th></th>
   </tr>
 
@@ -46,11 +47,8 @@
       <% @effort_logs.each do |effort_log| %>
           <tr>
             <td></td>
-            <td><%= effort_log.start_date_time %></td>
-            <td><%= effort_log.stop_date_time %></td>
-            <td><%= effort_log.interrupt_time %></td>
-            <td></td>
-            <td><%= link_to 'Show', effort_log %></td>
+            <td><%= sprintf('%.2f', effort_log.logged_effort) %></td>
+            <td><%= link_to 'More details', effort_log %></td>
           </tr>
       <% end %>
   <% end %>

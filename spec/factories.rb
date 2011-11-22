@@ -59,15 +59,13 @@ Factory.define :deliverable do |stk_del|
   stk_del.complexity_id                   1
 end
 
-FactoryGirl.define do
-  factory :effort_log do
-    start_date_time "2011-11-19 09:33:31"
-    stop_date_time "2011-11-19 09:33:31"
-    interrupt_time 1
-    comment "MyText"
-    user_id 1
-    deliverable_id 1
-  end
+Factory.define :effort_log do |log|
+  log.start_date_time   "2011-11-19 09:33:31"
+  log.stop_date_time    "2011-11-19 11:33:31"
+  log.interrupt_time    15
+  log.comment           "MyText"
+  log.user_id           1
+  log.association       :deliverable
 end
 
 

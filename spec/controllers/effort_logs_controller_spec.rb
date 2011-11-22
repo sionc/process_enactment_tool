@@ -25,24 +25,20 @@ describe EffortLogsController do
   # update the return value of this method accordingly.
   
   before(:each) do
-    @stock_deliverable_type = Factory.create(:stock_deliverable_type)
-    @complexity = Factory.create(:complexity)
-    @attr = { :name => "test deliverable",
-              :estimated_size => 1.5,
-              :estimated_production_rate => 2.5,
-              :estimated_effort => 3.75,
-              :complexity_id => @complexity.id
+    @deliverable = Factory.create(:deliverable)
+    @curr_time = Time.now
+    @attr = {:start_date_time => @curr_time - 2.hours,
+             :stop_date_time => @curr_time,
+             :interrupt_time => 15,
+             :user_id => 1,
+             :deliverable_id => @deliverable.id
             }
   end
   
-  def valid_attributes
-    {}
-  end
 
   describe "GET index" do
     it "assigns all effort_logs as @effort_logs" do
-      deliverable = @stock_deliverable_type.deliverables.create! @attr
-      effort_log = EffortLog.create! valid_attributes.merge(:deliverable_id => deliverable.id)
+      effort_log = EffortLog.create! @attr.merge(:deliverable_id => @deliverable.id)
       get :index
       assigns(:effort_logs).should eq([effort_log])
     end
@@ -50,7 +46,7 @@ describe EffortLogsController do
 
   describe "GET show" do
     it "assigns the requested effort_log as @effort_log" do
-      effort_log = EffortLog.create! valid_attributes
+      effort_log = EffortLog.create! @attr
       get :show, :id => effort_log.id
       assigns(:effort_log).should eq(effort_log)
     end
@@ -65,27 +61,21 @@ describe EffortLogsController do
 
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new EffortLog" do
-        deliverable = @stock_deliverable_type.deliverables.create! @attr
-      
+      it "creates a new EffortLog" do      
         expect {
-          post :create, :effort_log => valid_attributes.merge(:deliverable_id => deliverable.id)
+          post :create, :effort_log => @attr.merge(:deliverable_id => @deliverable.id)
         }.to change(EffortLog, :count).by(1)
       end
 
-      it "assigns a newly created effort_log as @effort_log" do
-        deliverable = @stock_deliverable_type.deliverables.create! @attr
-        
-        post :create, :effort_log => valid_attributes.merge(:deliverable_id => deliverable.id)
+      it "assigns a newly created effort_log as @effort_log" do        
+        post :create, :effort_log => @attr.merge(:deliverable_id => @deliverable.id)
         assigns(:effort_log).should be_a(EffortLog)
         assigns(:effort_log).should be_persisted
       end
 
-      it "redirects to the deliverable show page" do
-        deliverable = @stock_deliverable_type.deliverables.create! @attr
-        
-        post :create, :effort_log => valid_attributes.merge(:deliverable_id => deliverable.id)
-        response.should redirect_to(deliverable)
+      it "redirects to the deliverable show page" do        
+        post :create, :effort_log => @attr.merge(:deliverable_id => @deliverable.id)
+        response.should redirect_to(@deliverable)
       end
     end
 

@@ -12,8 +12,13 @@
 
 <p>
   <b>Estimated Effort:</b>
-  <%= @project.estimated_effort %>
-  <%= get_hours %>
+  <%= sprintf('%.2f', @project.estimated_effort) %>
+  <%= get_hours(@project.estimated_effort) %>
+</p>
+<p>
+  <b>Logged Effort:</b>
+  <%= sprintf('%.2f', @project.logged_effort) %>
+  <%= get_hours(@project.logged_effort) %>
 </p>
 <p>
   <b>Lifecycle:</b>
@@ -38,7 +43,7 @@
         <td><%= phase.lifecycle_phase.sequence_number %></td>
         <td><%= phase.lifecycle_phase.name %></td>
         <td><%= phase.lifecycle_phase.description %></td>
-        <td><%= phase.estimated_effort %> hours </td>
+        <td><%= sprintf('%.2f', phase.estimated_effort) %> hours </td>
         <td class="project_phase_id_cell hidden"><%= phase.id %></td>
       </tr>
   <% end %>

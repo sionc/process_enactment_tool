@@ -16,5 +16,10 @@ describe "projects/show.html.erb" do
     rendered.should match(/Name/)
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(/MyText/)
+    
+    rendered.should match(/Estimated Effort/)
+    
+    rendered.should match(/Logged Effort/)
+    
   end
 end

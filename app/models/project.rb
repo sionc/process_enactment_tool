@@ -21,7 +21,17 @@ class Project < ActiveRecord::Base
       total_estimated_effort += phase.estimated_effort unless phase.nil?
     end
 
-    return total_estimated_effort
+    total_estimated_effort
+  end
+
+  # Returns the logged effort for the Project 
+  def logged_effort
+    total_logged_effort = 0
+    project_phases.each do |phase|
+      total_logged_effort += phase.logged_effort unless phase.nil?
+    end
+
+    total_logged_effort
   end
 
 end

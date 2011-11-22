@@ -26,8 +26,9 @@ $(document).ready(function() {
                 $('#project_phase_name').text(data.lifecycle_phase_container.lifecycle_phase.name);
                 $('#project_phase_description').text(data.lifecycle_phase_container.lifecycle_phase.description);
                 $('#project_phase_sequence_number').text(data.lifecycle_phase_container.lifecycle_phase.sequence_number);
-                $('#project_phase_estimated_effort').text(data.project_phase_estimated_effort + " hours");
-
+                $('#project_phase_estimated_effort').text(data.project_phase_estimated_effort.toFixed(2) + " hours");
+                $('#project_phase_logged_effort').text(data.project_phase_logged_effort.toFixed(2) + " hours");
+                
                 // Loop through and display deliverables.
                 var deliverableNames = "";
                 for (var i = 0; i < data.deliverables_container.length; i++) {

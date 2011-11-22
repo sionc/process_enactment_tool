@@ -3,7 +3,7 @@ require 'spec_helper'
 describe EffortLog do
   before(:each) do
     @deliverable = Factory.create(:deliverable)
-    @curr_time = Time.now
+    @curr_time = DateTime.now
     @attr = {:start_date_time => @curr_time - 2.hours,
              :stop_date_time => @curr_time,
              :interrupt_time => 15,
@@ -36,4 +36,13 @@ describe EffortLog do
     effort_log.logged_effort.should == 1.75
   end
 
+  it "should not accept invalid start date time" do
+    invalid_effort_log = EffortLog.new(@attr.merge(:start_date_time => "aaa?!+"))
+    invalid_effort_log.should_not be_valid
+  end
+
+  it "should not accept invalid stop date time" do
+    invalid_effort_log = EffortLog.new(@attr.merge(:stop_date_time => "aaa?!+"))
+    invalid_effort_log.should_not be_valid
+  end
 end

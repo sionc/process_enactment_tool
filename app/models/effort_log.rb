@@ -2,6 +2,9 @@
 class EffortLog < ActiveRecord::Base
   belongs_to :deliverable
 
+  validate :start_date_time_format
+  validate :stop_date_time_format
+
   validates :start_date_time, :presence => true
   validates :stop_date_time, :presence => true
   validates :deliverable_id, :presence => true
@@ -21,4 +24,13 @@ class EffortLog < ActiveRecord::Base
     end
   end
 
+  # Custom validator for checking the start_date_time format
+  def start_date_time_format
+    errors.add(:start_date_time, 'must be a valid datetime') if ((DateTime.parse(start_date_time.to_s) rescue ArgumentError) == ArgumentError)
+  end
+
+  # Custom validator for checking the stop_date_time format
+  def stop_date_time_format
+    errors.add(:stop_date_time, 'must be a valid datetime') if ((DateTime.parse(stop_date_time.to_s) rescue ArgumentError) == ArgumentError)
+  end
 end

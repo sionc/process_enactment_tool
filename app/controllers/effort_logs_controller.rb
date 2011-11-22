@@ -45,6 +45,7 @@ class EffortLogsController < ApplicationController
         format.html { redirect_to(@deliverable, :notice => 'Effort log was successfully created.') }
         format.xml  { render :xml => @effort_log, :status => :created, :location => @effort_log }
       else
+         @deliverable_id = params[:effort_log][:deliverable_id]
         format.html { render :action => "new" }
         format.xml  { render :xml => @effort_log.errors, :status => :unprocessable_entity }
       end

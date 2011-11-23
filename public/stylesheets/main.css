@@ -44,7 +44,7 @@ div.field, div.actions {
   margin-bottom: 10px;
 }
 
-#notice {
+.notice {
   color: green;
 }
 
@@ -225,6 +225,12 @@ a[id ~= 'view_project'], a[id ~= 'view_lifecycles']{
   color: darkgray;
   text-decoration: none;
   cursor: default;
+}
+
+/* Overrides for devise */
+
+#user_nav {
+
 }
 
 /* Overrides for bootstrap twitter */

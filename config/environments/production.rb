@@ -12,6 +12,9 @@ PET::Application.configure do
   # Specifies the header that your server uses for sending files
   config.action_dispatch.x_sendfile_header = "X-Sendfile"
 
+  # Configure the mailer
+  config.action_mailer.default_url_options = { :host => 'http://gentle-flower-5712.heroku.com' }
+
   # For nginx:
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
 

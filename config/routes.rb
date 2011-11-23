@@ -1,5 +1,7 @@
 PET::Application.routes.draw do
 
+  devise_for :users
+
   resources :effort_logs, :except => [:edit, :update, :destroy]
 
   match 'lifecycles/home' => 'lifecycles#home'

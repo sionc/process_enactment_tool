@@ -45,4 +45,14 @@ describe EffortLog do
     invalid_effort_log = EffortLog.new(@attr.merge(:stop_date_time => "aaa?!+"))
     invalid_effort_log.should_not be_valid
   end
+  
+  it "should not accept a start date that is after the end date" do
+    invalid_effort_log = EffortLog.new(@attr.merge(:stop_date_time => @curr_time - 2, :start_date_time => @curr_time))
+    invalid_effort_log.should_not be_valid
+  end
+  
+  it "should not accept a start or stop date that is in the future (past midnight)" do
+    invalid_effort_log = EffortLog.new(@attr.merge(:stop_date_time => DateTime.now.end_of_day + 1.minutes, :start_date_time => @curr_time))
+    invalid_effort_log.should_not be_valid
+  end
 end

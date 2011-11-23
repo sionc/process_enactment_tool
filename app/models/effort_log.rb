@@ -4,10 +4,16 @@ class EffortLog < ActiveRecord::Base
 
   validate :start_date_time_format
   validate :stop_date_time_format
+  validate :stop_date_is_not_before_start_date
+  validate :stop_date_is_not_in_the_future
+  validate :start_date_is_not_in_the_future
+  
 
   validates :start_date_time, :presence => true
   validates :stop_date_time, :presence => true
   validates :deliverable_id, :presence => true
+
+
 
   # Return the number of hours that were logged, 
   # and taking in to account the interrupt time if there is any
@@ -33,4 +39,17 @@ class EffortLog < ActiveRecord::Base
   def stop_date_time_format
     errors.add(:stop_date_time, 'must be a valid datetime') if ((DateTime.parse(stop_date_time.to_s) rescue ArgumentError) == ArgumentError)
   end
+  
+  def stop_date_is_not_before_start_date
+    errors.add(:stop_date_time, 'must come after start time') if (start_date_time && stop_date_time && (start_date_time > stop_date_time))
+  end
+  
+  def stop_date_is_not_in_the_future
+    errors.add(:stop_date_time, 'must come on or before midnight') if (stop_date_time && (stop_date_time > DateTime.now.end_of_day ))    
+  end
+
+  def start_date_is_not_in_the_future
+    errors.add(:start_date_time, 'must come on or before midnight') if (start_date_time && (start_date_time > DateTime.now.end_of_day ))    
+  end
+  
 end

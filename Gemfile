@@ -4,6 +4,7 @@ gem 'rails', '3.0.9'
 
 gem 'sqlite3'
 gem 'pg'
+gem 'cancan'
 
 # Required on Windows
 gem "rake", "0.8.7"

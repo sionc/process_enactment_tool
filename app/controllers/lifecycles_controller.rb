@@ -3,6 +3,9 @@
 # functionality for the CRUD operations of our Lifecycle model.
 
 class LifecyclesController < ApplicationController
+
+  before_filter :authenticate_user!, :except => []
+
   # GET /lifecycles
   # GET /lifecycles.xml
   def index

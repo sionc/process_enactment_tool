@@ -4,7 +4,12 @@ namespace :db do
 
   desc "Load demo data for demos"
   task :load_demo_data => :environment do
-    
+
+    # Create a user
+    User.create(:email => "test@test.com",
+                :password => "testme",
+                :password_confirmation => "testme")
+
     # Find our lifecycles
     waterfall = Lifecycle.find_by_name("Simplified Waterfall")
     rup       = Lifecycle.find_by_name("Rational Unified Process")
@@ -66,7 +71,13 @@ namespace :db do
   
   desc "Load test data"
   task :seed_test_data => :environment do
-    
+
+    # Create a user
+    User.create(:email => "test@test.com",
+                   :password => "testme",
+                   :password_confirmation => "testme")
+
+
     # Find our lifecycles
     waterfall = Lifecycle.find_by_name("Simplified Waterfall")
     rup       = Lifecycle.find_by_name("Rational Unified Process")

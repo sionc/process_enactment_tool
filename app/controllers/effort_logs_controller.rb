@@ -1,4 +1,7 @@
 class EffortLogsController < ApplicationController
+
+  before_filter :authenticate_user!, :except => []
+
   # GET /effort_logs
   # GET /effort_logs.xml
   def index

@@ -3,6 +3,9 @@
 # functionality for creating and reading our Project model.
 
 class ProjectsController < ApplicationController
+
+  before_filter :authenticate_user!, :except => []
+
   # GET /projects
   # GET /projects.xml
   def index

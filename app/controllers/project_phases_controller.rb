@@ -4,6 +4,8 @@
 
 class ProjectPhasesController < ApplicationController
 
+  before_filter :authenticate_user!, :except => []
+
   # Return JSON string for project phase details. Will be used by project show page.
   def show
     @project_phase = ProjectPhase.find(params[:id])

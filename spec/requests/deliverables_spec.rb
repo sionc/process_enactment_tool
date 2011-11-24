@@ -1,21 +1,28 @@
 require 'spec_helper'
+include Devise::TestHelpers
 
 describe "Deliverables" do
 
+  before(:each) do
+    `rake db:seed`
+    `rake db:load_demo_data`
+
+    visit user_session_path
+    fill_in "Email", :with => "test@test.com"
+    fill_in "Password", :with => "testme"
+    click_button("Sign in")
+  end
+
   describe "GET /deliverables" do
-    it "works! (now write some real specs)" do
+    it "should return response status of 302" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
       stock_deliverable_type = Factory.create(:stock_deliverable_type)
       get deliverables_path, :stock_deliverable_type_id => stock_deliverable_type.id
-      response.status.should be(200)
+      response.status.should be(302)
     end
   end
 
   describe "GET new" do
-  	before :each do
-      `rake db:seed`
-      `rake db:load_demo_data`
-    end
 
     let(:before_filter) {
       visit projects_path
@@ -34,7 +41,7 @@ describe "Deliverables" do
 	      select('New...', :from => 'deliverable_assignable_id')
 	      page.should have_xpath("//*[text()='Create Deliverable Type']", :visible => true)
 	    end
-=begin	    
+
 	    it "should pop up modal dialog box when 'NEW' is selected for deliverable type and have units of measure", :js => true do
 	      before_filter
 	      select('New...', :from => 'deliverable_assignable_id')
@@ -47,7 +54,7 @@ describe "Deliverables" do
 	      page.should have_content("lines of code")
 	      #save_and_open_page
 	    end
-	    
+
 	    it "should be able to enter a custom deliverable type name and unit of measure", :js => true do
 	      before_filter
 	      select('New...', :from => 'deliverable_assignable_id')
@@ -56,72 +63,66 @@ describe "Deliverables" do
 	      click_button "Create"
 	      page.should have_xpath(".//option[@selected = 'selected'][text() = 'My new type']")
 	    end
-=end
 		end
-=begin
+
 		describe "(calculations)" do
 	    it "should compute the estimated effort when the size and production rate are entered", :js => true do
 	      before_filter
-	      
+
 	      fill_in "Estimated size", :with => '23'
 	      page.execute_script("$('#deliverable_estimated_size').trigger('change');")
-	      
+
 	      fill_in "Estimated production rate", :with => '17'
 	      page.execute_script("$('#deliverable_estimated_production_rate').trigger('change');")
-	      
+
 	      find_field('Estimated effort').value.should == '391.00'
       end
-      
+
       it "should compute the estimated size when the estimated effort and production rate are entered", :js => true do
 	      before_filter
-	      
+
 	      fill_in "Estimated effort", :with => '391'
 	      page.execute_script("$('#deliverable_estimated_effort').trigger('change');")
-	      
+
 	      fill_in "Estimated production rate", :with => '17'
 	      page.execute_script("$('#deliverable_estimated_production_rate').trigger('change');")
-	      
+
 	      find_field('Estimated size').value.should == '23.00'
       end
-      
+
       it "should compute the estimated production rate when the estimated effort and size are entered", :js => true do
 	      before_filter
-	      
+
 	      fill_in "Estimated effort", :with => '391'
 	      page.execute_script("$('#deliverable_estimated_effort').trigger('change');")
-	      
+
 	      fill_in "Estimated size", :with => '23'
 	      page.execute_script("$('#deliverable_estimated_size').trigger('change');")
-	      
+
 	      find_field('Estimated production rate').value.should == '17.00'
       end
-      
+
       it "should handle a sequence of computations", :js => true do
 	      before_filter
-	      
+
 	      fill_in "Estimated size", :with => '23'
 	      page.execute_script("$('#deliverable_estimated_size').trigger('change');")
-	      
+
 	      fill_in "Estimated production rate", :with => '17'
 	      page.execute_script("$('#deliverable_estimated_production_rate').trigger('change');")
-	      
+
 	      find_field('Estimated effort').value.should == '391.00'
-	      
+
 	      fill_in "Estimated size", :with => '46'
 	      page.execute_script("$('#deliverable_estimated_size').trigger('change');")
-	      
+
 	      find_field('Estimated effort').value.should == '782.00'
-	      find_field('Estimated size').value.should == '46' 
-      end            
+	      find_field('Estimated size').value.should == '46'
+      end
     end
   end
 
   describe "GET edit" do
-    before :each do
-       `rake db:seed`
-       `rake db:load_demo_data`
-    end
-
      let(:edit_before_filter) {
        visit projects_path
        click_link 'Gentle Flower'
@@ -140,9 +141,8 @@ describe "Deliverables" do
 			 estimated_size = page.evaluate_script("$('#deliverable_estimated_size').val()");
 			 estimated_production_rate = page.evaluate_script("$('#deliverable_estimated_production_rate').val()");
 			 estimated_effort = estimated_size.to_f * estimated_production_rate.to_f;
-			 
+
        find_field('Estimated effort').value.should == sprintf("%.2f", estimated_effort)
      end
-=end
   end
 end

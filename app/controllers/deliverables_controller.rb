@@ -5,6 +5,9 @@
 # JSON strings.
 
 class DeliverablesController < ApplicationController
+
+  before_filter :authenticate_user!, :except => []
+
   # GET /deliverables
   # GET /deliverables.xml
   def index

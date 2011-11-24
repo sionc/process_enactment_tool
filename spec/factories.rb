@@ -68,4 +68,8 @@ Factory.define :effort_log do |log|
   log.association       :deliverable
 end
 
-
+Factory.define :user do |user|
+  user.email                              "test@test.com"
+  user.password                           "testme"
+  user.password_confirmation              "testme"
+end

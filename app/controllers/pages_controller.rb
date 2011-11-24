@@ -3,6 +3,8 @@
 
 class PagesController < ApplicationController
 
+  before_filter :authenticate_user!, :except => []
+
   # GET /pages/dashboard
   # Controller action for displaying a summary of lifecycles and projects
   def dashboard

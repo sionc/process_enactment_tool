@@ -227,10 +227,20 @@ a[id ~= 'view_project'], a[id ~= 'view_lifecycles']{
   cursor: default;
 }
 
+#sign_up_button {
+  margin-left:183px;
+}
+
+#brand_image {
+    border: 1px solid darkgrey;
+    margin-left: 95px;
+    margin-bottom: 20px;
+}
+
 /* Overrides for devise */
 
-#user_nav {
-
+.remember_me {
+  margin-top:7px
 }
 
 /* Overrides for bootstrap twitter */

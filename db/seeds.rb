@@ -6,15 +6,21 @@ Complexity.delete_all
 Role.delete_all
 
 puts "Creating roles..."
-Role.create(:name => "admin")
-Role.create(:name => "regular_user")
+admin_role        = Role.create(:name => "admin")
+regular_user_role = Role.create(:name => "regular_user")
 
 puts "Creating admin user..."
-User.create(
-  :email                 => 'admin@admin.com',
-  :password              => 'administrator',
-  :password_confirmation => 'administrator'
-) 
+unless User.find_by_email 'admin@admin.com'
+  admin_user = User.create(
+    :email                 => 'admin@admin.com',
+    :password              => 'administrator',
+    :password_confirmation => 'administrator'
+  ) 
+
+  # Assign the admin user role to the admin user
+  admin_user.roles << admin_role
+  admin_user.save!
+end
 
 puts "Creating complexity..."
 Complexity.create(:level => "low")

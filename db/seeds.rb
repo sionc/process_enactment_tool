@@ -2,8 +2,21 @@ puts "Deleting tables..."
 Lifecycle.delete_all
 LifecyclePhase.delete_all
 DeliverableType.delete_all
+Complexity.delete_all
+Role.delete_all
 
-puts "Creating complexity"
+puts "Creating roles..."
+Role.create(:name => "admin")
+Role.create(:name => "regular_user")
+
+puts "Creating admin user..."
+User.create(
+  :email                 => 'admin@admin.com',
+  :password              => 'administrator',
+  :password_confirmation => 'administrator'
+) 
+
+puts "Creating complexity..."
 Complexity.create(:level => "low")
 Complexity.create(:level => "medium")
 Complexity.create(:level => "high")

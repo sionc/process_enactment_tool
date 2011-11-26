@@ -3,12 +3,14 @@
 <table class="condensed-table show_all">
   <tr>
     <th>Email</th>
+    <th>Role</th>
     <th></th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
     <td><%= link_to user.email, user %></td>
+    <td><%= get_user_role user %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>

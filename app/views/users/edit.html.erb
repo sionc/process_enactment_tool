@@ -21,6 +21,15 @@
      <%= f.text_field :email, :class=>"xlarge" %>
     </div>
   </div>
+  
+  <!--% if can? :read, Role %-->
+  	<ul class="no-pad no-bullets">
+  		  <% @roles.each do |r| %>
+          <%= f.radio_button :role, r.id %>
+          <%= f.label r.name, r.name %>
+        <% end %>
+  	</ul>
+  <!--% end %-->
 
  <br/>
  <div class="input">

@@ -24,12 +24,14 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @roles = Role.all
   end
 
   # PUT /users/1
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
+    @role = Role.find(params[:role])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])

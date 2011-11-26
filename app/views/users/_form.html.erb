@@ -11,26 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-
-   <div class="clearfix">
-    <%= f.label :password %>
-    <div class="input">
-      <%= f.password_field :password, :class=>"xlarge" %>
-    </div>
-  </div>
-
   <div class="clearfix">
-    <label for="user_password_confirmation">Retype password</label>
-    <div class="input">
-      <%= f.password_field :password_confirmation, :class=>"xlarge" %>
+    <%= f.label :email %><br />
+     <div class="input">
+     <%= f.text_field :email, :class=>"xlarge" %>
     </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="input">
+    <%= f.submit :class=>"btn primary" %>
   </div>
 <% end %>

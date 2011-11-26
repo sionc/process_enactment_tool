@@ -1,12 +1,14 @@
 require 'spec_helper'
+include Devise::TestHelpers
 
 describe "users/edit.html.erb" do
   before(:each) do
-    @user = assign(:user, stub_model(User,
-      :new_record? => false,
-      :email => "MyString"
-    ))
+    role = Factory.create(:role)
+    @roles = [role]
+    @user = Factory.create(:user)
+    sign_in @user
   end
+  
 
   it "renders the edit user form" do
     render

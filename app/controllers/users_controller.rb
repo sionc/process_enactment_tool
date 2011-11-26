@@ -31,7 +31,8 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
-    @role = Role.find(params[:role])
+    @role = Role.find(params[:user][:role])
+
 
     respond_to do |format|
       if @user.update_attributes(params[:user])

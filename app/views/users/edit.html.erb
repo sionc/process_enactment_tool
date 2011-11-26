@@ -23,12 +23,16 @@
   </div>
   
   <!--% if can? :read, Role %-->
-  	<ul class="no-pad no-bullets">
+        <div class="clearfix">
+         <label>Roles</label>
   		  <% @roles.each do |r| %>
-          <%= f.radio_button :role, r.id %>
+  		  <li class="role_item">
+  		    <% has_role = @user.roles.first == r %>
+          <%= f.radio_button :role, r.id, :checked => has_role %>
           <%= f.label r.name, r.name %>
+        </li>  
         <% end %>
-  	</ul>
+        </div>
   <!--% end %-->
 
  <br/>

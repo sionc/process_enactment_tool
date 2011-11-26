@@ -367,6 +367,19 @@ input:focus, textarea:focus {
 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(28, 70, 99, 0.6);
 }
 
+.role_item {
+  list-style: none;
+}
+
+.role_item input {
+  margin-left: 20px;
+}
+
+.role_item label {
+  float:none;
+  padding-left: 3px;
+}
+
 .dialog_field label {
 	width: 90px;
 	padding-right: 10px;

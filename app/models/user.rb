@@ -35,6 +35,5 @@ class User < ActiveRecord::Base
   def assign_user_role
     self.roles << Role.find_by_name("regular_user")
     self.save!
-  end
- 
+  end 
 end

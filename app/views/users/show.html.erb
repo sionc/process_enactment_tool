@@ -1,10 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Email:</b>
+<h1>
   <%= @user.email %>
-</p>
+</h1>
 
+<p></p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<br />
+<%= link_to 'Modify', edit_user_path(@user), :class => 'btn primary' %>
+<%= link_to 'Return to Users', users_path, :class => "btn" %>

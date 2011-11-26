@@ -34,6 +34,8 @@ describe EffortLogsController do
              :user_id => 1,
              :deliverable_id => @deliverable.id
             }
+
+    @role = Factory.create(:role)
     @user = Factory.create(:user)
     sign_in @user
   end

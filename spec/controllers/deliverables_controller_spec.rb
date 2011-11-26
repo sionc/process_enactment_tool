@@ -35,6 +35,7 @@ describe DeliverablesController do
               :complexity_id => @complexity.id
             }
 
+    @role = Factory.create(:role)
     @user = Factory.create(:user)
     sign_in @user
   end

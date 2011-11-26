@@ -29,6 +29,7 @@ describe ProjectsController do
     @lifecycle_phase = Factory.create(:lifecycle_phase)
     @attr = { :name => "test1", :lifecycle_id => lifecycle.id }
 
+    @role = Factory.create(:role)
     @user = Factory.create(:user)
     sign_in @user
   end

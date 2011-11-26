@@ -18,10 +18,8 @@ unless User.find_by_email 'admin@admin.com'
   ) 
 
   # Assign the admin user role to the admin user
-  admin_user.roles << admin_role
+  admin_user.roles = [admin_role]
   admin_user.save!
-  admin_user.roles.delete(Role.find_by_name("regular_user"))
-  admin_user.save!  
 end
 
 puts "Creating complexity..."

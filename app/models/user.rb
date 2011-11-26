@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   after_create :assign_user_role
          
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role
 
   has_and_belongs_to_many :roles
 
@@ -21,9 +21,8 @@ class User < ActiveRecord::Base
     end
   end
   
-  def role=(role_name)
-    self.roles.empty!
-    self.roles << Role.find_by_name(role_name)
+  def role=(role_id)
+    self.roles = [Role.find(role_id)]
   end
     
   def role?(role)

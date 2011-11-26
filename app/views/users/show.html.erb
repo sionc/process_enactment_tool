@@ -2,8 +2,14 @@
   <%= @user.email %>
 </h1>
 
-<p></p>
+<br/>
+
+<p>
+  <b>Role:</b>
+  <%= get_user_role @user %>
+</p>
 
 <br />
+
 <%= link_to 'Modify', edit_user_path(@user), :class => 'btn primary' %>
 <%= link_to 'Return to Users', users_path, :class => "btn" %>

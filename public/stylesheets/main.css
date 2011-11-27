@@ -44,8 +44,25 @@ div.field, div.actions {
   margin-bottom: 10px;
 }
 
-.notice {
+#notice, #alert {
+  padding: 5px 8px;
+  margin: 10px 0;
+	-webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+  
+}
+
+#notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
   color: green;
+}
+#alert {
+  background-color: #FCC;
+  border: solid 1px #C66;
+  color: red;
 }
 
 .field_with_errors {
@@ -103,13 +120,13 @@ div.field, div.actions {
 }
 
 a[id ~= 'create_project']{
-    padding-left:25px;
-    background: transparent url(/images/create.png) no-repeat scroll left top;	
+  padding-left:25px;
+  background: transparent url(/images/create.png) no-repeat scroll left top;	
 	background-size: 20px 20px;
 }
 a[id ~= 'view_project'], a[id ~= 'view_lifecycles']{
 	padding-left:25px;
-    background: transparent url(/images/view.png) no-repeat scroll left top;	
+  background: transparent url(/images/view.png) no-repeat scroll left top;	
 	background-size: 20px 20px;
 }
 .home a:hover {
@@ -166,11 +183,11 @@ a[id ~= 'view_project'], a[id ~= 'view_lifecycles']{
 	padding: 6px;
 	margin: 10px;
 	-webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-box-shadow: 0 0 5px 5px #888;
-    -webkit-box-shadow: 0 0 5px 5px#888;
-    box-shadow: 0 0 5px 5px #888;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0 0 5px 5px #888;
+  -webkit-box-shadow: 0 0 5px 5px#888;
+  box-shadow: 0 0 5px 5px #888;
 	text-align: center;
 	background-color: whitesmoke;
 }
@@ -265,7 +282,7 @@ a[id ~= 'view_project'], a[id ~= 'view_lifecycles']{
 	z-index: 10000;
 	overflow: visible;
 	font-family: 'Coda', cursive;
-	font-size: 1.2em;
+	font-size: 1.1em;
 }
 .topbar-inner, .topbar .fill {
 	background-color: inherit;

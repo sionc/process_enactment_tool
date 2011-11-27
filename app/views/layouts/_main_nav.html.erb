@@ -2,8 +2,9 @@
 	<div class="fill">
 		<div class="container">
 			<a class="brand" href="/">Process Enactment Tool</a>
+			<% if @current_user %>
 			<ul class="nav">
-                <li>
+        <li>
 					<a href="/" id = "home" title="go to homepage">HOME</a>
 				</li>
 				<li>
@@ -12,7 +13,13 @@
 				<li>
 					<a href="/lifecycles" id="lm" title="go to the Lifecycles Management Home screen">LIFECYCLES</a>
 				</li>
+				<% if @current_user.role?(:admin) %>
+  				<li>
+            <a href="/users" id="users" title="go to the Users Management Home screen">USERS</a>
+          </li>
+        <% end %>
 			</ul>
+			<% end %>
       </div>
 	</div>
 </div>

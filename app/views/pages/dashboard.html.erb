@@ -40,5 +40,25 @@
   </table>
   </div>
 </div>
-<br/>
+
+<% if can? :read, @users %>
+<div class="content-box dashboard-box">
+  <div class="content-box-title">
+    USERS
+    <%= link_to "See all", users_path %>
+  </div>
+  <div class="content-box-body">
+  <table class="condensed-table show_all">
+    <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to user.email, user %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+  </div>
+</div>
+<% end %>
+<br />
 

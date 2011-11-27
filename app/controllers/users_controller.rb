@@ -4,7 +4,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => []
   
-  before_filter :get_user, :only => [:index,:edit]
   before_filter :accessible_roles, :only => [:edit, :show, :update]
   # load_and_authorize_resource :only => [:show, :destroy, :edit, :update]
   load_and_authorize_resource 
@@ -75,9 +74,5 @@ class UsersController < ApplicationController
     @accessible_roles = Role.accessible_by(current_ability,:read)
   end
  
-  # Make the current user object available to views
-  #----------------------------------------
-  def get_user
-    @current_user = current_user
-  end
+
 end

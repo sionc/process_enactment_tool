@@ -7,7 +7,8 @@ class Ability
       can :manage, :all
     elsif user.role? :regular_user
       can :manage, [Project, ProjectPhase, Deliverable, EffortLog]
-      can :read, [Lifecycle]
+      can :read, Lifecycle
+      cannot :read, User
     end
   end
 

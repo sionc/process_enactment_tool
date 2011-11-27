@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   # Make the current user object available to views
   #----------------------------------------
   def get_user
-    @current_user = current_user
+    @current_user ||= current_user
   end
   
 end

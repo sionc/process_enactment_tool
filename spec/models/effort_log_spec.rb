@@ -55,4 +55,11 @@ describe EffortLog do
     invalid_effort_log = EffortLog.new(@attr.merge(:stop_date_time => DateTime.now.end_of_day + 1.minutes, :start_date_time => @curr_time))
     invalid_effort_log.should_not be_valid
   end
+  
+  it "should not accept an effort log that overlaps with a prior effort log" do
+   EffortLog.create!(@attr)
+   overlapping_effort_log = EffortLog.new(@attr)
+   overlapping_effort_log.should_not be_valid
+  end
+
 end

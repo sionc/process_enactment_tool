@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Class: EffortLog</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/models/effort_log.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">ActiveRecord::Base
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-interrupt_time_value">#interrupt_time_value</a>
+    
+    <li><a href="#method-i-logged_effort">#logged_effort</a>
+    
+    <li><a href="#method-i-overlaps-3F">#overlaps?</a>
+    
+    <li><a href="#method-i-start_date_is_not_in_the_future">#start_date_is_not_in_the_future</a>
+    
+    <li><a href="#method-i-start_date_time_format">#start_date_time_format</a>
+    
+    <li><a href="#method-i-stop_date_is_not_before_start_date">#stop_date_is_not_before_start_date</a>
+    
+    <li><a href="#method-i-stop_date_is_not_in_the_future">#stop_date_is_not_in_the_future</a>
+    
+    <li><a href="#method-i-stop_date_time_format">#stop_date_time_format</a>
+    
+    <li><a href="#method-i-times_do_not_overlap">#times_do_not_overlap</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./Design/ClassDiagram_txt.html">ClassDiagram</a>
+  
+    <li class="file"><a href="./Design/ModelAssociations_txt.html">ModelAssociations</a>
+  
+    <li class="file"><a href="./Design/ScreenFlow_txt.html">ScreenFlow</a>
+  
+    <li class="file"><a href="./Design/ToolsAndTechniques_txt.html">ToolsAndTechniques</a>
+  
+    <li class="file"><a href="./Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="./Rakefile.html">Rakefile</a>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Jasmine.html">Jasmine</a>
+  
+    <li><a href="./Jasmine/Config.html">Jasmine::Config</a>
+  
+    <li><a href="./Jasmine/SpecBuilder.html">Jasmine::SpecBuilder</a>
+  
+    <li><a href="./PET.html">PET</a>
+  
+    <li><a href="./PET/Application.html">PET::Application</a>
+  
+    <li><a href="./Ability.html">Ability</a>
+  
+    <li><a href="./AddComplexityIdToDeliverable.html">AddComplexityIdToDeliverable</a>
+  
+    <li><a href="./AddLifecycleIdToProject.html">AddLifecycleIdToProject</a>
+  
+    <li><a href="./AddProjectDeliverableTypeIdToDeliverable.html">AddProjectDeliverableTypeIdToDeliverable</a>
+  
+    <li><a href="./AddProjectDeliverableTypeTypeToDeliverables.html">AddProjectDeliverableTypeTypeToDeliverables</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./ChangePolymorphicDetailsInDeliverables.html">ChangePolymorphicDetailsInDeliverables</a>
+  
+    <li><a href="./Complexity.html">Complexity</a>
+  
+    <li><a href="./CreateComplexities.html">CreateComplexities</a>
+  
+    <li><a href="./CreateCustomDeliverableTypes.html">CreateCustomDeliverableTypes</a>
+  
+    <li><a href="./CreateDeliverableTypes.html">CreateDeliverableTypes</a>
+  
+    <li><a href="./CreateDeliverables.html">CreateDeliverables</a>
+  
+    <li><a href="./CreateEffortLogs.html">CreateEffortLogs</a>
+  
+    <li><a href="./CreateLifecyclePhases.html">CreateLifecyclePhases</a>
+  
+    <li><a href="./CreateLifecycles.html">CreateLifecycles</a>
+  
+    <li><a href="./CreateProjectPhases.html">CreateProjectPhases</a>
+  
+    <li><a href="./CreateProjects.html">CreateProjects</a>
+  
+    <li><a href="./CreateRoles.html">CreateRoles</a>
+  
+    <li><a href="./CreateStockDeliverableTypes.html">CreateStockDeliverableTypes</a>
+  
+    <li><a href="./CreateUnitOfMeasures.html">CreateUnitOfMeasures</a>
+  
+    <li><a href="./CustomDeliverableType.html">CustomDeliverableType</a>
+  
+    <li><a href="./Deliverable.html">Deliverable</a>
+  
+    <li><a href="./DeliverableType.html">DeliverableType</a>
+  
+    <li><a href="./DeliverablesController.html">DeliverablesController</a>
+  
+    <li><a href="./DeliverablesHelper.html">DeliverablesHelper</a>
+  
+    <li><a href="./DeviseCreateUsers.html">DeviseCreateUsers</a>
+  
+    <li><a href="./EffortLog.html">EffortLog</a>
+  
+    <li><a href="./EffortLogsController.html">EffortLogsController</a>
+  
+    <li><a href="./EffortLogsHelper.html">EffortLogsHelper</a>
+  
+    <li><a href="./Lifecycle.html">Lifecycle</a>
+  
+    <li><a href="./LifecyclePhase.html">LifecyclePhase</a>
+  
+    <li><a href="./LifecyclesController.html">LifecyclesController</a>
+  
+    <li><a href="./LifecyclesHelper.html">LifecyclesHelper</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./PagesController.html">PagesController</a>
+  
+    <li><a href="./PagesHelper.html">PagesHelper</a>
+  
+    <li><a href="./Project.html">Project</a>
+  
+    <li><a href="./ProjectPhase.html">ProjectPhase</a>
+  
+    <li><a href="./ProjectPhasesController.html">ProjectPhasesController</a>
+  
+    <li><a href="./ProjectPhasesHelper.html">ProjectPhasesHelper</a>
+  
+    <li><a href="./ProjectsController.html">ProjectsController</a>
+  
+    <li><a href="./ProjectsHelper.html">ProjectsHelper</a>
+  
+    <li><a href="./Role.html">Role</a>
+  
+    <li><a href="./StockDeliverableType.html">StockDeliverableType</a>
+  
+    <li><a href="./UnitOfMeasure.html">UnitOfMeasure</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHaveAndBelongToManyRoles.html">UsersHaveAndBelongToManyRoles</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class EffortLog</h1>
+
+  <div id="description" class="description">
+    
+<p>A class to track the effort that is logged against a deliverable</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-interrupt_time_value" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">interrupt_time_value</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Custom validator for checking that the interrupt time is &gt;= logged time</p>
+          
+
+          
+          <div class="method-source-code" id="interrupt_time_value-source">
+            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">interrupt_time_value</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start_date_time</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">stop_date_time</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">interrupt_time</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:interrupt_time</span>, <span class="ruby-string">'must be less than logged time'</span>) <span class="ruby-keyword">if</span> (<span class="ruby-identifier">interrupt_time</span> <span class="ruby-operator">&gt;=</span> (<span class="ruby-identifier">stop_date_time</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">start_date_time</span>)<span class="ruby-operator">/</span><span class="ruby-value">60</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- interrupt_time_value-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- interrupt_time_value-method -->
+
+    
+      <div id="method-i-logged_effort" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">logged_effort</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the number of hours that were logged,  and taking in to account the
+interrupt time if there is any</p>
+          
+
+          
+          <div class="method-source-code" id="logged_effort-source">
+            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">logged_effort</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start_date_time</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">stop_date_time</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-comment"># Calculate the logged time</span>
+    <span class="ruby-identifier">time_logged</span> = (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">stop_date_time</span> <span class="ruby-operator">-</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start_date_time</span>) <span class="ruby-operator">/</span> <span class="ruby-value">60</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">interrupt_time</span>.<span class="ruby-identifier">nil?</span>        
+      <span class="ruby-comment"># return the number of hours that were logged minus the interrupt time</span>
+      <span class="ruby-identifier">time_logged</span> = (<span class="ruby-identifier">time_logged</span> <span class="ruby-operator">-</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">interrupt_time</span>) <span class="ruby-operator">/</span> <span class="ruby-value">60</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment"># return the number of hours that were logged</span>
+    <span class="ruby-identifier">time_logged</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- logged_effort-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- logged_effort-method -->
+
+    
+      <div id="method-i-overlaps-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">overlaps?</span><span
+            class="method-args">(effort_log)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Determine whether or not the given effort log overlaps this one To overlap,
+an effort log must begin before this one ends, and end after this one
+starts</p>
+          
+
+          
+          <div class="method-source-code" id="overlaps-3F-source">
+            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">overlaps?</span> (<span class="ruby-identifier">effort_log</span>)
+  <span class="ruby-keyword">return</span> ((<span class="ruby-identifier">effort_log</span>.<span class="ruby-identifier">start_date_time</span> <span class="ruby-operator">&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">stop_date_time</span>) <span class="ruby-operator">&amp;&amp;</span>
+          (<span class="ruby-identifier">effort_log</span>.<span class="ruby-identifier">stop_date_time</span>  <span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start_date_time</span>) <span class="ruby-operator">&amp;&amp;</span> 
+          <span class="ruby-identifier">effort_log</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- overlaps-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- overlaps-3F-method -->
+
+    
+      <div id="method-i-start_date_is_not_in_the_future" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start_date_is_not_in_the_future</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="start_date_is_not_in_the_future-source">
+            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">start_date_is_not_in_the_future</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:start_date_time</span>, <span class="ruby-string">'must come on or before midnight'</span>) <span class="ruby-keyword">if</span> (<span class="ruby-identifier">start_date_time</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">start_date_time</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">end_of_day</span> ))    
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- start_date_is_not_in_the_future-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- start_date_is_not_in_the_future-method -->
+
+    
+      <div id="method-i-start_date_time_format" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start_date_time_format</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Custom validator for checking the start_date_time format</p>
+          
+
+          
+          <div class="method-source-code" id="start_date_time_format-source">
+            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">start_date_time_format</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:start_date_time</span>, <span class="ruby-string">'must be a valid datetime'</span>) <span class="ruby-keyword">if</span> ((<span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">start_date_time</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-keyword">rescue</span> <span class="ruby-constant">ArgumentError</span>) <span class="ruby-operator">==</span> <span class="ruby-constant">ArgumentError</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- start_date_time_format-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- start_date_time_format-method -->
+
+    
+      <div id="method-i-stop_date_is_not_before_start_date" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stop_date_is_not_before_start_date</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="stop_date_is_not_before_start_date-source">
+            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">stop_date_is_not_before_start_date</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:stop_date_time</span>, <span class="ruby-string">'must come after start time'</span>) <span class="ruby-keyword">if</span> (<span class="ruby-identifier">start_date_time</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">stop_date_time</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">start_date_time</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">stop_date_time</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- stop_date_is_not_before_start_date-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- stop_date_is_not_before_start_date-method -->
+
+    
+      <div id="method-i-stop_date_is_not_in_the_future" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stop_date_is_not_in_the_future</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="stop_date_is_not_in_the_future-source">
+            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">stop_date_is_not_in_the_future</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:stop_date_time</span>, <span class="ruby-string">'must come on or before midnight'</span>) <span class="ruby-keyword">if</span> (<span class="ruby-identifier">stop_date_time</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">stop_date_time</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">end_of_day</span> ))    
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- stop_date_is_not_in_the_future-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- stop_date_is_not_in_the_future-method -->
+
+    
+      <div id="method-i-stop_date_time_format" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stop_date_time_format</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Custom validator for checking the stop_date_time format</p>
+          
+
+          
+          <div class="method-source-code" id="stop_date_time_format-source">
+            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">stop_date_time_format</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:stop_date_time</span>, <span class="ruby-string">'must be a valid datetime'</span>) <span class="ruby-keyword">if</span> ((<span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">stop_date_time</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-keyword">rescue</span> <span class="ruby-constant">ArgumentError</span>) <span class="ruby-operator">==</span> <span class="ruby-constant">ArgumentError</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- stop_date_time_format-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- stop_date_time_format-method -->
+
+    
+      <div id="method-i-times_do_not_overlap" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">times_do_not_overlap</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="times_do_not_overlap-source">
+            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">times_do_not_overlap</span>
+  <span class="ruby-comment"># If any effort log overlaps, add errors and return immediately</span>
+  <span class="ruby-constant">EffortLog</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">effort_log</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">overlaps?</span> (<span class="ruby-identifier">effort_log</span>)
+      <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:start_date_time</span>, <span class="ruby-string">'must not overlap with existing effort log'</span>)
+      <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:stop_date_time</span>,  <span class="ruby-string">'must not overlap with existing effort log'</span>)
+      <span class="ruby-keyword">return</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- times_do_not_overlap-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- times_do_not_overlap-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

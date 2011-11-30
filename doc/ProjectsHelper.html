@@ -109,6 +109,8 @@
   
     <li><a href="./PET/Application.html">PET::Application</a>
   
+    <li><a href="./Ability.html">Ability</a>
+  
     <li><a href="./AddComplexityIdToDeliverable.html">AddComplexityIdToDeliverable</a>
   
     <li><a href="./AddLifecycleIdToProject.html">AddLifecycleIdToProject</a>
@@ -133,6 +135,8 @@
   
     <li><a href="./CreateDeliverables.html">CreateDeliverables</a>
   
+    <li><a href="./CreateEffortLogs.html">CreateEffortLogs</a>
+  
     <li><a href="./CreateLifecyclePhases.html">CreateLifecyclePhases</a>
   
     <li><a href="./CreateLifecycles.html">CreateLifecycles</a>
@@ -140,6 +144,8 @@
     <li><a href="./CreateProjectPhases.html">CreateProjectPhases</a>
   
     <li><a href="./CreateProjects.html">CreateProjects</a>
+  
+    <li><a href="./CreateRoles.html">CreateRoles</a>
   
     <li><a href="./CreateStockDeliverableTypes.html">CreateStockDeliverableTypes</a>
   
@@ -154,6 +160,14 @@
     <li><a href="./DeliverablesController.html">DeliverablesController</a>
   
     <li><a href="./DeliverablesHelper.html">DeliverablesHelper</a>
+  
+    <li><a href="./DeviseCreateUsers.html">DeviseCreateUsers</a>
+  
+    <li><a href="./EffortLog.html">EffortLog</a>
+  
+    <li><a href="./EffortLogsController.html">EffortLogsController</a>
+  
+    <li><a href="./EffortLogsHelper.html">EffortLogsHelper</a>
   
     <li><a href="./Lifecycle.html">Lifecycle</a>
   
@@ -181,9 +195,19 @@
   
     <li><a href="./ProjectsHelper.html">ProjectsHelper</a>
   
+    <li><a href="./Role.html">Role</a>
+  
     <li><a href="./StockDeliverableType.html">StockDeliverableType</a>
   
     <li><a href="./UnitOfMeasure.html">UnitOfMeasure</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHaveAndBelongToManyRoles.html">UsersHaveAndBelongToManyRoles</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -220,7 +244,7 @@
         
         <div class="method-heading">
           <span class="method-name">get_hours</span><span
-            class="method-args">()</span>
+            class="method-args">(field)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -234,8 +258,8 @@ href="Project.html#method-i-estimated_effort">Project#estimated_effort</a></p>
           
           <div class="method-source-code" id="get_hours-source">
             <pre><span class="ruby-comment"># File app/helpers/projects_helper.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_hours</span>
-   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@project</span>.<span class="ruby-identifier">estimated_effort</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_hours</span>(<span class="ruby-identifier">field</span>)
+   <span class="ruby-keyword">if</span> <span class="ruby-identifier">field</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
      <span class="ruby-string">&quot;hour&quot;</span>.<span class="ruby-identifier">pluralize</span>
    <span class="ruby-keyword">else</span>
      <span class="ruby-string">&quot;hour&quot;</span>

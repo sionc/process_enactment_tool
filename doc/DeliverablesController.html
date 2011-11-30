@@ -78,9 +78,9 @@
     
     <li><a href="#method-i-edit">#edit</a>
     
-    <li><a href="#method-i-get_unit_of_measure">#get_unit_of_measure</a>
+    <li><a href="#method-i-get_historical_data">#get_historical_data</a>
     
-    <li><a href="#method-i-index">#index</a>
+    <li><a href="#method-i-get_unit_of_measure">#get_unit_of_measure</a>
     
     <li><a href="#method-i-new">#new</a>
     
@@ -133,6 +133,8 @@
   
     <li><a href="./PET/Application.html">PET::Application</a>
   
+    <li><a href="./Ability.html">Ability</a>
+  
     <li><a href="./AddComplexityIdToDeliverable.html">AddComplexityIdToDeliverable</a>
   
     <li><a href="./AddLifecycleIdToProject.html">AddLifecycleIdToProject</a>
@@ -157,6 +159,8 @@
   
     <li><a href="./CreateDeliverables.html">CreateDeliverables</a>
   
+    <li><a href="./CreateEffortLogs.html">CreateEffortLogs</a>
+  
     <li><a href="./CreateLifecyclePhases.html">CreateLifecyclePhases</a>
   
     <li><a href="./CreateLifecycles.html">CreateLifecycles</a>
@@ -164,6 +168,8 @@
     <li><a href="./CreateProjectPhases.html">CreateProjectPhases</a>
   
     <li><a href="./CreateProjects.html">CreateProjects</a>
+  
+    <li><a href="./CreateRoles.html">CreateRoles</a>
   
     <li><a href="./CreateStockDeliverableTypes.html">CreateStockDeliverableTypes</a>
   
@@ -178,6 +184,14 @@
     <li><a href="./DeliverablesController.html">DeliverablesController</a>
   
     <li><a href="./DeliverablesHelper.html">DeliverablesHelper</a>
+  
+    <li><a href="./DeviseCreateUsers.html">DeviseCreateUsers</a>
+  
+    <li><a href="./EffortLog.html">EffortLog</a>
+  
+    <li><a href="./EffortLogsController.html">EffortLogsController</a>
+  
+    <li><a href="./EffortLogsHelper.html">EffortLogsHelper</a>
   
     <li><a href="./Lifecycle.html">Lifecycle</a>
   
@@ -205,9 +219,19 @@
   
     <li><a href="./ProjectsHelper.html">ProjectsHelper</a>
   
+    <li><a href="./Role.html">Role</a>
+  
     <li><a href="./StockDeliverableType.html">StockDeliverableType</a>
   
     <li><a href="./UnitOfMeasure.html">UnitOfMeasure</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHaveAndBelongToManyRoles.html">UsersHaveAndBelongToManyRoles</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -263,7 +287,7 @@ associations to create this deliverable created through @assignable</p>
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 63</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@assignable</span> = <span class="ruby-identifier">find_assignable</span>
 
@@ -319,7 +343,7 @@ href="CustomDeliverableType.html">CustomDeliverableType</a></p>
 
           
           <div class="method-source-code" id="create_custom_deliverable_type-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 120</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 113</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_custom_deliverable_type</span>
   <span class="ruby-comment"># we get the posted variables</span>
   <span class="ruby-comment"># save them to the database</span>
@@ -362,7 +386,7 @@ href="CustomDeliverableType.html">CustomDeliverableType</a></p>
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 108</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 101</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@deliverable</span>.<span class="ruby-identifier">destroy</span>
@@ -398,7 +422,7 @@ href="CustomDeliverableType.html">CustomDeliverableType</a></p>
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 55</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -410,6 +434,57 @@ href="CustomDeliverableType.html">CustomDeliverableType</a></p>
 
         
       </div><!-- edit-method -->
+
+    
+      <div id="method-i-get_historical_data" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_historical_data</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets the Historical data for the given deliverable type and complexity</p>
+          
+
+          
+          <div class="method-source-code" id="get_historical_data-source">
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 146</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_historical_data</span>
+  <span class="ruby-identifier">return_val</span> = []
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:stock_deliverable_type_id</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:complexity_id</span>]
+    <span class="ruby-identifier">del_type_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:stock_deliverable_type_id</span>]
+    <span class="ruby-identifier">complexity_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:complexity_id</span>]
+    
+    <span class="ruby-identifier">stock_deliverable_type</span> = <span class="ruby-constant">StockDeliverableType</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">del_type_id</span>)
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">stock_deliverable_type</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">min_record</span> = <span class="ruby-identifier">stock_deliverable_type</span>.<span class="ruby-identifier">get_del_with_min_effort</span>(<span class="ruby-identifier">complexity_id</span>)
+      <span class="ruby-identifier">avg_record</span> = <span class="ruby-identifier">stock_deliverable_type</span>.<span class="ruby-identifier">get_del_with_avg_effort</span>(<span class="ruby-identifier">complexity_id</span>)
+      <span class="ruby-identifier">max_record</span> = <span class="ruby-identifier">stock_deliverable_type</span>.<span class="ruby-identifier">get_del_with_max_effort</span>(<span class="ruby-identifier">complexity_id</span>)
+      
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">min_record</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">avg_record</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">max_record</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-identifier">return_val</span>[<span class="ruby-value">0</span>] = [<span class="ruby-identifier">min_record</span>.<span class="ruby-identifier">estimated_size</span>, <span class="ruby-identifier">min_record</span>.<span class="ruby-identifier">estimated_production_rate</span>, <span class="ruby-identifier">min_record</span>.<span class="ruby-identifier">estimated_effort</span>]
+        <span class="ruby-identifier">return_val</span>[<span class="ruby-value">1</span>] = [<span class="ruby-identifier">avg_record</span>.<span class="ruby-identifier">estimated_size</span>, <span class="ruby-identifier">avg_record</span>.<span class="ruby-identifier">estimated_production_rate</span>, <span class="ruby-identifier">avg_record</span>.<span class="ruby-identifier">estimated_effort</span>]
+        <span class="ruby-identifier">return_val</span>[<span class="ruby-value">2</span>] = [<span class="ruby-identifier">max_record</span>.<span class="ruby-identifier">estimated_size</span>, <span class="ruby-identifier">max_record</span>.<span class="ruby-identifier">estimated_production_rate</span>, <span class="ruby-identifier">max_record</span>.<span class="ruby-identifier">estimated_effort</span>]
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># return a json string</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:hist</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">return_val</span>} }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_historical_data-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_historical_data-method -->
 
     
       <div id="method-i-get_unit_of_measure" class="method-detail ">
@@ -429,7 +504,7 @@ href="CustomDeliverableType.html">CustomDeliverableType</a></p>
 
           
           <div class="method-source-code" id="get_unit_of_measure-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 138</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 131</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_unit_of_measure</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignable_type</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;StockDeliverableType&quot;</span>
                       <span class="ruby-identifier">stock_deliverable_type</span> = <span class="ruby-constant">StockDeliverableType</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignable_id</span>])
@@ -453,41 +528,6 @@ href="CustomDeliverableType.html">CustomDeliverableType</a></p>
       </div><!-- get_unit_of_measure-method -->
 
     
-      <div id="method-i-index" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">index</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>GET /deliverables GET /deliverables.xml</p>
-          
-
-          
-          <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 10</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@deliverables</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">all</span>
-
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># index.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@deliverables</span> }
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- index-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- index-method -->
-
-    
       <div id="method-i-new" class="method-detail ">
         
         <div class="method-heading">
@@ -504,7 +544,7 @@ href="CustomDeliverableType.html">CustomDeliverableType</a></p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@project_phase_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:project_phase_id</span>]
@@ -542,10 +582,11 @@ href="CustomDeliverableType.html">CustomDeliverableType</a></p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-
+  
+  <span class="ruby-ivar">@effort_logs</span> = <span class="ruby-ivar">@deliverable</span>.<span class="ruby-identifier">effort_logs</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># show.html.erb</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@deliverable</span> }
@@ -578,7 +619,7 @@ get the deliverables for the selected phase</p>
 
           
           <div class="method-source-code" id="show_phase_deliverables-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_phase_deliverables</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">all</span>
 
@@ -612,7 +653,7 @@ get the deliverables for the selected phase</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 92</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 

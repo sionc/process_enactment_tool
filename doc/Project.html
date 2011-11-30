@@ -72,6 +72,8 @@
     
     <li><a href="#method-i-estimated_effort">#estimated_effort</a>
     
+    <li><a href="#method-i-logged_effort">#logged_effort</a>
+    
     <li><a href="#method-i-ordered_list">#ordered_list</a>
     
   </ul>
@@ -117,6 +119,8 @@
   
     <li><a href="./PET/Application.html">PET::Application</a>
   
+    <li><a href="./Ability.html">Ability</a>
+  
     <li><a href="./AddComplexityIdToDeliverable.html">AddComplexityIdToDeliverable</a>
   
     <li><a href="./AddLifecycleIdToProject.html">AddLifecycleIdToProject</a>
@@ -141,6 +145,8 @@
   
     <li><a href="./CreateDeliverables.html">CreateDeliverables</a>
   
+    <li><a href="./CreateEffortLogs.html">CreateEffortLogs</a>
+  
     <li><a href="./CreateLifecyclePhases.html">CreateLifecyclePhases</a>
   
     <li><a href="./CreateLifecycles.html">CreateLifecycles</a>
@@ -148,6 +154,8 @@
     <li><a href="./CreateProjectPhases.html">CreateProjectPhases</a>
   
     <li><a href="./CreateProjects.html">CreateProjects</a>
+  
+    <li><a href="./CreateRoles.html">CreateRoles</a>
   
     <li><a href="./CreateStockDeliverableTypes.html">CreateStockDeliverableTypes</a>
   
@@ -162,6 +170,14 @@
     <li><a href="./DeliverablesController.html">DeliverablesController</a>
   
     <li><a href="./DeliverablesHelper.html">DeliverablesHelper</a>
+  
+    <li><a href="./DeviseCreateUsers.html">DeviseCreateUsers</a>
+  
+    <li><a href="./EffortLog.html">EffortLog</a>
+  
+    <li><a href="./EffortLogsController.html">EffortLogsController</a>
+  
+    <li><a href="./EffortLogsHelper.html">EffortLogsHelper</a>
   
     <li><a href="./Lifecycle.html">Lifecycle</a>
   
@@ -189,9 +205,19 @@
   
     <li><a href="./ProjectsHelper.html">ProjectsHelper</a>
   
+    <li><a href="./Role.html">Role</a>
+  
     <li><a href="./StockDeliverableType.html">StockDeliverableType</a>
   
     <li><a href="./UnitOfMeasure.html">UnitOfMeasure</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHaveAndBelongToManyRoles.html">UsersHaveAndBelongToManyRoles</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -252,7 +278,7 @@ href="ProjectPhase.html">ProjectPhase</a></p>
     <span class="ruby-identifier">total_estimated_effort</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">phase</span>.<span class="ruby-identifier">estimated_effort</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">phase</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">total_estimated_effort</span>
+  <span class="ruby-identifier">total_estimated_effort</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- estimated_effort-source -->
           
@@ -262,6 +288,41 @@ href="ProjectPhase.html">ProjectPhase</a></p>
 
         
       </div><!-- estimated_effort-method -->
+
+    
+      <div id="method-i-logged_effort" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">logged_effort</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the logged effort for the <a href="Project.html">Project</a></p>
+          
+
+          
+          <div class="method-source-code" id="logged_effort-source">
+            <pre><span class="ruby-comment"># File app/models/project.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">logged_effort</span>
+  <span class="ruby-identifier">total_logged_effort</span> = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">project_phases</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">phase</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">total_logged_effort</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">phase</span>.<span class="ruby-identifier">logged_effort</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">phase</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">total_logged_effort</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- logged_effort-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- logged_effort-method -->
 
     
       <div id="method-i-ordered_list" class="method-detail ">

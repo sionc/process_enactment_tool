@@ -48,7 +48,17 @@
   <h3 class="section-header">Defined In</h3>
   <ul>
     <li>script/rails
+    <li>spec/controllers/deliverables_controller_spec.rb
+    <li>spec/controllers/effort_logs_controller_spec.rb
     <li>spec/controllers/lifecycles_controller_spec.rb
+    <li>spec/controllers/pages_controller_spec.rb
+    <li>spec/controllers/project_phases_controller_spec.rb
+    <li>spec/controllers/projects_controller_spec.rb
+    <li>spec/controllers/users_controller_spec.rb
+    <li>spec/requests/deliverables_spec.rb
+    <li>spec/views/users/edit.html.erb_spec.rb
+    <li>spec/views/users/index.html.erb_spec.rb
+    <li>spec/views/users/show.html.erb_spec.rb
   </ul>
 </nav>
 
@@ -64,7 +74,19 @@
   
 </nav>
 
-    
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">Devise::TestHelpers</span>
+  
+  
+  </ul>
+</nav>
+
     <!-- Method Quickref -->
 <nav id="method-list-section" class="section">
   <h3 class="section-header">Methods</h3>
@@ -116,6 +138,8 @@
   
     <li><a href="./PET/Application.html">PET::Application</a>
   
+    <li><a href="./Ability.html">Ability</a>
+  
     <li><a href="./AddComplexityIdToDeliverable.html">AddComplexityIdToDeliverable</a>
   
     <li><a href="./AddLifecycleIdToProject.html">AddLifecycleIdToProject</a>
@@ -140,6 +164,8 @@
   
     <li><a href="./CreateDeliverables.html">CreateDeliverables</a>
   
+    <li><a href="./CreateEffortLogs.html">CreateEffortLogs</a>
+  
     <li><a href="./CreateLifecyclePhases.html">CreateLifecyclePhases</a>
   
     <li><a href="./CreateLifecycles.html">CreateLifecycles</a>
@@ -147,6 +173,8 @@
     <li><a href="./CreateProjectPhases.html">CreateProjectPhases</a>
   
     <li><a href="./CreateProjects.html">CreateProjects</a>
+  
+    <li><a href="./CreateRoles.html">CreateRoles</a>
   
     <li><a href="./CreateStockDeliverableTypes.html">CreateStockDeliverableTypes</a>
   
@@ -161,6 +189,14 @@
     <li><a href="./DeliverablesController.html">DeliverablesController</a>
   
     <li><a href="./DeliverablesHelper.html">DeliverablesHelper</a>
+  
+    <li><a href="./DeviseCreateUsers.html">DeviseCreateUsers</a>
+  
+    <li><a href="./EffortLog.html">EffortLog</a>
+  
+    <li><a href="./EffortLogsController.html">EffortLogsController</a>
+  
+    <li><a href="./EffortLogsHelper.html">EffortLogsHelper</a>
   
     <li><a href="./Lifecycle.html">Lifecycle</a>
   
@@ -188,9 +224,19 @@
   
     <li><a href="./ProjectsHelper.html">ProjectsHelper</a>
   
+    <li><a href="./Role.html">Role</a>
+  
     <li><a href="./StockDeliverableType.html">StockDeliverableType</a>
   
     <li><a href="./UnitOfMeasure.html">UnitOfMeasure</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHaveAndBelongToManyRoles.html">UsersHaveAndBelongToManyRoles</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -256,7 +302,7 @@ this method accordingly.</p>
 
           
           <div class="method-source-code" id="valid_attributes-source">
-            <pre><span class="ruby-comment"># File spec/controllers/lifecycles_controller_spec.rb, line 26</span>
+            <pre><span class="ruby-comment"># File spec/controllers/lifecycles_controller_spec.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">valid_attributes</span>
   {<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Simplified Waterfall&quot;</span>}
 <span class="ruby-keyword">end</span></pre>

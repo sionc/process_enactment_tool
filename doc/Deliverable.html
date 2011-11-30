@@ -76,6 +76,8 @@
     
     <li><a href="#method-i-estimations_should_be_valid">#estimations_should_be_valid</a>
     
+    <li><a href="#method-i-logged_effort">#logged_effort</a>
+    
     <li><a href="#method-i-unit_of_measure">#unit_of_measure</a>
     
   </ul>
@@ -121,6 +123,8 @@
   
     <li><a href="./PET/Application.html">PET::Application</a>
   
+    <li><a href="./Ability.html">Ability</a>
+  
     <li><a href="./AddComplexityIdToDeliverable.html">AddComplexityIdToDeliverable</a>
   
     <li><a href="./AddLifecycleIdToProject.html">AddLifecycleIdToProject</a>
@@ -145,6 +149,8 @@
   
     <li><a href="./CreateDeliverables.html">CreateDeliverables</a>
   
+    <li><a href="./CreateEffortLogs.html">CreateEffortLogs</a>
+  
     <li><a href="./CreateLifecyclePhases.html">CreateLifecyclePhases</a>
   
     <li><a href="./CreateLifecycles.html">CreateLifecycles</a>
@@ -152,6 +158,8 @@
     <li><a href="./CreateProjectPhases.html">CreateProjectPhases</a>
   
     <li><a href="./CreateProjects.html">CreateProjects</a>
+  
+    <li><a href="./CreateRoles.html">CreateRoles</a>
   
     <li><a href="./CreateStockDeliverableTypes.html">CreateStockDeliverableTypes</a>
   
@@ -166,6 +174,14 @@
     <li><a href="./DeliverablesController.html">DeliverablesController</a>
   
     <li><a href="./DeliverablesHelper.html">DeliverablesHelper</a>
+  
+    <li><a href="./DeviseCreateUsers.html">DeviseCreateUsers</a>
+  
+    <li><a href="./EffortLog.html">EffortLog</a>
+  
+    <li><a href="./EffortLogsController.html">EffortLogsController</a>
+  
+    <li><a href="./EffortLogsHelper.html">EffortLogsHelper</a>
   
     <li><a href="./Lifecycle.html">Lifecycle</a>
   
@@ -193,9 +209,19 @@
   
     <li><a href="./ProjectsHelper.html">ProjectsHelper</a>
   
+    <li><a href="./Role.html">Role</a>
+  
     <li><a href="./StockDeliverableType.html">StockDeliverableType</a>
   
     <li><a href="./UnitOfMeasure.html">UnitOfMeasure</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHaveAndBelongToManyRoles.html">UsersHaveAndBelongToManyRoles</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -253,7 +279,7 @@ estimated_effort = estimated_size * estimated_production_rate</p>
 
           
           <div class="method-source-code" id="complexity_level-source">
-            <pre><span class="ruby-comment"># File app/models/deliverable.rb, line 46</span>
+            <pre><span class="ruby-comment"># File app/models/deliverable.rb, line 48</span>
       <span class="ruby-keyword">def</span> <span class="ruby-identifier">complexity_level</span>
               <span class="ruby-identifier">complexity</span>.<span class="ruby-identifier">level</span>
 <span class="ruby-keyword">end</span></pre>
@@ -283,7 +309,7 @@ estimated_effort = estimated_size * estimated_production_rate</p>
 
           
           <div class="method-source-code" id="deliverable_type-source">
-            <pre><span class="ruby-comment"># File app/models/deliverable.rb, line 27</span>
+            <pre><span class="ruby-comment"># File app/models/deliverable.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">deliverable_type</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">assignable_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;StockDeliverableType&quot;</span>
                 <span class="ruby-constant">StockDeliverableType</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">assignable_id</span>).<span class="ruby-identifier">deliverable_type</span>.<span class="ruby-identifier">name</span>
@@ -318,7 +344,7 @@ estimated_effort = estimated_size * estimated_production_rate</p>
 
           
           <div class="method-source-code" id="estimations_should_be_valid-source">
-            <pre><span class="ruby-comment"># File app/models/deliverable.rb, line 51</span>
+            <pre><span class="ruby-comment"># File app/models/deliverable.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">estimations_should_be_valid</span>
   <span class="ruby-keyword">if</span> (<span class="ruby-identifier">estimated_effort</span> <span class="ruby-operator">!=</span> (<span class="ruby-identifier">estimated_size</span>.<span class="ruby-identifier">to_f</span> * <span class="ruby-identifier">estimated_production_rate</span>.<span class="ruby-identifier">to_f</span>))
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:estimated_size</span>, <span class="ruby-string">&quot;must be equal to estimated effort / estimated production rate&quot;</span>)
@@ -334,6 +360,40 @@ estimated_effort = estimated_size * estimated_production_rate</p>
 
         
       </div><!-- estimations_should_be_valid-method -->
+
+    
+      <div id="method-i-logged_effort" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">logged_effort</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>function to get the total logged effort for this deliverable</p>
+          
+
+          
+          <div class="method-source-code" id="logged_effort-source">
+            <pre><span class="ruby-comment"># File app/models/deliverable.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">logged_effort</span>
+  <span class="ruby-identifier">logged_effort</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">effort_logs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">log</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">logged_effort</span> = <span class="ruby-identifier">logged_effort</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">log</span>.<span class="ruby-identifier">logged_effort</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">logged_effort</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- logged_effort-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- logged_effort-method -->
 
     
       <div id="method-i-unit_of_measure" class="method-detail ">
@@ -352,7 +412,7 @@ estimated_effort = estimated_size * estimated_production_rate</p>
 
           
           <div class="method-source-code" id="unit_of_measure-source">
-            <pre><span class="ruby-comment"># File app/models/deliverable.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/models/deliverable.rb, line 38</span>
      <span class="ruby-keyword">def</span> <span class="ruby-identifier">unit_of_measure</span>
  <span class="ruby-keyword">if</span> <span class="ruby-identifier">assignable_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;StockDeliverableType&quot;</span>
                      <span class="ruby-identifier">stock_deliverable_type</span> = <span class="ruby-constant">StockDeliverableType</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">assignable_id</span>)

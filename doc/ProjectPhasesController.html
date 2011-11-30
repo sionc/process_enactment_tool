@@ -115,6 +115,8 @@
   
     <li><a href="./PET/Application.html">PET::Application</a>
   
+    <li><a href="./Ability.html">Ability</a>
+  
     <li><a href="./AddComplexityIdToDeliverable.html">AddComplexityIdToDeliverable</a>
   
     <li><a href="./AddLifecycleIdToProject.html">AddLifecycleIdToProject</a>
@@ -139,6 +141,8 @@
   
     <li><a href="./CreateDeliverables.html">CreateDeliverables</a>
   
+    <li><a href="./CreateEffortLogs.html">CreateEffortLogs</a>
+  
     <li><a href="./CreateLifecyclePhases.html">CreateLifecyclePhases</a>
   
     <li><a href="./CreateLifecycles.html">CreateLifecycles</a>
@@ -146,6 +150,8 @@
     <li><a href="./CreateProjectPhases.html">CreateProjectPhases</a>
   
     <li><a href="./CreateProjects.html">CreateProjects</a>
+  
+    <li><a href="./CreateRoles.html">CreateRoles</a>
   
     <li><a href="./CreateStockDeliverableTypes.html">CreateStockDeliverableTypes</a>
   
@@ -160,6 +166,14 @@
     <li><a href="./DeliverablesController.html">DeliverablesController</a>
   
     <li><a href="./DeliverablesHelper.html">DeliverablesHelper</a>
+  
+    <li><a href="./DeviseCreateUsers.html">DeviseCreateUsers</a>
+  
+    <li><a href="./EffortLog.html">EffortLog</a>
+  
+    <li><a href="./EffortLogsController.html">EffortLogsController</a>
+  
+    <li><a href="./EffortLogsHelper.html">EffortLogsHelper</a>
   
     <li><a href="./Lifecycle.html">Lifecycle</a>
   
@@ -187,9 +201,19 @@
   
     <li><a href="./ProjectsHelper.html">ProjectsHelper</a>
   
+    <li><a href="./Role.html">Role</a>
+  
     <li><a href="./StockDeliverableType.html">StockDeliverableType</a>
   
     <li><a href="./UnitOfMeasure.html">UnitOfMeasure</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHaveAndBelongToManyRoles.html">UsersHaveAndBelongToManyRoles</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -243,7 +267,7 @@ page.</p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/project_phases_controller.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/controllers/project_phases_controller.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@project_phase</span> = <span class="ruby-constant">ProjectPhase</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@lifecycle_phase</span> = <span class="ruby-ivar">@project_phase</span>.<span class="ruby-identifier">lifecycle_phase</span>
@@ -263,7 +287,8 @@ page.</p>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:lifecycle_phase_container</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lifecycle_phase</span>,
                                     <span class="ruby-value">:deliverables_container</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project_phase_deliverables</span>,
-                                    <span class="ruby-value">:project_phase_estimated_effort</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project_phase</span>.<span class="ruby-identifier">estimated_effort</span>} }
+                                    <span class="ruby-value">:project_phase_estimated_effort</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project_phase</span>.<span class="ruby-identifier">estimated_effort</span>,
+                                    <span class="ruby-value">:project_phase_logged_effort</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@project_phase</span>.<span class="ruby-identifier">logged_effort</span>} }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->

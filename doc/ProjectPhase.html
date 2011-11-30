@@ -72,6 +72,10 @@
     
     <li><a href="#method-i-estimated_effort">#estimated_effort</a>
     
+    <li><a href="#method-i-logged_effort">#logged_effort</a>
+    
+    <li><a href="#method-i-project_phase_deliverables">#project_phase_deliverables</a>
+    
   </ul>
 </nav>
 
@@ -115,6 +119,8 @@
   
     <li><a href="./PET/Application.html">PET::Application</a>
   
+    <li><a href="./Ability.html">Ability</a>
+  
     <li><a href="./AddComplexityIdToDeliverable.html">AddComplexityIdToDeliverable</a>
   
     <li><a href="./AddLifecycleIdToProject.html">AddLifecycleIdToProject</a>
@@ -139,6 +145,8 @@
   
     <li><a href="./CreateDeliverables.html">CreateDeliverables</a>
   
+    <li><a href="./CreateEffortLogs.html">CreateEffortLogs</a>
+  
     <li><a href="./CreateLifecyclePhases.html">CreateLifecyclePhases</a>
   
     <li><a href="./CreateLifecycles.html">CreateLifecycles</a>
@@ -146,6 +154,8 @@
     <li><a href="./CreateProjectPhases.html">CreateProjectPhases</a>
   
     <li><a href="./CreateProjects.html">CreateProjects</a>
+  
+    <li><a href="./CreateRoles.html">CreateRoles</a>
   
     <li><a href="./CreateStockDeliverableTypes.html">CreateStockDeliverableTypes</a>
   
@@ -160,6 +170,14 @@
     <li><a href="./DeliverablesController.html">DeliverablesController</a>
   
     <li><a href="./DeliverablesHelper.html">DeliverablesHelper</a>
+  
+    <li><a href="./DeviseCreateUsers.html">DeviseCreateUsers</a>
+  
+    <li><a href="./EffortLog.html">EffortLog</a>
+  
+    <li><a href="./EffortLogsController.html">EffortLogsController</a>
+  
+    <li><a href="./EffortLogsHelper.html">EffortLogsHelper</a>
   
     <li><a href="./Lifecycle.html">Lifecycle</a>
   
@@ -187,9 +205,19 @@
   
     <li><a href="./ProjectsHelper.html">ProjectsHelper</a>
   
+    <li><a href="./Role.html">Role</a>
+  
     <li><a href="./StockDeliverableType.html">StockDeliverableType</a>
   
     <li><a href="./UnitOfMeasure.html">UnitOfMeasure</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHaveAndBelongToManyRoles.html">UsersHaveAndBelongToManyRoles</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -248,23 +276,9 @@ href="CustomDeliverableType.html">CustomDeliverableType</a></p>
           <div class="method-source-code" id="estimated_effort-source">
             <pre><span class="ruby-comment"># File app/models/project_phase.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">estimated_effort</span>
-
-  <span class="ruby-ivar">@project_phase_deliverables</span> = []
-  <span class="ruby-identifier">stock_deliverable_types</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">stock</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">stock</span>.<span class="ruby-identifier">deliverables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span>
-      <span class="ruby-ivar">@project_phase_deliverables</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">d</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-identifier">custom_deliverable_types</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">custom</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">custom</span>.<span class="ruby-identifier">deliverables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span>
-      <span class="ruby-ivar">@project_phase_deliverables</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">d</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-
   <span class="ruby-identifier">total_estimated_effort</span> = <span class="ruby-value">0</span>
 
-  <span class="ruby-ivar">@project_phase_deliverables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">deliverable</span><span class="ruby-operator">|</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">project_phase_deliverables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">deliverable</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">total_estimated_effort</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">deliverable</span>.<span class="ruby-identifier">estimated_effort</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">deliverable</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-keyword">end</span>
 
@@ -278,6 +292,85 @@ href="CustomDeliverableType.html">CustomDeliverableType</a></p>
 
         
       </div><!-- estimated_effort-method -->
+
+    
+      <div id="method-i-logged_effort" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">logged_effort</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>function to get the total logged effort for this deliverable</p>
+          
+
+          
+          <div class="method-source-code" id="logged_effort-source">
+            <pre><span class="ruby-comment"># File app/models/project_phase.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">logged_effort</span>
+  <span class="ruby-identifier">total_logged_effort</span> = <span class="ruby-value">0</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">project_phase_deliverables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">deliverable</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">total_logged_effort</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">deliverable</span>.<span class="ruby-identifier">logged_effort</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">deliverable</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">total_logged_effort</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- logged_effort-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- logged_effort-method -->
+
+    
+      <div id="method-i-project_phase_deliverables" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">project_phase_deliverables</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>function to return the aggregated project phase deliverables with both
+stock and custom</p>
+          
+
+          
+          <div class="method-source-code" id="project_phase_deliverables-source">
+            <pre><span class="ruby-comment"># File app/models/project_phase.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">project_phase_deliverables</span>
+  <span class="ruby-identifier">project_phase_deliverables</span> = []
+  <span class="ruby-identifier">stock_deliverable_types</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">stock</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">stock</span>.<span class="ruby-identifier">deliverables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">project_phase_deliverables</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">d</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">custom_deliverable_types</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">custom</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">custom</span>.<span class="ruby-identifier">deliverables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">project_phase_deliverables</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">d</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">project_phase_deliverables</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- project_phase_deliverables-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- project_phase_deliverables-method -->
 
     
     </section><!-- public-instance-method-details -->

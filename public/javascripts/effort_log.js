@@ -7,14 +7,16 @@ $(document).ready(function() {
             required: true,
             before_stop_time: true,
             before_midnight: true,
+            does_not_overlap: true
             // date: true
           },
           "effort_log[stop_date_time]": {
             required: true,
             after_start_time: true,
             before_midnight: true,
+            does_not_overlap: true
             // date: true
-          }
+          },
         }
     });
     // custom validation for start date, 
@@ -44,5 +46,28 @@ $(document).ready(function() {
     jQuery.validator.addMethod("before_midnight", function(value, element, params) {       
       return (Date.parse(value) < Date.today().set({hour:23, minute:59, second:59}));
     }, jQuery.format("Time must be before midnight "));
+
+
+    // custom validation for start and stop dates, 
+    // making sure they don't overlap prior date ranges
+    jQuery.validator.addMethod("does_not_overlap", function(value, element, params) { 
+      var doesNotOverlap = true;
+    
+      var queryValues = {
+         "start_date_time": $("#start_datetime").val(),
+         "stop_date_time": $("#stop_datetime").val(),
+         "deliverable_id": $("#effort_log_deliverable_id").val()
+      };
+
+      $.ajax({ url: "/effort_logs/does_not_overlap", 
+          data: queryValues, 
+          async: false, 
+          success: function(data) { 
+            doesNotOverlap = data.doesNotOverlap
+          }
+      });    
+            
+      return doesNotOverlap;
+    }, jQuery.format("Effort Log overlaps prior entries"));
 
 });

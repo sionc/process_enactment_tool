@@ -54,4 +54,26 @@ class EffortLogsController < ApplicationController
       end
     end
   end
+  
+  def does_not_overlap
+    found_overlap = false
+    start_date_time = params[:start_date_time]
+    stop_date_time  = params[:stop_date_time]
+    deliverable_id  = params[:deliverable_id]
+    
+    tmp_effort_log = EffortLog.new(:deliverable_id => deliverable_id, 
+                                   :start_date_time => start_date_time, 
+                                   :stop_date_time => stop_date_time)
+                                   
+    EffortLog.all.each do |effort_log|
+      if tmp_effort_log.overlaps? (effort_log)
+        found_overlap = true
+      end
+    end  
+    
+    # return a json string
+    respond_to do |format|
+      format.json { render :json => {:doesNotOverlap => !found_overlap} }
+    end                                   
+  end
 end

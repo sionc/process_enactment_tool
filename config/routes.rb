@@ -3,6 +3,7 @@ PET::Application.routes.draw do
   devise_for :users
   resources :users, :except => [:new, :create]
   
+  match "effort_logs/does_not_overlap" => "effort_logs#does_not_overlap"
   resources :effort_logs, :except => [:edit, :update, :destroy]
 
   match 'lifecycles/home' => 'lifecycles#home'

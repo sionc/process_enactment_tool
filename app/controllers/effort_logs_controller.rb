@@ -40,6 +40,7 @@ class EffortLogsController < ApplicationController
   # POST /effort_logs.xml
   def create
     @effort_log = EffortLog.new(params[:effort_log])
+    @effort_log.user_id = @current_user.id
     
     respond_to do |format|
       if @effort_log.save

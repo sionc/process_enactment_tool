@@ -72,8 +72,18 @@ Factory.define :role do |role|
   role.name                               "regular_user"
 end
 
+Factory.define :admin_role, :parent => :role do |role|
+  role.name                               "admin"
+end
+
 Factory.define :user do |user|
   user.email                              "test@test.com"
   user.password                           "testme"
   user.password_confirmation              "testme"
+end
+
+Factory.define :admin_user, :parent => :user do |user|
+  user.email                              "admin@admin.com"
+  user.password                           "administrator"
+  user.password_confirmation              "administrator"
 end

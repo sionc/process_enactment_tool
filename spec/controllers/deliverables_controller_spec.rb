@@ -54,6 +54,16 @@ describe DeliverablesController do
       get :show, :id => deliverable.id.to_s
       assigns(:deliverable).should eq(deliverable)
     end
+    
+    it "should return the effort logs associated with the current user in @effort_logs" do
+      deliverable = @stock_deliverable_type.deliverables.create! @attr
+      @admin_user = Factory.create(:admin_user)
+      Factory.create(:effort_log, :user_id => @user.id, :deliverable => deliverable)
+      Factory.create(:effort_log, :user_id => @admin_user.id, :deliverable => deliverable)
+      get :show, :id => deliverable.id.to_s
+      assigns(:effort_logs).should have(1).item
+    end
+    
   end
 
   describe "GET new" do

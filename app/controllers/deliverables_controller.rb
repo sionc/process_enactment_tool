@@ -23,9 +23,8 @@ class DeliverablesController < ApplicationController
   # GET /deliverables/1.xml
   def show
     @deliverable = Deliverable.find(params[:id])
-
-    @effort_logs = @deliverable.effort_logs
-
+    
+    @effort_logs = @deliverable.effort_logs.select {|e| e.user_id == @current_user.id}
     respond_to do |format|
       format.html # show.html.erb
       format.xml { render :xml => @deliverable }

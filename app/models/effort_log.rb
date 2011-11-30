@@ -55,7 +55,8 @@ class EffortLog < ActiveRecord::Base
   # end after this one starts
   def overlaps? (effort_log)
     return ((effort_log.start_date_time < self.stop_date_time) &&
-            (effort_log.stop_date_time  > self.start_date_time))
+            (effort_log.stop_date_time  > self.start_date_time) && 
+            effort_log.user_id == self.user_id)
   end
   
   def times_do_not_overlap

@@ -3,11 +3,13 @@ require 'spec_helper'
 describe EffortLog do
   before(:each) do
     @deliverable = Factory.create(:deliverable)
+    @role = Factory.create(:role)
+    @user = Factory.create(:user)
     @curr_time = DateTime.now
     @attr = {:start_date_time => @curr_time - 2.hours,
              :stop_date_time => @curr_time,
              :interrupt_time => 15,
-             :user_id => 1,
+             :user_id => @user.id,
              :deliverable_id => @deliverable.id
     }
   end
@@ -28,6 +30,11 @@ describe EffortLog do
   
   it "should require a deliverable id" do
    invalid_effort_log = EffortLog.new(@attr.merge(:deliverable_id => nil))
+   invalid_effort_log.should_not be_valid
+  end
+
+  it "should require a user id" do
+   invalid_effort_log = EffortLog.new(@attr.merge(:user_id => nil))
    invalid_effort_log.should_not be_valid
   end
   
@@ -60,6 +67,11 @@ describe EffortLog do
    EffortLog.create!(@attr)
    overlapping_effort_log = EffortLog.new(@attr)
    overlapping_effort_log.should_not be_valid
+  end
+
+   it "should not accept an interrupt time that is greater than or equal to the difference between stop date time and start date time" do
+    invalid_effort_log = EffortLog.new(@attr.merge(:interrupt_time => 120))
+    invalid_effort_log.should_not be_valid
   end
 
 end

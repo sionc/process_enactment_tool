@@ -4,7 +4,7 @@ PET::Application.routes.draw do
   resources :users, :except => [:new, :create]
   
   match "effort_logs/does_not_overlap" => "effort_logs#does_not_overlap"
-  resources :effort_logs, :except => [:edit, :update, :destroy]
+  resources :effort_logs, :except => [:index, :edit, :update, :destroy]
 
   match 'lifecycles/home' => 'lifecycles#home'
   resources :lifecycles, :except => [:new, :create, :edit, :destroy, :update]
@@ -15,7 +15,7 @@ PET::Application.routes.draw do
   match 'deliverables/create_custom_deliverable_type' => 'deliverables#create_custom_deliverable_type'
   match 'deliverables/get_historical_data' => 'deliverables#get_historical_data'
   
-  resources :deliverables
+  resources :deliverables, :except => [:index]
   resources :stock_deliverable_types, :has_many => :deliverables
 
   match 'projects/home' => 'projects#home'

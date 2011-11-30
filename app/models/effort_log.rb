@@ -1,6 +1,7 @@
 # A class to track the effort that is logged against a deliverable
 class EffortLog < ActiveRecord::Base
   belongs_to :deliverable
+  belongs_to :user
 
   validate :start_date_time_format
   validate :stop_date_time_format
@@ -8,15 +9,17 @@ class EffortLog < ActiveRecord::Base
   validate :stop_date_is_not_in_the_future
   validate :start_date_is_not_in_the_future
   validate :times_do_not_overlap
+  validate :interrupt_time_value
 
   validates :start_date_time, :presence => true
   validates :stop_date_time, :presence => true
   validates :deliverable_id, :presence => true
+  validates :user_id, :presence => true
 
   # Return the number of hours that were logged, 
   # and taking in to account the interrupt time if there is any
   def logged_effort
-    unless self.start_date_time.nil? && self.stop_date_time.nil?
+    unless self.start_date_time.nil? || self.stop_date_time.nil?
       # Calculate the logged time
       time_logged = (self.stop_date_time - self.start_date_time) / 60
       unless self.interrupt_time.nil?        
@@ -67,6 +70,13 @@ class EffortLog < ActiveRecord::Base
         errors.add(:stop_date_time,  'must not overlap with existing effort log')
         return
       end
+    end
+  end
+
+  # Custom validator for checking that the interrupt time is >= logged time
+  def interrupt_time_value
+    unless self.start_date_time.nil? || self.stop_date_time.nil? || self.interrupt_time.nil?
+      errors.add(:interrupt_time, 'must be less than logged time') if (interrupt_time >= (stop_date_time - start_date_time)/60)
     end
   end
 

@@ -8,23 +8,12 @@ class DeliverablesController < ApplicationController
 
   before_filter :authenticate_user!, :except => []
 
-  # GET /deliverables
-  # GET /deliverables.xml
-  def index
-    @deliverables = Deliverable.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml { render :xml => @deliverables }
-    end
-  end
-
   # GET /deliverables/1
   # GET /deliverables/1.xml
   def show
     @deliverable = Deliverable.find(params[:id])
     
-    @effort_logs = @deliverable.effort_logs.select {|e| e.user_id == @current_user.id}
+    @effort_logs = @deliverable.effort_logs
     respond_to do |format|
       format.html # show.html.erb
       format.xml { render :xml => @deliverable }

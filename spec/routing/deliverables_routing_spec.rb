@@ -2,11 +2,6 @@ require "spec_helper"
 
 describe DeliverablesController do
   describe "routing" do
-
-    it "routes to #index" do
-      get("/deliverables").should route_to("deliverables#index")
-    end
-
     it "routes to #new" do
       get("/deliverables/new").should route_to("deliverables#new")
     end

@@ -2,17 +2,6 @@ class EffortLogsController < ApplicationController
 
   before_filter :authenticate_user!, :except => []
 
-  # GET /effort_logs
-  # GET /effort_logs.xml
-  def index
-    @effort_logs = EffortLog.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @effort_logs }
-    end
-  end
-
   # GET /effort_logs/1
   # GET /effort_logs/1.xml
   def show

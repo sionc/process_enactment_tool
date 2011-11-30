@@ -52,7 +52,7 @@ describe "deliverables/show.html.erb" do
 
     it "should have a effort log table" do
       render
-      rendered.should have_xpath("//tr/th[text()='User']")
+      rendered.should have_xpath("//tr/th[text()='User email']")
       rendered.should have_xpath("//tr/th[text()='Logged effort (hours)']")
     end
   end

@@ -17,6 +17,10 @@ $(document).ready(function() {
             does_not_overlap: true
             // date: true
           },
+
+          "effort_log[interrupt_time]": {
+            less_than_logged_time: true
+          }
         }
     });
     // custom validation for start date, 
@@ -69,5 +73,15 @@ $(document).ready(function() {
             
       return doesNotOverlap;
     }, jQuery.format("Effort Log overlaps prior entries"));
+
+
+    // custom validation for interrupt time,
+    // making sure interrupt time is less than logged time
+    jQuery.validator.addMethod("less_than_logged_time", function(value, element, params) {
+
+      var start_time = Date.parse($('#start_datetime').val());
+      var stop_time  = Date.parse($('#stop_datetime').val());
+      return (value < (stop_time - start_time)/60000);
+    }, jQuery.format("Must be less than logged time"));
 
 });

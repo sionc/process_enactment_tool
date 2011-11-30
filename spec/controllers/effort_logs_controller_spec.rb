@@ -39,15 +39,6 @@ describe EffortLogsController do
     @user = Factory.create(:user)
     sign_in @user
   end
-  
-
-  describe "GET index" do
-    it "assigns all effort_logs as @effort_logs" do
-      effort_log = EffortLog.create! @attr.merge(:deliverable_id => @deliverable.id)
-      get :index
-      assigns(:effort_logs).should eq([effort_log])
-    end
-  end
 
   describe "GET show" do
     it "assigns the requested effort_log as @effort_log" do

@@ -40,14 +40,6 @@ describe DeliverablesController do
     sign_in @user
   end
 
-  describe "GET index" do
-    it "assigns all stock_deliverable_type deliverables as @deliverables " do
-      deliverable = @stock_deliverable_type.deliverables.create! @attr
-      get :index
-      assigns(:deliverables).should eq([deliverable])
-    end
-  end
-
   describe "GET show" do
     it "assigns the requested stock_deliverable_type deliverable as @deliverable" do
       deliverable = @stock_deliverable_type.deliverables.create! @attr
@@ -55,13 +47,13 @@ describe DeliverablesController do
       assigns(:deliverable).should eq(deliverable)
     end
     
-    it "should return the effort logs associated with the current user in @effort_logs" do
+    it "should return the effort logs associated with the requested stock_deliverable_type deliverable as @effort_logs" do
       deliverable = @stock_deliverable_type.deliverables.create! @attr
       @admin_user = Factory.create(:admin_user)
       Factory.create(:effort_log, :user_id => @user.id, :deliverable => deliverable)
       Factory.create(:effort_log, :user_id => @admin_user.id, :deliverable => deliverable)
       get :show, :id => deliverable.id.to_s
-      assigns(:effort_logs).should have(1).item
+      assigns(:effort_logs).should have(2).items
     end
     
   end

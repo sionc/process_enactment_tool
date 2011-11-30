@@ -36,7 +36,7 @@
 <h3>Effort logs</h3>
 <table>
   <tr>
-    <th>User</th>
+    <th>User email</th>
     <th>Logged effort (hours)</th>
     <th></th>
   </tr>
@@ -44,7 +44,7 @@
   <% unless @effort_logs.nil? %>
       <% @effort_logs.each do |effort_log| %>
           <tr>
-            <td></td>
+            <td><%= effort_log.user.email %></td>
             <td><%= sprintf('%.2f', effort_log.logged_effort) %></td>
             <td><%= link_to 'More details', effort_log %></td>
           </tr>

@@ -2,11 +2,6 @@ require "spec_helper"
 
 describe EffortLogsController do
   describe "routing" do
-
-    it "routes to #index" do
-      get("/effort_logs").should route_to("effort_logs#index")
-    end
-
     it "routes to #new" do
       get("/effort_logs/new").should route_to("effort_logs#new")
     end

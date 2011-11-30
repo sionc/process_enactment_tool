@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role
 
   has_and_belongs_to_many :roles
+  has_many :effort_logs
 
   # Create a 'role' virtual attribute
   def role

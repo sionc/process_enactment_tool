@@ -13,15 +13,6 @@ describe "Deliverables" do
     click_button("Sign in")
   end
 
-  describe "GET /deliverables" do
-    it "should return response status of 302" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      stock_deliverable_type = Factory.create(:stock_deliverable_type)
-      get deliverables_path, :stock_deliverable_type_id => stock_deliverable_type.id
-      response.status.should be(302)
-    end
-  end
-
   describe "GET new" do
 
     let(:before_filter) {

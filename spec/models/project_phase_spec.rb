@@ -28,14 +28,21 @@ describe ProjectPhase do
                                          :assignable_id => stock_deliverable_type.id, 
                                          :assignable_type => "StockDeliverableType")
     effort_log_1 = Factory.create(:effort_log, :deliverable_id => valid_deliverable_1.id)
-    effort_log_2 = Factory.create(:effort_log, :deliverable_id => valid_deliverable_1.id, :interrupt_time => 30)
+    effort_log_2 = Factory.create(:effort_log, :deliverable_id => valid_deliverable_1.id, 
+                                               :start_date_time => effort_log_1.stop_date_time,
+                                               :stop_date_time => effort_log_1.stop_date_time + 2.hours,
+                                               :interrupt_time => 30)
 
     valid_deliverable_2 = Factory.create(:deliverable, 
                                          :assignable_id => stock_deliverable_type.id, 
                                          :assignable_type => "StockDeliverableType")
-    effort_log_3 = Factory.create(:effort_log, :deliverable_id => valid_deliverable_2.id)
-    effort_log_4 = Factory.create(:effort_log, :deliverable_id => valid_deliverable_2.id, :interrupt_time => 30)
-
+    effort_log_3 = Factory.create(:effort_log, :deliverable_id => valid_deliverable_2.id, 
+                                               :start_date_time => effort_log_2.stop_date_time,
+                                               :stop_date_time => effort_log_2.stop_date_time + 2.hours)
+    effort_log_4 = Factory.create(:effort_log, :deliverable_id => valid_deliverable_2.id, 
+                                               :start_date_time => effort_log_3.stop_date_time,
+                                               :stop_date_time => effort_log_3.stop_date_time + 2.hours,
+                                               :interrupt_time => 30)
     valid_phase.logged_effort.should == 6.5
   end
   

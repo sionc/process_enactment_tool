@@ -87,7 +87,10 @@ describe Deliverable do
    it "should calculate the total logged effort" do     
      valid_deliverable = Deliverable.create(@attr)
      effort_log_1 = Factory.create(:effort_log, :deliverable_id => valid_deliverable.id)
-     effort_log_2 = Factory.create(:effort_log, :deliverable_id => valid_deliverable.id, :interrupt_time => 30)
+     effort_log_2 = Factory.create(:effort_log, :deliverable_id => valid_deliverable.id, 
+                                                :start_date_time => effort_log_1.stop_date_time,
+                                                :stop_date_time => effort_log_1.stop_date_time + 2.hours,
+                                                :interrupt_time => 30)
      
      valid_deliverable.logged_effort.should == 3.25
    end

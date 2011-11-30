@@ -46,14 +46,22 @@ describe Project do
     valid_deliverable_1 = Factory.create(:deliverable, 
                                          :assignable_id => stock_deliverable_type_1.id, 
                                          :assignable_type => "StockDeliverableType")
-    Factory.create(:effort_log, :deliverable_id => valid_deliverable_1.id)
-    Factory.create(:effort_log, :deliverable_id => valid_deliverable_1.id, :interrupt_time => 30)
+    effort_log_1 = Factory.create(:effort_log, :deliverable_id => valid_deliverable_1.id)
+    effort_log_2 = Factory.create(:effort_log, :deliverable_id => valid_deliverable_1.id, 
+                                               :start_date_time => effort_log_1.stop_date_time,
+                                               :stop_date_time => effort_log_1.stop_date_time + 2.hours,
+                                               :interrupt_time => 30)
 
     valid_deliverable_2 = Factory.create(:deliverable, 
                                          :assignable_id => stock_deliverable_type_1.id, 
                                          :assignable_type => "StockDeliverableType")
-    Factory.create(:effort_log, :deliverable_id => valid_deliverable_2.id)
-    Factory.create(:effort_log, :deliverable_id => valid_deliverable_2.id, :interrupt_time => 30)
+    effort_log_3 = Factory.create(:effort_log, :deliverable_id => valid_deliverable_2.id, 
+                                               :start_date_time => effort_log_2.stop_date_time,
+                                               :stop_date_time => effort_log_2.stop_date_time + 2.hours)
+    effort_log_4 = Factory.create(:effort_log, :deliverable_id => valid_deliverable_2.id, 
+                                               :start_date_time => effort_log_3.stop_date_time, 
+                                               :stop_date_time => effort_log_3.stop_date_time + 2.hours,
+                                               :interrupt_time => 30)
 
 
     valid_phase_2 = Factory.create(:project_phase, 
@@ -63,14 +71,24 @@ describe Project do
     valid_deliverable_3 = Factory.create(:deliverable, 
                                          :assignable_id => stock_deliverable_type_2.id, 
                                          :assignable_type => "StockDeliverableType")
-    Factory.create(:effort_log, :deliverable_id => valid_deliverable_3.id)
-    Factory.create(:effort_log, :deliverable_id => valid_deliverable_3.id, :interrupt_time => 30)
+    effort_log_5 = Factory.create(:effort_log, :deliverable_id => valid_deliverable_3.id, 
+                                               :start_date_time => effort_log_4.stop_date_time, 
+                                               :stop_date_time => effort_log_4.stop_date_time + 2.hours)
+    effort_log_6 = Factory.create(:effort_log, :deliverable_id => valid_deliverable_3.id, 
+                                               :start_date_time => effort_log_5.stop_date_time, 
+                                               :stop_date_time => effort_log_5.stop_date_time + 2.hours, 
+                                               :interrupt_time => 30)
 
     valid_deliverable_4 = Factory.create(:deliverable, 
                                          :assignable_id => stock_deliverable_type_2.id, 
                                          :assignable_type => "StockDeliverableType")
-    Factory.create(:effort_log, :deliverable_id => valid_deliverable_4.id)
-    Factory.create(:effort_log, :deliverable_id => valid_deliverable_4.id, :interrupt_time => 30)
+    effort_log_7 = Factory.create(:effort_log, :deliverable_id => valid_deliverable_4.id, 
+                                               :start_date_time => effort_log_6.stop_date_time, 
+                                               :stop_date_time => effort_log_6.stop_date_time + 2.hours)
+    effort_log_8 = Factory.create(:effort_log, :deliverable_id => valid_deliverable_4.id, 
+                                               :start_date_time => effort_log_7.stop_date_time, 
+                                               :stop_date_time => effort_log_7.stop_date_time + 2.hours, 
+                                               :interrupt_time => 30)
 
     
 

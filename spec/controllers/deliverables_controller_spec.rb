@@ -183,8 +183,17 @@ describe DeliverablesController do
 
     it "redirects to the stock_deliverable_type deliverables list" do
       deliverable = @stock_deliverable_type.deliverables.create! @attr
+      project = deliverable.assignable.project_phase.project
       delete :destroy, :id => deliverable.id.to_s
-      response.should redirect_to(deliverables_url)
+      response.should redirect_to(project_url(project))
+    end
+    
+    it "should not allow deletion when there is logged effort" do
+      deliverable = @stock_deliverable_type.deliverables.create! @attr
+      effort_log = Factory(:effort_log, :deliverable_id => deliverable.id)
+      expect {
+        delete :destroy, :id => deliverable.id.to_s
+      }.to change(Deliverable, :count).by(0)
     end
   end
 

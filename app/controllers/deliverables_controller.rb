@@ -104,11 +104,21 @@ class DeliverablesController < ApplicationController
     # Save the project so that we can send the user there after deletion
     project = @deliverable.assignable.project_phase.project
     
-    @deliverable.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(project_path(project)) }
-      format.xml { head :ok }
+    # If there is no effort logged against this deliverable, destroy it
+    if @deliverable.effort_logs.count == 0
+      @deliverable.destroy
+      respond_to do |format|
+        format.html { redirect_to(project_path(project)) }
+        format.xml { head :ok }
+      end
+    
+    # Otherwise, if there is effort logged against this deliverable,
+    # show an error message
+    else
+      respond_to do |format|
+        format.html { redirect_to(@deliverable, :alert => "Sorry, you cannot delete a deliverable if it has effort logged against it.") }
+        format.xml { head :ok }
+      end
     end
   end
 

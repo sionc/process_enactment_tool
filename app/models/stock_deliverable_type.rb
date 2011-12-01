@@ -12,34 +12,52 @@ class StockDeliverableType < ActiveRecord::Base
   validates :deliverable_type_id, :presence => true
   validates :project_phase_id, :presence => true
 
+  # return all the deliverable type records that are of the same deliverable type as the given record
+  def get_same_stock_deliverable_types
+    StockDeliverableType.find_all_by_deliverable_type_id(self.deliverable_type_id)
+  end
+
   # return the StockDeliverableType deliverable with minimum estimated effort
   # for the given complexity_id
   def get_del_with_min_effort(complexity_id)
-    c_dels = nil
-    c_dels = self.deliverables.find_all_by_complexity_id(complexity_id,
-                                                         :order => "estimated_effort asc",
-                                                         :limit => 1) unless self.deliverables.nil?
+    c_dels = []    
+    del_types = self.get_same_stock_deliverable_types
+    
+    del_types.each do |type|
+      c_dels += type.deliverables.find_all_by_complexity_id(complexity_id,
+                                                           :order => "estimated_effort asc",
+                                                           :limit => 1) unless type.deliverables.nil?
+    end
+    c_dels.sort! {|a, b| a.estimated_effort <=> b.estimated_effort}
     c_dels.first unless c_dels.nil?
   end
 
   # return the StockDeliverableType deliverable with maximum estimated effort
   # for the given complexity_id
   def get_del_with_max_effort(complexity_id)
-    c_dels = nil
-    c_dels = self.deliverables.find_all_by_complexity_id(complexity_id,
+    c_dels = []    
+    del_types = self.get_same_stock_deliverable_types
+    
+    del_types.each do |type|
+      c_dels += type.deliverables.find_all_by_complexity_id(complexity_id,
                                                          :order => "estimated_effort desc",
-                                                         :limit => 1) unless self.deliverables.nil?
+                                                         :limit => 1) unless type.deliverables.nil?
+    end
+    c_dels.sort! {|a, b| a.estimated_effort <=> b.estimated_effort}
     c_dels.first unless c_dels.nil?
   end
 
   # return the StockDeliverableType deliverable with average estimated effort
   # for the given complexity_id
   def get_del_with_avg_effort(complexity_id)
-    c_dels = nil
-    if !self.deliverables.nil?
-      c_dels = self.deliverables.find_all_by_complexity_id(complexity_id,
-                                                           :order => "estimated_effort asc")
+    c_dels = []
+    del_types = self.get_same_stock_deliverable_types
+    
+    del_types.each do |type|
+      c_dels += type.deliverables.find_all_by_complexity_id(complexity_id,
+                                                           :order => "estimated_effort asc") unless type.deliverables.nil?
     end
+    c_dels.sort! {|a, b| a.estimated_effort <=> b.estimated_effort}
     if !c_dels.nil?
       cnt = c_dels.count
       if cnt

@@ -102,13 +102,15 @@ class DeliverablesController < ApplicationController
     @deliverable = Deliverable.find(params[:id])
     
     # Save the project so that we can send the user there after deletion
-    project = @deliverable.assignable.project_phase.project
+    project_phase = @deliverable.assignable.project_phase
+    project = project_phase.project
     
     # If there is no effort logged against this deliverable, destroy it
     if @deliverable.effort_logs.count == 0
       @deliverable.destroy
       respond_to do |format|
-        format.html { redirect_to(project_path(project)) }
+        format.html { redirect_to :controller => 'projects', :action => 'show',
+                                  :id => project.id, :project_phase_id => project_phase.id}
         format.xml { head :ok }
       end
     

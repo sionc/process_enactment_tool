@@ -65,4 +65,25 @@ $(document).ready(function() {
     $('#project_phases tbody tr').mouseout(function() {
         $(this).css('background-color', '');
     });
+
+    openProjectPhase();
 });
+
+var openProjectPhase =
+    function() {
+        var url = document.location.href;
+        var matches = url.match(/\?project_phase_id=(.*)/);
+
+        if ((matches != null) && (matches.length > 1)) {
+            var projectPhaseId = matches[1];
+            $('#project_phases tr').each(function()
+            {
+               var phaseId = $(this).find(".project_phase_id_cell").text();
+               if(phaseId == projectPhaseId)
+               {
+                   $(this).click();
+                   return;
+               }
+            });
+        }
+    };

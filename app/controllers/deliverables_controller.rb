@@ -100,10 +100,14 @@ class DeliverablesController < ApplicationController
   # DELETE /deliverables/1.xml
   def destroy
     @deliverable = Deliverable.find(params[:id])
+    
+    # Save the project so that we can send the user there after deletion
+    project = @deliverable.assignable.project_phase.project
+    
     @deliverable.destroy
 
     respond_to do |format|
-      format.html { redirect_to(deliverables_url) }
+      format.html { redirect_to(project_path(project)) }
       format.xml { head :ok }
     end
   end

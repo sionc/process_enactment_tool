@@ -82,6 +82,11 @@ describe "deliverables/show.html.erb" do
       render
       rendered.should match(/page/)
     end
-  end
 
+    it "renders a delete button" do
+      render
+      rendered.should match(/Delete/)
+    end
+
+  end
 end

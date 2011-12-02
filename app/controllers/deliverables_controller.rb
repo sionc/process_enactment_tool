@@ -100,11 +100,27 @@ class DeliverablesController < ApplicationController
   # DELETE /deliverables/1.xml
   def destroy
     @deliverable = Deliverable.find(params[:id])
-    @deliverable.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(deliverables_url) }
-      format.xml { head :ok }
+    
+    # Save the project so that we can send the user there after deletion
+    project_phase = @deliverable.assignable.project_phase
+    project = project_phase.project
+    
+    # If there is no effort logged against this deliverable, destroy it
+    if @deliverable.effort_logs.count == 0
+      @deliverable.destroy
+      respond_to do |format|
+        format.html { redirect_to :controller => 'projects', :action => 'show',
+                                  :id => project.id, :project_phase_id => project_phase.id}
+        format.xml { head :ok }
+      end
+    
+    # Otherwise, if there is effort logged against this deliverable,
+    # show an error message
+    else
+      respond_to do |format|
+        format.html { redirect_to(@deliverable, :alert => "Sorry, you cannot delete a deliverable if it has effort logged against it.") }
+        format.xml { head :ok }
+      end
     end
   end
 

@@ -136,4 +136,22 @@ describe "Deliverables" do
        find_field('Estimated effort').value.should == sprintf("%.2f", estimated_effort)
      end
   end
+
+  describe "DELETE destroy" do
+    let(:delete_before_filter) {
+       visit projects_path
+       click_link 'Gentle Flower'
+       page.execute_script("$('#project_phases tbody > tr:first').click()")
+       click_link 'Functional Requirements Document 1'
+       page.evaluate_script('window.confirm = function() { return true; }')
+       click_link 'Delete'
+     }
+
+    it "should redirect to the project details page", :js => true do
+       delete_before_filter
+       page.should have_content("Gentle Flower")
+       sleep(1.5)
+       page.should have_content("Test and Evaluation Master Plan")
+    end
+  end
 end

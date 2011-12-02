@@ -67,12 +67,5 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-  # Get roles accessible by the current user
-  #----------------------------------------------------
-  def accessible_roles
-    @accessible_roles = Role.accessible_by(current_ability,:read)
-  end
- 
 
 end

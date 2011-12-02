@@ -23,8 +23,10 @@ describe LifecyclesController do
 
   before(:each) do
     @role = Factory.create(:role)
-    @user = Factory.create(:user)
-    sign_in @user
+    @admin_role = Factory.create(:admin_role)
+    @admin_user = Factory.create(:admin_user)
+    @admin_user.roles = [@admin_role]
+    sign_in @admin_user
   end
 
   # This should return the minimal set of attributes required to create a valid
@@ -50,13 +52,13 @@ describe LifecyclesController do
     end
   end
 
-  #describe "GET new" do
-  #  it "assigns a new lifecycle as @lifecycle" do
-  #    get :new
-  #    assigns(:lifecycle).should be_a_new(Lifecycle)
-  #  end
-  #end
-  #
+  describe "GET new" do
+    it "assigns a new lifecycle as @lifecycle" do
+      get :new
+      assigns(:lifecycle).should be_a_new(Lifecycle)
+    end
+  end
+
   #describe "GET edit" do
   #  it "assigns the requested lifecycle as @lifecycle" do
   #    lifecycle = Lifecycle.create! valid_attributes
@@ -64,43 +66,43 @@ describe LifecyclesController do
   #    assigns(:lifecycle).should eq(lifecycle)
   #  end
   #end
-  #
-  #describe "POST create" do
-  #  describe "with valid params" do
-  #    it "creates a new Lifecycle" do
-  #      expect {
-  #        post :create, :lifecycle => valid_attributes
-  #      }.to change(Lifecycle, :count).by(1)
-  #    end
-  #
-  #    it "assigns a newly created lifecycle as @lifecycle" do
-  #      post :create, :lifecycle => valid_attributes
-  #      assigns(:lifecycle).should be_a(Lifecycle)
-  #      assigns(:lifecycle).should be_persisted
-  #    end
-  #
-  #    it "redirects to the created lifecycle" do
-  #      post :create, :lifecycle => valid_attributes
-  #      response.should redirect_to(Lifecycle.last)
-  #    end
-  #  end
-  #
-  #  describe "with invalid params" do
-  #    it "assigns a newly created but unsaved lifecycle as @lifecycle" do
-  #      # Trigger the behavior that occurs when invalid params are submitted
-  #      Lifecycle.any_instance.stub(:save).and_return(false)
-  #      post :create, :lifecycle => {}
-  #      assigns(:lifecycle).should be_a_new(Lifecycle)
-  #    end
-  #
-  #    it "re-renders the 'new' template" do
-  #      # Trigger the behavior that occurs when invalid params are submitted
-  #      Lifecycle.any_instance.stub(:save).and_return(false)
-  #      post :create, :lifecycle => {}
-  #      response.should render_template("new")
-  #    end
-  #  end
-  #end
+
+  describe "POST create" do
+    describe "with valid params" do
+      it "creates a new Lifecycle" do
+        expect {
+          post :create, :lifecycle => valid_attributes
+        }.to change(Lifecycle, :count).by(1)
+      end
+
+      it "assigns a newly created lifecycle as @lifecycle" do
+        post :create, :lifecycle => valid_attributes
+        assigns(:lifecycle).should be_a(Lifecycle)
+        assigns(:lifecycle).should be_persisted
+      end
+
+      it "redirects to the created lifecycle" do
+        post :create, :lifecycle => valid_attributes
+        response.should redirect_to(Lifecycle.last)
+      end
+    end
+
+    describe "with invalid params" do
+      it "assigns a newly created but unsaved lifecycle as @lifecycle" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        Lifecycle.any_instance.stub(:save).and_return(false)
+        post :create, :lifecycle => {}
+        assigns(:lifecycle).should be_a_new(Lifecycle)
+      end
+
+      it "re-renders the 'new' template" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        Lifecycle.any_instance.stub(:save).and_return(false)
+        post :create, :lifecycle => {}
+        response.should render_template("new")
+      end
+    end
+  end
 
   #describe "PUT update" do
   #  describe "with valid params" do

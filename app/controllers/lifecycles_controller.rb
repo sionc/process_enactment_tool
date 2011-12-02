@@ -5,6 +5,8 @@
 class LifecyclesController < ApplicationController
 
   before_filter :authenticate_user!, :except => []
+  before_filter :accessible_roles, :only => [:new, :create]
+  load_and_authorize_resource
 
   # GET /lifecycles
   # GET /lifecycles.xml
@@ -24,7 +26,7 @@ class LifecyclesController < ApplicationController
   # GET /lifecycles/1
   # GET /lifecycles/1.xml
   def show
-    @lifecycle = Lifecycle.find(params[:id])
+    #@lifecycle = Lifecycle.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,7 +37,7 @@ class LifecyclesController < ApplicationController
   # GET /lifecycles/new
   # GET /lifecycles/new.xml
   def new
-    @lifecycle = Lifecycle.new
+    #@lifecycle = Lifecycle.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,7 +47,7 @@ class LifecyclesController < ApplicationController
 
   # GET /lifecycles/1/edit
   def edit
-    @lifecycle = Lifecycle.find(params[:id])
+    #@lifecycle = Lifecycle.find(params[:id])
   end
 
   # POST /lifecycles
@@ -67,7 +69,7 @@ class LifecyclesController < ApplicationController
   # PUT /lifecycles/1
   # PUT /lifecycles/1.xml
   def update
-    @lifecycle = Lifecycle.find(params[:id])
+    #@lifecycle = Lifecycle.find(params[:id])
 
     respond_to do |format|
       if @lifecycle.update_attributes(params[:lifecycle])

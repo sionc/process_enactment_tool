@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
+
+  helper :all
+
   before_filter :get_user
-  
+
   
   # check_authorization
   
@@ -17,6 +19,12 @@ class ApplicationController < ActionController::Base
   #----------------------------------------
   def get_user
     @current_user ||= current_user
+  end
+
+  # Get roles accessible by the current user
+  #----------------------------------------------------
+  def accessible_roles
+    @accessible_roles = Role.accessible_by(current_ability,:read)
   end
   
 end

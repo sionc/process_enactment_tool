@@ -1,0 +1,39 @@
+<% content_for(:head) do %>
+    <%= javascript_include_tag "jquery.validate.min", "lifecycle_phase_validation" %>
+<% end %>
+
+<%= form_for(@lifecycle_phase, :html => {:id => "lifecycle_phase_form"}) do |f| %>
+    <% if @lifecycle_phase.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@lifecycle_phase.errors.count, "error") %> prohibited this lifecycle phase from being saved:</h2>
+
+          <ul>
+            <% @lifecycle_phase.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="description">
+      <p>Lifecycle phase for <%= @lifecycle.name %></p>
+    </div>
+
+    <div class="clearfix">
+      <%= f.label :name %>
+      <div class="input">
+        <%= f.text_field :name, :class=>"xlarge" %>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%= f.label :description %>
+      <div class="input">
+        <%= f.text_area :description, :size => "40x10", :class=>"xlarge" %>
+      </div>
+    </div>
+    <%= f.hidden_field :lifecycle_id, :value => @lifecycle.id %>
+    <div class="input">
+      <%= f.submit "Create", :class => "btn primary" %>
+      <%= link_to 'Cancel', lifecycles_path(@lifecycle.id), :class => "btn danger" %>
+    </div>
+<% end %>

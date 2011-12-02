@@ -7,8 +7,13 @@ class Ability
       can :manage, :all
     elsif user.role? :regular_user
       can :manage, [Project, ProjectPhase, Deliverable, EffortLog]
-      can :read, Lifecycle
       cannot :read, User
+      can :index, [Lifecycle]
+      can :read, [Lifecycle]
+      cannot :create, [Lifecycle]
+      cannot :update, [Lifecycle]
+      cannot :destroy, [Lifecycle]
+      cannot :manage, LifecyclePhase
     end
   end
 

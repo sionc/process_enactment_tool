@@ -1,7 +1,15 @@
 require 'spec_helper'
+include Devise::TestHelpers
 
 describe "lifecycles/index.html.erb" do
   before(:each) do
+    @role = Factory.create(:role)
+    @admin_role = Factory.create(:admin_role)
+    @admin_user = Factory.create(:admin_user)
+    @admin_user.roles = [@admin_role]
+    sign_in @admin_user
+    @current_user = @admin_user
+
     assign(:lifecycles, [
       stub_model(Lifecycle,
         :name => "Name",

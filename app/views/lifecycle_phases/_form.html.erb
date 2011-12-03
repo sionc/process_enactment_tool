@@ -34,6 +34,6 @@
     <%= f.hidden_field :lifecycle_id, :value => @lifecycle.id %>
     <div class="input">
       <%= f.submit "Create", :class => "btn primary" %>
-      <%= link_to 'Cancel', lifecycles_path(@lifecycle.id), :class => "btn danger" %>
+      <%= link_to 'Cancel', @lifecycle, :class => "btn danger" %>
     </div>
 <% end %>

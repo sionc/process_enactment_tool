@@ -9,7 +9,7 @@ PET::Application.routes.draw do
   match 'lifecycles/home' => 'lifecycles#home'
   resources :lifecycles, :except => [:edit, :destroy, :update]
 
-  resources :lifecycle_phases, :except => [:index, :show, :edit, :update, :destroy]
+  resources :lifecycle_phases, :except => [:index, :show, :edit, :destroy]
 
   resources "project_phases"
 

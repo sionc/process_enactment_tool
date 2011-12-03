@@ -30,5 +30,10 @@ describe LifecyclePhase do
     invalid_lifecycle_phase =  LifecyclePhase.new(@attr.merge(:sequence_number => 1))
     invalid_lifecycle_phase.should_not be_valid
   end
-  
+
+  it "should require a sequence number that does not exceed number of lifecycle phases" do
+    invalid_lifecycle_phase =  LifecyclePhase.new(@attr.merge(:sequence_number => 3))
+    invalid_lifecycle_phase.should_not be_valid
+  end
+
 end

@@ -13,7 +13,7 @@ describe LifecyclePhasesController do
     @lifecycle = Factory.create(:lifecycle)
   end
    def valid_attributes
-    {:name => "Simplified Waterfall",
+    {:name => "Test Lifecycle Phase",
      :sequence_number => 1,
      :lifecycle_id => @lifecycle.id}
   end

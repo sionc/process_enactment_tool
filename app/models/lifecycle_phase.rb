@@ -34,5 +34,5 @@ class LifecyclePhase < ActiveRecord::Base
            errors.add(:sequence_number, "must not exceed the number of lifecycle phases and must be greater than 0")
         end
     end
-  end
+  end  
 end

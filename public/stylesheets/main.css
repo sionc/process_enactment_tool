@@ -254,6 +254,36 @@ a[id ~= 'view_project'], a[id ~= 'view_lifecycles']{
     margin-bottom: 20px;
 }
 
+#sortable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 60%; }
+
+#sortable li {
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+    font-size: 1.2em;
+    height: 1.5em; }
+
+html>body #sortable li {
+    height: 1.5em;
+    line-height: 1.2em;
+}
+
+.ui-state-highlight {
+    height: 1.5em;
+    line-height: 1.2em;
+}
+
+#lifecycle_phase_list .ui-icon {
+    display: inline-block;
+}
+
+.static_sequence_number{
+    display: inline-block;
+}
+
 /* Overrides for devise */
 
 .remember_me {
@@ -288,7 +318,8 @@ a[id ~= 'view_project'], a[id ~= 'view_lifecycles']{
 	background-color: inherit;
 	background-image: none !important;
 	-webkit-box-shadow: none;
-	box-shadow: none;	
+	box-shadow: none;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
 .topbar div > ul, .nav {

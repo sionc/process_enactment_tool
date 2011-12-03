@@ -1,31 +1,54 @@
 <h1><%= @lifecycle.name %></h1>
 
+<% content_for(:head) do %>
+    <%= javascript_include_tag "lifecycle" %>
+<% end %>
+
 <p class="description">
   <%= @lifecycle.description %>
 </p>
 
 <h3>Lifecycle Phases</h3>
+<% if @current_user.role?(:admin) %>
+    <div id="lifecycle_phase_list">
+      <ul id="sortable">
+        <% @lifecycle.lifecycle_phases.each_with_index do |phase, index| %>
+            <li id = "phases_<%=phase.id%>" class="ui-state-default">
+              <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+              <%= phase.name %>
+              <% #= phase.description
+              %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+<% else %>
 
-<table border="0" id="lifecycle_phases">
-  <thead>
-  <tr>
-    <th>Sequence<br />Number</th>
-    <th>Name</th>
-    <th>Description</th>
-  </tr>
-  </thead>
-  <tbody>
-
-  <% @lifecycle.lifecycle_phases.each do |phase| %>
+    <table border="0" id="lifecycle_phases">
+      <thead>
       <tr>
-        <td><%= phase.sequence_number %></td>
-        <td><%= phase.name %></td>
-        <td><%= phase.description %></td>
+        <th>Sequence<br/>Number</th>
+        <th>Name</th>
+        <th>Description</th>
       </tr>
-  <% end %>
-  </tbody>
-</table>
+      </thead>
+      <tbody>
 
+      <% @lifecycle.lifecycle_phases.each do |phase| %>
+          <tr>
+            <td><%= phase.sequence_number %></td>
+            <td><%= phase.name %></td>
+            <td><%= phase.description %></td>
+          </tr>
+      <% end %>
+
+      </tbody>
+    </table>
+<% end %>
+
+<div style="display:none" id="lifecycle_id">
+  <%= @lifecycle.id %>
+</div>
 <br />
 
 <% if @lifecycle.projects.count == 0 && @current_user.role?(:admin) %>

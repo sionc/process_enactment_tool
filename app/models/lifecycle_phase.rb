@@ -25,9 +25,12 @@ class LifecyclePhase < ActiveRecord::Base
   end
 
   # Custom validator to check whether sequence number is within acceptable range
+  # The sequence numbering starts at 1.
+  # However, we need an extra placeholder for swapping sequence numbers.
+  # So, we use 0 as the temporary swap number.
   def sequence_number_range
     unless self.lifecycle.nil? || self.sequence_number.nil?
-        if((self.sequence_number > lifecycle.lifecycle_phases.count+1) || (self.sequence_number <= 0))
+        if((self.sequence_number > lifecycle.lifecycle_phases.count+1) || (self.sequence_number < 0) )
            errors.add(:sequence_number, "must not exceed the number of lifecycle phases and must be greater than 0")
         end
     end

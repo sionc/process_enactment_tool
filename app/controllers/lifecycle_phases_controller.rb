@@ -35,21 +35,22 @@ class LifecyclePhasesController < ApplicationController
     end
   end
 
-  # PUT /deliverables/1
-  # PUT /deliverables/1.xml
+  # PUT /lifecycle_phases/1
+  # PUT /lifecycle_phases/1.xml
   def update
     lifecycle = Lifecycle.find(params[:lifecycle_id])
     lifecycle_phases_to_sort = lifecycle.lifecycle_phases
-    ordered_phase_ids = params[:lifecycle_phase_ids]
-    max_count = ordered_phase_ids.count - 1
+    ordered_phase_ids = params[:phases]
 
-    for i in 0..(max_count)
+    max_count = ordered_phase_ids.count - 1
+    for i in 1..(max_count)
       swap_phase_1 = lifecycle_phases_to_sort.find_by_id(ordered_phase_ids[i])
       swap_phase_2 = lifecycle_phases_to_sort.find_by_sequence_number(i)
 
-      temp_sequence_number = swap_phase_1.sequence_number
-      swap_phase_1.update_attributes(:sequence_number => swap_phase_2.sequence_number)
-      swap_phase_2.update_attributes(:sequence_number => temp_sequence_number)
+      orig_phase_1_seq_num = swap_phase_1.sequence_number
+      swap_phase_2.update_attributes(:sequence_number => 0)
+      swap_phase_1.update_attributes(:sequence_number => i)
+      swap_phase_2.update_attributes(:sequence_number => orig_phase_1_seq_num)
     end
 
     respond_to do |format|

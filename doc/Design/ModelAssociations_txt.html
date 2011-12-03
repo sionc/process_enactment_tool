@@ -145,6 +145,10 @@
   
     <li><a href="../LifecyclePhase.html">LifecyclePhase</a>
   
+    <li><a href="../LifecyclePhasesController.html">LifecyclePhasesController</a>
+  
+    <li><a href="../LifecyclePhasesHelper.html">LifecyclePhasesHelper</a>
+  
     <li><a href="../LifecyclesController.html">LifecyclesController</a>
   
     <li><a href="../LifecyclesHelper.html">LifecyclesHelper</a>
@@ -191,49 +195,11 @@
   
 <h2 id="label-Model+Associations">Model Associations</h2>
 
-<p><a href="../Lifecycle.html">Lifecycle</a></p>
+<p><a href="../Ability.html">Ability</a></p>
 
-<pre>has_many :projects
-has_many :lifecycle_phases</pre>
+<p><a href="../Complexity.html">Complexity</a></p>
 
-<p><a href="../Project.html">Project</a></p>
-
-<pre class="ruby"><span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">lifecycle</span>
-<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">project_phases</span>
-<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">lifecycle_phases</span>, :<span class="ruby-identifier">through=</span><span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">project_phases</span>
-</pre>
-
-<p><a href="../LifecyclePhase.html">LifecyclePhase</a></p>
-
-<pre class="ruby"><span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">lifecycle</span>
-<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">project_phases</span>
-<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">projects</span>, :<span class="ruby-identifier">through</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">project_phases</span>
-<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">deliverable_types</span>
-</pre>
-
-<p><a href="../ProjectPhase.html">ProjectPhase</a></p>
-
-<pre class="ruby"><span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">project</span>
-<span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">lifecycle_phase</span>
-<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">stock_deliverable_types</span>
-<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">custom_deliverable_types</span>
-<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">deliverable_types</span>, :<span class="ruby-identifier">through</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">stock_deliverable_types</span>
-</pre>
-
-<p><a href="../DeliverableType.html">DeliverableType</a></p>
-
-<pre class="ruby"><span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">lifecycle_phase</span>
-<span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">unit_of_measure</span>
-<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">stock_deliverable_types</span>
-<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">project_phases</span>, :<span class="ruby-identifier">through</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">stock_deliverable_types</span>
-</pre>
-
-<p><a href="../StockDeliverableType.html">StockDeliverableType</a></p>
-
-<pre class="ruby"><span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">project_phase</span>
-<span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">deliverable_type</span>
-<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">deliverables</span>, :<span class="ruby-identifier">as</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">assignable</span>
-</pre>
+<pre>has_many :deliverables</pre>
 
 <p><a href="../CustomDeliverableType.html">CustomDeliverableType</a></p>
 
@@ -246,6 +212,60 @@ has_many :lifecycle_phases</pre>
 
 <pre class="ruby"><span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">assignable</span>, :<span class="ruby-identifier">polymorphic</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
 <span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">complexity</span>
+<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">effort_logs</span>
+</pre>
+
+<p><a href="../DeliverableType.html">DeliverableType</a></p>
+
+<pre class="ruby"><span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">lifecycle_phase</span>
+<span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">unit_of_measure</span>
+<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">stock_deliverable_types</span>
+<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">project_phases</span>, :<span class="ruby-identifier">through</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">stock_deliverable_types</span>
+</pre>
+
+<p><a href="../EffortLog.html">EffortLog</a></p>
+
+<pre>belongs_to :deliverable
+belongs_to :user</pre>
+
+<p><a href="../Lifecycle.html">Lifecycle</a></p>
+
+<pre>has_many :projects
+has_many :lifecycle_phases</pre>
+
+<p><a href="../LifecyclePhase.html">LifecyclePhase</a></p>
+
+<pre class="ruby"><span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">lifecycle</span>
+<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">project_phases</span>
+<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">projects</span>, :<span class="ruby-identifier">through</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">project_phases</span>
+<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">deliverable_types</span>
+</pre>
+
+<p><a href="../Project.html">Project</a></p>
+
+<pre class="ruby"><span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">lifecycle</span>
+<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">project_phases</span>
+<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">lifecycle_phases</span>, :<span class="ruby-identifier">through=</span><span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">project_phases</span>
+</pre>
+
+<p><a href="../ProjectPhase.html">ProjectPhase</a></p>
+
+<pre class="ruby"><span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">project</span>
+<span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">lifecycle_phase</span>
+<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">stock_deliverable_types</span>
+<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">custom_deliverable_types</span>
+<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">deliverable_types</span>, :<span class="ruby-identifier">through</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">stock_deliverable_types</span>
+</pre>
+
+<p><a href="../Role.html">Role</a></p>
+
+<pre>has_and_belongs_to_many :users</pre>
+
+<p><a href="../StockDeliverableType.html">StockDeliverableType</a></p>
+
+<pre class="ruby"><span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">project_phase</span>
+<span class="ruby-identifier">belongs_to</span> :<span class="ruby-identifier">deliverable_type</span>
+<span class="ruby-identifier">has_many</span> :<span class="ruby-identifier">deliverables</span>, :<span class="ruby-identifier">as</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">assignable</span>
 </pre>
 
 <p><a href="../UnitOfMeasure.html">UnitOfMeasure</a></p>
@@ -253,9 +273,10 @@ has_many :lifecycle_phases</pre>
 <pre>has_many :deliverable_types 
 has_many :custom_deliverable_types</pre>
 
-<p><a href="../Complexity.html">Complexity</a></p>
+<p><a href="../User.html">User</a></p>
 
-<pre>has_many :deliverables</pre>
+<pre>has_and_belongs_to_many :roles
+has_many :effort_logs</pre>
 
 </div>
 

@@ -70,6 +70,8 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-accessible_roles">#accessible_roles</a>
+    
     <li><a href="#method-i-get_user">#get_user</a>
     
   </ul>
@@ -179,6 +181,10 @@
   
     <li><a href="./LifecyclePhase.html">LifecyclePhase</a>
   
+    <li><a href="./LifecyclePhasesController.html">LifecyclePhasesController</a>
+  
+    <li><a href="./LifecyclePhasesHelper.html">LifecyclePhasesHelper</a>
+  
     <li><a href="./LifecyclesController.html">LifecyclesController</a>
   
     <li><a href="./LifecyclesHelper.html">LifecyclesHelper</a>
@@ -246,6 +252,36 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
+      <div id="method-i-accessible_roles" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">accessible_roles</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get roles accessible by the current user</p>
+          
+
+          
+          <div class="method-source-code" id="accessible_roles-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">accessible_roles</span>
+  <span class="ruby-ivar">@accessible_roles</span> = <span class="ruby-constant">Role</span>.<span class="ruby-identifier">accessible_by</span>(<span class="ruby-identifier">current_ability</span>,<span class="ruby-value">:read</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- accessible_roles-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- accessible_roles-method -->
+
+    
       <div id="method-i-get_user" class="method-detail ">
         
         <div class="method-heading">
@@ -262,7 +298,7 @@
 
           
           <div class="method-source-code" id="get_user-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 18</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_user</span>
   <span class="ruby-ivar">@current_user</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">current_user</span>
 <span class="ruby-keyword">end</span></pre>

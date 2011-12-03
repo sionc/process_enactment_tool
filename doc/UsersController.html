@@ -70,8 +70,6 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-accessible_roles">#accessible_roles</a>
-    
     <li><a href="#method-i-destroy">#destroy</a>
     
     <li><a href="#method-i-edit">#edit</a>
@@ -189,6 +187,10 @@
   
     <li><a href="./LifecyclePhase.html">LifecyclePhase</a>
   
+    <li><a href="./LifecyclePhasesController.html">LifecyclePhasesController</a>
+  
+    <li><a href="./LifecyclePhasesHelper.html">LifecyclePhasesHelper</a>
+  
     <li><a href="./LifecyclesController.html">LifecyclesController</a>
   
     <li><a href="./LifecyclesHelper.html">LifecyclesHelper</a>
@@ -258,36 +260,6 @@ the entire list of all users</p>
     
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
-
-    
-      <div id="method-i-accessible_roles" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">accessible_roles</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Get roles accessible by the current user</p>
-          
-
-          
-          <div class="method-source-code" id="accessible_roles-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 73</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">accessible_roles</span>
-  <span class="ruby-ivar">@accessible_roles</span> = <span class="ruby-constant">Role</span>.<span class="ruby-identifier">accessible_by</span>(<span class="ruby-identifier">current_ability</span>,<span class="ruby-value">:read</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- accessible_roles-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- accessible_roles-method -->
 
     
       <div id="method-i-destroy" class="method-detail ">

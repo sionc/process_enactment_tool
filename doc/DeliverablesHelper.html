@@ -66,6 +66,8 @@
     
     <li><a href="#method-i-get_project">#get_project</a>
     
+    <li><a href="#method-i-get_project_phase_id_string">#get_project_phase_id_string</a>
+    
   </ul>
 </nav>
 
@@ -173,6 +175,10 @@
   
     <li><a href="./LifecyclePhase.html">LifecyclePhase</a>
   
+    <li><a href="./LifecyclePhasesController.html">LifecyclePhasesController</a>
+  
+    <li><a href="./LifecyclePhasesHelper.html">LifecyclePhasesHelper</a>
+  
     <li><a href="./LifecyclesController.html">LifecyclesController</a>
   
     <li><a href="./LifecyclesHelper.html">LifecyclesHelper</a>
@@ -268,6 +274,36 @@
 
         
       </div><!-- get_project-method -->
+
+    
+      <div id="method-i-get_project_phase_id_string" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_project_phase_id_string</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets the project phase id string associated with the deliverable</p>
+          
+
+          
+          <div class="method-source-code" id="get_project_phase_id_string-source">
+            <pre><span class="ruby-comment"># File app/helpers/deliverables_helper.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_project_phase_id_string</span>
+   <span class="ruby-ivar">@deliverable</span>.<span class="ruby-identifier">assignable</span>.<span class="ruby-identifier">project_phase</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_project_phase_id_string-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_project_phase_id_string-method -->
 
     
     </section><!-- public-instance-method-details -->

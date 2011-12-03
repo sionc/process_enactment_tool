@@ -50,12 +50,15 @@
     <li>script/rails
     <li>spec/controllers/deliverables_controller_spec.rb
     <li>spec/controllers/effort_logs_controller_spec.rb
+    <li>spec/controllers/lifecycle_phases_controller_spec.rb
     <li>spec/controllers/lifecycles_controller_spec.rb
     <li>spec/controllers/pages_controller_spec.rb
     <li>spec/controllers/project_phases_controller_spec.rb
     <li>spec/controllers/projects_controller_spec.rb
     <li>spec/controllers/users_controller_spec.rb
     <li>spec/requests/deliverables_spec.rb
+    <li>spec/views/lifecycles/index.html.erb_spec.rb
+    <li>spec/views/lifecycles/show.html.erb_spec.rb
     <li>spec/views/users/edit.html.erb_spec.rb
     <li>spec/views/users/index.html.erb_spec.rb
     <li>spec/views/users/show.html.erb_spec.rb
@@ -202,6 +205,10 @@
   
     <li><a href="./LifecyclePhase.html">LifecyclePhase</a>
   
+    <li><a href="./LifecyclePhasesController.html">LifecyclePhasesController</a>
+  
+    <li><a href="./LifecyclePhasesHelper.html">LifecyclePhasesHelper</a>
+  
     <li><a href="./LifecyclesController.html">LifecyclesController</a>
   
     <li><a href="./LifecyclesHelper.html">LifecyclesHelper</a>
@@ -294,17 +301,16 @@ gems installed from the root of your application.</p>
 
         <div class="method-description">
           
-          <p>This should return the minimal set of attributes required to create a valid
-<a href="Lifecycle.html">Lifecycle</a>. As you add validations to <a
-href="Lifecycle.html">Lifecycle</a>, be sure to update the return value of
-this method accordingly.</p>
+          
           
 
           
           <div class="method-source-code" id="valid_attributes-source">
-            <pre><span class="ruby-comment"># File spec/controllers/lifecycles_controller_spec.rb, line 33</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">valid_attributes</span>
-  {<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Simplified Waterfall&quot;</span>}
+            <pre><span class="ruby-comment"># File spec/controllers/lifecycle_phases_controller_spec.rb, line 15</span>
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier">valid_attributes</span>
+  {<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Simplified Waterfall&quot;</span>,
+   <span class="ruby-value">:sequence_number</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+   <span class="ruby-value">:lifecycle_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lifecycle</span>.<span class="ruby-identifier">id</span>}
 <span class="ruby-keyword">end</span></pre>
           </div><!-- valid_attributes-source -->
           

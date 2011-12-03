@@ -197,6 +197,10 @@
   
     <li><a href="./LifecyclePhase.html">LifecyclePhase</a>
   
+    <li><a href="./LifecyclePhasesController.html">LifecyclePhasesController</a>
+  
+    <li><a href="./LifecyclePhasesHelper.html">LifecyclePhasesHelper</a>
+  
     <li><a href="./LifecyclesController.html">LifecyclesController</a>
   
     <li><a href="./LifecyclesHelper.html">LifecyclesHelper</a>
@@ -343,7 +347,7 @@ href="CustomDeliverableType.html">CustomDeliverableType</a></p>
 
           
           <div class="method-source-code" id="create_custom_deliverable_type-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 113</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 129</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_custom_deliverable_type</span>
   <span class="ruby-comment"># we get the posted variables</span>
   <span class="ruby-comment"># save them to the database</span>
@@ -389,11 +393,27 @@ href="CustomDeliverableType.html">CustomDeliverableType</a></p>
             <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 101</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@deliverable</span> = <span class="ruby-constant">Deliverable</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@deliverable</span>.<span class="ruby-identifier">destroy</span>
-
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">deliverables_url</span>) }
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
+  
+  <span class="ruby-comment"># Save the project so that we can send the user there after deletion</span>
+  <span class="ruby-identifier">project_phase</span> = <span class="ruby-ivar">@deliverable</span>.<span class="ruby-identifier">assignable</span>.<span class="ruby-identifier">project_phase</span>
+  <span class="ruby-identifier">project</span> = <span class="ruby-identifier">project_phase</span>.<span class="ruby-identifier">project</span>
+  
+  <span class="ruby-comment"># If there is no effort logged against this deliverable, destroy it</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@deliverable</span>.<span class="ruby-identifier">effort_logs</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-ivar">@deliverable</span>.<span class="ruby-identifier">destroy</span>
+    <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'projects'</span>, <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'show'</span>,
+                                <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">project</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:project_phase_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">project_phase</span>.<span class="ruby-identifier">id</span>}
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
+    <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-comment"># Otherwise, if there is effort logged against this deliverable,</span>
+  <span class="ruby-comment"># show an error message</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-ivar">@deliverable</span>, <span class="ruby-value">:alert</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Sorry, you cannot delete a deliverable if it has effort logged against it.&quot;</span>) }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span> }
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- destroy-source -->
@@ -452,7 +472,7 @@ href="CustomDeliverableType.html">CustomDeliverableType</a></p>
 
           
           <div class="method-source-code" id="get_historical_data-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 146</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 162</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_historical_data</span>
   <span class="ruby-identifier">return_val</span> = []
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:stock_deliverable_type_id</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:complexity_id</span>]
@@ -504,7 +524,7 @@ href="CustomDeliverableType.html">CustomDeliverableType</a></p>
 
           
           <div class="method-source-code" id="get_unit_of_measure-source">
-            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 131</span>
+            <pre><span class="ruby-comment"># File app/controllers/deliverables_controller.rb, line 147</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_unit_of_measure</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignable_type</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;StockDeliverableType&quot;</span>
                       <span class="ruby-identifier">stock_deliverable_type</span> = <span class="ruby-constant">StockDeliverableType</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignable_id</span>])

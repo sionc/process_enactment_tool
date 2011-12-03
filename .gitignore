@@ -3,8 +3,6 @@ db/*.sqlite3
 log/*.log
 tmp/
 .idea/*
-coverage/*
-doc/coverage/*
 tmp/*
 *DS_Store
 .rspec

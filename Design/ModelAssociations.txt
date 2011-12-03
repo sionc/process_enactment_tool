@@ -1,15 +1,33 @@
 == Model Associations
 
+Ability
+ 
+Complexity
+ has_many :deliverables
+
+CustomDeliverableType
+ belongs_to :project_phase
+ belongs_to :unit_of_measure
+ has_many :deliverables, :as => : assignable
+
+Deliverable
+ belongs_to :assignable, :polymorphic => true
+ belongs_to :complexity
+ has_many :effort_logs
+
+DeliverableType
+ belongs_to :lifecycle_phase
+ belongs_to :unit_of_measure
+ has_many :stock_deliverable_types
+ has_many :project_phases, :through => :stock_deliverable_types  
+
+EffortLog
+ belongs_to :deliverable
+ belongs_to :user
+
 Lifecycle
  has_many :projects
  has_many :lifecycle_phases
-
-
-Project
- belongs_to :lifecycle
- has_many :project_phases
- has_many :lifecycle_phases, :through=> :project_phases
-
 
 LifecyclePhase
  belongs_to :lifecycle
@@ -17,6 +35,10 @@ LifecyclePhase
  has_many :projects, :through => :project_phases
  has_many :deliverable_types
 
+Project
+ belongs_to :lifecycle
+ has_many :project_phases
+ has_many :lifecycle_phases, :through=> :project_phases
 
 ProjectPhase
  belongs_to :project
@@ -25,37 +47,20 @@ ProjectPhase
  has_many :custom_deliverable_types
  has_many :deliverable_types, :through => :stock_deliverable_types
 
-
-DeliverableType
- belongs_to :lifecycle_phase
- belongs_to :unit_of_measure
- has_many :stock_deliverable_types
- has_many :project_phases, :through => :stock_deliverable_types  
-
+Role
+ has_and_belongs_to_many :users
 
 StockDeliverableType
  belongs_to :project_phase
  belongs_to :deliverable_type
  has_many :deliverables, :as => :assignable
 
-
-CustomDeliverableType
- belongs_to :project_phase
- belongs_to :unit_of_measure
- has_many :deliverables, :as => : assignable
-
-
-Deliverable
- belongs_to :assignable, :polymorphic => true
- belongs_to :complexity
-
-
 UnitOfMeasure
  has_many :deliverable_types 
  has_many :custom_deliverable_types
 
-Complexity
- has_many :deliverables
-
+User
+ has_and_belongs_to_many :roles
+ has_many :effort_logs
 
 

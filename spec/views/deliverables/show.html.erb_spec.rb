@@ -55,6 +55,15 @@ describe "deliverables/show.html.erb" do
       rendered.should have_xpath("//tr/th[text()='User email']")
       rendered.should have_xpath("//tr/th[text()='Logged effort (hours)']")
     end
+
+    it "should show Deleted User for user email field in log effort entry for deleted user" do
+      @role = Factory.create(:role)
+      @user_to_delete = Factory.create(:user, :email => "test@test.com")
+      @effort_logs = [Factory.create(:effort_log, :user_id => @user_to_delete.id, :deliverable_id => @deliverable.id)]
+      User.delete(@user_to_delete)
+      render
+      rendered.should match(/Deleted User/)
+    end
   end
 
   describe "custom deliverable" do

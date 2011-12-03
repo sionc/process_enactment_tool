@@ -44,7 +44,7 @@
   <% unless @effort_logs.nil? %>
       <% @effort_logs.each do |effort_log| %>
           <tr>
-            <td><%= effort_log.user.email %></td>
+            <td><%= get_effort_log_user(effort_log) %></td>
             <td><%= sprintf('%.2f', effort_log.logged_effort) %></td>
             <td><%= link_to 'More details', effort_log %></td>
           </tr>

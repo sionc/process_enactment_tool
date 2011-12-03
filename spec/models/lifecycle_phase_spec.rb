@@ -24,5 +24,11 @@ describe LifecyclePhase do
     invalid_lifecycle_phase = LifecyclePhase.new(@attr.merge(:sequence_number => nil))
     invalid_lifecycle_phase.should_not be_valid
   end
+
+  it "should require a unique sequence number" do
+    LifecyclePhase.create!(@attr)
+    invalid_lifecycle_phase =  LifecyclePhase.new(@attr.merge(:sequence_number => 1))
+    invalid_lifecycle_phase.should_not be_valid
+  end
   
 end

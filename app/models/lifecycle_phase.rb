@@ -10,5 +10,6 @@ class LifecyclePhase < ActiveRecord::Base
 
   validates :lifecycle_id, :presence => true
   validates :name, :presence => true
-  validates :sequence_number, :presence => true
+  validates :sequence_number, :presence => true, :uniqueness => true
+
 end

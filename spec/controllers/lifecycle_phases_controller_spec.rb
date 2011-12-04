@@ -12,7 +12,8 @@ describe LifecyclePhasesController do
 
     @lifecycle = Factory.create(:lifecycle)
   end
-   def valid_attributes
+  # method for getting only the valid attributes
+  def valid_attributes
     {:name => "Test Lifecycle Phase",
      :sequence_number => 1,
      :lifecycle_id => @lifecycle.id}

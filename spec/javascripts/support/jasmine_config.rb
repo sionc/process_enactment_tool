@@ -1,8 +1,8 @@
 # Class to configure Jasmine
 module Jasmine
+  # Class for configuration option in jasmine
+  # Add your overrides or custom config code here
   class Config
-
-    # Add your overrides or custom config code here
 
   end
 end
@@ -10,7 +10,9 @@ end
 
 # Note - this is necessary for rspec2, which has removed the backtrace
 module Jasmine
+  # # Note - this is necessary for rspec2, which has removed the backtrace
   class SpecBuilder
+    # Note - this is necessary for rspec2, which has removed the backtrace
     def declare_spec(parent, spec)
       me = self
       example_name = spec["name"]

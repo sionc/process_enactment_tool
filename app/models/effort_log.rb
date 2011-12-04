@@ -1,4 +1,4 @@
-# A class to track the effort that is logged against a deliverable
+# Tracks the effort that is logged against a deliverable
 class EffortLog < ActiveRecord::Base
   belongs_to :deliverable
   belongs_to :user

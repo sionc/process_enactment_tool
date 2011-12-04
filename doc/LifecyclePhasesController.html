@@ -72,6 +72,8 @@
     
     <li><a href="#method-i-create">#create</a>
     
+    <li><a href="#method-i-create_deliverable_type">#create_deliverable_type</a>
+    
     <li><a href="#method-i-new">#new</a>
     
     <li><a href="#method-i-update">#update</a>
@@ -282,12 +284,19 @@ functionality for creating and updating lifecycle phases.</p>
   <span class="ruby-ivar">@lifecycle_phase</span>.<span class="ruby-identifier">sequence_number</span> = <span class="ruby-identifier">sequence_num</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@lifecycle_phase</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-ivar">@lifecycle_phase</span>.<span class="ruby-identifier">lifecycle</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Lifecycle Phase was successfully created.'</span>) }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lifecycle_phase</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:created</span>, <span class="ruby-value">:location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lifecycle_phase</span> }
+      <span class="ruby-identifier">deliverable_type</span> = <span class="ruby-identifier">create_deliverable_type</span>(<span class="ruby-ivar">@lifecycle_phase</span>)
+      <span class="ruby-keyword">if</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">deliverable_type</span>.<span class="ruby-identifier">nil?</span>)
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-ivar">@lifecycle_phase</span>.<span class="ruby-identifier">lifecycle</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Lifecycle Phase was successfully created.'</span>) }
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lifecycle_phase</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:created</span>, <span class="ruby-value">:location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lifecycle_phase</span> }
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@lifecycle</span> = <span class="ruby-ivar">@lifecycle_phase</span>.<span class="ruby-identifier">lifecycle</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;new&quot;</span> }
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lifecycle_phase</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:unprocessable_entity</span> }
+      <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">else</span>
       <span class="ruby-ivar">@lifecycle</span> = <span class="ruby-ivar">@lifecycle_phase</span>.<span class="ruby-identifier">lifecycle</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;new&quot;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lifecycle_phase</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:unprocessable_entity</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@lifecycle_phase</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:unprocessable_entity</span> }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -299,6 +308,55 @@ functionality for creating and updating lifecycle phases.</p>
 
         
       </div><!-- create-method -->
+
+    
+      <div id="method-i-create_deliverable_type" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_deliverable_type</span><span
+            class="method-args">(lifecycle_phase)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a <a href="DeliverableType.html">DeliverableType</a> and associates
+it with a <a href="Lifecycle.html">Lifecycle</a> Phase</p>
+          
+
+          
+          <div class="method-source-code" id="create_deliverable_type-source">
+            <pre><span class="ruby-comment"># File app/controllers/lifecycle_phases_controller.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_deliverable_type</span>(<span class="ruby-identifier">lifecycle_phase</span>)
+  <span class="ruby-identifier">unit_of_measure</span> = <span class="ruby-constant">UnitOfMeasure</span>.<span class="ruby-identifier">find_by_unit</span>(<span class="ruby-string">&quot;pages&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">unit_of_measure</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">temp_unit_of_measure</span> = <span class="ruby-constant">UnitOfMeasure</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:unit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;pages&quot;</span>)
+    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">temp_unit_of_measure</span>.<span class="ruby-identifier">save</span>)
+      <span class="ruby-identifier">unit_of_measure</span> = <span class="ruby-identifier">temp_unit_of_measure</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">return</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">type_name</span> = <span class="ruby-ivar">@lifecycle_phase</span>.<span class="ruby-identifier">name</span><span class="ruby-operator">+</span><span class="ruby-string">&quot; deliverable&quot;</span>
+  <span class="ruby-identifier">deliverable_type</span> = <span class="ruby-constant">DeliverableType</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type_name</span>,
+                                         <span class="ruby-value">:lifecycle_phase_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lifecycle_phase</span>.<span class="ruby-identifier">id</span>,
+                                         <span class="ruby-value">:unit_of_measure_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unit_of_measure</span>.<span class="ruby-identifier">id</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">deliverable_type</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">deliverable_type</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_deliverable_type-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_deliverable_type-method -->
 
     
       <div id="method-i-new" class="method-detail ">
@@ -353,7 +411,7 @@ functionality for creating and updating lifecycle phases.</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/lifecycle_phases_controller.rb, line 43</span>
+            <pre><span class="ruby-comment"># File app/controllers/lifecycle_phases_controller.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">lifecycle</span> = <span class="ruby-constant">Lifecycle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:lifecycle_id</span>])
   <span class="ruby-identifier">ordered_phase_ids</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:phases</span>]

@@ -254,19 +254,22 @@ a[id ~= 'view_project'], a[id ~= 'view_lifecycles']{
     margin-bottom: 20px;
 }
 
-#sortable {
+.phase_sortable {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 60%; }
+    width: 60%;
+    float:left;
+}
 
-#sortable li {
+.phase_sortable li {
     margin: 0 5px 5px 5px;
     padding: 5px;
     font-size: 1.2em;
-    height: 1.5em; }
+    height: 1.5em;
+}
 
-html>body #sortable li {
+html>body .phase_sortable li {
     height: 1.5em;
     line-height: 1.2em;
 }
@@ -278,12 +281,44 @@ html>body #sortable li {
 
 #lifecycle_phase_list .ui-icon {
     display: inline-block;
+    float: left;
+    width: 20px;
 }
 
-.static_sequence_number{
-    display: inline-block;
+#lifecycle_phase_numbers{
+    float: left;
+    width: 40px;
 }
 
+#lifecycle_phase_numbers ul{
+     list-style-type: none;
+}
+
+#lifecycle_phase_numbers li{
+    height: 1.5em;
+    line-height: 1.2em;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+#sequence_numbers ul
+{
+    width: 6%;
+}
+#sequence_numbers li
+{
+    width: 25px;
+    /*border: none;*/
+    background:none;
+    border-color: transparent;
+    text-align: right;
+    color: #404040;
+}
+
+#lifecycle_buttons{
+    padding-top: 10px;
+    clear: both;
+}
 /* Overrides for devise */
 
 .remember_me {

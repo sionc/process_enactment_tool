@@ -9,15 +9,26 @@
 </p>
 
 <h3>Lifecycle Phases</h3>
-<% if @current_user.role?(:admin) %>
+<% if @lifecycle.projects.count == 0 && @current_user.role?(:admin)%>
+
+    <div id="sequence_numbers">
+       <ul class="phase_sortable">
+         <% @lifecycle.lifecycle_phases.each_with_index do |phase, index| %>
+            <li id = "phases_<%=phase.id%>" class="ui-state-default">
+                <%=(index+1)%>.
+            </li>
+        <% end %>
+      </ul>
+    </div>
+
     <div id="lifecycle_phase_list">
-      <ul id="sortable">
+      <ul id="sortable" class="phase_sortable">
         <% @lifecycle.lifecycle_phases.each_with_index do |phase, index| %>
             <li id = "phases_<%=phase.id%>" class="ui-state-default">
               <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-              <%= phase.name %>
-              <% #= phase.description
-              %>
+              <div title="<%= phase.description %>">
+                <%= phase.name %>
+              </div>
             </li>
         <% end %>
       </ul>
@@ -51,8 +62,10 @@
 </div>
 <br />
 
+<div id="lifecycle_buttons">
 <% if @lifecycle.projects.count == 0 && @current_user.role?(:admin) %>
     <%= link_to "Create Lifecycle Phase", new_lifecycle_phase_path(:lifecycle_id => @lifecycle.id), :class => "btn primary" %>
 <% end %>
 
 <%= link_to 'Return to Lifecycles', lifecycles_path, :class => "btn" %>
+</div>

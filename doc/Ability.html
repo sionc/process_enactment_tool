@@ -242,6 +242,8 @@
 
   <div id="description" class="description">
     
+<p>This model represents access level for different roles of users</p>
+
   </div><!-- description -->
 
   
@@ -273,12 +275,12 @@
 
         <div class="method-description">
           
-          
+          <p>Initializes the user access levels</p>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/models/ability.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/models/ability.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">user</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span> <span class="ruby-comment"># guest user</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">role?</span> <span class="ruby-value">:admin</span>

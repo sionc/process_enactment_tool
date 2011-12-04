@@ -1,3 +1,5 @@
+# Helper class for projects
+
 module ProjectsHelper
 
   # Returns "hours" or "hour" based on the value for Project.estimated_effort

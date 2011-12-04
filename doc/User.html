@@ -234,6 +234,8 @@
 
   <div id="description" class="description">
     
+<p>This model represents a user</p>
+
   </div><!-- description -->
 
   
@@ -270,7 +272,7 @@
 
           
           <div class="method-source-code" id="role-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">role</span>
   <span class="ruby-identifier">first_role</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">roles</span>.<span class="ruby-identifier">first</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">roles</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-keyword">if</span> (<span class="ruby-identifier">first_role</span>.<span class="ruby-identifier">nil?</span>)
@@ -300,12 +302,12 @@
 
         <div class="method-description">
           
-          
+          <p>Sets a ‘role’ to the user</p>
           
 
           
           <div class="method-source-code" id="role-3D-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">role=</span>(<span class="ruby-identifier">role_id</span>)
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">roles</span> = [<span class="ruby-constant">Role</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">role_id</span>)]
 <span class="ruby-keyword">end</span></pre>
@@ -330,12 +332,12 @@
 
         <div class="method-description">
           
-          
+          <p>Gets the user role</p>
           
 
           
           <div class="method-source-code" id="role-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">role?</span>(<span class="ruby-identifier">role</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">roles</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-identifier">role</span>.<span class="ruby-identifier">to_s</span>)
 <span class="ruby-keyword">end</span></pre>

@@ -1,4 +1,6 @@
+# Migration for creating users
 class DeviseCreateUsers < ActiveRecord::Migration
+  # Add table
   def self.up
     create_table(:users) do |t|
       t.database_authenticatable :null => false
@@ -22,6 +24,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
     # add_index :users, :authentication_token, :unique => true
   end
 
+  # Drop table
   def self.down
     drop_table :users
   end

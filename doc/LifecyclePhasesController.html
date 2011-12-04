@@ -74,6 +74,8 @@
     
     <li><a href="#method-i-new">#new</a>
     
+    <li><a href="#method-i-update">#update</a>
+    
   </ul>
 </nav>
 
@@ -232,6 +234,10 @@
 
   <div id="description" class="description">
     
+<p>This is the controller for our lifecycle phase resource. It sets up
+instance variables that will be used in the views. This controller provides
+functionality for creating and updating lifecycle phases.</p>
+
   </div><!-- description -->
 
   
@@ -268,7 +274,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/lifecycle_phases_controller.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/controllers/lifecycle_phases_controller.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-comment">#@lifecycle_phase = Lifecycle.new(params[:lifecycle_phase])</span>
   <span class="ruby-identifier">lifecycle</span> = <span class="ruby-constant">Lifecycle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:lifecycle_phase</span>][<span class="ruby-value">:lifecycle_id</span>])
@@ -311,7 +317,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/lifecycle_phases_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/lifecycle_phases_controller.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-comment">#@lifecycle_phase = LifecyclePhase.new</span>
   <span class="ruby-ivar">@lifecycle</span> = <span class="ruby-constant">Lifecycle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:lifecycle_id</span>])
@@ -329,6 +335,63 @@
 
         
       </div><!-- new-method -->
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>PUT /lifecycle_phases/1 PUT /lifecycle_phases/1.xml</p>
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/controllers/lifecycle_phases_controller.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+  <span class="ruby-identifier">lifecycle</span> = <span class="ruby-constant">Lifecycle</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:lifecycle_id</span>])
+  <span class="ruby-identifier">ordered_phase_ids</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:phases</span>]
+  <span class="ruby-identifier">ordered_lifecycle_phases</span> = []
+  <span class="ruby-identifier">ordered_phase_ids</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">phase_id</span><span class="ruby-operator">|</span>
+       <span class="ruby-identifier">ordered_lifecycle_phases</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">lifecycle</span>.<span class="ruby-identifier">lifecycle_phases</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">phase_id</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">ordered_lifecycle_phases</span>.<span class="ruby-identifier">to_json</span>
+  <span class="ruby-identifier">swapped_index</span> = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">ordered_count</span> = <span class="ruby-identifier">ordered_lifecycle_phases</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-keyword">for</span> <span class="ruby-identifier">index</span> <span class="ruby-keyword">in</span> <span class="ruby-value">1</span><span class="ruby-operator">..</span>(<span class="ruby-identifier">ordered_count</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)
+    <span class="ruby-keyword">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">index</span><span class="ruby-operator">+</span><span class="ruby-value">1</span><span class="ruby-operator">..</span>(<span class="ruby-identifier">ordered_lifecycle_phases</span>.<span class="ruby-identifier">count</span>)
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ordered_count</span>
+          <span class="ruby-keyword">if</span>(<span class="ruby-identifier">ordered_lifecycle_phases</span>[<span class="ruby-identifier">i</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>].<span class="ruby-identifier">sequence_number</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">index</span>)
+          <span class="ruby-identifier">ordered_lifecycle_phases</span>[<span class="ruby-identifier">i</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>].<span class="ruby-identifier">update_attributes</span>(<span class="ruby-value">:sequence_number</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+          <span class="ruby-identifier">swapped_index</span> = <span class="ruby-identifier">i</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>                     
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    
+    <span class="ruby-identifier">current_sequence_num</span> = <span class="ruby-identifier">ordered_lifecycle_phases</span>[<span class="ruby-identifier">index</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>].<span class="ruby-identifier">sequence_number</span>
+    <span class="ruby-identifier">ordered_lifecycle_phases</span>[<span class="ruby-identifier">index</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>].<span class="ruby-identifier">update_attributes</span>(<span class="ruby-value">:sequence_number</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">index</span>)
+    <span class="ruby-identifier">ordered_lifecycle_phases</span>[<span class="ruby-identifier">swapped_index</span>].<span class="ruby-identifier">update_attributes</span>(<span class="ruby-value">:sequence_number</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_sequence_num</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># return JSON string</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:result</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'success'</span>} }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update-method -->
 
     
     </section><!-- public-instance-method-details -->

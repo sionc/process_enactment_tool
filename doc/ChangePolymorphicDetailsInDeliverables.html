@@ -232,6 +232,10 @@
 
   <div id="description" class="description">
     
+<p>Migration for modifying polymorphic details columns in deliverables Replace
+project_deliverable_type_id with assignable_id and replace
+project_deliverable_type_type with assignable_type</p>
+
   </div><!-- description -->
 
   
@@ -263,12 +267,12 @@
 
         <div class="method-description">
           
-          
+          <p>Undo replace columns</p>
           
 
           
           <div class="method-source-code" id="down-source">
-            <pre><span class="ruby-comment"># File db/migrate/20111008030436_change_polymorphic_details_in_deliverables.rb, line 10</span>
+            <pre><span class="ruby-comment"># File db/migrate/20111008030436_change_polymorphic_details_in_deliverables.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">down</span>
   <span class="ruby-identifier">remove_column</span> <span class="ruby-value">:deliverables</span>, <span class="ruby-value">:assignable_id</span>
   <span class="ruby-identifier">remove_column</span> <span class="ruby-value">:deliverables</span>, <span class="ruby-value">:assignable_type</span>
@@ -297,12 +301,12 @@
 
         <div class="method-description">
           
-          
+          <p>Replace columns</p>
           
 
           
           <div class="method-source-code" id="up-source">
-            <pre><span class="ruby-comment"># File db/migrate/20111008030436_change_polymorphic_details_in_deliverables.rb, line 2</span>
+            <pre><span class="ruby-comment"># File db/migrate/20111008030436_change_polymorphic_details_in_deliverables.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">up</span>
   <span class="ruby-identifier">remove_column</span> <span class="ruby-value">:deliverables</span>, <span class="ruby-value">:project_deliverable_type_id</span>
   <span class="ruby-identifier">remove_column</span> <span class="ruby-value">:deliverables</span>, <span class="ruby-value">:project_deliverable_type_type</span>

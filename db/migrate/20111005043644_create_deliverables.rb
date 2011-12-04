@@ -1,4 +1,7 @@
+# Migration for creating deliverables
+
 class CreateDeliverables < ActiveRecord::Migration
+  # Add table
   def self.up
     create_table :deliverables do |t|
       t.string :name
@@ -11,6 +14,7 @@ class CreateDeliverables < ActiveRecord::Migration
     end
   end
 
+  # Drop table
   def self.down
     drop_table :deliverables
   end

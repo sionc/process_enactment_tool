@@ -1,3 +1,5 @@
+# This model represents a user
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -21,17 +23,20 @@ class User < ActiveRecord::Base
       return first_role.name
     end
   end
-  
+
+  # Sets a 'role' to the user
   def role=(role_id)
     self.roles = [Role.find(role_id)]
   end
-    
+
+  # Gets the user role
   def role?(role)
     return !!self.roles.find_by_name(role.to_s)
   end
   
   private
 
+  # Assigns default user role before saving the record
   def assign_user_role
     self.roles << Role.find_by_name("regular_user")
     self.save!

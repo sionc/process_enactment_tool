@@ -236,6 +236,10 @@
 
   <div id="description" class="description">
     
+<p>This is the controller for our effort log resource. It sets up instance
+variables that will be used in the views. This controller provides
+functionality for creating and viewing effort logs.</p>
+
   </div><!-- description -->
 
   
@@ -272,7 +276,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/effort_logs_controller.rb, line 30</span>
+            <pre><span class="ruby-comment"># File app/controllers/effort_logs_controller.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@effort_log</span> = <span class="ruby-constant">EffortLog</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:effort_log</span>])
   <span class="ruby-ivar">@effort_log</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-ivar">@current_user</span>.<span class="ruby-identifier">id</span>
@@ -311,12 +315,12 @@
 
         <div class="method-description">
           
-          
+          <p>Check whether one effort log entry overlaps with another</p>
           
 
           
           <div class="method-source-code" id="does_not_overlap-source">
-            <pre><span class="ruby-comment"># File app/controllers/effort_logs_controller.rb, line 48</span>
+            <pre><span class="ruby-comment"># File app/controllers/effort_logs_controller.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">does_not_overlap</span>
   <span class="ruby-identifier">found_overlap</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-identifier">start_date_time</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:start_date_time</span>]
@@ -364,7 +368,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/effort_logs_controller.rb, line 18</span>
+            <pre><span class="ruby-comment"># File app/controllers/effort_logs_controller.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@effort_log</span> = <span class="ruby-constant">EffortLog</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@deliverable_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:deliverable_id</span>]
@@ -400,7 +404,7 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/effort_logs_controller.rb, line 7</span>
+            <pre><span class="ruby-comment"># File app/controllers/effort_logs_controller.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@effort_log</span> = <span class="ruby-constant">EffortLog</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 

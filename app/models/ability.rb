@@ -1,6 +1,9 @@
+# This model represents access level for different roles of users
+
 class Ability
   include CanCan::Ability
 
+  # Initializes the user access levels
   def initialize(user)
     user ||= User.new # guest user
     if user.role? :admin
@@ -16,5 +19,4 @@ class Ability
       cannot :manage, LifecyclePhase
     end
   end
-
 end

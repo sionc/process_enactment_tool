@@ -232,6 +232,9 @@
 
   <div id="description" class="description">
     
+<p>This the controller for the application. All other controllers inherit from
+this controller</p>
+
   </div><!-- description -->
 
   
@@ -268,7 +271,7 @@
 
           
           <div class="method-source-code" id="accessible_roles-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">accessible_roles</span>
   <span class="ruby-ivar">@accessible_roles</span> = <span class="ruby-constant">Role</span>.<span class="ruby-identifier">accessible_by</span>(<span class="ruby-identifier">current_ability</span>,<span class="ruby-value">:read</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -298,7 +301,7 @@
 
           
           <div class="method-source-code" id="get_user-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_user</span>
   <span class="ruby-ivar">@current_user</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">current_user</span>
 <span class="ruby-keyword">end</span></pre>

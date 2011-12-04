@@ -1,3 +1,6 @@
+# This is the controller for our effort log resource. It sets up instance
+# variables that will be used in the views. This controller provides
+# functionality for creating and viewing effort logs.
 class EffortLogsController < ApplicationController
 
   before_filter :authenticate_user!, :except => []
@@ -44,7 +47,8 @@ class EffortLogsController < ApplicationController
       end
     end
   end
-  
+
+  # Check whether one effort log entry overlaps with another
   def does_not_overlap
     found_overlap = false
     start_date_time = params[:start_date_time]

@@ -1,4 +1,6 @@
+# Migration for creating custom deliverable types
 class CreateCustomDeliverableTypes < ActiveRecord::Migration
+  # Create table
   def self.up
     create_table :custom_deliverable_types do |t|
       t.integer :project_phase_id
@@ -9,6 +11,7 @@ class CreateCustomDeliverableTypes < ActiveRecord::Migration
     end
   end
 
+  # Drop table
   def self.down
     drop_table :custom_deliverable_types
   end

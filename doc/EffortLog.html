@@ -284,7 +284,7 @@
 
           
           <div class="method-source-code" id="interrupt_time_value-source">
-            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 77</span>
+            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">interrupt_time_value</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start_date_time</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">stop_date_time</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">interrupt_time</span>.<span class="ruby-identifier">nil?</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:interrupt_time</span>, <span class="ruby-string">'must be less than logged time'</span>) <span class="ruby-keyword">if</span> (<span class="ruby-identifier">interrupt_time</span> <span class="ruby-operator">&gt;=</span> (<span class="ruby-identifier">stop_date_time</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">start_date_time</span>)<span class="ruby-operator">/</span><span class="ruby-value">60</span>)
@@ -358,7 +358,7 @@ starts</p>
 
           
           <div class="method-source-code" id="overlaps-3F-source">
-            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 59</span>
+            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">overlaps?</span> (<span class="ruby-identifier">effort_log</span>)
   <span class="ruby-keyword">return</span> ((<span class="ruby-identifier">effort_log</span>.<span class="ruby-identifier">start_date_time</span> <span class="ruby-operator">&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">stop_date_time</span>) <span class="ruby-operator">&amp;&amp;</span>
           (<span class="ruby-identifier">effort_log</span>.<span class="ruby-identifier">stop_date_time</span>  <span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start_date_time</span>) <span class="ruby-operator">&amp;&amp;</span> 
@@ -385,12 +385,12 @@ starts</p>
 
         <div class="method-description">
           
-          
+          <p>Custom validator for checking that stop date is not in the future</p>
           
 
           
           <div class="method-source-code" id="start_date_is_not_in_the_future-source">
-            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 52</span>
+            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">start_date_is_not_in_the_future</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:start_date_time</span>, <span class="ruby-string">'must come on or before midnight'</span>) <span class="ruby-keyword">if</span> (<span class="ruby-identifier">start_date_time</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">start_date_time</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">end_of_day</span> ))    
 <span class="ruby-keyword">end</span></pre>
@@ -445,12 +445,12 @@ starts</p>
 
         <div class="method-description">
           
-          
+          <p>Custom validator for checking that stop date is not before start date</p>
           
 
           
           <div class="method-source-code" id="stop_date_is_not_before_start_date-source">
-            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">stop_date_is_not_before_start_date</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:stop_date_time</span>, <span class="ruby-string">'must come after start time'</span>) <span class="ruby-keyword">if</span> (<span class="ruby-identifier">start_date_time</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">stop_date_time</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">start_date_time</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">stop_date_time</span>))
 <span class="ruby-keyword">end</span></pre>
@@ -475,12 +475,12 @@ starts</p>
 
         <div class="method-description">
           
-          
+          <p>Custom validator for checking that stop date is not in the future</p>
           
 
           
           <div class="method-source-code" id="stop_date_is_not_in_the_future-source">
-            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 48</span>
+            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">stop_date_is_not_in_the_future</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:stop_date_time</span>, <span class="ruby-string">'must come on or before midnight'</span>) <span class="ruby-keyword">if</span> (<span class="ruby-identifier">stop_date_time</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">stop_date_time</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">end_of_day</span> ))    
 <span class="ruby-keyword">end</span></pre>
@@ -535,12 +535,12 @@ starts</p>
 
         <div class="method-description">
           
-          
+          <p>Custom validator for checking whether effort log time entries overlap</p>
           
 
           
           <div class="method-source-code" id="times_do_not_overlap-source">
-            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 65</span>
+            <pre><span class="ruby-comment"># File app/models/effort_log.rb, line 69</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">times_do_not_overlap</span>
   <span class="ruby-comment"># If any effort log overlaps, add errors and return immediately</span>
   <span class="ruby-constant">EffortLog</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">effort_log</span><span class="ruby-operator">|</span>

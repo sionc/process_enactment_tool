@@ -275,7 +275,7 @@ href="ProjectPhase.html">ProjectPhase</a></p>
 
           
           <div class="method-source-code" id="estimated_effort-source">
-            <pre><span class="ruby-comment"># File app/models/project.rb, line 18</span>
+            <pre><span class="ruby-comment"># File app/models/project.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">estimated_effort</span>
   <span class="ruby-identifier">total_estimated_effort</span> = <span class="ruby-value">0</span>
   <span class="ruby-identifier">project_phases</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">phase</span><span class="ruby-operator">|</span>
@@ -310,7 +310,7 @@ href="ProjectPhase.html">ProjectPhase</a></p>
 
           
           <div class="method-source-code" id="logged_effort-source">
-            <pre><span class="ruby-comment"># File app/models/project.rb, line 28</span>
+            <pre><span class="ruby-comment"># File app/models/project.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">logged_effort</span>
   <span class="ruby-identifier">total_logged_effort</span> = <span class="ruby-value">0</span>
   <span class="ruby-identifier">project_phases</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">phase</span><span class="ruby-operator">|</span>
@@ -340,12 +340,12 @@ href="ProjectPhase.html">ProjectPhase</a></p>
 
         <div class="method-description">
           
-          
+          <p>returns the list of records in the ascending order of sequence numbers</p>
           
 
           
           <div class="method-source-code" id="ordered_list-source">
-            <pre><span class="ruby-comment"># File app/models/project.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/models/project.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ordered_list</span>
   <span class="ruby-identifier">find</span> <span class="ruby-value">:all</span>, <span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;sequence_number asc&quot;</span>
 <span class="ruby-keyword">end</span></pre>

@@ -1,4 +1,7 @@
+# Migration for creating deliverable types
+
 class CreateDeliverableTypes < ActiveRecord::Migration
+  # Add table
   def self.up
     create_table :deliverable_types do |t|
       t.string :name
@@ -9,6 +12,7 @@ class CreateDeliverableTypes < ActiveRecord::Migration
     end
   end
 
+  # Drop table
   def self.down
     drop_table :deliverable_types
   end

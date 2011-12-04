@@ -40,15 +40,18 @@ class EffortLog < ActiveRecord::Base
   def stop_date_time_format
     errors.add(:stop_date_time, 'must be a valid datetime') if ((DateTime.parse(stop_date_time.to_s) rescue ArgumentError) == ArgumentError)
   end
-  
+
+  # Custom validator for checking that stop date is not before start date
   def stop_date_is_not_before_start_date
     errors.add(:stop_date_time, 'must come after start time') if (start_date_time && stop_date_time && (start_date_time > stop_date_time))
   end
-  
+
+  # Custom validator for checking that stop date is not in the future
   def stop_date_is_not_in_the_future
     errors.add(:stop_date_time, 'must come on or before midnight') if (stop_date_time && (stop_date_time > DateTime.now.end_of_day ))    
   end
 
+  # Custom validator for checking that stop date is not in the future
   def start_date_is_not_in_the_future
     errors.add(:start_date_time, 'must come on or before midnight') if (start_date_time && (start_date_time > DateTime.now.end_of_day ))    
   end
@@ -61,7 +64,8 @@ class EffortLog < ActiveRecord::Base
             (effort_log.stop_date_time  > self.start_date_time) && 
             effort_log.user_id == self.user_id)
   end
-  
+
+  # Custom validator for checking whether effort log time entries overlap
   def times_do_not_overlap
     # If any effort log overlaps, add errors and return immediately
     EffortLog.all.each do |effort_log|

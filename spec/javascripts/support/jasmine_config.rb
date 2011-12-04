@@ -1,3 +1,4 @@
+# Class to configure Jasmine
 module Jasmine
   class Config
 

@@ -1,3 +1,5 @@
+# This the controller for the application. All other controllers inherit from this controller
+
 class ApplicationController < ActionController::Base
   protect_from_forgery
 

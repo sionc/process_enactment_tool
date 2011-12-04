@@ -1,3 +1,4 @@
+# Helper class for deliverables
 module DeliverablesHelper
 
   # Gets the project associated with the deliverable

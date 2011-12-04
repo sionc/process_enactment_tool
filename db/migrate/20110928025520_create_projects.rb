@@ -1,4 +1,7 @@
+# Migration for creating projects
+
 class CreateProjects < ActiveRecord::Migration
+  # Add table
   def self.up
     create_table :projects do |t|
       t.string :name
@@ -8,6 +11,7 @@ class CreateProjects < ActiveRecord::Migration
     end
   end
 
+  # Drop table
   def self.down
     drop_table :projects
   end

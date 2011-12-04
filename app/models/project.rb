@@ -5,11 +5,12 @@ class Project < ActiveRecord::Base
   belongs_to :lifecycle
   has_many :project_phases
   has_many :lifecycle_phases, :through => :project_phases, :foreign_key => "lifecycle_phase_id" do
+    # returns the list of records in the ascending order of sequence numbers
     def ordered_list
       find :all, :order => "sequence_number asc"
     end
   end
-  
+
   validates :name, :presence => true, :uniqueness => true
   validates :lifecycle_id, :presence => true
 

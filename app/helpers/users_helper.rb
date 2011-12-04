@@ -1,3 +1,5 @@
+# Helper class for users
+
 module UsersHelper
   
   # Return a string containing the first user role (if present)

@@ -1,4 +1,7 @@
+# Migration for creating effort logs
+
 class CreateEffortLogs < ActiveRecord::Migration
+  # Add table
   def self.up
     create_table :effort_logs do |t|
       t.datetime :start_date_time
@@ -12,6 +15,7 @@ class CreateEffortLogs < ActiveRecord::Migration
     end
   end
 
+  # Drop table
   def self.down
     drop_table :effort_logs
   end

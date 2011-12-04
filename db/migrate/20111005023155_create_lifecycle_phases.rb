@@ -1,4 +1,7 @@
+# Migration for creating lifecycle phases
+
 class CreateLifecyclePhases < ActiveRecord::Migration
+  # Add table
   def self.up
     create_table :lifecycle_phases do |t|
       t.string :name
@@ -10,6 +13,7 @@ class CreateLifecyclePhases < ActiveRecord::Migration
     end
   end
 
+  # Drop table
   def self.down
     drop_table :lifecycle_phases
   end

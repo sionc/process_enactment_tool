@@ -301,6 +301,16 @@ html>body .phase_sortable li {
     padding-top: 10px;
 }
 
+.phase_sortable li
+{
+    font-size: 0.9em;
+}
+
+#lifecycle_helper_text
+{
+    font-size: 0.8em;
+}
+
 #sequence_numbers ul
 {
     width: 6%;

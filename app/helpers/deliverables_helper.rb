@@ -19,5 +19,4 @@ module DeliverablesHelper
       "Deleted User"
     end
   end
-
 end

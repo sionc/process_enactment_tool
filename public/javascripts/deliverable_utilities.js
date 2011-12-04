@@ -1,11 +1,13 @@
 var getAssignable =
 function() {
-        var deliverableTypeId = $('#deliverable_assignable_id option:selected').val();
+
+    if ($('#deliverable_assignable_id option:selected').length) {
         var assignable_substr = new Array();
-
+        var deliverableTypeId = $('#deliverable_assignable_id option:selected').val();
         assignable_substr = deliverableTypeId.split('_');
-
-        // assignable_type => assignable_substr[0]
-        // assignable_id => assignable_substr[1]
         return assignable_substr;
- };
+    }
+    else {
+        return ''
+    }
+};

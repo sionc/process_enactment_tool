@@ -71,6 +71,10 @@ function(data) {
 var retrieveHistoricalData =
 function() {
     var a_values = getAssignable();
+
+    if (a_values.length == 0)
+        return;
+
     var a_type = a_values[0];
     var a_id = a_values[1];
 
@@ -103,7 +107,11 @@ function(data){
 var assignableTypeChangeHandler =
 function() {
     var a_values = getAssignable();
-    var a_type = a_values[0];
+    var a_type = "none";
+
+    if (a_values.length) {
+        a_type = a_values[0];
+    }
 
     if (a_type == "stock") {
         retrieveHistoricalData();
@@ -138,6 +146,7 @@ var addViewHistoricalDataEventHandler = function() {
 $(document).ready(
 function() {
 
+    disableHistoricalData();
     retrieveHistoricalData();
     addViewHistoricalDataEventHandler();
 

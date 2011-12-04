@@ -28,12 +28,19 @@ class LifecyclePhasesController < ApplicationController
     @lifecycle_phase.sequence_number = sequence_num
     respond_to do |format|
       if @lifecycle_phase.save
-        format.html { redirect_to(@lifecycle_phase.lifecycle, :notice => 'Lifecycle Phase was successfully created.') }
-        format.xml  { render :xml => @lifecycle_phase, :status => :created, :location => @lifecycle_phase }
+        deliverable_type = create_deliverable_type(@lifecycle_phase)
+        if (!deliverable_type.nil?)
+          format.html { redirect_to(@lifecycle_phase.lifecycle, :notice => 'Lifecycle Phase was successfully created.') }
+          format.xml { render :xml => @lifecycle_phase, :status => :created, :location => @lifecycle_phase }
+        else
+          @lifecycle = @lifecycle_phase.lifecycle
+          format.html { render :action => "new" }
+          format.xml { render :xml => @lifecycle_phase.errors, :status => :unprocessable_entity }
+        end
       else
         @lifecycle = @lifecycle_phase.lifecycle
         format.html { render :action => "new" }
-        format.xml  { render :xml => @lifecycle_phase.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @lifecycle_phase.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -68,6 +75,29 @@ class LifecyclePhasesController < ApplicationController
     # return JSON string
     respond_to do |format|
       format.json { render :json => {:result => 'success'} }
+    end
+  end
+
+  # Creates a DeliverableType and associates it with a Lifecycle Phase
+  def create_deliverable_type(lifecycle_phase)
+    unit_of_measure = UnitOfMeasure.find_by_unit("pages")
+    if unit_of_measure.nil?
+      temp_unit_of_measure = UnitOfMeasure.new(:unit => "pages")
+      if (temp_unit_of_measure.save)
+        unit_of_measure = temp_unit_of_measure
+      else
+        return
+      end
+    end
+    type_name = @lifecycle_phase.name+" deliverable"
+    deliverable_type = DeliverableType.new(:name => type_name,
+                                           :lifecycle_phase_id => lifecycle_phase.id,
+                                           :unit_of_measure_id => unit_of_measure.id)
+
+    if deliverable_type.save
+      return deliverable_type
+    else
+      return
     end
   end
 end

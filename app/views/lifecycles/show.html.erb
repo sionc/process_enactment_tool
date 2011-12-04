@@ -8,10 +8,12 @@
   <%= @lifecycle.description %>
 </p>
 
-<p>
-  <h3>Lifecycle Phases</h3>
- <div id="lifecycle_helper_text">(Drag and drop to reorder lifecycle phases)</div>
-</p>
+
+<h3>Lifecycle Phases</h3>
+<% if @lifecycle.projects.count == 0 && @current_user.role?(:admin) %>
+    <div id="lifecycle_helper_text">(Drag and drop to reorder lifecycle phases)</div>
+<% end %>
+
 <br/>
 
 <% if @lifecycle.projects.count == 0 && @current_user.role?(:admin)%>

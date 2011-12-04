@@ -3,6 +3,10 @@ var showHiddenInputField =
         var hiddenInputBox;
 
         var a_values = getAssignable();
+
+        if (a_values.length == 0)
+            return;
+
         var a_type = a_values[0];
         var a_id = a_values[1];
 
@@ -26,8 +30,11 @@ var showHiddenInputField =
 
 var loadUnitOfMeasure =
     function() {
-
         var a_values = getAssignable();
+
+        if (a_values.length == 0)
+            return;
+
         var a_type = "";
         var del_type = a_values[0];
         var a_id = a_values[1];
@@ -81,6 +88,12 @@ var buildDeliverableDialog =
 
                 a_type = $('#deliverable_type_id input').attr("id");
                 a_value = $('#deliverable_type_id input').attr("value");
+
+                if (a_type.length == 0)
+                    return;
+
+                if (a_value.length == 0)
+                    return;
 
                 var a_type_substr = new Array();
                 a_type_substr = a_type.split('_');

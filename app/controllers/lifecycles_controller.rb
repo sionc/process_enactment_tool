@@ -46,9 +46,9 @@ class LifecyclesController < ApplicationController
   end
 
   # GET /lifecycles/1/edit
-  def edit
-    #@lifecycle = Lifecycle.find(params[:id])
-  end
+  # def edit
+  #   #@lifecycle = Lifecycle.find(params[:id])
+  # end
 
   # POST /lifecycles
   # POST /lifecycles.xml
@@ -68,29 +68,29 @@ class LifecyclesController < ApplicationController
 
   # PUT /lifecycles/1
   # PUT /lifecycles/1.xml
-  def update
-    #@lifecycle = Lifecycle.find(params[:id])
-
-    respond_to do |format|
-      if @lifecycle.update_attributes(params[:lifecycle])
-        format.html { redirect_to(@lifecycle, :notice => 'Lifecycle was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @lifecycle.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   #@lifecycle = Lifecycle.find(params[:id])
+  # 
+  #   respond_to do |format|
+  #     if @lifecycle.update_attributes(params[:lifecycle])
+  #       format.html { redirect_to(@lifecycle, :notice => 'Lifecycle was successfully updated.') }
+  #       format.xml  { head :ok }
+  #     else
+  #       format.html { render :action => "edit" }
+  #       format.xml  { render :xml => @lifecycle.errors, :status => :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /lifecycles/1
   # DELETE /lifecycles/1.xml
-  def destroy
-    @lifecycle = Lifecycle.find(params[:id])
-    @lifecycle.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(lifecycles_url) }
-      format.xml  { head :ok }
-    end
-  end
+  # def destroy
+  #   @lifecycle = Lifecycle.find(params[:id])
+  #   @lifecycle.destroy
+  # 
+  #   respond_to do |format|
+  #     format.html { redirect_to(lifecycles_url) }
+  #     format.xml  { head :ok }
+  #   end
+  # end
 end

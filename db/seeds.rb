@@ -9,7 +9,7 @@ puts "Creating roles..."
 admin_role        = Role.create(:name => "admin")
 regular_user_role = Role.create(:name => "regular_user")
 
-puts "Creating admin user..."
+puts "Creating admin users..."
 unless User.find_by_email 'admin@admin.com'
   admin_user = User.create(
     :email                 => 'admin@admin.com',
@@ -20,6 +20,43 @@ unless User.find_by_email 'admin@admin.com'
   # Assign the admin user role to the admin user
   admin_user.roles = [admin_role]
   admin_user.save!
+end
+
+puts "Creating ndss users"
+unless User.find_by_email 'theadmin@ndss.com'
+  admin_user = User.create(
+    :email                 => 'theadmin@ndss.com',
+    :password              => 'testme',
+    :password_confirmation => 'testme'
+  ) 
+
+  # Assign the admin user role to the admin user
+  admin_user.roles = [admin_role]
+  admin_user.save!
+end
+
+unless User.find_by_email 'theboss@ndss.com'
+  admin_user = User.create(
+    :email                 => 'theboss@ndss.com',
+    :password              => 'testme',
+    :password_confirmation => 'testme'
+  ) 
+end
+
+unless User.find_by_email 'sally@ndss.com'
+  admin_user = User.create(
+    :email                 => 'sally@ndss.com',
+    :password              => 'testme',
+    :password_confirmation => 'testme'
+  ) 
+end
+
+unless User.find_by_email 'codemonkey@ndss.com'
+  admin_user = User.create(
+    :email                 => 'codemonkey@ndss.com',
+    :password              => 'testme',
+    :password_confirmation => 'testme'
+  ) 
 end
 
 puts "Creating complexity..."

@@ -32,6 +32,14 @@
   <b>Logged effort:</b>
   <%= sprintf('%.2f', @deliverable.logged_effort) %> hours
 </p>
+<br />
+
+<%= link_to 'Modify', edit_deliverable_path(@deliverable), :class => 'btn primary' %>
+<%= link_to 'Delete', @deliverable, :confirm => 'Are you sure?', :method => :delete, :class => 'btn danger' %>
+<%= link_to 'Return to Project', project_path(get_project)+"?project_phase_id="+get_project_phase_id_string, :class => 'btn' %>
+
+<br />
+<br />
 
 <h3>Effort logs</h3>
 <table>
@@ -52,9 +60,4 @@
   <% end %>
 </table>
 
-<br/>
-
-<%= link_to 'Log Effort', new_effort_log_path(:deliverable_id => @deliverable), :class => 'btn' %>
-<%= link_to 'Modify', edit_deliverable_path(@deliverable), :class => 'btn primary' %>
-<%= link_to 'Delete', @deliverable, :confirm => 'Are you sure?', :method => :delete, :class => 'btn danger' %>
-<%= link_to 'Return to Project', project_path(get_project)+"?project_phase_id="+get_project_phase_id_string, :class => 'btn' %>
+<%= link_to 'Log Effort', new_effort_log_path(:deliverable_id => @deliverable), :class => 'btn primary' %>

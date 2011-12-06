@@ -12,7 +12,8 @@ describe LifecyclePhasesController do
 
     @lifecycle = Factory.create(:lifecycle)
   end
-   def valid_attributes
+  # method for getting only the valid attributes
+  def valid_attributes
     {:name => "Test Lifecycle Phase",
      :sequence_number => 1,
      :lifecycle_id => @lifecycle.id}
@@ -61,5 +62,14 @@ describe LifecyclePhasesController do
       end
     end
   end
+  
+  # describe "PUT update" do
+  #   describe "with valid params" do
+  #     it "should update the sequence numbers of the phases" do
+  #       post :update, :lifecycle_phase => {:lifecycle_id => @lifecycle.id}
+  #       @lifecycle.lifecyle_phases.first.sequence_number.should eq(2)
+  #     end
+  #   end
+  # end
 
 end

@@ -10,6 +10,11 @@ iterative version is a limited function version. {(Demo Site)}[http://gentle-flo
 == Code Coverage
 Code coverage for PET 1.3 can be viewed at {the coverage page}[link:coverage/index.html]
 
+== Test Plan
+	Throughout the development of PET 1.3 we used unit tests, functional tests, and integration tests.  
+	We also used Jasmine for our javascript unit tests.  The goal is to run our automated suite of tests 
+	before any push to gitHub or Heroku.
+
 == Finished Story Cards
 
 === Iteration 1
@@ -56,34 +61,34 @@ Code coverage for PET 1.3 can be viewed at {the coverage page}[link:coverage/ind
 === Iteration 3
 
 1. Historical Data:
-  User should be able to see the minimum, average, and maximum size and production rate 
-  of all previous deliverables of the specified type and complexity.
-  	
+	User should be able to see the minimum, average, and maximum size and production rate 
+	of all previous deliverables of the specified type and complexity.
+
 2. Log Effort:
-  User should be able to log effort against a deliverable.
-  
+	User should be able to log effort against a deliverable.
+
 3. User Login:
-  As a user, I should be able to login to PET.
-  
+	As a user, I should be able to login to PET.
+
 4. Admin User Role:
-  As an admin, I should be able to create and delete user accounts and set user roles.
-  
+	As an admin, I should be able to create and delete user accounts and set user roles.
+
 5. Regular User Role:
-  As a regular user, I should be able to edit, create, or delete information, 
-  but I should not be able to create or delete user accounts or set user roles.
-          	
+	As a regular user, I should be able to edit, create, or delete information, 
+	but I should not be able to create or delete user accounts or set user roles.
+
 6. Delete Deliverable:
-  User should be able to delete an existing deliverable
-  
+	User should be able to delete an existing deliverable
+
 7. Create Lifecycle:
-  As a project manager, I should be able to create a new lifecycle.
-  
+	As a project manager, I should be able to create a new lifecycle.
+
 8. Create Lifecycle Phase:
-  As a regular user, I should be able to create a new lifecycle phase.
-  
+	As a regular user, I should be able to create a new lifecycle phase.
+
 9. Reorder lifecycle phase:
-  An admin user should be able to reorder lifecycle phases on the lifecycle show page using drag and drop.
-        
+	An admin user should be able to reorder lifecycle phases on the lifecycle show page using drag and drop.
+
 
 == How to setup PET 1.3 locally
 

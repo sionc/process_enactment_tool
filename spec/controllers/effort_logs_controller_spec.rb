@@ -89,6 +89,21 @@ describe EffortLogsController do
         post :create, :effort_log => {}
         response.should render_template("new")
       end
+      
+      it "should not accept an effort log that overlaps with a prior effort log" do
+       EffortLog.any_instance.stub(:save).and_return(false)
+       post :create, :effort_log => @attr
+       expect {
+         post :create, :effort_log => @attr.merge(:deliverable_id => @deliverable.id)
+       }.to change(EffortLog, :count).by(0)
+       expect {
+       post :does_not_overlap, :start_date_time => @curr_time -2, 
+                               :stop_date_time => @curr_time, 
+                               :deliverable_id => @deliverable.id 
+       }.to change(EffortLog, :count).by(0)
+      end
+      
+      
     end
   end
 
